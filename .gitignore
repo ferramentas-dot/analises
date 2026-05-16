@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Python (caso scripts venham parar aqui no futuro)
+__pycache__/
+*.pyc
+
+# Dados brutos / arquivos não usados pelo HTML
+*.json
+*.description
+*.info
+*.mp4
