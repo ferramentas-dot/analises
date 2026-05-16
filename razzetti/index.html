@@ -61461,6 +61461,25 @@ const cards = document.querySelectorAll('.card');
 let currentPlatform = 'ig';
 let currentFilter = 'all';
 
+// Deep-link via URL params: ?platform=ig|yt|similarweb&filter=stage:TOFU|kind:reel|funnel:manychat|...
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const p = params.get('platform');
+  const f = params.get('filter');
+  if (p && ['ig','yt','similarweb'].includes(p)) {
+    currentPlatform = p;
+    platformButtons.forEach(b => b.classList.toggle('active', b.dataset.platform === p));
+  }
+  if (f) {
+    const btn = document.querySelector('.filter-btn[data-filter="' + f.replace(/"/g, '\\"') + '"]');
+    if (btn && !btn.classList.contains('hidden-by-platform')) {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = f;
+    }
+  }
+})();
+
 function applyAll() {
   sections.forEach(s => {
     s.classList.toggle('hidden-by-platform', s.dataset.platform !== currentPlatform);
