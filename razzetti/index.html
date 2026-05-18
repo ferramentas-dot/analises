@@ -62422,13 +62422,42 @@ filterButtons.forEach(b => b.addEventListener('click', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const focusId = urlParams.get('focus');
   if (!focusId) return;
+  const selector = `[data-id="${focusId.replace(/"/g, '\\"')}"]`;
+  // Set platform context se necessário (caso o card seja YT ou SW, currentPlatform default é 'ig')
+  let didPlatformSync = false;
+  function syncPlatform(target) {
+    if (didPlatformSync) return;
+    const section = target.closest('section');
+    if (section && section.dataset.platform && section.dataset.platform !== currentPlatform) {
+      currentPlatform = section.dataset.platform;
+      platformButtons.forEach(b => b.classList.toggle('active', b.dataset.platform === currentPlatform));
+      applyAll();
+    }
+    didPlatformSync = true;
+  }
+  function scrollTo() {
+    const target = document.querySelector(selector);
+    if (!target) return null;
+    syncPlatform(target);
+    target.scrollIntoView({ block: 'center', behavior: 'instant' });
+    return target;
+  }
+  // Múltiplos retries pra lidar com lazy-load: imagens carregam, layout expande,
+  // posição do card muda. Re-scrolla até as imagens acima estabilizarem.
+  setTimeout(scrollTo, 80);
+  setTimeout(scrollTo, 400);
+  setTimeout(scrollTo, 1000);
   setTimeout(() => {
-    const target = document.querySelector(`[data-id="${focusId.replace(/"/g, '\\"')}"]`);
-    if (!target) return;
-    target.scrollIntoView({ block: 'center', behavior: 'smooth' });
-    target.classList.add('pulse-highlight');
-    setTimeout(() => target.classList.remove('pulse-highlight'), 4200);
-  }, 200);
+    const target = scrollTo();
+    if (target) {
+      target.classList.add('pulse-highlight');
+      setTimeout(() => target.classList.remove('pulse-highlight'), 4200);
+    }
+  }, 1800);
+  // Fallback final: scrolla de novo depois que TODAS as imagens carregaram
+  window.addEventListener('load', () => {
+    setTimeout(scrollTo, 300);
+  });
 })();
 
 // Copy Miro link button — copia URL do stub (card OU seção) pra clipboard
