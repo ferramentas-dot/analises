@@ -421,6 +421,36 @@
   }
   body.focused-card .focused-back a:hover { text-decoration: underline; }
   .focused-back { display: none; }
+  /* Centralizar header da seção no modo focused */
+  body.focused-card .section-head {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+  }
+  body.focused-card .section-head > div:first-child {
+    text-align: center;
+    max-width: 720px;
+  }
+  body.focused-card .section-head .section-actions {
+    margin-top: 8px;
+  }
+  body.focused-card .section-head .section-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  /* Pulse highlight pra ?focus=ID */
+  @keyframes pulse-highlight-anim {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+    25% { box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.45); }
+    50% { box-shadow: 0 0 0 12px rgba(56, 189, 248, 0.25); }
+    75% { box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.45); }
+  }
+  .pulse-highlight {
+    animation: pulse-highlight-anim 1.4s ease-in-out 3;
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+  }
   .analysis {
     padding: 14px 16px 16px;
     display: flex; flex-direction: column; gap: 14px;
@@ -61874,54 +61904,115 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
               <button class="miro-link-btn section-miro-btn" type="button" data-section-id="trafego-grupo3" title="Copiar URL pra embedar essa seção inteira no Miro">📎 Seção Miro</button>
             </div>
             <div class="section-stats">
-              <span><strong>6</strong> prints</span>
+              <span><strong>9</strong> prints</span>
             </div>
           </header>
           <div class="sw-grid">
             
-            <article class="sw-card" data-id="sw-04a-subdomain-comercial-vsl">
+            <article class="sw-card" data-id="sw-04c-subdomain-main">
               
-                <div class="sw-img-wrap sw-img-wrap-multi">
+                <div class="sw-img-wrap">
                   <div class="sw-sticky">
-                    <div class="sw-multi-grid">
-                    <figure class="sw-multi-tile">
-                      <img src="similarweb_prints/04a-subdomain-comercial-vsl.png" alt="demo.bluehackers.com — Comercial com VSL" loading="lazy" data-zoom-src="similarweb_prints/04a-subdomain-comercial-vsl.png" onerror="this.style.display='none'; this.parentElement.classList.add('sw-multi-missing')">
-                      <figcaption>demo.bluehackers.com — Comercial com VSL</figcaption>
-                    </figure>
-                    
-                    <figure class="sw-multi-tile">
-                      <img src="similarweb_prints/04b-subdomain-trip.png" alt="sho.bluehackers.com — Trip (Tripware)" loading="lazy" data-zoom-src="similarweb_prints/04b-subdomain-trip.png" onerror="this.style.display='none'; this.parentElement.classList.add('sw-multi-missing')">
-                      <figcaption>sho.bluehackers.com — Trip (Tripware)</figcaption>
-                    </figure>
-                    
-                    <figure class="sw-multi-tile">
-                      <img src="similarweb_prints/04c-subdomain-main.png" alt="bluehackers.com — Main page" loading="lazy" data-zoom-src="similarweb_prints/04c-subdomain-main.png" onerror="this.style.display='none'; this.parentElement.classList.add('sw-multi-missing')">
-                      <figcaption>bluehackers.com — Main page</figcaption>
-                    </figure>
-                    
-                    <figure class="sw-multi-tile">
-                      <img src="similarweb_prints/04d-subdomain-tripfree.png" alt="ed.bluehackers.com — Trip Free / Biblioteca" loading="lazy" data-zoom-src="similarweb_prints/04d-subdomain-tripfree.png" onerror="this.style.display='none'; this.parentElement.classList.add('sw-multi-missing')">
-                      <figcaption>ed.bluehackers.com — Trip Free / Biblioteca</figcaption>
-                    </figure>
-                    </div>
-                    <div class="sw-img-hint">🔍 clique em qualquer imagem pra ampliar</div>
+                    <img src="similarweb_prints/04c-subdomain-main.png" alt="Sub-domínio bluehackers.com — Main page (home institucional)" loading="lazy" data-zoom-src="similarweb_prints/04c-subdomain-main.png" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                    <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                  </div>
+                  <div class="sw-img-missing" style="display:none">
+                    📷 Print ainda não salvo<br>
+                    <code>04c-subdomain-main.png</code>
                   </div>
                 </div>
                 
               <div class="sw-body">
                 <div class="sw-body-head">
-                  <h4>Os 4 sub-domínios do ecossistema BlueHackers</h4>
+                  <h4>Sub-domínio bluehackers.com — Main page (home institucional)</h4>
+                  <button class="miro-link-btn" type="button" data-card-id="sw-04c-subdomain-main" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+                </div>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> 39,7K visitas/mês, bounce baixíssimo (48,91%), 1,98 páginas/visita. O maior dos 4.</p>
+                <div class="sw-explanation">
+                  <p>bluehackers.com é a home institucional do ecossistema. É o sub-domínio com MAIOR volume de tráfego (39,7 mil visitas em abril/2026) e ao mesmo tempo o de MAIOR engajamento: bounce de 48,91% (o mais baixo dos quatro sub-domínios), 1,98 páginas por visita e tempo médio de 1 minuto e 17 segundos.</p>
+<p>A combinação desses números revela uma coisa importante: a maior parte do tráfego do BlueHackers vai DIRETO pra home, não pras landings de funil. Isso é coerente com o dado de 75% de tráfego direto que aparece nos gráficos de canais — gente que já conhece a marca digita o domínio no navegador e navega.</p>
+<p>Quem chega aqui não tá numa jornada de compra ativa, tá explorando. Por isso o bounce baixo: o visitante clica em mais de uma página antes de sair. Esse é o ativo de marca puro do ecossistema — sobrevive a qualquer mudança de mídia paga, porque o tráfego vem da memória do público.</p>
+                </div>
+              </div>
+            </article>
+            
+            <article class="sw-card" data-id="sw-04a-subdomain-comercial-vsl">
+              
+                <div class="sw-img-wrap">
+                  <div class="sw-sticky">
+                    <img src="similarweb_prints/04a-subdomain-comercial-vsl.png" alt="Sub-domínio demo.bluehackers.com — Funil Comercial com VSL" loading="lazy" data-zoom-src="similarweb_prints/04a-subdomain-comercial-vsl.png" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                    <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                  </div>
+                  <div class="sw-img-missing" style="display:none">
+                    📷 Print ainda não salvo<br>
+                    <code>04a-subdomain-comercial-vsl.png</code>
+                  </div>
+                </div>
+                
+              <div class="sw-body">
+                <div class="sw-body-head">
+                  <h4>Sub-domínio demo.bluehackers.com — Funil Comercial com VSL</h4>
                   <button class="miro-link-btn" type="button" data-card-id="sw-04a-subdomain-comercial-vsl" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
-                <p class="sw-destaque"><strong>💡 Destaque:</strong> Cada funil tem seu próprio sub-domínio. Permite separar métricas e isolar riscos.</p>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> 7,7K visitas/mês, bounce alto (73,06%), 1,43 páginas/visita. Cresceu forte de mar pra abr.</p>
                 <div class="sw-explanation">
-                  <p>Cada uma das 4 imagens é um sub-domínio diferente do BlueHackers, e cada um atende a um funil específico. Os números mostram visitas mensais, taxa de rejeição (bounce), páginas por visita e tempo médio na página.</p>
-<p>O primeiro é demo.bluehackers.com, casa do Funil Comercial com VSL. A linha de visitas tá crescendo, mas o bounce é alto: 73,06%. Faz sentido — é um VSL, quem não engata sai. As páginas por visita são 1,43 e o tempo médio é 1 minuto e 55 segundos, basicamente o tempo de assistir o começo do vídeo. Mensalmente recebe 7,7 mil visitas.</p>
-<p>Depois vem sho.bluehackers.com, página do Tripware (a oferta de US$27). Crescimento constante. Bounce ainda mais alto, 81,94%, porque é uma página de checkout — ou compra ou sai. São 1,44 páginas por visita e 2 minutos e 6 segundos de média. Recebe 21 mil visitas/mês, é o segundo sub-domínio mais movimentado.</p>
-<p>Em terceiro vem bluehackers.com, a home institucional. Aqui muda tudo. Bounce despenca pra 48,91%, o mais baixo dos quatro. Páginas por visita sobem pra 1,98 e o tempo médio é 3 minutos e 17 segundos. Com 39,7 mil visitas mensais, é o maior — o público que chega aqui veio direto, conhece a marca, navega de verdade.</p>
-<p>Por último, ed.bluehackers.com, casa da Biblioteca grátis (Trip Free). Esse é o tesouro do ecossistema. Bounce de só 14,75% (incrivelmente baixo), 6,74 páginas por visita (alto pra caramba), e tempo médio de 4 minutos e 53 segundos. Mesmo com 'só' 2,9 mil visitas mensais, é o canal mais pegajoso. Quem entra, fica.</p>
-<p>A estratégia por trás dessa separação é forte. Cada funil tendo sub-domínio próprio permite quatro coisas. Primeiro, métricas separadas — fácil saber qual canal performa. Segundo, isolamento de risco — se o Meta banir um sub-domínio, os outros continuam. Terceiro, SEO segmentado — cada um ranqueia por termos diferentes. Quarto, possibilidade de venda ou separação futura do negócio.</p>
-<p>Mas o detalhe mais importante é a Biblioteca. Os números dela (4:53 de tempo médio, 6,74 páginas por visita, bounce de 14%) provam que a isca grátis segura o lead muito mais que qualquer outra coisa do ecossistema. Por isso ele investe tanto em ads pra Trip Free.</p>
+                  <p>demo.bluehackers.com é a casa do Funil Comercial com VSL — a página onde o lead chega vindo do anúncio de "agenda tu llamada". Em abril/2026 teve 7,7 mil visitas, com uma subida agressiva no último mês (era ~1K em março, virou 7,7K em abril). Sinal de campanha forte rodando agora.</p>
+<p>O bounce de 73,06% é alto, mas dentro do esperado pra página de VSL — ou o lead engata no vídeo e segue pra próxima etapa, ou sai. Não tem meio termo. Páginas por visita ficam em 1,43 e o tempo médio é 1 minuto e 55 segundos, que bate com o tempo de assistir o início do VSL antes de decidir se continua.</p>
+<p>Esse sub-domínio é o termômetro do funil pago do BlueHackers. Quando o ad de Comercial roda forte, o tráfego dele dispara. Quando para, despenca. Diferente da home, aqui o tráfego é correlacionado a investimento.</p>
+                </div>
+              </div>
+            </article>
+            
+            <article class="sw-card" data-id="sw-04b-subdomain-trip">
+              
+                <div class="sw-img-wrap">
+                  <div class="sw-sticky">
+                    <img src="similarweb_prints/04b-subdomain-trip.png" alt="Sub-domínio sho.bluehackers.com — Tripware (US$27)" loading="lazy" data-zoom-src="similarweb_prints/04b-subdomain-trip.png" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                    <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                  </div>
+                  <div class="sw-img-missing" style="display:none">
+                    📷 Print ainda não salvo<br>
+                    <code>04b-subdomain-trip.png</code>
+                  </div>
+                </div>
+                
+              <div class="sw-body">
+                <div class="sw-body-head">
+                  <h4>Sub-domínio sho.bluehackers.com — Tripware (US$27)</h4>
+                  <button class="miro-link-btn" type="button" data-card-id="sw-04b-subdomain-trip" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+                </div>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> 21,1K visitas/mês, bounce 81,94%, 2,06 min de média. Segundo maior em volume.</p>
+                <div class="sw-explanation">
+                  <p>sho.bluehackers.com é a página de checkout do Tripware (a oferta de US$27 com garantia "se não gostar, fica com tudo"). Em abril teve 21,1 mil visitas — é o SEGUNDO maior sub-domínio em volume, atrás só da home, e cresceu de forma constante de fevereiro pra abril.</p>
+<p>O bounce é o mais alto dos quatro: 81,94%. Faz total sentido — é página de checkout, então ou o lead compra ou sai. Não tem ação intermediária. Páginas por visita ficam em 1,44 (a página em si + talvez uma confirmação) e tempo médio é 2 minutos e 6 segundos, suficiente pra ler a oferta e decidir.</p>
+<p>O fato de receber 21K visitas mostra que o Tripware é o gatekeeper real do funil. Bem mais lead passa por aqui do que pelo Funil Comercial (demo.bluehackers, 7,7K). É o filtro psicológico antes do high ticket — quem paga US$27 demonstra seriedade, e só esses leads chegam na ligação de venda.</p>
+                </div>
+              </div>
+            </article>
+            
+            <article class="sw-card" data-id="sw-04d-subdomain-tripfree">
+              
+                <div class="sw-img-wrap">
+                  <div class="sw-sticky">
+                    <img src="similarweb_prints/04d-subdomain-tripfree.png" alt="Sub-domínio ed.bluehackers.com — Trip Free / Biblioteca grátis" loading="lazy" data-zoom-src="similarweb_prints/04d-subdomain-tripfree.png" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                    <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                  </div>
+                  <div class="sw-img-missing" style="display:none">
+                    📷 Print ainda não salvo<br>
+                    <code>04d-subdomain-tripfree.png</code>
+                  </div>
+                </div>
+                
+              <div class="sw-body">
+                <div class="sw-body-head">
+                  <h4>Sub-domínio ed.bluehackers.com — Trip Free / Biblioteca grátis</h4>
+                  <button class="miro-link-btn" type="button" data-card-id="sw-04d-subdomain-tripfree" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+                </div>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> 2,9K visitas mas bounce de só 14,75%, 6,74 páginas/visita, 4:53 de média. O mais pegajoso.</p>
+                <div class="sw-explanation">
+                  <p>ed.bluehackers.com é a casa da Biblioteca grátis (o Trip Free com 200+ documentos, mastermind gravado, curso de 12h). Em volume bruto é o MENOR sub-domínio: só 2,9 mil visitas em abril (caiu em relação a março, que tinha cerca de 6K).</p>
+<p>Mas os outros números mudam o jogo completamente. O bounce é absurdamente baixo: só 14,75%. Páginas por visita: 6,74. Tempo médio: 4 minutos e 53 segundos. Pra comparar: a home tem 1,98 páginas/visita, esse aqui tem 6,74. A home tem 1:17 de média, esse tem quase 5 minutos.</p>
+<p>Esses números provam uma coisa essencial: a Biblioteca é o ATIVO MAIS PEGAJOSO de todo o ecossistema. Quem entra fica horas navegando o conteúdo grátis. É exatamente por isso que Razzetti investe tanto em ads que mandam pra esse sub-domínio — o lead que chega aqui consome o equivalente a um curso pago em valor percebido, e fica devendo reciprocidade ao BlueHackers. Saída natural: comprar o programa pago depois.</p>
                 </div>
               </div>
             </article>
@@ -62217,8 +62308,14 @@ filterButtons.forEach(b => b.addEventListener('click', () => {
   const platformMap = { 'ig': 'ig', 'yt': 'yt', 'trafego': 'similarweb' };
   const targetPlatform = platformMap[prefix];
   if (!targetPlatform) return;
-  // Hide everything except the matching section
-  document.body.classList.add('focused-card');  // reuse styles (hide header/footer)
+
+  // Define platform on global state so applyAll() não esconda nada da plataforma alvo
+  currentPlatform = targetPlatform;
+  platformButtons.forEach(b => b.classList.toggle('active', b.dataset.platform === targetPlatform));
+  applyAll();  // applyAll respeita currentPlatform — seções/cards da plataforma alvo ficam visíveis
+
+  // Hide everything except the matching section (sobrescrevendo o que applyAll faria)
+  document.body.classList.add('focused-card');
   const allSections = document.querySelectorAll('section[data-platform]');
   let foundSection = null;
   allSections.forEach(s => {
@@ -62227,13 +62324,26 @@ filterButtons.forEach(b => b.addEventListener('click', () => {
       match = s.dataset.group === suffix;
     } else if (match && (targetPlatform === 'ig' || targetPlatform === 'yt')) {
       match = (s.dataset.stage || '').toLowerCase() === suffix;
-    } else if (s.classList.contains('yt-divider') || s.classList.contains('sw-divider')) {
+    }
+    // yt-divider e sw-divider são containers de header, nunca casam um stage
+    if (s.classList.contains('yt-divider') || s.classList.contains('sw-divider')) {
       match = false;
     }
-    s.style.display = match ? '' : 'none';
-    if (match) foundSection = s;
+    if (match) {
+      // Garante que applyAll não tenha deixado classes que escondem
+      s.classList.remove('hidden-by-platform');
+      s.style.display = '';
+      foundSection = s;
+    } else {
+      s.style.display = 'none';
+    }
   });
   if (foundSection) {
+    // Garante que cards dentro da seção alvo fiquem visíveis (applyAll pode ter aplicado .hidden)
+    foundSection.querySelectorAll('.card, .sw-card').forEach(c => {
+      c.classList.remove('hidden');
+      c.style.display = '';
+    });
     const back = document.createElement('div');
     back.className = 'focused-back';
     back.innerHTML = `
@@ -62253,39 +62363,72 @@ filterButtons.forEach(b => b.addEventListener('click', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const cardId = urlParams.get('card');
   if (!cardId) return;
-  // Hide everything that doesn't match this card
-  document.body.classList.add('focused-card');
+  // First: find the card in the DOM so we know which platform it belongs to
   const allCards = document.querySelectorAll('[data-id]');
-  let foundSection = null;
   let foundCard = null;
+  let foundSection = null;
   allCards.forEach(el => {
     if (el.dataset.id === cardId) {
       foundCard = el;
       foundSection = el.closest('section');
-    } else {
-      el.style.display = 'none';
     }
   });
-  if (foundSection) {
-    // Hide sibling sections
-    document.querySelectorAll('section').forEach(s => {
-      if (s !== foundSection) s.style.display = 'none';
-    });
-    // Insert "back to full analysis" link
-    const back = document.createElement('div');
-    back.className = 'focused-back';
-    back.innerHTML = `
-      <span style="color: var(--muted)">📌 Visualização isolada de um card</span>
-      <a href="${window.location.pathname}" target="_top">← Ver análise completa</a>
-    `;
-    document.querySelector('main').prepend(back);
-    // Smooth scroll to card after layout
-    setTimeout(() => foundCard && foundCard.scrollIntoView({ block: 'start', behavior: 'instant' }), 50);
-  } else {
-    // Card not found — remove focus mode and let normal view render
-    document.body.classList.remove('focused-card');
-    allCards.forEach(el => { el.style.display = ''; });
+  if (!foundSection) {
+    // Card not found — let normal view render
+    return;
   }
+  // Set platform context so applyAll() não esconda nada relacionado
+  const targetPlatform = foundSection.dataset.platform;
+  if (targetPlatform) {
+    currentPlatform = targetPlatform;
+    platformButtons.forEach(b => b.classList.toggle('active', b.dataset.platform === targetPlatform));
+    applyAll();
+  }
+  // Now hide everything except the matching card
+  document.body.classList.add('focused-card');
+  allCards.forEach(el => {
+    if (el.dataset.id !== cardId) {
+      el.style.display = 'none';
+    } else {
+      el.classList.remove('hidden');
+      el.style.display = '';
+    }
+  });
+  // Hide sibling sections; show foundSection
+  document.querySelectorAll('section').forEach(s => {
+    if (s === foundSection) {
+      s.classList.remove('hidden-by-platform');
+      s.style.display = '';
+    } else {
+      s.style.display = 'none';
+    }
+  });
+  // Insert "back to full analysis" link
+  const back = document.createElement('div');
+  back.className = 'focused-back';
+  back.innerHTML = `
+    <span style="color: var(--muted)">📌 Visualização isolada de um card</span>
+    <span style="display:flex; gap:12px; align-items:center;">
+      <a href="${window.location.pathname}?focus=${encodeURIComponent(cardId)}" target="_top" title="Abrir o card focado dentro da análise completa">🔍 Ver no contexto</a>
+      <a href="${window.location.pathname}" target="_top">← Ver análise completa</a>
+    </span>
+  `;
+  document.querySelector('main').prepend(back);
+  setTimeout(() => foundCard && foundCard.scrollIntoView({ block: 'start', behavior: 'instant' }), 50);
+})();
+
+// Soft focus via ?focus=ID — abre análise completa, scrolla até o card e destaca com pulse
+(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const focusId = urlParams.get('focus');
+  if (!focusId) return;
+  setTimeout(() => {
+    const target = document.querySelector(`[data-id="${focusId.replace(/"/g, '\\"')}"]`);
+    if (!target) return;
+    target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    target.classList.add('pulse-highlight');
+    setTimeout(() => target.classList.remove('pulse-highlight'), 4200);
+  }, 200);
 })();
 
 // Copy Miro link button — copia URL do stub (card OU seção) pra clipboard
