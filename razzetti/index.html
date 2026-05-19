@@ -497,6 +497,41 @@
   .reset-btn:hover { color: var(--text); border-color: var(--accent); }
   .copy-textarea { min-height: 140px; }
   .copy-textarea.edited { border-color: var(--accent); }
+  /* SimilarWeb — explicação editável e resumo executivo */
+  .sw-explanation-edit { display: block; margin-top: 4px; }
+  .sw-explanation-edit .section-header { margin-bottom: 6px; }
+  .sw-explanation-textarea {
+    min-height: 220px;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .sw-resumo {
+    margin: 24px auto 32px;
+    max-width: 1100px;
+    padding: 22px 26px;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.10), rgba(56, 189, 248, 0.06));
+    border: 1px solid rgba(34, 197, 94, 0.32);
+    border-radius: 10px;
+    border-left: 4px solid #22c55e;
+  }
+  .sw-resumo h3 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    color: #22c55e;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sw-resumo .resumo-sub {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .sw-resumo-textarea {
+    min-height: 460px;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+  .sw-resumo .section-header { margin-bottom: 6px; }
   .transcript-section details {
     background: var(--bg);
     border: 1px solid var(--border);
@@ -61526,7 +61561,99 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
         </div>
       </header>
     </section>
-    
+
+    <section class="sw-resumo" data-platform="similarweb">
+      <div class="section-header">
+        <h3>📋 Resumo — pra passar pra alguém <span class="edit-tag">editável</span></h3>
+        <button type="button" class="reset-btn" data-reset-key="copy::sw-resumo-executivo" title="Restaurar texto original">↺ original</button>
+      </div>
+      <p class="resumo-sub">Versão de 2 minutos do que tem nessa seção. Quem bate o olho aqui já entende o essencial sem precisar abrir os 11 cards. Editável — ajuste o tom pra quem você vai mandar.</p>
+      <textarea
+        class="copy-textarea sw-resumo-textarea"
+        data-storage-key="copy::sw-resumo-executivo"
+        data-default="O QUE É ESSE MATERIAL
+Um raio-X do BlueHackers (empresa do Marcos Razzetti) usando dois sistemas profissionais de análise: SimilarWeb e SemRush. São 11 prints divididos em 4 grupos. Mostra de onde vem o tráfego dele, quem é o público real e como o ecossistema/funil dele funciona por dentro.
+
+OS 7 INSIGHTS MAIS IMPORTANTES
+
+1. A marca virou o canal — 75% do tráfego é direto.
+Gente que digita &quot;bluehackers.com&quot; no navegador, sem clicar em ad. Significa que o nome já está instalado no mercado hispano. Se o Meta banir a conta dele amanhã, ele continua faturando. Esse é o ativo mais defensável dele.
+
+2. O site triplicou em 6 meses.
+Saiu de ~7 mil visitantes únicos/mês pra ~22 mil. Crescimento brutal pra um negócio já consolidado — não é só sazonal, é crescimento absoluto.
+
+3. O avatar real NÃO é o que ele encena.
+57% do público é mulher. A faixa dominante é 35-54 anos (não os jovens de 25-34 que se imagina). 47% tem faculdade, 40% trabalha em CLT integral, e 59% tem renda baixa. Ele se posiciona como cara aspiracional (gym, golf, vlogs de carrão), mas o público real é mulher madura querendo escapar do CLT. Existe um descompasso enorme entre branding e audiência.
+
+4. YouTube traz mais visita pro site que o Instagram.
+Inverso do esperado. O Instagram dele tem mais views e likes, mas o YouTube é o canal que efetivamente leva o lead pro site com intenção de compra. Vídeo longo &gt; reel viral pra puxar lead qualificado.
+
+5. Ele tem 4 sub-domínios coordenados.
+- bluehackers.com (institucional, mais visitado, ~40K visitas/mês)
+- sho.bluehackers.com (Tripware de US$27, segundo maior, ~21K — é o gatekeeper que filtra quem vira lead high-ticket)
+- demo.bluehackers.com (VSL Comercial, ~8K — termômetro do funil pago)
+- ed.bluehackers.com (Biblioteca grátis, ~3K mas o MAIS pegajoso: gente fica quase 5 minutos navegando, taxa de saída de só 15%)
+
+6. Brasil é território aberto.
+Brasil = 2,48% do tráfego dele e mal cresce. Pra um país de 200 milhões de pessoas com mercado de marketing digital enorme, é praticamente nada. Quem quiser dominar BR no nicho high-ticket coaching/marketing tem o terreno livre — ele está focado em Argentina, Peru, Espanha e México.
+
+7. SEO genérico e IA-search são canais subexplorados.
+Razzetti ranqueia bem no Google só pelo próprio nome. Termos genéricos (&quot;coaching online&quot;, &quot;high ticket&quot;, &quot;como escalar negócio&quot;) ninguém domina no hispano. ChatGPT, Gemini e Perplexity quase não citam ele. Quem entrar agora pega tráfego no caminho dele e vira referência antes desses canais amadurecerem (janela de 12-24 meses).
+
+POR QUE ISSO IMPORTA
+
+- A marca pessoal virou o ativo principal — não dependência de Ads. É um modelo defensável e replicável.
+- O funil é deliberadamente longo (Aquecimento → Trip Free → Tripware US$27 → Comercial VSL → High Ticket) porque a maioria do público tem renda baixa e precisa ser &quot;escalada financeiramente&quot; antes de comprar high ticket. Faz sentido com o avatar real.
+- 3 brechas concretas pra quem quiser competir: Brasil (zero presença dele), SEO de termos genéricos (corredor aberto), e o avatar mulher 35-54 CLT (público que ele atrai mas não fala com diretamente).
+
+OS 4 GRUPOS DA ANÁLISE
+- Grupo 1 — De onde vem o tráfego (6 prints): canais, fontes, redes sociais, palavras-chave, intenção.
+- Grupo 2 — Quem é o público (5 prints): países, mobile vs desktop, profissão, renda, idade/sexo.
+- Grupo 3 — Arquitetura do ecossistema (9 prints): 4 sub-domínios, páginas internas, sazonalidade ano a ano, crescimento mensal.
+- Grupo 4 — Métricas técnicas (1 print): Authority Score, backlinks, visibilidade em IA."
+        rows="22">O QUE É ESSE MATERIAL
+Um raio-X do BlueHackers (empresa do Marcos Razzetti) usando dois sistemas profissionais de análise: SimilarWeb e SemRush. São 11 prints divididos em 4 grupos. Mostra de onde vem o tráfego dele, quem é o público real e como o ecossistema/funil dele funciona por dentro.
+
+OS 7 INSIGHTS MAIS IMPORTANTES
+
+1. A marca virou o canal — 75% do tráfego é direto.
+Gente que digita "bluehackers.com" no navegador, sem clicar em ad. Significa que o nome já está instalado no mercado hispano. Se o Meta banir a conta dele amanhã, ele continua faturando. Esse é o ativo mais defensável dele.
+
+2. O site triplicou em 6 meses.
+Saiu de ~7 mil visitantes únicos/mês pra ~22 mil. Crescimento brutal pra um negócio já consolidado — não é só sazonal, é crescimento absoluto.
+
+3. O avatar real NÃO é o que ele encena.
+57% do público é mulher. A faixa dominante é 35-54 anos (não os jovens de 25-34 que se imagina). 47% tem faculdade, 40% trabalha em CLT integral, e 59% tem renda baixa. Ele se posiciona como cara aspiracional (gym, golf, vlogs de carrão), mas o público real é mulher madura querendo escapar do CLT. Existe um descompasso enorme entre branding e audiência.
+
+4. YouTube traz mais visita pro site que o Instagram.
+Inverso do esperado. O Instagram dele tem mais views e likes, mas o YouTube é o canal que efetivamente leva o lead pro site com intenção de compra. Vídeo longo &gt; reel viral pra puxar lead qualificado.
+
+5. Ele tem 4 sub-domínios coordenados.
+- bluehackers.com (institucional, mais visitado, ~40K visitas/mês)
+- sho.bluehackers.com (Tripware de US$27, segundo maior, ~21K — é o gatekeeper que filtra quem vira lead high-ticket)
+- demo.bluehackers.com (VSL Comercial, ~8K — termômetro do funil pago)
+- ed.bluehackers.com (Biblioteca grátis, ~3K mas o MAIS pegajoso: gente fica quase 5 minutos navegando, taxa de saída de só 15%)
+
+6. Brasil é território aberto.
+Brasil = 2,48% do tráfego dele e mal cresce. Pra um país de 200 milhões de pessoas com mercado de marketing digital enorme, é praticamente nada. Quem quiser dominar BR no nicho high-ticket coaching/marketing tem o terreno livre — ele está focado em Argentina, Peru, Espanha e México.
+
+7. SEO genérico e IA-search são canais subexplorados.
+Razzetti ranqueia bem no Google só pelo próprio nome. Termos genéricos ("coaching online", "high ticket", "como escalar negócio") ninguém domina no hispano. ChatGPT, Gemini e Perplexity quase não citam ele. Quem entrar agora pega tráfego no caminho dele e vira referência antes desses canais amadurecerem (janela de 12-24 meses).
+
+POR QUE ISSO IMPORTA
+
+- A marca pessoal virou o ativo principal — não dependência de Ads. É um modelo defensável e replicável.
+- O funil é deliberadamente longo (Aquecimento → Trip Free → Tripware US$27 → Comercial VSL → High Ticket) porque a maioria do público tem renda baixa e precisa ser "escalada financeiramente" antes de comprar high ticket. Faz sentido com o avatar real.
+- 3 brechas concretas pra quem quiser competir: Brasil (zero presença dele), SEO de termos genéricos (corredor aberto), e o avatar mulher 35-54 CLT (público que ele atrai mas não fala com diretamente).
+
+OS 4 GRUPOS DA ANÁLISE
+- Grupo 1 — De onde vem o tráfego (6 prints): canais, fontes, redes sociais, palavras-chave, intenção.
+- Grupo 2 — Quem é o público (5 prints): países, mobile vs desktop, profissão, renda, idade/sexo.
+- Grupo 3 — Arquitetura do ecossistema (9 prints): 4 sub-domínios, páginas internas, sazonalidade ano a ano, crescimento mensal.
+- Grupo 4 — Métricas técnicas (1 print): Authority Score, backlinks, visibilidade em IA.</textarea>
+      <div class="save-state" data-for="copy::sw-resumo-executivo">não editado</div>
+    </section>
+
 
         <section class="section" data-platform="similarweb" data-group="grupo1">
           <header class="section-head" style="border-left-color: #0ea5e9">
@@ -61562,11 +61689,29 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-07-canais-de-trafego" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Três em cada quatro visitas vêm de acesso direto. Tráfego pago é praticamente zero.</p>
-                <div class="sw-explanation">
-                  <p>Esse é o print mais importante do conjunto. Em abril de 2026 o BlueHackers recebeu 36,4 mil visitas, e 75,69% delas vieram de acesso direto — gente que já conhece o domínio e digita ele no navegador. Isso é o funil de aquecimento e a biblioteca grátis funcionando: o lead entra na lista, e quando precisa, volta sozinho ao site.</p>
-<p>Os outros canais ficam todos pequenos: 9,4% via Google, 7,71% via redes sociais orgânicas, 4,73% por e-mail, 2,3% por referência. O que mais chama atenção é o que NÃO aparece — pesquisa paga, social paga e mídia display estão todos em 0%. Ou seja, ele não compra Google Ads nem ads em redes sociais apontando pra esse domínio principal. A mídia paga dele é estratégica: aponta pros sub-domínios de funil (a incubadora, o demo do VSL, etc.), nunca pro site-mãe.</p>
-<p>Tem ainda um item curioso: tráfego de IA com 61 visitas (0,17%). É a entrada via ChatGPT, Perplexity e Gemini citando o BlueHackers como fonte. Pequeno hoje, mas vai crescer muito nos próximos 12-24 meses.</p>
-<p>O BlueHackers construiu uma marca que cresce sem depender de mídia paga no domínio principal. Direto e e-mail somam ~80% do tráfego. Esse é o ativo defensável dele — se o Meta banir a conta de ads amanhã, ele continua faturando.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-07-canais-de-trafego" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-07-canais-de-trafego"
+                    data-default="Esse é o print mais importante do conjunto. Em abril de 2026 o BlueHackers recebeu 36,4 mil visitas, e 75,69% delas vieram de acesso direto — gente que já conhece o domínio e digita ele no navegador. Isso é o funil de aquecimento e a biblioteca grátis funcionando: o lead entra na lista, e quando precisa, volta sozinho ao site.
+
+Os outros canais ficam todos pequenos: 9,4% via Google, 7,71% via redes sociais orgânicas, 4,73% por e-mail, 2,3% por referência. O que mais chama atenção é o que NÃO aparece — pesquisa paga, social paga e mídia display estão todos em 0%. Ou seja, ele não compra Google Ads nem ads em redes sociais apontando pra esse domínio principal. A mídia paga dele é estratégica: aponta pros sub-domínios de funil (a incubadora, o demo do VSL, etc.), nunca pro site-mãe.
+
+Tem ainda um item curioso: tráfego de IA com 61 visitas (0,17%). É a entrada via ChatGPT, Perplexity e Gemini citando o BlueHackers como fonte. Pequeno hoje, mas vai crescer muito nos próximos 12-24 meses.
+
+O BlueHackers construiu uma marca que cresce sem depender de mídia paga no domínio principal. Direto e e-mail somam ~80% do tráfego. Esse é o ativo defensável dele — se o Meta banir a conta de ads amanhã, ele continua faturando."
+                    rows="12">Esse é o print mais importante do conjunto. Em abril de 2026 o BlueHackers recebeu 36,4 mil visitas, e 75,69% delas vieram de acesso direto — gente que já conhece o domínio e digita ele no navegador. Isso é o funil de aquecimento e a biblioteca grátis funcionando: o lead entra na lista, e quando precisa, volta sozinho ao site.
+
+Os outros canais ficam todos pequenos: 9,4% via Google, 7,71% via redes sociais orgânicas, 4,73% por e-mail, 2,3% por referência. O que mais chama atenção é o que NÃO aparece — pesquisa paga, social paga e mídia display estão todos em 0%. Ou seja, ele não compra Google Ads nem ads em redes sociais apontando pra esse domínio principal. A mídia paga dele é estratégica: aponta pros sub-domínios de funil (a incubadora, o demo do VSL, etc.), nunca pro site-mãe.
+
+Tem ainda um item curioso: tráfego de IA com 61 visitas (0,17%). É a entrada via ChatGPT, Perplexity e Gemini citando o BlueHackers como fonte. Pequeno hoje, mas vai crescer muito nos próximos 12-24 meses.
+
+O BlueHackers construiu uma marca que cresce sem depender de mídia paga no domínio principal. Direto e e-mail somam ~80% do tráfego. Esse é o ativo defensável dele — se o Meta banir a conta de ads amanhã, ele continua faturando.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-07-canais-de-trafego">não editado</div>
                 </div>
               </div>
             </article>
@@ -61590,13 +61735,37 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-08-sankey-fontes" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Direto cresce, Email cresce. Facebook e Instagram caem. A marca está virando o canal.</p>
-                <div class="sw-explanation">
-                  <p>Esse gráfico em formato de fluxo mostra de onde, especificamente, vem cada fatia do tráfego. As setas verdes (↑) e vermelhas (↓) revelam tendência — quais canais estão crescendo e quais estão caindo.</p>
-<p>Acesso direto puxa 75,69% e está crescendo. É o tráfego invisível: quem digita bluehackers.com ou clica num link salvo. Esse número alto significa que o nome BlueHackers já está instalado na cabeça do mercado hispanofalante. Quando o lead pensa em escalar coaching, ele digita direto.</p>
-<p>Google.com vem em segundo com 9,64% e também sobe. É o SEO ranqueando páginas como /main, /pagina-inicial e /sistema.</p>
-<p>Facebook entra com 4,66% e está caindo. Email aparece com 4,05% e cresce. Vale notar que cada visita por email vale entre 5 e 10 vezes uma visita direta em termos de probabilidade de conversão — quem está na lista é quem ele aqueceu.</p>
-<p>Instagram bate em 1,53% e cai. Pouco tráfego do IG pro domínio principal porque ele converte o IG via Manychat e DM, não via clique pro site.</p>
-<p>A leitura combinada das setas é o que importa. Direto, Google e Email crescendo, enquanto Facebook e Instagram caem, é sinal de uma operação amadurecendo: a dependência de redes sociais está diminuindo, e a marca está virando o canal de aquisição.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-08-sankey-fontes" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-08-sankey-fontes"
+                    data-default="Esse gráfico em formato de fluxo mostra de onde, especificamente, vem cada fatia do tráfego. As setas verdes (↑) e vermelhas (↓) revelam tendência — quais canais estão crescendo e quais estão caindo.
+
+Acesso direto puxa 75,69% e está crescendo. É o tráfego invisível: quem digita bluehackers.com ou clica num link salvo. Esse número alto significa que o nome BlueHackers já está instalado na cabeça do mercado hispanofalante. Quando o lead pensa em escalar coaching, ele digita direto.
+
+Google.com vem em segundo com 9,64% e também sobe. É o SEO ranqueando páginas como /main, /pagina-inicial e /sistema.
+
+Facebook entra com 4,66% e está caindo. Email aparece com 4,05% e cresce. Vale notar que cada visita por email vale entre 5 e 10 vezes uma visita direta em termos de probabilidade de conversão — quem está na lista é quem ele aqueceu.
+
+Instagram bate em 1,53% e cai. Pouco tráfego do IG pro domínio principal porque ele converte o IG via Manychat e DM, não via clique pro site.
+
+A leitura combinada das setas é o que importa. Direto, Google e Email crescendo, enquanto Facebook e Instagram caem, é sinal de uma operação amadurecendo: a dependência de redes sociais está diminuindo, e a marca está virando o canal de aquisição."
+                    rows="14">Esse gráfico em formato de fluxo mostra de onde, especificamente, vem cada fatia do tráfego. As setas verdes (↑) e vermelhas (↓) revelam tendência — quais canais estão crescendo e quais estão caindo.
+
+Acesso direto puxa 75,69% e está crescendo. É o tráfego invisível: quem digita bluehackers.com ou clica num link salvo. Esse número alto significa que o nome BlueHackers já está instalado na cabeça do mercado hispanofalante. Quando o lead pensa em escalar coaching, ele digita direto.
+
+Google.com vem em segundo com 9,64% e também sobe. É o SEO ranqueando páginas como /main, /pagina-inicial e /sistema.
+
+Facebook entra com 4,66% e está caindo. Email aparece com 4,05% e cresce. Vale notar que cada visita por email vale entre 5 e 10 vezes uma visita direta em termos de probabilidade de conversão — quem está na lista é quem ele aqueceu.
+
+Instagram bate em 1,53% e cai. Pouco tráfego do IG pro domínio principal porque ele converte o IG via Manychat e DM, não via clique pro site.
+
+A leitura combinada das setas é o que importa. Direto, Google e Email crescendo, enquanto Facebook e Instagram caem, é sinal de uma operação amadurecendo: a dependência de redes sociais está diminuindo, e a marca está virando o canal de aquisição.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-08-sankey-fontes">não editado</div>
                 </div>
               </div>
             </article>
@@ -61620,11 +61789,29 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-18-branded-vs-naobranded" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 71% das buscas no Google são pelo nome dele. SEO de termos genéricos é território aberto.</p>
-                <div class="sw-explanation">
-                  <p>Esse painel mostra duas coisas críticas sobre o SEO. Primeiro, das pessoas que chegam pelo Google, 71% buscam pelo nome dele — 'marcos razzetti', 'bluehackers'. Só 29% chegam por busca de termo genérico. Isso significa que ele ainda não dominou termos não-branded como 'sistema hiperorgânico' ou 'como escalar coaching', mas o nome dele já é uma busca grande por si só.</p>
-<p>Tem uma nota importante no canto: 'Organic search makes up 5.03% of website traffic'. Ou seja, SEO ainda é canal pequeno no total — mas dentro desse canal pequeno, a marca pessoal domina.</p>
-<p>No lado direito aparece o ranking dos termos não-branded que mais trazem tráfego. 'Marcos razzetti' lidera com 29,09% (e cresceu 23,08% no último período). Em segundo vem 'sistema hiperorganico de...' com 23,64% — sinal de que o vocabulário proprietário dele já está sendo googleado. Conseguiu instalar terminologia. Depois aparecem 'growth blue hacker 2.0', 'marco razzetti' (com erro de digitação) e 'fede cabal' (um aluno ou parceiro).</p>
-<p>A leitura prática: termos não-branded de coaching e marketing digital hispanofalantes não estão dominados. O Razzetti deixou o corredor SEO aberto, então quem entrar com conteúdo otimizado agora pega tráfego no caminho dele antes de ele perceber.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-18-branded-vs-naobranded" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-18-branded-vs-naobranded"
+                    data-default="Esse painel mostra duas coisas críticas sobre o SEO. Primeiro, das pessoas que chegam pelo Google, 71% buscam pelo nome dele — 'marcos razzetti', 'bluehackers'. Só 29% chegam por busca de termo genérico. Isso significa que ele ainda não dominou termos não-branded como 'sistema hiperorgânico' ou 'como escalar coaching', mas o nome dele já é uma busca grande por si só.
+
+Tem uma nota importante no canto: 'Organic search makes up 5.03% of website traffic'. Ou seja, SEO ainda é canal pequeno no total — mas dentro desse canal pequeno, a marca pessoal domina.
+
+No lado direito aparece o ranking dos termos não-branded que mais trazem tráfego. 'Marcos razzetti' lidera com 29,09% (e cresceu 23,08% no último período). Em segundo vem 'sistema hiperorganico de...' com 23,64% — sinal de que o vocabulário proprietário dele já está sendo googleado. Conseguiu instalar terminologia. Depois aparecem 'growth blue hacker 2.0', 'marco razzetti' (com erro de digitação) e 'fede cabal' (um aluno ou parceiro).
+
+A leitura prática: termos não-branded de coaching e marketing digital hispanofalantes não estão dominados. O Razzetti deixou o corredor SEO aberto, então quem entrar com conteúdo otimizado agora pega tráfego no caminho dele antes de ele perceber."
+                    rows="12">Esse painel mostra duas coisas críticas sobre o SEO. Primeiro, das pessoas que chegam pelo Google, 71% buscam pelo nome dele — 'marcos razzetti', 'bluehackers'. Só 29% chegam por busca de termo genérico. Isso significa que ele ainda não dominou termos não-branded como 'sistema hiperorgânico' ou 'como escalar coaching', mas o nome dele já é uma busca grande por si só.
+
+Tem uma nota importante no canto: 'Organic search makes up 5.03% of website traffic'. Ou seja, SEO ainda é canal pequeno no total — mas dentro desse canal pequeno, a marca pessoal domina.
+
+No lado direito aparece o ranking dos termos não-branded que mais trazem tráfego. 'Marcos razzetti' lidera com 29,09% (e cresceu 23,08% no último período). Em segundo vem 'sistema hiperorganico de...' com 23,64% — sinal de que o vocabulário proprietário dele já está sendo googleado. Conseguiu instalar terminologia. Depois aparecem 'growth blue hacker 2.0', 'marco razzetti' (com erro de digitação) e 'fede cabal' (um aluno ou parceiro).
+
+A leitura prática: termos não-branded de coaching e marketing digital hispanofalantes não estão dominados. O Razzetti deixou o corredor SEO aberto, então quem entrar com conteúdo otimizado agora pega tráfego no caminho dele antes de ele perceber.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-18-branded-vs-naobranded">não editado</div>
                 </div>
               </div>
             </article>
@@ -61648,12 +61835,33 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-06-redes-sociais" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> YouTube traz mais visita pro site do que o Instagram. Inverso do que se imagina.</p>
-                <div class="sw-explanation">
-                  <p>Esse breakdown mostra qual rede social está mandando mais visitas pro BlueHackers, e tem uma surpresa enorme. No resumo do topo: YouTube responde por 75,65% das visitas vindas de redes sociais, o público se interessa por meios de comunicação (100%), e 71,61% acessa por mobile.</p>
-<p>Quando você abre por rede individual, fica claro: YouTube manda 17 mil visitas (75,65%), Facebook manda 14 mil (62,43%) e Instagram manda 12,9 mil (57,26%). YouTube é DE LONGE o canal social que mais converte em visita ao site.</p>
-<p>Isso bate frontalmente com a intuição. O Instagram dele tem muito mais views e likes do que o YouTube, mas o YouTube é o canal que efetivamente traz pra dentro do funil. Motivo: vídeos longos de YouTube (60-120min) deixam o lead pré-aquecido, e ele clica no link da descrição com intenção clara. Já o Instagram converte via Manychat/DM, não via clique pro site.</p>
-<p>Telegram aparece com 12 mil visitas (53,63%) — provavelmente tem comunidade ou grupo lá puxando tráfego de cauda. TikTok manda 7,8 mil (34,68%), canal subutilizado mas já gera volume. LinkedIn, X (Twitter) e Reddit aparecem nas caudas com 4-4,4 mil cada.</p>
-<p>A leitura estratégica é clara: YouTube é o canal de maior conversão pra visita-de-qualidade. Vídeo longo (mesmo que entregue como conteúdo livre) com link de funil na descrição converte muito mais do que reel viral no IG. O algoritmo do YouTube favorece intenção, o do IG favorece entretenimento — quem quer lead clicando, vai pra onde o intent mora.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-06-redes-sociais" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-06-redes-sociais"
+                    data-default="Esse breakdown mostra qual rede social está mandando mais visitas pro BlueHackers, e tem uma surpresa enorme. No resumo do topo: YouTube responde por 75,65% das visitas vindas de redes sociais, o público se interessa por meios de comunicação (100%), e 71,61% acessa por mobile.
+
+Quando você abre por rede individual, fica claro: YouTube manda 17 mil visitas (75,65%), Facebook manda 14 mil (62,43%) e Instagram manda 12,9 mil (57,26%). YouTube é DE LONGE o canal social que mais converte em visita ao site.
+
+Isso bate frontalmente com a intuição. O Instagram dele tem muito mais views e likes do que o YouTube, mas o YouTube é o canal que efetivamente traz pra dentro do funil. Motivo: vídeos longos de YouTube (60-120min) deixam o lead pré-aquecido, e ele clica no link da descrição com intenção clara. Já o Instagram converte via Manychat/DM, não via clique pro site.
+
+Telegram aparece com 12 mil visitas (53,63%) — provavelmente tem comunidade ou grupo lá puxando tráfego de cauda. TikTok manda 7,8 mil (34,68%), canal subutilizado mas já gera volume. LinkedIn, X (Twitter) e Reddit aparecem nas caudas com 4-4,4 mil cada.
+
+A leitura estratégica é clara: YouTube é o canal de maior conversão pra visita-de-qualidade. Vídeo longo (mesmo que entregue como conteúdo livre) com link de funil na descrição converte muito mais do que reel viral no IG. O algoritmo do YouTube favorece intenção, o do IG favorece entretenimento — quem quer lead clicando, vai pra onde o intent mora."
+                    rows="14">Esse breakdown mostra qual rede social está mandando mais visitas pro BlueHackers, e tem uma surpresa enorme. No resumo do topo: YouTube responde por 75,65% das visitas vindas de redes sociais, o público se interessa por meios de comunicação (100%), e 71,61% acessa por mobile.
+
+Quando você abre por rede individual, fica claro: YouTube manda 17 mil visitas (75,65%), Facebook manda 14 mil (62,43%) e Instagram manda 12,9 mil (57,26%). YouTube é DE LONGE o canal social que mais converte em visita ao site.
+
+Isso bate frontalmente com a intuição. O Instagram dele tem muito mais views e likes do que o YouTube, mas o YouTube é o canal que efetivamente traz pra dentro do funil. Motivo: vídeos longos de YouTube (60-120min) deixam o lead pré-aquecido, e ele clica no link da descrição com intenção clara. Já o Instagram converte via Manychat/DM, não via clique pro site.
+
+Telegram aparece com 12 mil visitas (53,63%) — provavelmente tem comunidade ou grupo lá puxando tráfego de cauda. TikTok manda 7,8 mil (34,68%), canal subutilizado mas já gera volume. LinkedIn, X (Twitter) e Reddit aparecem nas caudas com 4-4,4 mil cada.
+
+A leitura estratégica é clara: YouTube é o canal de maior conversão pra visita-de-qualidade. Vídeo longo (mesmo que entregue como conteúdo livre) com link de funil na descrição converte muito mais do que reel viral no IG. O algoritmo do YouTube favorece intenção, o do IG favorece entretenimento — quem quer lead clicando, vai pra onde o intent mora.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-06-redes-sociais">não editado</div>
                 </div>
               </div>
             </article>
@@ -61677,12 +61885,33 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-02-palavras-organicas-us" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Só 5 palavras principais ranqueiam, e quase todas são pelo nome dele. SEO genérico = inexistente.</p>
-                <div class="sw-explanation">
-                  <p>Esse painel do SemRush mostra as principais palavras-chave orgânicas pelas quais o BlueHackers é encontrado nos Estados Unidos.</p>
-<p>'Blue hackers' aparece em primeiro lugar, na posição #1, com volume 70 e tráfego de 94,91 — é a palavra principal. Tem uma variação dela em segundo com tráfego 3,38. Em terceiro vem 'marcos razzetti' na posição #3, volume 50, tráfego 1,69. Depois aparecem duas variações de 'fede caballero', mas nas posições #23 e #42, sem trazer tráfego nenhum.</p>
-<p>O que esses dados deixam evidente é que o BlueHackers ranqueia bem somente para palavras com o próprio nome. Não tem entrada nenhuma pra termos comerciais grandes tipo 'coaching online', 'high ticket' ou 'como escalar negócio'. E os volumes são pequenos (40-70 buscas/mês). O nicho dele no Google US é discretíssimo — o forte é redes sociais e mídia paga, não SEO.</p>
-<p>Fede Caballero aparecendo é interessante. Provavelmente um aluno ou parceiro com nome conhecido no nicho. Tráfego zero mostra que ranqueia mas não converte clique — o lead vê o nome, talvez não reconheça, e segue adiante.</p>
-<p>Razzetti tomou uma decisão clara: não competir por SEO. Apostou em direto, social e e-mail. Quem quiser disputar o nicho dele via Google encontra um corredor inteiramente aberto — investimento em SEO de termos não-branded tem ROI muito alto porque a competição ainda é fraca.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-02-palavras-organicas-us" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-02-palavras-organicas-us"
+                    data-default="Esse painel do SemRush mostra as principais palavras-chave orgânicas pelas quais o BlueHackers é encontrado nos Estados Unidos.
+
+'Blue hackers' aparece em primeiro lugar, na posição #1, com volume 70 e tráfego de 94,91 — é a palavra principal. Tem uma variação dela em segundo com tráfego 3,38. Em terceiro vem 'marcos razzetti' na posição #3, volume 50, tráfego 1,69. Depois aparecem duas variações de 'fede caballero', mas nas posições #23 e #42, sem trazer tráfego nenhum.
+
+O que esses dados deixam evidente é que o BlueHackers ranqueia bem somente para palavras com o próprio nome. Não tem entrada nenhuma pra termos comerciais grandes tipo 'coaching online', 'high ticket' ou 'como escalar negócio'. E os volumes são pequenos (40-70 buscas/mês). O nicho dele no Google US é discretíssimo — o forte é redes sociais e mídia paga, não SEO.
+
+Fede Caballero aparecendo é interessante. Provavelmente um aluno ou parceiro com nome conhecido no nicho. Tráfego zero mostra que ranqueia mas não converte clique — o lead vê o nome, talvez não reconheça, e segue adiante.
+
+Razzetti tomou uma decisão clara: não competir por SEO. Apostou em direto, social e e-mail. Quem quiser disputar o nicho dele via Google encontra um corredor inteiramente aberto — investimento em SEO de termos não-branded tem ROI muito alto porque a competição ainda é fraca."
+                    rows="14">Esse painel do SemRush mostra as principais palavras-chave orgânicas pelas quais o BlueHackers é encontrado nos Estados Unidos.
+
+'Blue hackers' aparece em primeiro lugar, na posição #1, com volume 70 e tráfego de 94,91 — é a palavra principal. Tem uma variação dela em segundo com tráfego 3,38. Em terceiro vem 'marcos razzetti' na posição #3, volume 50, tráfego 1,69. Depois aparecem duas variações de 'fede caballero', mas nas posições #23 e #42, sem trazer tráfego nenhum.
+
+O que esses dados deixam evidente é que o BlueHackers ranqueia bem somente para palavras com o próprio nome. Não tem entrada nenhuma pra termos comerciais grandes tipo 'coaching online', 'high ticket' ou 'como escalar negócio'. E os volumes são pequenos (40-70 buscas/mês). O nicho dele no Google US é discretíssimo — o forte é redes sociais e mídia paga, não SEO.
+
+Fede Caballero aparecendo é interessante. Provavelmente um aluno ou parceiro com nome conhecido no nicho. Tráfego zero mostra que ranqueia mas não converte clique — o lead vê o nome, talvez não reconheça, e segue adiante.
+
+Razzetti tomou uma decisão clara: não competir por SEO. Apostou em direto, social e e-mail. Quem quiser disputar o nicho dele via Google encontra um corredor inteiramente aberto — investimento em SEO de termos não-branded tem ROI muito alto porque a competição ainda é fraca.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-02-palavras-organicas-us">não editado</div>
                 </div>
               </div>
             </article>
@@ -61706,13 +61935,37 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-03-palavras-por-intencao" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 64% das buscas são pra aprender, só 7% são comerciais. Quem busca não está pronto pra comprar.</p>
-                <div class="sw-explanation">
-                  <p>Esse mini-gráfico classifica todas as palavras-chave que trazem visitas ao BlueHackers segundo a intenção de quem buscou.</p>
-<p>A maior fatia, 64,3%, é informativa — 9 palavras e 59 visitas. São pessoas buscando aprender algo, sem intenção imediata de comprar. Coisas como 'o que é setter' ou 'como vender high ticket'.</p>
-<p>Em segundo, 14,3% são de navegação, com 2 palavras mas 58 visitas. Essa categoria é a mais valiosa em volume porque é gente que JÁ conhece o BlueHackers e busca pelo nome pra chegar no site. Quase tanto tráfego quanto as 9 informativas juntas.</p>
-<p>Comercial é só 7,1%, com 1 palavra e zero tráfego — pouquíssima entrada de quem está pesquisando 'melhor mentoria' ou 'preço de curso'. E transacional, 14,3%, com 2 palavras e 1 visita só — busca de quem quer agir, tipo 'comprar curso bluehackers'.</p>
-<p>O que essa distribuição revela é que o BlueHackers atrai principalmente curioso, não comprador, no SEO. Quem chega pelo Google está pesquisando, não comprando — a conversão acontece depois, dentro do funil. As 2 buscas de navegação valem tanto quanto as 9 informativas em volume, sinal de que a marca é mais buscada que o conteúdo.</p>
-<p>A oportunidade que aparece aqui é a fatia de 7% comerciais e 14% transacionais que hoje quase ninguém ranqueia. Conteúdo de fundo-de-funil tipo review de cursos e comparação de mentorias pega esses leads no momento em que já estão prontos pra decidir.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-03-palavras-por-intencao" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-03-palavras-por-intencao"
+                    data-default="Esse mini-gráfico classifica todas as palavras-chave que trazem visitas ao BlueHackers segundo a intenção de quem buscou.
+
+A maior fatia, 64,3%, é informativa — 9 palavras e 59 visitas. São pessoas buscando aprender algo, sem intenção imediata de comprar. Coisas como 'o que é setter' ou 'como vender high ticket'.
+
+Em segundo, 14,3% são de navegação, com 2 palavras mas 58 visitas. Essa categoria é a mais valiosa em volume porque é gente que JÁ conhece o BlueHackers e busca pelo nome pra chegar no site. Quase tanto tráfego quanto as 9 informativas juntas.
+
+Comercial é só 7,1%, com 1 palavra e zero tráfego — pouquíssima entrada de quem está pesquisando 'melhor mentoria' ou 'preço de curso'. E transacional, 14,3%, com 2 palavras e 1 visita só — busca de quem quer agir, tipo 'comprar curso bluehackers'.
+
+O que essa distribuição revela é que o BlueHackers atrai principalmente curioso, não comprador, no SEO. Quem chega pelo Google está pesquisando, não comprando — a conversão acontece depois, dentro do funil. As 2 buscas de navegação valem tanto quanto as 9 informativas em volume, sinal de que a marca é mais buscada que o conteúdo.
+
+A oportunidade que aparece aqui é a fatia de 7% comerciais e 14% transacionais que hoje quase ninguém ranqueia. Conteúdo de fundo-de-funil tipo review de cursos e comparação de mentorias pega esses leads no momento em que já estão prontos pra decidir."
+                    rows="16">Esse mini-gráfico classifica todas as palavras-chave que trazem visitas ao BlueHackers segundo a intenção de quem buscou.
+
+A maior fatia, 64,3%, é informativa — 9 palavras e 59 visitas. São pessoas buscando aprender algo, sem intenção imediata de comprar. Coisas como 'o que é setter' ou 'como vender high ticket'.
+
+Em segundo, 14,3% são de navegação, com 2 palavras mas 58 visitas. Essa categoria é a mais valiosa em volume porque é gente que JÁ conhece o BlueHackers e busca pelo nome pra chegar no site. Quase tanto tráfego quanto as 9 informativas juntas.
+
+Comercial é só 7,1%, com 1 palavra e zero tráfego — pouquíssima entrada de quem está pesquisando 'melhor mentoria' ou 'preço de curso'. E transacional, 14,3%, com 2 palavras e 1 visita só — busca de quem quer agir, tipo 'comprar curso bluehackers'.
+
+O que essa distribuição revela é que o BlueHackers atrai principalmente curioso, não comprador, no SEO. Quem chega pelo Google está pesquisando, não comprando — a conversão acontece depois, dentro do funil. As 2 buscas de navegação valem tanto quanto as 9 informativas em volume, sinal de que a marca é mais buscada que o conteúdo.
+
+A oportunidade que aparece aqui é a fatia de 7% comerciais e 14% transacionais que hoje quase ninguém ranqueia. Conteúdo de fundo-de-funil tipo review de cursos e comparação de mentorias pega esses leads no momento em que já estão prontos pra decidir.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-03-palavras-por-intencao">não editado</div>
                 </div>
               </div>
             </article>
@@ -61755,15 +62008,45 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-10-paises-detalhado" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Colômbia lidera com 30%, mas está caindo. Argentina cresce 290%. Brasil é só 2,48%.</p>
-                <div class="sw-explanation">
-                  <p>Esse é o mapa real do mercado dele. 14 países com tráfego, e a tabela mostra cota, mudança trimestral, country rank, tempo médio, média de visitas e taxa de rejeição pra cada um.</p>
-<p>Colômbia lidera com 30,05% mas caiu 21,62% no último período. Pode ser saturação ou mudança de mídia. O bounce é 63,98% e o tempo médio é 4:41 — público engaja bem.</p>
-<p>Peru aparece em segundo com 22,31% e cresceu 76,57%. É a nova fronteira dele. Mas o tempo médio é só 26 segundos, então a maioria entra e sai rápido.</p>
-<p>Argentina é o destaque: 17,15% do tráfego com crescimento de 290,50% no trimestre. Faz sentido — ele é argentino e está focado em conquistar o próprio mercado. O bounce é 34,97%, o mais baixo de todos os países importantes, sinal de público realmente interessado.</p>
-<p>Espanha vem com 14,66% e cresceu 117,31%. Movimento de expansão pra Europa hispanofalante. México está com 4,51% e caindo (-38,11%), provavelmente menos product-market-fit lá agora.</p>
-<p>Brasil aparece com 2,48% e mal cresceu (+3,70%). Pra um país com 200 milhões de pessoas e mercado de marketing digital enorme, isso é praticamente nada — o BlueHackers basicamente não opera em português.</p>
-<p>Países como Chile (-92%), Uruguai (-100%), Estados Unidos (-100%), Venezuela (-83%) e Ecuador (-100%) ou sumiram do mapa ou estão em queda livre. Panamá, Bolívia e Tailândia aparecem como caudas mínimas.</p>
-<p>A leitura geral: ele tem estratégia LATAM hispana clara, com Argentina e Espanha como focos de crescimento e Peru como mercado em explosão. Brasil é território livre. Quem quiser dominar BR no nicho high-ticket de coaching/marketing tem o terreno completamente aberto pela direção dele.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-10-paises-detalhado" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-10-paises-detalhado"
+                    data-default="Esse é o mapa real do mercado dele. 14 países com tráfego, e a tabela mostra cota, mudança trimestral, country rank, tempo médio, média de visitas e taxa de rejeição pra cada um.
+
+Colômbia lidera com 30,05% mas caiu 21,62% no último período. Pode ser saturação ou mudança de mídia. O bounce é 63,98% e o tempo médio é 4:41 — público engaja bem.
+
+Peru aparece em segundo com 22,31% e cresceu 76,57%. É a nova fronteira dele. Mas o tempo médio é só 26 segundos, então a maioria entra e sai rápido.
+
+Argentina é o destaque: 17,15% do tráfego com crescimento de 290,50% no trimestre. Faz sentido — ele é argentino e está focado em conquistar o próprio mercado. O bounce é 34,97%, o mais baixo de todos os países importantes, sinal de público realmente interessado.
+
+Espanha vem com 14,66% e cresceu 117,31%. Movimento de expansão pra Europa hispanofalante. México está com 4,51% e caindo (-38,11%), provavelmente menos product-market-fit lá agora.
+
+Brasil aparece com 2,48% e mal cresceu (+3,70%). Pra um país com 200 milhões de pessoas e mercado de marketing digital enorme, isso é praticamente nada — o BlueHackers basicamente não opera em português.
+
+Países como Chile (-92%), Uruguai (-100%), Estados Unidos (-100%), Venezuela (-83%) e Ecuador (-100%) ou sumiram do mapa ou estão em queda livre. Panamá, Bolívia e Tailândia aparecem como caudas mínimas.
+
+A leitura geral: ele tem estratégia LATAM hispana clara, com Argentina e Espanha como focos de crescimento e Peru como mercado em explosão. Brasil é território livre. Quem quiser dominar BR no nicho high-ticket de coaching/marketing tem o terreno completamente aberto pela direção dele."
+                    rows="18">Esse é o mapa real do mercado dele. 14 países com tráfego, e a tabela mostra cota, mudança trimestral, country rank, tempo médio, média de visitas e taxa de rejeição pra cada um.
+
+Colômbia lidera com 30,05% mas caiu 21,62% no último período. Pode ser saturação ou mudança de mídia. O bounce é 63,98% e o tempo médio é 4:41 — público engaja bem.
+
+Peru aparece em segundo com 22,31% e cresceu 76,57%. É a nova fronteira dele. Mas o tempo médio é só 26 segundos, então a maioria entra e sai rápido.
+
+Argentina é o destaque: 17,15% do tráfego com crescimento de 290,50% no trimestre. Faz sentido — ele é argentino e está focado em conquistar o próprio mercado. O bounce é 34,97%, o mais baixo de todos os países importantes, sinal de público realmente interessado.
+
+Espanha vem com 14,66% e cresceu 117,31%. Movimento de expansão pra Europa hispanofalante. México está com 4,51% e caindo (-38,11%), provavelmente menos product-market-fit lá agora.
+
+Brasil aparece com 2,48% e mal cresceu (+3,70%). Pra um país com 200 milhões de pessoas e mercado de marketing digital enorme, isso é praticamente nada — o BlueHackers basicamente não opera em português.
+
+Países como Chile (-92%), Uruguai (-100%), Estados Unidos (-100%), Venezuela (-83%) e Ecuador (-100%) ou sumiram do mapa ou estão em queda livre. Panamá, Bolívia e Tailândia aparecem como caudas mínimas.
+
+A leitura geral: ele tem estratégia LATAM hispana clara, com Argentina e Espanha como focos de crescimento e Peru como mercado em explosão. Brasil é território livre. Quem quiser dominar BR no nicho high-ticket de coaching/marketing tem o terreno completamente aberto pela direção dele.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-10-paises-detalhado">não editado</div>
                 </div>
               </div>
             </article>
@@ -61787,12 +62070,33 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-09-paises-resumo" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Mexicano e chileno consomem no celular. Argentino e colombiano usam desktop. Avatar muda por país.</p>
-                <div class="sw-explanation">
-                  <p>Esse painel mostra os 5 maiores países, mas com uma camada extra valiosa: a divisão entre dispositivo de acesso. Cada país tem perfil de uso diferente.</p>
-<p>México traz 22,72% do tráfego (8,3 mil visitas), e 76,39% delas são mobile. Mexicano consome quase tudo no celular. Chile aparece com 17,87% (6,5 mil visitas) e é ainda mais mobile-first: 88,4% no celular.</p>
-<p>Argentina é o contrário do esperado: 15,13% (5,5 mil visitas), mas 67,33% acessam por desktop. Único mercado onde o computador domina. Isso provavelmente acontece porque o avatar argentino é mais profissionalizado, trabalha em escritório, acessa o site no horário comercial.</p>
-<p>Espanha tem 13,69% (5 mil) bem dividido — 51,53% desktop, 48,47% mobile. E Colômbia, surpreendentemente, também tem dominância de desktop: 74,3% computador contra 25,7% mobile. Vai contra a intuição de país latino sendo mobile-first.</p>
-<p>Três insights práticos saem daí. Primeiro: campanhas miradas em México ou Chile precisam de experiência mobile impecável — página lenta no celular = venda perdida. Segundo: Argentina e Colômbia rodam em desktop, esses leads provavelmente estão no trabalho, então horário comercial converte mais. Terceiro, e mais importante: a divergência mobile/desktop revela DIFERENÇAS DE AVATAR entre países. O argentino do BlueHackers é mais corporate-profile, o mexicano é mais lifestyle/casual. A comunicação dele provavelmente precisa de ajuste por geografia, mas ele entrega o mesmo discurso pra todos.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-09-paises-resumo" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-09-paises-resumo"
+                    data-default="Esse painel mostra os 5 maiores países, mas com uma camada extra valiosa: a divisão entre dispositivo de acesso. Cada país tem perfil de uso diferente.
+
+México traz 22,72% do tráfego (8,3 mil visitas), e 76,39% delas são mobile. Mexicano consome quase tudo no celular. Chile aparece com 17,87% (6,5 mil visitas) e é ainda mais mobile-first: 88,4% no celular.
+
+Argentina é o contrário do esperado: 15,13% (5,5 mil visitas), mas 67,33% acessam por desktop. Único mercado onde o computador domina. Isso provavelmente acontece porque o avatar argentino é mais profissionalizado, trabalha em escritório, acessa o site no horário comercial.
+
+Espanha tem 13,69% (5 mil) bem dividido — 51,53% desktop, 48,47% mobile. E Colômbia, surpreendentemente, também tem dominância de desktop: 74,3% computador contra 25,7% mobile. Vai contra a intuição de país latino sendo mobile-first.
+
+Três insights práticos saem daí. Primeiro: campanhas miradas em México ou Chile precisam de experiência mobile impecável — página lenta no celular = venda perdida. Segundo: Argentina e Colômbia rodam em desktop, esses leads provavelmente estão no trabalho, então horário comercial converte mais. Terceiro, e mais importante: a divergência mobile/desktop revela DIFERENÇAS DE AVATAR entre países. O argentino do BlueHackers é mais corporate-profile, o mexicano é mais lifestyle/casual. A comunicação dele provavelmente precisa de ajuste por geografia, mas ele entrega o mesmo discurso pra todos."
+                    rows="14">Esse painel mostra os 5 maiores países, mas com uma camada extra valiosa: a divisão entre dispositivo de acesso. Cada país tem perfil de uso diferente.
+
+México traz 22,72% do tráfego (8,3 mil visitas), e 76,39% delas são mobile. Mexicano consome quase tudo no celular. Chile aparece com 17,87% (6,5 mil visitas) e é ainda mais mobile-first: 88,4% no celular.
+
+Argentina é o contrário do esperado: 15,13% (5,5 mil visitas), mas 67,33% acessam por desktop. Único mercado onde o computador domina. Isso provavelmente acontece porque o avatar argentino é mais profissionalizado, trabalha em escritório, acessa o site no horário comercial.
+
+Espanha tem 13,69% (5 mil) bem dividido — 51,53% desktop, 48,47% mobile. E Colômbia, surpreendentemente, também tem dominância de desktop: 74,3% computador contra 25,7% mobile. Vai contra a intuição de país latino sendo mobile-first.
+
+Três insights práticos saem daí. Primeiro: campanhas miradas em México ou Chile precisam de experiência mobile impecável — página lenta no celular = venda perdida. Segundo: Argentina e Colômbia rodam em desktop, esses leads provavelmente estão no trabalho, então horário comercial converte mais. Terceiro, e mais importante: a divergência mobile/desktop revela DIFERENÇAS DE AVATAR entre países. O argentino do BlueHackers é mais corporate-profile, o mexicano é mais lifestyle/casual. A comunicação dele provavelmente precisa de ajuste por geografia, mas ele entrega o mesmo discurso pra todos.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-09-paises-resumo">não editado</div>
                 </div>
               </div>
             </article>
@@ -61816,13 +62120,37 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-11-profissao-educacao" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 40% trabalham em tempo integral. 47% têm faculdade. Não é desempregado, é frustrado.</p>
-                <div class="sw-explanation">
-                  <p>Esse painel abre o perfil socioeconômico do visitante em duas dimensões.</p>
-<p>Na situação profissional, 40,08% (9 mil pessoas) tem emprego em período integral. Maioria absoluta. É público com trabalho fixo, salário garantido, não é desempregado buscando milagre. Em segundo aparece desempregado com 14,94% (3,4 mil) — existe sim, mas é minoritário.</p>
-<p>Dono de casa entra com 11,69% (2,7 mil), provavelmente mulheres procurando renda flexível — bate com o dado de 57% feminino do outro painel. Emprego em tempo parcial soma 10,26% (2,3 mil), gente já testando ganhar paralelo. Dono da empresa é 9,41% (2,1 mil), pessoas que já têm negócio rodando. Aposentado pesa 8,69% (2 mil) — 8% buscando renda complementar é mais do que parece. Aluno é só 2,65% (597), quase ninguém de estudante.</p>
-<p>Na educação, 46,85% (10,5 mil) tem universidade — quase metade do público com ensino superior. Outros 40,68% (9,1 mil) ficou na escola obrigatória. Pós-graduação aparece em 9,84% (2,2 mil). Apenas 2,63% não concluiu estudos.</p>
-<p>O retrato real do avatar BlueHackers é uma pessoa empregada ou freelancer parcial, com formação universitária, frustrada com o teto da carreira, querendo escapar do CLT ou complementar renda. Não é o aspirante zero — é alguém que já tem alguma estabilidade mas sente que está limitado.</p>
-<p>Esse é um insight de produto importante: o discurso do Razzetti enfatiza muito o 'zero a 10K', mas o público real é mais 'estabilidade média querendo subir'. Pode ser que ele esteja perdendo conversão por não falar diretamente com esse perfil mais consolidado.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-11-profissao-educacao" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-11-profissao-educacao"
+                    data-default="Esse painel abre o perfil socioeconômico do visitante em duas dimensões.
+
+Na situação profissional, 40,08% (9 mil pessoas) tem emprego em período integral. Maioria absoluta. É público com trabalho fixo, salário garantido, não é desempregado buscando milagre. Em segundo aparece desempregado com 14,94% (3,4 mil) — existe sim, mas é minoritário.
+
+Dono de casa entra com 11,69% (2,7 mil), provavelmente mulheres procurando renda flexível — bate com o dado de 57% feminino do outro painel. Emprego em tempo parcial soma 10,26% (2,3 mil), gente já testando ganhar paralelo. Dono da empresa é 9,41% (2,1 mil), pessoas que já têm negócio rodando. Aposentado pesa 8,69% (2 mil) — 8% buscando renda complementar é mais do que parece. Aluno é só 2,65% (597), quase ninguém de estudante.
+
+Na educação, 46,85% (10,5 mil) tem universidade — quase metade do público com ensino superior. Outros 40,68% (9,1 mil) ficou na escola obrigatória. Pós-graduação aparece em 9,84% (2,2 mil). Apenas 2,63% não concluiu estudos.
+
+O retrato real do avatar BlueHackers é uma pessoa empregada ou freelancer parcial, com formação universitária, frustrada com o teto da carreira, querendo escapar do CLT ou complementar renda. Não é o aspirante zero — é alguém que já tem alguma estabilidade mas sente que está limitado.
+
+Esse é um insight de produto importante: o discurso do Razzetti enfatiza muito o 'zero a 10K', mas o público real é mais 'estabilidade média querendo subir'. Pode ser que ele esteja perdendo conversão por não falar diretamente com esse perfil mais consolidado."
+                    rows="16">Esse painel abre o perfil socioeconômico do visitante em duas dimensões.
+
+Na situação profissional, 40,08% (9 mil pessoas) tem emprego em período integral. Maioria absoluta. É público com trabalho fixo, salário garantido, não é desempregado buscando milagre. Em segundo aparece desempregado com 14,94% (3,4 mil) — existe sim, mas é minoritário.
+
+Dono de casa entra com 11,69% (2,7 mil), provavelmente mulheres procurando renda flexível — bate com o dado de 57% feminino do outro painel. Emprego em tempo parcial soma 10,26% (2,3 mil), gente já testando ganhar paralelo. Dono da empresa é 9,41% (2,1 mil), pessoas que já têm negócio rodando. Aposentado pesa 8,69% (2 mil) — 8% buscando renda complementar é mais do que parece. Aluno é só 2,65% (597), quase ninguém de estudante.
+
+Na educação, 46,85% (10,5 mil) tem universidade — quase metade do público com ensino superior. Outros 40,68% (9,1 mil) ficou na escola obrigatória. Pós-graduação aparece em 9,84% (2,2 mil). Apenas 2,63% não concluiu estudos.
+
+O retrato real do avatar BlueHackers é uma pessoa empregada ou freelancer parcial, com formação universitária, frustrada com o teto da carreira, querendo escapar do CLT ou complementar renda. Não é o aspirante zero — é alguém que já tem alguma estabilidade mas sente que está limitado.
+
+Esse é um insight de produto importante: o discurso do Razzetti enfatiza muito o 'zero a 10K', mas o público real é mais 'estabilidade média querendo subir'. Pode ser que ele esteja perdendo conversão por não falar diretamente com esse perfil mais consolidado.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-11-profissao-educacao">não editado</div>
                 </div>
               </div>
             </article>
@@ -61846,15 +62174,45 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-12-demografia-familia-renda" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 59% do público tem renda baixa. O avatar real é mais modesto do que o branding sugere.</p>
-                <div class="sw-explanation">
-                  <p>Esse painel mostra a configuração socioeconômica em duas dimensões: como o público vive (tamanho da família) e quanto ganha (nível de renda).</p>
-<p>No tamanho do agregado familiar, o perfil mais comum é o lar com 2 pessoas, presente em 30,29% da audiência. Casais sem filhos ou pais separados com um filho. Em seguida vêm domicílios com 3 a 4 pessoas (cerca de 18%), depois solteiros morando sozinhos (cerca de 14%). Famílias de 5 a 6 pessoas são minoria (7%) e mais de 7 pessoas é quase zero.</p>
-<p>No nível de renda, é onde o dado mais surpreendente aparece. Renda alta é só 7,47% (1,7 mil pessoas). Renda média é 33,84% (7,6 mil). E renda baixa é a maioria absoluta: 58,69% (13,2 mil).</p>
-<p>Esse é o insight desconfortável. O avatar oficial dele é high ticket ($3-10K/mês), mas a maior parte da audiência tem renda baixa. Três consequências aparecem daí:</p>
-<p>A primeira é que isso explica por que ele insiste tanto no frame 'eu também comecei do nada' — esse é o espelho que o público real precisa ver pra se identificar.</p>
-<p>A segunda é que isso justifica a existência da oferta de US$27 do Tripware. É o único ponto de entrada acessível pra essa fatia de 59% que tem renda baixa.</p>
-<p>A terceira é que o funil é deliberadamente longo (Aquecimento → Trip Free → Tripware → Comercial VSL) porque é preciso escalar o lead financeiramente antes de cobrar high ticket. Faz sentido com os números.</p>
-<p>Vale notar que esse perfil — renda baixa, universidade, emprego full-time, frustrado — é um avatar enorme e relativamente ignorado pelos competidores que miram só no top de renda. A janela do meio existe e é grande em qualquer mercado high-ticket.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-12-demografia-familia-renda" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-12-demografia-familia-renda"
+                    data-default="Esse painel mostra a configuração socioeconômica em duas dimensões: como o público vive (tamanho da família) e quanto ganha (nível de renda).
+
+No tamanho do agregado familiar, o perfil mais comum é o lar com 2 pessoas, presente em 30,29% da audiência. Casais sem filhos ou pais separados com um filho. Em seguida vêm domicílios com 3 a 4 pessoas (cerca de 18%), depois solteiros morando sozinhos (cerca de 14%). Famílias de 5 a 6 pessoas são minoria (7%) e mais de 7 pessoas é quase zero.
+
+No nível de renda, é onde o dado mais surpreendente aparece. Renda alta é só 7,47% (1,7 mil pessoas). Renda média é 33,84% (7,6 mil). E renda baixa é a maioria absoluta: 58,69% (13,2 mil).
+
+Esse é o insight desconfortável. O avatar oficial dele é high ticket ($3-10K/mês), mas a maior parte da audiência tem renda baixa. Três consequências aparecem daí:
+
+A primeira é que isso explica por que ele insiste tanto no frame 'eu também comecei do nada' — esse é o espelho que o público real precisa ver pra se identificar.
+
+A segunda é que isso justifica a existência da oferta de US$27 do Tripware. É o único ponto de entrada acessível pra essa fatia de 59% que tem renda baixa.
+
+A terceira é que o funil é deliberadamente longo (Aquecimento → Trip Free → Tripware → Comercial VSL) porque é preciso escalar o lead financeiramente antes de cobrar high ticket. Faz sentido com os números.
+
+Vale notar que esse perfil — renda baixa, universidade, emprego full-time, frustrado — é um avatar enorme e relativamente ignorado pelos competidores que miram só no top de renda. A janela do meio existe e é grande em qualquer mercado high-ticket."
+                    rows="18">Esse painel mostra a configuração socioeconômica em duas dimensões: como o público vive (tamanho da família) e quanto ganha (nível de renda).
+
+No tamanho do agregado familiar, o perfil mais comum é o lar com 2 pessoas, presente em 30,29% da audiência. Casais sem filhos ou pais separados com um filho. Em seguida vêm domicílios com 3 a 4 pessoas (cerca de 18%), depois solteiros morando sozinhos (cerca de 14%). Famílias de 5 a 6 pessoas são minoria (7%) e mais de 7 pessoas é quase zero.
+
+No nível de renda, é onde o dado mais surpreendente aparece. Renda alta é só 7,47% (1,7 mil pessoas). Renda média é 33,84% (7,6 mil). E renda baixa é a maioria absoluta: 58,69% (13,2 mil).
+
+Esse é o insight desconfortável. O avatar oficial dele é high ticket ($3-10K/mês), mas a maior parte da audiência tem renda baixa. Três consequências aparecem daí:
+
+A primeira é que isso explica por que ele insiste tanto no frame 'eu também comecei do nada' — esse é o espelho que o público real precisa ver pra se identificar.
+
+A segunda é que isso justifica a existência da oferta de US$27 do Tripware. É o único ponto de entrada acessível pra essa fatia de 59% que tem renda baixa.
+
+A terceira é que o funil é deliberadamente longo (Aquecimento → Trip Free → Tripware → Comercial VSL) porque é preciso escalar o lead financeiramente antes de cobrar high ticket. Faz sentido com os números.
+
+Vale notar que esse perfil — renda baixa, universidade, emprego full-time, frustrado — é um avatar enorme e relativamente ignorado pelos competidores que miram só no top de renda. A janela do meio existe e é grande em qualquer mercado high-ticket.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-12-demografia-familia-renda">não editado</div>
                 </div>
               </div>
             </article>
@@ -61878,14 +62236,41 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-13-publico-idade-sexo" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 57% são mulheres. O pico de idade é 35-54 anos, não os jovens de 25-34 que se imagina.</p>
-                <div class="sw-explanation">
-                  <p>Esse é o painel demográfico mais surpreendente do conjunto inteiro. Tem dois cortes: idade (com diferença entre masculino e feminino dentro de cada faixa) e sexo (no resumo geral).</p>
-<p>Na distribuição etária, a faixa de 18-24 anos é pequena (cerca de 10%, principalmente feminino). A faixa 25-34 sobe pra cerca de 21%. A maior fatia é 35-44 anos com cerca de 22%, bem dividido entre os sexos. Logo atrás vem 45-54 com cerca de 21%. Depois 55-64 com 15%, e 65+ com 12% — surpreendentemente alto.</p>
-<p>No total medido (22,5 mil usuários), feminino representa 57,34% (12,9 mil) e masculino 42,66% (9,6 mil). A maioria absoluta é mulher.</p>
-<p>Por que isso é importante? A comunicação do Razzetti é hyper-masculina: gym, golf, lifestyle hustle, vlogs de carrão. Mas o público real é majoritariamente feminino. Existe um descompasso potencial entre como ele se posiciona e quem realmente consome o conteúdo dele.</p>
-<p>A faixa etária dominante é 35-54 anos, não a turma jovem de 25-34 que se imagina seguindo guru de marketing. Esse é o profissional já no meio da carreira procurando 'pivot' ou renda complementar. E 12% de 65+ é alto — provavelmente aposentado querendo virar coach ou afiliado.</p>
-<p>Combinando com o print anterior (59% renda baixa), o avatar REAL do BlueHackers é provavelmente uma mulher de 35-54 anos, com formação universitária, renda baixa, em emprego CLT, querendo migrar pra digital. Esse perfil não bate com o lifestyle masculino que ele encena. Parte da audiência consome ele apesar do tom, não por causa dele.</p>
-<p>O avatar 'mulher 35-54 querendo migrar do CLT pra digital' é um dos públicos mais ignorados pelo mercado de marketing digital em geral — o tom dominante do nicho é jovem e masculino, o que deixa esse segmento praticamente sem comunicação dirigida. Quem se posicionar pra ele acessa uma demanda real e enorme.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-13-publico-idade-sexo" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-13-publico-idade-sexo"
+                    data-default="Esse é o painel demográfico mais surpreendente do conjunto inteiro. Tem dois cortes: idade (com diferença entre masculino e feminino dentro de cada faixa) e sexo (no resumo geral).
+
+Na distribuição etária, a faixa de 18-24 anos é pequena (cerca de 10%, principalmente feminino). A faixa 25-34 sobe pra cerca de 21%. A maior fatia é 35-44 anos com cerca de 22%, bem dividido entre os sexos. Logo atrás vem 45-54 com cerca de 21%. Depois 55-64 com 15%, e 65+ com 12% — surpreendentemente alto.
+
+No total medido (22,5 mil usuários), feminino representa 57,34% (12,9 mil) e masculino 42,66% (9,6 mil). A maioria absoluta é mulher.
+
+Por que isso é importante? A comunicação do Razzetti é hyper-masculina: gym, golf, lifestyle hustle, vlogs de carrão. Mas o público real é majoritariamente feminino. Existe um descompasso potencial entre como ele se posiciona e quem realmente consome o conteúdo dele.
+
+A faixa etária dominante é 35-54 anos, não a turma jovem de 25-34 que se imagina seguindo guru de marketing. Esse é o profissional já no meio da carreira procurando 'pivot' ou renda complementar. E 12% de 65+ é alto — provavelmente aposentado querendo virar coach ou afiliado.
+
+Combinando com o print anterior (59% renda baixa), o avatar REAL do BlueHackers é provavelmente uma mulher de 35-54 anos, com formação universitária, renda baixa, em emprego CLT, querendo migrar pra digital. Esse perfil não bate com o lifestyle masculino que ele encena. Parte da audiência consome ele apesar do tom, não por causa dele.
+
+O avatar 'mulher 35-54 querendo migrar do CLT pra digital' é um dos públicos mais ignorados pelo mercado de marketing digital em geral — o tom dominante do nicho é jovem e masculino, o que deixa esse segmento praticamente sem comunicação dirigida. Quem se posicionar pra ele acessa uma demanda real e enorme."
+                    rows="18">Esse é o painel demográfico mais surpreendente do conjunto inteiro. Tem dois cortes: idade (com diferença entre masculino e feminino dentro de cada faixa) e sexo (no resumo geral).
+
+Na distribuição etária, a faixa de 18-24 anos é pequena (cerca de 10%, principalmente feminino). A faixa 25-34 sobe pra cerca de 21%. A maior fatia é 35-44 anos com cerca de 22%, bem dividido entre os sexos. Logo atrás vem 45-54 com cerca de 21%. Depois 55-64 com 15%, e 65+ com 12% — surpreendentemente alto.
+
+No total medido (22,5 mil usuários), feminino representa 57,34% (12,9 mil) e masculino 42,66% (9,6 mil). A maioria absoluta é mulher.
+
+Por que isso é importante? A comunicação do Razzetti é hyper-masculina: gym, golf, lifestyle hustle, vlogs de carrão. Mas o público real é majoritariamente feminino. Existe um descompasso potencial entre como ele se posiciona e quem realmente consome o conteúdo dele.
+
+A faixa etária dominante é 35-54 anos, não a turma jovem de 25-34 que se imagina seguindo guru de marketing. Esse é o profissional já no meio da carreira procurando 'pivot' ou renda complementar. E 12% de 65+ é alto — provavelmente aposentado querendo virar coach ou afiliado.
+
+Combinando com o print anterior (59% renda baixa), o avatar REAL do BlueHackers é provavelmente uma mulher de 35-54 anos, com formação universitária, renda baixa, em emprego CLT, querendo migrar pra digital. Esse perfil não bate com o lifestyle masculino que ele encena. Parte da audiência consome ele apesar do tom, não por causa dele.
+
+O avatar 'mulher 35-54 querendo migrar do CLT pra digital' é um dos públicos mais ignorados pelo mercado de marketing digital em geral — o tom dominante do nicho é jovem e masculino, o que deixa esse segmento praticamente sem comunicação dirigida. Quem se posicionar pra ele acessa uma demanda real e enorme.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-13-publico-idade-sexo">não editado</div>
                 </div>
               </div>
             </article>
@@ -61928,10 +62313,25 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-04c-subdomain-main" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 39,7K visitas/mês, bounce baixíssimo (48,91%), 1,98 páginas/visita. O maior dos 4.</p>
-                <div class="sw-explanation">
-                  <p>bluehackers.com é a home institucional do ecossistema. É o sub-domínio com MAIOR volume de tráfego (39,7 mil visitas em abril/2026) e ao mesmo tempo o de MAIOR engajamento: bounce de 48,91% (o mais baixo dos quatro sub-domínios), 1,98 páginas por visita e tempo médio de 1 minuto e 17 segundos.</p>
-<p>A combinação desses números revela uma coisa importante: a maior parte do tráfego do BlueHackers vai DIRETO pra home, não pras landings de funil. Isso é coerente com o dado de 75% de tráfego direto que aparece nos gráficos de canais — gente que já conhece a marca digita o domínio no navegador e navega.</p>
-<p>Quem chega aqui não tá numa jornada de compra ativa, tá explorando. Por isso o bounce baixo: o visitante clica em mais de uma página antes de sair. Esse é o ativo de marca puro do ecossistema — sobrevive a qualquer mudança de mídia paga, porque o tráfego vem da memória do público.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-04c-subdomain-main" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-04c-subdomain-main"
+                    data-default="bluehackers.com é a home institucional do ecossistema. É o sub-domínio com MAIOR volume de tráfego (39,7 mil visitas em abril/2026) e ao mesmo tempo o de MAIOR engajamento: bounce de 48,91% (o mais baixo dos quatro sub-domínios), 1,98 páginas por visita e tempo médio de 1 minuto e 17 segundos.
+
+A combinação desses números revela uma coisa importante: a maior parte do tráfego do BlueHackers vai DIRETO pra home, não pras landings de funil. Isso é coerente com o dado de 75% de tráfego direto que aparece nos gráficos de canais — gente que já conhece a marca digita o domínio no navegador e navega.
+
+Quem chega aqui não tá numa jornada de compra ativa, tá explorando. Por isso o bounce baixo: o visitante clica em mais de uma página antes de sair. Esse é o ativo de marca puro do ecossistema — sobrevive a qualquer mudança de mídia paga, porque o tráfego vem da memória do público."
+                    rows="10">bluehackers.com é a home institucional do ecossistema. É o sub-domínio com MAIOR volume de tráfego (39,7 mil visitas em abril/2026) e ao mesmo tempo o de MAIOR engajamento: bounce de 48,91% (o mais baixo dos quatro sub-domínios), 1,98 páginas por visita e tempo médio de 1 minuto e 17 segundos.
+
+A combinação desses números revela uma coisa importante: a maior parte do tráfego do BlueHackers vai DIRETO pra home, não pras landings de funil. Isso é coerente com o dado de 75% de tráfego direto que aparece nos gráficos de canais — gente que já conhece a marca digita o domínio no navegador e navega.
+
+Quem chega aqui não tá numa jornada de compra ativa, tá explorando. Por isso o bounce baixo: o visitante clica em mais de uma página antes de sair. Esse é o ativo de marca puro do ecossistema — sobrevive a qualquer mudança de mídia paga, porque o tráfego vem da memória do público.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-04c-subdomain-main">não editado</div>
                 </div>
               </div>
             </article>
@@ -61955,10 +62355,25 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-04a-subdomain-comercial-vsl" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 7,7K visitas/mês, bounce alto (73,06%), 1,43 páginas/visita. Cresceu forte de mar pra abr.</p>
-                <div class="sw-explanation">
-                  <p>demo.bluehackers.com é a casa do Funil Comercial com VSL — a página onde o lead chega vindo do anúncio de "agenda tu llamada". Em abril/2026 teve 7,7 mil visitas, com uma subida agressiva no último mês (era ~1K em março, virou 7,7K em abril). Sinal de campanha forte rodando agora.</p>
-<p>O bounce de 73,06% é alto, mas dentro do esperado pra página de VSL — ou o lead engata no vídeo e segue pra próxima etapa, ou sai. Não tem meio termo. Páginas por visita ficam em 1,43 e o tempo médio é 1 minuto e 55 segundos, que bate com o tempo de assistir o início do VSL antes de decidir se continua.</p>
-<p>Esse sub-domínio é o termômetro do funil pago do BlueHackers. Quando o ad de Comercial roda forte, o tráfego dele dispara. Quando para, despenca. Diferente da home, aqui o tráfego é correlacionado a investimento.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-04a-subdomain-comercial-vsl" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-04a-subdomain-comercial-vsl"
+                    data-default="demo.bluehackers.com é a casa do Funil Comercial com VSL — a página onde o lead chega vindo do anúncio de &quot;agenda tu llamada&quot;. Em abril/2026 teve 7,7 mil visitas, com uma subida agressiva no último mês (era ~1K em março, virou 7,7K em abril). Sinal de campanha forte rodando agora.
+
+O bounce de 73,06% é alto, mas dentro do esperado pra página de VSL — ou o lead engata no vídeo e segue pra próxima etapa, ou sai. Não tem meio termo. Páginas por visita ficam em 1,43 e o tempo médio é 1 minuto e 55 segundos, que bate com o tempo de assistir o início do VSL antes de decidir se continua.
+
+Esse sub-domínio é o termômetro do funil pago do BlueHackers. Quando o ad de Comercial roda forte, o tráfego dele dispara. Quando para, despenca. Diferente da home, aqui o tráfego é correlacionado a investimento."
+                    rows="10">demo.bluehackers.com é a casa do Funil Comercial com VSL — a página onde o lead chega vindo do anúncio de "agenda tu llamada". Em abril/2026 teve 7,7 mil visitas, com uma subida agressiva no último mês (era ~1K em março, virou 7,7K em abril). Sinal de campanha forte rodando agora.
+
+O bounce de 73,06% é alto, mas dentro do esperado pra página de VSL — ou o lead engata no vídeo e segue pra próxima etapa, ou sai. Não tem meio termo. Páginas por visita ficam em 1,43 e o tempo médio é 1 minuto e 55 segundos, que bate com o tempo de assistir o início do VSL antes de decidir se continua.
+
+Esse sub-domínio é o termômetro do funil pago do BlueHackers. Quando o ad de Comercial roda forte, o tráfego dele dispara. Quando para, despenca. Diferente da home, aqui o tráfego é correlacionado a investimento.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-04a-subdomain-comercial-vsl">não editado</div>
                 </div>
               </div>
             </article>
@@ -61982,10 +62397,25 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-04b-subdomain-trip" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 21,1K visitas/mês, bounce 81,94%, 2,06 min de média. Segundo maior em volume.</p>
-                <div class="sw-explanation">
-                  <p>sho.bluehackers.com é a página de checkout do Tripware (a oferta de US$27 com garantia "se não gostar, fica com tudo"). Em abril teve 21,1 mil visitas — é o SEGUNDO maior sub-domínio em volume, atrás só da home, e cresceu de forma constante de fevereiro pra abril.</p>
-<p>O bounce é o mais alto dos quatro: 81,94%. Faz total sentido — é página de checkout, então ou o lead compra ou sai. Não tem ação intermediária. Páginas por visita ficam em 1,44 (a página em si + talvez uma confirmação) e tempo médio é 2 minutos e 6 segundos, suficiente pra ler a oferta e decidir.</p>
-<p>O fato de receber 21K visitas mostra que o Tripware é o gatekeeper real do funil. Bem mais lead passa por aqui do que pelo Funil Comercial (demo.bluehackers, 7,7K). É o filtro psicológico antes do high ticket — quem paga US$27 demonstra seriedade, e só esses leads chegam na ligação de venda.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-04b-subdomain-trip" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-04b-subdomain-trip"
+                    data-default="sho.bluehackers.com é a página de checkout do Tripware (a oferta de US$27 com garantia &quot;se não gostar, fica com tudo&quot;). Em abril teve 21,1 mil visitas — é o SEGUNDO maior sub-domínio em volume, atrás só da home, e cresceu de forma constante de fevereiro pra abril.
+
+O bounce é o mais alto dos quatro: 81,94%. Faz total sentido — é página de checkout, então ou o lead compra ou sai. Não tem ação intermediária. Páginas por visita ficam em 1,44 (a página em si + talvez uma confirmação) e tempo médio é 2 minutos e 6 segundos, suficiente pra ler a oferta e decidir.
+
+O fato de receber 21K visitas mostra que o Tripware é o gatekeeper real do funil. Bem mais lead passa por aqui do que pelo Funil Comercial (demo.bluehackers, 7,7K). É o filtro psicológico antes do high ticket — quem paga US$27 demonstra seriedade, e só esses leads chegam na ligação de venda."
+                    rows="10">sho.bluehackers.com é a página de checkout do Tripware (a oferta de US$27 com garantia "se não gostar, fica com tudo"). Em abril teve 21,1 mil visitas — é o SEGUNDO maior sub-domínio em volume, atrás só da home, e cresceu de forma constante de fevereiro pra abril.
+
+O bounce é o mais alto dos quatro: 81,94%. Faz total sentido — é página de checkout, então ou o lead compra ou sai. Não tem ação intermediária. Páginas por visita ficam em 1,44 (a página em si + talvez uma confirmação) e tempo médio é 2 minutos e 6 segundos, suficiente pra ler a oferta e decidir.
+
+O fato de receber 21K visitas mostra que o Tripware é o gatekeeper real do funil. Bem mais lead passa por aqui do que pelo Funil Comercial (demo.bluehackers, 7,7K). É o filtro psicológico antes do high ticket — quem paga US$27 demonstra seriedade, e só esses leads chegam na ligação de venda.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-04b-subdomain-trip">não editado</div>
                 </div>
               </div>
             </article>
@@ -62009,10 +62439,25 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-04d-subdomain-tripfree" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 2,9K visitas mas bounce de só 14,75%, 6,74 páginas/visita, 4:53 de média. O mais pegajoso.</p>
-                <div class="sw-explanation">
-                  <p>ed.bluehackers.com é a casa da Biblioteca grátis (o Trip Free com 200+ documentos, mastermind gravado, curso de 12h). Em volume bruto é o MENOR sub-domínio: só 2,9 mil visitas em abril (caiu em relação a março, que tinha cerca de 6K).</p>
-<p>Mas os outros números mudam o jogo completamente. O bounce é absurdamente baixo: só 14,75%. Páginas por visita: 6,74. Tempo médio: 4 minutos e 53 segundos. Pra comparar: a home tem 1,98 páginas/visita, esse aqui tem 6,74. A home tem 1:17 de média, esse tem quase 5 minutos.</p>
-<p>Esses números provam uma coisa essencial: a Biblioteca é o ATIVO MAIS PEGAJOSO de todo o ecossistema. Quem entra fica horas navegando o conteúdo grátis. É exatamente por isso que Razzetti investe tanto em ads que mandam pra esse sub-domínio — o lead que chega aqui consome o equivalente a um curso pago em valor percebido, e fica devendo reciprocidade ao BlueHackers. Saída natural: comprar o programa pago depois.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-04d-subdomain-tripfree" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-04d-subdomain-tripfree"
+                    data-default="ed.bluehackers.com é a casa da Biblioteca grátis (o Trip Free com 200+ documentos, mastermind gravado, curso de 12h). Em volume bruto é o MENOR sub-domínio: só 2,9 mil visitas em abril (caiu em relação a março, que tinha cerca de 6K).
+
+Mas os outros números mudam o jogo completamente. O bounce é absurdamente baixo: só 14,75%. Páginas por visita: 6,74. Tempo médio: 4 minutos e 53 segundos. Pra comparar: a home tem 1,98 páginas/visita, esse aqui tem 6,74. A home tem 1:17 de média, esse tem quase 5 minutos.
+
+Esses números provam uma coisa essencial: a Biblioteca é o ATIVO MAIS PEGAJOSO de todo o ecossistema. Quem entra fica horas navegando o conteúdo grátis. É exatamente por isso que Razzetti investe tanto em ads que mandam pra esse sub-domínio — o lead que chega aqui consome o equivalente a um curso pago em valor percebido, e fica devendo reciprocidade ao BlueHackers. Saída natural: comprar o programa pago depois."
+                    rows="10">ed.bluehackers.com é a casa da Biblioteca grátis (o Trip Free com 200+ documentos, mastermind gravado, curso de 12h). Em volume bruto é o MENOR sub-domínio: só 2,9 mil visitas em abril (caiu em relação a março, que tinha cerca de 6K).
+
+Mas os outros números mudam o jogo completamente. O bounce é absurdamente baixo: só 14,75%. Páginas por visita: 6,74. Tempo médio: 4 minutos e 53 segundos. Pra comparar: a home tem 1,98 páginas/visita, esse aqui tem 6,74. A home tem 1:17 de média, esse tem quase 5 minutos.
+
+Esses números provam uma coisa essencial: a Biblioteca é o ATIVO MAIS PEGAJOSO de todo o ecossistema. Quem entra fica horas navegando o conteúdo grátis. É exatamente por isso que Razzetti investe tanto em ads que mandam pra esse sub-domínio — o lead que chega aqui consome o equivalente a um curso pago em valor percebido, e fica devendo reciprocidade ao BlueHackers. Saída natural: comprar o programa pago depois.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-04d-subdomain-tripfree">não editado</div>
                 </div>
               </div>
             </article>
@@ -62036,13 +62481,37 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-05-paginas-internas" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> /main e /pagina inicial concentram 56% do tráfego. Estrutura enxuta de ~14 endpoints.</p>
-                <div class="sw-explanation">
-                  <p>Essa tabela lista as páginas que mais recebem visita dentro de todo o ecossistema BlueHackers, com proporção de tráfego, tendência, exibições, exclusivos, visitas e tempo médio.</p>
-<p>O líder é sho.bluehackers.com/main com 39,2% do tráfego total (14,1 mil visitas, 4 minutos de média). É a página principal do funil Tripware, onde o lead chega vindo do ad. Em segundo vem a 'página inicial' com 17,09% (6,3 mil visitas, 3:26 de média) — o domínio bluehackers.com no root.</p>
-<p>Depois aparecem ed.bluehackers.com com 5,64% (a Biblioteca), /account-manager com 4,24% (e tempo médio de 12:57 — área logada de quem comprou), demo.bluehackers.com/optin- com 3,51% (landing do VSL), ed.bluehackers.com/encuesta com 3,48% (algum quiz ou pesquisa).</p>
-<p>Os números menores trazem detalhes interessantes. Aparecem variações 'v1' (dna-v1, ma-v1, optin-v1) — testes A/B controlados rodando em paralelo. Existe uma página /reclutamiento-account-manager (recrutamento de closers) com 432 visitas. E aparece sho.bluehackers.com/sistema com 17:17 minutos de média — outra área de produto. Tem ainda ai.bluehackers.com no final da lista, com 429 visitas — provavelmente onde ele hospeda os 'projetos Claude' que vende como diferencial nos reels.</p>
-<p>Os insights são quatro. Primeiro, a estrutura é enxuta: cerca de 14 endpoints concentram quase todo o tráfego. Ele não tem dezenas de landing pages, tem poucas e otimizadas. Segundo, ele faz teste A/B sério (várias versões v1 rodando juntas). Terceiro, /account-manager e /sistema com tempos absurdos (12-17 minutos) mostram que o produto é consumido de verdade — não é só vendido. Quarto, o sub-domínio ai. mostra que existe uma frente nova de IA no ecossistema dele.</p>
-<p>A lição operacional é simples: poucas páginas otimizadas, com múltiplas versões testadas em paralelo, converte mais que arquitetura de site complexa cheia de landings.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-05-paginas-internas" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-05-paginas-internas"
+                    data-default="Essa tabela lista as páginas que mais recebem visita dentro de todo o ecossistema BlueHackers, com proporção de tráfego, tendência, exibições, exclusivos, visitas e tempo médio.
+
+O líder é sho.bluehackers.com/main com 39,2% do tráfego total (14,1 mil visitas, 4 minutos de média). É a página principal do funil Tripware, onde o lead chega vindo do ad. Em segundo vem a 'página inicial' com 17,09% (6,3 mil visitas, 3:26 de média) — o domínio bluehackers.com no root.
+
+Depois aparecem ed.bluehackers.com com 5,64% (a Biblioteca), /account-manager com 4,24% (e tempo médio de 12:57 — área logada de quem comprou), demo.bluehackers.com/optin- com 3,51% (landing do VSL), ed.bluehackers.com/encuesta com 3,48% (algum quiz ou pesquisa).
+
+Os números menores trazem detalhes interessantes. Aparecem variações 'v1' (dna-v1, ma-v1, optin-v1) — testes A/B controlados rodando em paralelo. Existe uma página /reclutamiento-account-manager (recrutamento de closers) com 432 visitas. E aparece sho.bluehackers.com/sistema com 17:17 minutos de média — outra área de produto. Tem ainda ai.bluehackers.com no final da lista, com 429 visitas — provavelmente onde ele hospeda os 'projetos Claude' que vende como diferencial nos reels.
+
+Os insights são quatro. Primeiro, a estrutura é enxuta: cerca de 14 endpoints concentram quase todo o tráfego. Ele não tem dezenas de landing pages, tem poucas e otimizadas. Segundo, ele faz teste A/B sério (várias versões v1 rodando juntas). Terceiro, /account-manager e /sistema com tempos absurdos (12-17 minutos) mostram que o produto é consumido de verdade — não é só vendido. Quarto, o sub-domínio ai. mostra que existe uma frente nova de IA no ecossistema dele.
+
+A lição operacional é simples: poucas páginas otimizadas, com múltiplas versões testadas em paralelo, converte mais que arquitetura de site complexa cheia de landings."
+                    rows="16">Essa tabela lista as páginas que mais recebem visita dentro de todo o ecossistema BlueHackers, com proporção de tráfego, tendência, exibições, exclusivos, visitas e tempo médio.
+
+O líder é sho.bluehackers.com/main com 39,2% do tráfego total (14,1 mil visitas, 4 minutos de média). É a página principal do funil Tripware, onde o lead chega vindo do ad. Em segundo vem a 'página inicial' com 17,09% (6,3 mil visitas, 3:26 de média) — o domínio bluehackers.com no root.
+
+Depois aparecem ed.bluehackers.com com 5,64% (a Biblioteca), /account-manager com 4,24% (e tempo médio de 12:57 — área logada de quem comprou), demo.bluehackers.com/optin- com 3,51% (landing do VSL), ed.bluehackers.com/encuesta com 3,48% (algum quiz ou pesquisa).
+
+Os números menores trazem detalhes interessantes. Aparecem variações 'v1' (dna-v1, ma-v1, optin-v1) — testes A/B controlados rodando em paralelo. Existe uma página /reclutamiento-account-manager (recrutamento de closers) com 432 visitas. E aparece sho.bluehackers.com/sistema com 17:17 minutos de média — outra área de produto. Tem ainda ai.bluehackers.com no final da lista, com 429 visitas — provavelmente onde ele hospeda os 'projetos Claude' que vende como diferencial nos reels.
+
+Os insights são quatro. Primeiro, a estrutura é enxuta: cerca de 14 endpoints concentram quase todo o tráfego. Ele não tem dezenas de landing pages, tem poucas e otimizadas. Segundo, ele faz teste A/B sério (várias versões v1 rodando juntas). Terceiro, /account-manager e /sistema com tempos absurdos (12-17 minutos) mostram que o produto é consumido de verdade — não é só vendido. Quarto, o sub-domínio ai. mostra que existe uma frente nova de IA no ecossistema dele.
+
+A lição operacional é simples: poucas páginas otimizadas, com múltiplas versões testadas em paralelo, converte mais que arquitetura de site complexa cheia de landings.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-05-paginas-internas">não editado</div>
                 </div>
               </div>
             </article>
@@ -62066,14 +62535,41 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-16-tendencia-ano-ano" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Pico anual sempre em março-abril. 2026 já está bem acima de 2025 no mesmo período.</p>
-                <div class="sw-explanation">
-                  <p>Esse gráfico sobrepõe três anos pra mostrar sazonalidade e crescimento. As linhas são: roxo claro pra 2024, azul claro pra 2025, azul escuro pra 2026.</p>
-<p>O padrão mais óbvio é o pico anual em março-abril. Acontece nos três anos. O motivo é provavelmente sazonal: é o período de retomada pós-virada do ano, gente colocando 'meta de empreender' e procurando como. Quem vende 'escalar negócio' tem o vento a favor nesse trimestre.</p>
-<p>O mais importante é a comparação entre os anos. Em 2025 o pico de abril foi cerca de 12 mil visitas. Em 2026 o pico de abril foi cerca de 30 mil. Crescimento de 2 a 3 vezes em 12 meses. Não é só sazonal — é crescimento absoluto forte.</p>
-<p>Tem também um vale claro em junho-agosto em todos os anos. É a sazonalidade de férias na América Latina, principalmente julho com férias escolares. CPM mais barato nessa janela, mas lead mais frio.</p>
-<p>Em 2024 (linha roxa) tinha pico esquisito em setembro-novembro que sumiu em 2025 e 2026. Provavelmente uma campanha de Black Friday ou planejamento de ano novo que mudou de padrão. Os anos seguintes não repetiram esse segundo pico, mas é possível que volte.</p>
-<p>No topo do print tem várias abas (Visitas, Exclusivo, Páginas/Visita, Conversão de compras, Duração, Rejeição). Esse print está mostrando 'Visitas'.</p>
-<p>A leitura operacional: campanhas grandes devem rodar entre fevereiro e maio (pico), e secundariamente entre outubro e novembro. Junho-agosto é janela mais barata, boa pra teste de criativo com público frio.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-16-tendencia-ano-ano" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-16-tendencia-ano-ano"
+                    data-default="Esse gráfico sobrepõe três anos pra mostrar sazonalidade e crescimento. As linhas são: roxo claro pra 2024, azul claro pra 2025, azul escuro pra 2026.
+
+O padrão mais óbvio é o pico anual em março-abril. Acontece nos três anos. O motivo é provavelmente sazonal: é o período de retomada pós-virada do ano, gente colocando 'meta de empreender' e procurando como. Quem vende 'escalar negócio' tem o vento a favor nesse trimestre.
+
+O mais importante é a comparação entre os anos. Em 2025 o pico de abril foi cerca de 12 mil visitas. Em 2026 o pico de abril foi cerca de 30 mil. Crescimento de 2 a 3 vezes em 12 meses. Não é só sazonal — é crescimento absoluto forte.
+
+Tem também um vale claro em junho-agosto em todos os anos. É a sazonalidade de férias na América Latina, principalmente julho com férias escolares. CPM mais barato nessa janela, mas lead mais frio.
+
+Em 2024 (linha roxa) tinha pico esquisito em setembro-novembro que sumiu em 2025 e 2026. Provavelmente uma campanha de Black Friday ou planejamento de ano novo que mudou de padrão. Os anos seguintes não repetiram esse segundo pico, mas é possível que volte.
+
+No topo do print tem várias abas (Visitas, Exclusivo, Páginas/Visita, Conversão de compras, Duração, Rejeição). Esse print está mostrando 'Visitas'.
+
+A leitura operacional: campanhas grandes devem rodar entre fevereiro e maio (pico), e secundariamente entre outubro e novembro. Junho-agosto é janela mais barata, boa pra teste de criativo com público frio."
+                    rows="16">Esse gráfico sobrepõe três anos pra mostrar sazonalidade e crescimento. As linhas são: roxo claro pra 2024, azul claro pra 2025, azul escuro pra 2026.
+
+O padrão mais óbvio é o pico anual em março-abril. Acontece nos três anos. O motivo é provavelmente sazonal: é o período de retomada pós-virada do ano, gente colocando 'meta de empreender' e procurando como. Quem vende 'escalar negócio' tem o vento a favor nesse trimestre.
+
+O mais importante é a comparação entre os anos. Em 2025 o pico de abril foi cerca de 12 mil visitas. Em 2026 o pico de abril foi cerca de 30 mil. Crescimento de 2 a 3 vezes em 12 meses. Não é só sazonal — é crescimento absoluto forte.
+
+Tem também um vale claro em junho-agosto em todos os anos. É a sazonalidade de férias na América Latina, principalmente julho com férias escolares. CPM mais barato nessa janela, mas lead mais frio.
+
+Em 2024 (linha roxa) tinha pico esquisito em setembro-novembro que sumiu em 2025 e 2026. Provavelmente uma campanha de Black Friday ou planejamento de ano novo que mudou de padrão. Os anos seguintes não repetiram esse segundo pico, mas é possível que volte.
+
+No topo do print tem várias abas (Visitas, Exclusivo, Páginas/Visita, Conversão de compras, Duração, Rejeição). Esse print está mostrando 'Visitas'.
+
+A leitura operacional: campanhas grandes devem rodar entre fevereiro e maio (pico), e secundariamente entre outubro e novembro. Junho-agosto é janela mais barata, boa pra teste de criativo com público frio.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-16-tendencia-ano-ano">não editado</div>
                 </div>
               </div>
             </article>
@@ -62097,12 +62593,33 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-14-exclusivo-mensal" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Visitantes únicos saltaram de ~7 mil pra 22 mil em 6 meses. Triplicou.</p>
-                <div class="sw-explanation">
-                  <p>Esse gráfico mostra a evolução de visitantes únicos (não visitas — pessoas distintas) mês a mês. A diferença é importante: visitas conta cada acesso, únicos conta cada pessoa diferente.</p>
-<p>Em outubro de 2025 ele tinha cerca de 7 mil visitantes únicos. Caiu pra 3,5 mil em novembro (vale anormal — talvez Black Friday distraindo o público). Voltou pra 7 mil em dezembro. Em janeiro de 2026 saltou pra 15 mil. Caiu pra 11 mil em fevereiro. Voltou a subir pra 17 mil em março, e atingiu o pico em abril com 22 mil. Maio aparece em cinza claro porque o mês ainda tava rodando quando o print foi tirado.</p>
-<p>A audiência mensal cresceu cerca de 3 vezes em 6 meses (de 7 pra 22 mil únicos). É um ritmo de crescimento muito forte pra um negócio já consolidado. Pra comparar com o gráfico anterior: em abril de 2026 ele teve cerca de 22 mil únicos pra cerca de 36 mil visitas. Isso significa que cada pessoa volta em média 1,6 vezes por mês. Não é altíssimo, mas é saudável pra info-business B2C.</p>
-<p>No topo aparecem dois eixos de comparação: Meses ou Trimestres, e a janela temporal (6M, 1A, 2A, todo o período). Esse print está na visão de 6 meses, Meses.</p>
-<p>O vale de novembro merece atenção. Não é só queda de tráfego — é queda de PESSOAS DIFERENTES. Provavelmente o público viu Black Friday em todo canto e ficou saturado de oferta digital, ignorando o de Razzetti. Vale levar em conta no planejamento de campanha.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-14-exclusivo-mensal" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-14-exclusivo-mensal"
+                    data-default="Esse gráfico mostra a evolução de visitantes únicos (não visitas — pessoas distintas) mês a mês. A diferença é importante: visitas conta cada acesso, únicos conta cada pessoa diferente.
+
+Em outubro de 2025 ele tinha cerca de 7 mil visitantes únicos. Caiu pra 3,5 mil em novembro (vale anormal — talvez Black Friday distraindo o público). Voltou pra 7 mil em dezembro. Em janeiro de 2026 saltou pra 15 mil. Caiu pra 11 mil em fevereiro. Voltou a subir pra 17 mil em março, e atingiu o pico em abril com 22 mil. Maio aparece em cinza claro porque o mês ainda tava rodando quando o print foi tirado.
+
+A audiência mensal cresceu cerca de 3 vezes em 6 meses (de 7 pra 22 mil únicos). É um ritmo de crescimento muito forte pra um negócio já consolidado. Pra comparar com o gráfico anterior: em abril de 2026 ele teve cerca de 22 mil únicos pra cerca de 36 mil visitas. Isso significa que cada pessoa volta em média 1,6 vezes por mês. Não é altíssimo, mas é saudável pra info-business B2C.
+
+No topo aparecem dois eixos de comparação: Meses ou Trimestres, e a janela temporal (6M, 1A, 2A, todo o período). Esse print está na visão de 6 meses, Meses.
+
+O vale de novembro merece atenção. Não é só queda de tráfego — é queda de PESSOAS DIFERENTES. Provavelmente o público viu Black Friday em todo canto e ficou saturado de oferta digital, ignorando o de Razzetti. Vale levar em conta no planejamento de campanha."
+                    rows="14">Esse gráfico mostra a evolução de visitantes únicos (não visitas — pessoas distintas) mês a mês. A diferença é importante: visitas conta cada acesso, únicos conta cada pessoa diferente.
+
+Em outubro de 2025 ele tinha cerca de 7 mil visitantes únicos. Caiu pra 3,5 mil em novembro (vale anormal — talvez Black Friday distraindo o público). Voltou pra 7 mil em dezembro. Em janeiro de 2026 saltou pra 15 mil. Caiu pra 11 mil em fevereiro. Voltou a subir pra 17 mil em março, e atingiu o pico em abril com 22 mil. Maio aparece em cinza claro porque o mês ainda tava rodando quando o print foi tirado.
+
+A audiência mensal cresceu cerca de 3 vezes em 6 meses (de 7 pra 22 mil únicos). É um ritmo de crescimento muito forte pra um negócio já consolidado. Pra comparar com o gráfico anterior: em abril de 2026 ele teve cerca de 22 mil únicos pra cerca de 36 mil visitas. Isso significa que cada pessoa volta em média 1,6 vezes por mês. Não é altíssimo, mas é saudável pra info-business B2C.
+
+No topo aparecem dois eixos de comparação: Meses ou Trimestres, e a janela temporal (6M, 1A, 2A, todo o período). Esse print está na visão de 6 meses, Meses.
+
+O vale de novembro merece atenção. Não é só queda de tráfego — é queda de PESSOAS DIFERENTES. Provavelmente o público viu Black Friday em todo canto e ficou saturado de oferta digital, ignorando o de Razzetti. Vale levar em conta no planejamento de campanha.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-14-exclusivo-mensal">não editado</div>
                 </div>
               </div>
             </article>
@@ -62126,14 +62643,41 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-15-midia-display" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Zero investimento em banners display. Confirma que tráfego pago no domínio principal = 0%.</p>
-                <div class="sw-explanation">
-                  <p>Esse print mostra a aba 'Mídia display' do SimilarWeb, e o resultado é literal: 'Nothing found. Try changing your filters.'</p>
-<p>Mídia display é o formato clássico de banner gráfico que aparece em sites de notícias, blogs e portais — basicamente os anúncios da Google Display Network e redes ad-server semelhantes. É aquele banner que aparece do lado da matéria.</p>
-<p>O Razzetti simplesmente não usa esse canal. Três coisas saem desse dado.</p>
-<p>Primeiro, confirma o que aparecia no print de Canais de Tráfego (0% pesquisa paga + 0% social pago + 0% mídia display). Toda a mídia paga do BlueHackers acontece dentro de redes sociais, principalmente Meta. Nunca em rede display de terceiros.</p>
-<p>Segundo, é uma decisão acertada. Display de terceiros tem CPM mais barato, mas conversão muito mais baixa. Pra info-business é geralmente ruim, porque o lead está distraído lendo outra coisa quando vê o banner.</p>
-<p>Terceiro, é um aviso pra mercado brasileiro. Muitos competidores caem na tentação do 'CPM barato' do display e queimam dinheiro. Esse print mostra que ninguém sério no nicho hispano de marketing digital tá usando esse canal — e o tamanho do BlueHackers prova que dá pra crescer ignorando display completamente.</p>
-<p>Confirma a tese geral de que orçamento de ads em info-business deve concentrar em Meta e YouTube. Display é perda de tempo nesse contexto.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-15-midia-display" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-15-midia-display"
+                    data-default="Esse print mostra a aba 'Mídia display' do SimilarWeb, e o resultado é literal: 'Nothing found. Try changing your filters.'
+
+Mídia display é o formato clássico de banner gráfico que aparece em sites de notícias, blogs e portais — basicamente os anúncios da Google Display Network e redes ad-server semelhantes. É aquele banner que aparece do lado da matéria.
+
+O Razzetti simplesmente não usa esse canal. Três coisas saem desse dado.
+
+Primeiro, confirma o que aparecia no print de Canais de Tráfego (0% pesquisa paga + 0% social pago + 0% mídia display). Toda a mídia paga do BlueHackers acontece dentro de redes sociais, principalmente Meta. Nunca em rede display de terceiros.
+
+Segundo, é uma decisão acertada. Display de terceiros tem CPM mais barato, mas conversão muito mais baixa. Pra info-business é geralmente ruim, porque o lead está distraído lendo outra coisa quando vê o banner.
+
+Terceiro, é um aviso pra mercado brasileiro. Muitos competidores caem na tentação do 'CPM barato' do display e queimam dinheiro. Esse print mostra que ninguém sério no nicho hispano de marketing digital tá usando esse canal — e o tamanho do BlueHackers prova que dá pra crescer ignorando display completamente.
+
+Confirma a tese geral de que orçamento de ads em info-business deve concentrar em Meta e YouTube. Display é perda de tempo nesse contexto."
+                    rows="16">Esse print mostra a aba 'Mídia display' do SimilarWeb, e o resultado é literal: 'Nothing found. Try changing your filters.'
+
+Mídia display é o formato clássico de banner gráfico que aparece em sites de notícias, blogs e portais — basicamente os anúncios da Google Display Network e redes ad-server semelhantes. É aquele banner que aparece do lado da matéria.
+
+O Razzetti simplesmente não usa esse canal. Três coisas saem desse dado.
+
+Primeiro, confirma o que aparecia no print de Canais de Tráfego (0% pesquisa paga + 0% social pago + 0% mídia display). Toda a mídia paga do BlueHackers acontece dentro de redes sociais, principalmente Meta. Nunca em rede display de terceiros.
+
+Segundo, é uma decisão acertada. Display de terceiros tem CPM mais barato, mas conversão muito mais baixa. Pra info-business é geralmente ruim, porque o lead está distraído lendo outra coisa quando vê o banner.
+
+Terceiro, é um aviso pra mercado brasileiro. Muitos competidores caem na tentação do 'CPM barato' do display e queimam dinheiro. Esse print mostra que ninguém sério no nicho hispano de marketing digital tá usando esse canal — e o tamanho do BlueHackers prova que dá pra crescer ignorando display completamente.
+
+Confirma a tese geral de que orçamento de ads em info-business deve concentrar em Meta e YouTube. Display é perda de tempo nesse contexto.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-15-midia-display">não editado</div>
                 </div>
               </div>
             </article>
@@ -62157,12 +62701,33 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-17-traffic-engagement" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 95.449 visitas em 3 meses, crescendo 27% ao mês. 72% no mobile. No top 25K dos sites argentinos.</p>
-                <div class="sw-explanation">
-                  <p>Esse painel é a visão executiva do trimestre fev-abr 2026. Mostra três indicadores principais.</p>
-<p>Total de visitas: 95.449 no período, com crescimento de 27,05% em relação ao mês anterior. Trajetória forte e consistente.</p>
-<p>Distribuição por dispositivo: 28,28% desktop e 71,72% mobile. Mobile-first absoluto. Toda landing page precisa estar otimizada pra celular, ou perde a venda.</p>
-<p>Rankings do lado direito: o ranking global é 804.331 — não está entre os top sites do mundo, mas é decente pra nicho de coaching latino. Pra comparação, a maioria dos sites de coaching brasileiro fica entre 2 e 5 milhões. O ranking no país (Argentina) é 25.311 — está no top 0,01% dos sites do país, território onde ele é forte. O ranking de indústria fica em 7.354 na categoria Graphics/Multimedia, mas isso é classificação errada do SimilarWeb (deveria estar em Business/Marketing). Mesmo na categoria errada, ele tá no top 7K.</p>
-<p>A conclusão é simples: ele é grande pra um negócio de info-coaching latino. Não é Wikipedia, mas é maior que 99% dos competidores brasileiros.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-17-traffic-engagement" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-17-traffic-engagement"
+                    data-default="Esse painel é a visão executiva do trimestre fev-abr 2026. Mostra três indicadores principais.
+
+Total de visitas: 95.449 no período, com crescimento de 27,05% em relação ao mês anterior. Trajetória forte e consistente.
+
+Distribuição por dispositivo: 28,28% desktop e 71,72% mobile. Mobile-first absoluto. Toda landing page precisa estar otimizada pra celular, ou perde a venda.
+
+Rankings do lado direito: o ranking global é 804.331 — não está entre os top sites do mundo, mas é decente pra nicho de coaching latino. Pra comparação, a maioria dos sites de coaching brasileiro fica entre 2 e 5 milhões. O ranking no país (Argentina) é 25.311 — está no top 0,01% dos sites do país, território onde ele é forte. O ranking de indústria fica em 7.354 na categoria Graphics/Multimedia, mas isso é classificação errada do SimilarWeb (deveria estar em Business/Marketing). Mesmo na categoria errada, ele tá no top 7K.
+
+A conclusão é simples: ele é grande pra um negócio de info-coaching latino. Não é Wikipedia, mas é maior que 99% dos competidores brasileiros."
+                    rows="14">Esse painel é a visão executiva do trimestre fev-abr 2026. Mostra três indicadores principais.
+
+Total de visitas: 95.449 no período, com crescimento de 27,05% em relação ao mês anterior. Trajetória forte e consistente.
+
+Distribuição por dispositivo: 28,28% desktop e 71,72% mobile. Mobile-first absoluto. Toda landing page precisa estar otimizada pra celular, ou perde a venda.
+
+Rankings do lado direito: o ranking global é 804.331 — não está entre os top sites do mundo, mas é decente pra nicho de coaching latino. Pra comparação, a maioria dos sites de coaching brasileiro fica entre 2 e 5 milhões. O ranking no país (Argentina) é 25.311 — está no top 0,01% dos sites do país, território onde ele é forte. O ranking de indústria fica em 7.354 na categoria Graphics/Multimedia, mas isso é classificação errada do SimilarWeb (deveria estar em Business/Marketing). Mesmo na categoria errada, ele tá no top 7K.
+
+A conclusão é simples: ele é grande pra um negócio de info-coaching latino. Não é Wikipedia, mas é maior que 99% dos competidores brasileiros.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-17-traffic-engagement">não editado</div>
                 </div>
               </div>
             </article>
@@ -62205,14 +62770,41 @@ Avatar é o comprador cético — perfil de altíssima conversão. 4.4K views de
                   <button class="miro-link-btn" type="button" data-card-id="sw-01-semrush-dashboard" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Authority 17 (ok). Tráfego orgânico 412 (+14%). Backlinks 2K. IA cita ele quase nada.</p>
-                <div class="sw-explanation">
-                  <p>Esse é o dashboard agregado do SemRush mostrando saúde técnica de SEO e visibilidade em ferramentas de IA. Tem dois blocos principais.</p>
-<p>No bloco 'Pesquisa com IA' (lilás, na esquerda) aparece a visibilidade do BlueHackers em LLMs. Visibilidade total: 14. Menções: 3. Páginas citadas: 1. Quebrando por ferramenta, o ChatGPT ainda não cita o BlueHackers em respostas. Visão geral do Google AI, Modo IA e Gemini citaram 1 vez cada.</p>
-<p>A tradução é: as IAs ainda quase não citam o BlueHackers como fonte. Isso é gigante pros próximos 12-24 meses — a janela pra construir presença em LLM-search é AGORA. Quando esse canal virar mainstream, vai ficar caro ranquear lá.</p>
-<p>No bloco 'SEO' (azul, na direita) aparece a saúde do site no Google. Authority Score é 17, classificado como 'Razoável'. Numa escala de 0 a 100, 17 é decente pra um site de nicho — não é Wikipedia, mas tem credibilidade técnica. Tráfego orgânico mensal é 412 visitas (+14%). Pequeno em absoluto, mostra que SEO ainda é canal subexplorado.</p>
-<p>Tráfego pago é zero, coerente com tudo o resto. Dom. De Ref. é 351 (domínios diferentes que linkam pra ele), número razoável. Proporção De Tráfego é 95% (com bandeira US, indica a concentração de tráfego de uma única fonte). Palavras-chave orgânicas ranqueadas é 90 (-2,2%), pouco. Pagas: zero. Backlinks: 2 mil. Decente, mas não enorme.</p>
-<p>A conclusão geral: o BlueHackers tem marca forte mas SEO técnico imaturo. Há margem grande pra crescer via conteúdo e backlinks.</p>
-<p>Quem quiser disputar SEO em coaching e marketing digital hispanofalante, ainda dá tempo. Em IA-search, ainda mais tempo — quem entrar agora vira referência citada antes do nicho amadurecer.</p>
+                <div class="sw-explanation-edit">
+                  <div class="section-header">
+                    <span class="edit-tag">📝 explicação editável</span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-explain-01-semrush-dashboard" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-explanation-textarea"
+                    data-storage-key="copy::sw-explain-01-semrush-dashboard"
+                    data-default="Esse é o dashboard agregado do SemRush mostrando saúde técnica de SEO e visibilidade em ferramentas de IA. Tem dois blocos principais.
+
+No bloco 'Pesquisa com IA' (lilás, na esquerda) aparece a visibilidade do BlueHackers em LLMs. Visibilidade total: 14. Menções: 3. Páginas citadas: 1. Quebrando por ferramenta, o ChatGPT ainda não cita o BlueHackers em respostas. Visão geral do Google AI, Modo IA e Gemini citaram 1 vez cada.
+
+A tradução é: as IAs ainda quase não citam o BlueHackers como fonte. Isso é gigante pros próximos 12-24 meses — a janela pra construir presença em LLM-search é AGORA. Quando esse canal virar mainstream, vai ficar caro ranquear lá.
+
+No bloco 'SEO' (azul, na direita) aparece a saúde do site no Google. Authority Score é 17, classificado como 'Razoável'. Numa escala de 0 a 100, 17 é decente pra um site de nicho — não é Wikipedia, mas tem credibilidade técnica. Tráfego orgânico mensal é 412 visitas (+14%). Pequeno em absoluto, mostra que SEO ainda é canal subexplorado.
+
+Tráfego pago é zero, coerente com tudo o resto. Dom. De Ref. é 351 (domínios diferentes que linkam pra ele), número razoável. Proporção De Tráfego é 95% (com bandeira US, indica a concentração de tráfego de uma única fonte). Palavras-chave orgânicas ranqueadas é 90 (-2,2%), pouco. Pagas: zero. Backlinks: 2 mil. Decente, mas não enorme.
+
+A conclusão geral: o BlueHackers tem marca forte mas SEO técnico imaturo. Há margem grande pra crescer via conteúdo e backlinks.
+
+Quem quiser disputar SEO em coaching e marketing digital hispanofalante, ainda dá tempo. Em IA-search, ainda mais tempo — quem entrar agora vira referência citada antes do nicho amadurecer."
+                    rows="16">Esse é o dashboard agregado do SemRush mostrando saúde técnica de SEO e visibilidade em ferramentas de IA. Tem dois blocos principais.
+
+No bloco 'Pesquisa com IA' (lilás, na esquerda) aparece a visibilidade do BlueHackers em LLMs. Visibilidade total: 14. Menções: 3. Páginas citadas: 1. Quebrando por ferramenta, o ChatGPT ainda não cita o BlueHackers em respostas. Visão geral do Google AI, Modo IA e Gemini citaram 1 vez cada.
+
+A tradução é: as IAs ainda quase não citam o BlueHackers como fonte. Isso é gigante pros próximos 12-24 meses — a janela pra construir presença em LLM-search é AGORA. Quando esse canal virar mainstream, vai ficar caro ranquear lá.
+
+No bloco 'SEO' (azul, na direita) aparece a saúde do site no Google. Authority Score é 17, classificado como 'Razoável'. Numa escala de 0 a 100, 17 é decente pra um site de nicho — não é Wikipedia, mas tem credibilidade técnica. Tráfego orgânico mensal é 412 visitas (+14%). Pequeno em absoluto, mostra que SEO ainda é canal subexplorado.
+
+Tráfego pago é zero, coerente com tudo o resto. Dom. De Ref. é 351 (domínios diferentes que linkam pra ele), número razoável. Proporção De Tráfego é 95% (com bandeira US, indica a concentração de tráfego de uma única fonte). Palavras-chave orgânicas ranqueadas é 90 (-2,2%), pouco. Pagas: zero. Backlinks: 2 mil. Decente, mas não enorme.
+
+A conclusão geral: o BlueHackers tem marca forte mas SEO técnico imaturo. Há margem grande pra crescer via conteúdo e backlinks.
+
+Quem quiser disputar SEO em coaching e marketing digital hispanofalante, ainda dá tempo. Em IA-search, ainda mais tempo — quem entrar agora vira referência citada antes do nicho amadurecer.</textarea>
+                  <div class="save-state" data-for="copy::sw-explain-01-semrush-dashboard">não editado</div>
                 </div>
               </div>
             </article>
