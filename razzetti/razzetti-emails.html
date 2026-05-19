@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Razzetti — Análise de Email Marketing (9 emails / 5 dias)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="9 emails de Marcos Razzetti / BlueHackers entre 14-18/05/2026 — anatomia do funil: ativação de onboarding (form simples), call de 15min (venda mascarada) e aquecimento pra live de 21/05.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://s4.swipeoffers.com.br/razzetti/razzetti-emails">
+<meta property="og:title" content="Razzetti — Análise de Email Marketing (9 emails / 5 dias)">
+<meta property="og:description" content="9 emails de Marcos Razzetti / BlueHackers — anatomia do funil de email do cadastro até a live ao vivo.">
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --surface: #131927;
+    --surface-2: #0f1422;
+    --border: #1e2638;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --onboarding: #38bdf8;
+    --consumo: #a855f7;
+    --venda: #ef4444;
+    --evento: #f59e0b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  header {
+    padding: 40px 48px 24px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(56,189,248,0.06), transparent);
+  }
+  header h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: -0.3px; }
+  header .sub { color: var(--muted); margin: 0 0 20px; max-width: 740px; }
+  .stats { display: flex; gap: 16px; flex-wrap: wrap; }
+  .stat {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 12px 18px; border-radius: 8px; min-width: 130px;
+  }
+  .stat .n { font-size: 24px; font-weight: 700; }
+  .stat .l { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+  main { padding: 32px 48px 64px; max-width: 1280px; margin: 0 auto; }
+
+  h2 {
+    font-size: 20px; margin: 40px 0 16px; letter-spacing: 0.2px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  h2:first-child { margin-top: 0; }
+
+  /* Funnel diagram */
+  .funnel {
+    display: flex; flex-direction: column; gap: 8px;
+    margin: 16px 0 32px;
+  }
+  .stage {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    padding: 14px 20px; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .stage.onboarding { border-left-color: var(--onboarding); }
+  .stage.consumo { border-left-color: var(--consumo); }
+  .stage.venda { border-left-color: var(--venda); }
+  .stage.evento { border-left-color: var(--evento); }
+  .stage-meta { flex: 1; min-width: 280px; }
+  .stage-tag {
+    display: inline-block; font-size: 10.5px; text-transform: uppercase;
+    letter-spacing: 0.8px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+    margin-bottom: 4px;
+  }
+  .stage.onboarding .stage-tag { background: rgba(56,189,248,0.12); color: var(--onboarding); }
+  .stage.consumo .stage-tag { background: rgba(168,85,247,0.12); color: var(--consumo); }
+  .stage.venda .stage-tag { background: rgba(239,68,68,0.12); color: var(--venda); }
+  .stage.evento .stage-tag { background: rgba(245,158,11,0.12); color: var(--evento); }
+  .stage h3 { margin: 0 0 4px; font-size: 15px; }
+  .stage .what { color: var(--muted); font-size: 13.5px; }
+  .stage-count {
+    font-size: 12px; color: var(--muted); white-space: nowrap;
+    padding-top: 4px;
+  }
+  .arrow {
+    color: var(--muted); font-size: 18px; text-align: center;
+    height: 12px; line-height: 12px;
+  }
+
+  /* Email cards */
+  .email-list { display: flex; flex-direction: column; gap: 14px; }
+  .email {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0; overflow: hidden;
+    display: grid; grid-template-columns: 280px 1fr;
+  }
+  @media (max-width: 900px) { .email { grid-template-columns: 1fr; } }
+  .email-meta {
+    background: var(--surface-2); padding: 18px 20px;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  @media (max-width: 900px) { .email-meta { border-right: none; border-bottom: 1px solid var(--border); } }
+  .email-meta .num {
+    font-size: 11px; color: var(--muted); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.8px;
+  }
+  .email-meta .when { font-size: 12px; color: var(--muted); }
+  .email-meta .subj { font-size: 16px; font-weight: 700; margin: 4px 0; }
+  .email-meta .intent {
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.6px;
+    font-weight: 700; padding: 3px 8px; border-radius: 4px; align-self: flex-start;
+  }
+  .intent-onboarding { background: rgba(56,189,248,0.12); color: var(--onboarding); }
+  .intent-ativacao { background: rgba(168,85,247,0.12); color: var(--consumo); }
+  .intent-venda { background: rgba(239,68,68,0.12); color: var(--venda); }
+  .intent-evento { background: rgba(245,158,11,0.12); color: var(--evento); }
+  .email-body { padding: 18px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 1100px) { .email-body { grid-template-columns: 1fr; } }
+  .email-copy {
+    background: var(--surface-2); border: 1px solid var(--border);
+    padding: 14px 16px; border-radius: 6px;
+    font-size: 13px; white-space: pre-wrap; line-height: 1.5;
+    color: #cbd5e1;
+  }
+  .email-copy .es { color: #94a3b8; font-style: italic; font-size: 12px; }
+  .email-analysis { font-size: 13.5px; }
+  .email-analysis h4 {
+    margin: 0 0 8px; font-size: 12px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.6px;
+  }
+  .email-analysis ul { margin: 0; padding-left: 18px; }
+  .email-analysis li { margin-bottom: 6px; }
+  .email-analysis strong { color: var(--text); }
+
+  /* Insights box */
+  .insights {
+    background: linear-gradient(135deg, rgba(56,189,248,0.06), rgba(168,85,247,0.04));
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 22px 28px; border-radius: 10px;
+    margin: 28px 0;
+  }
+  .insights h3 { margin: 0 0 12px; font-size: 17px; }
+  .insights ol { margin: 0; padding-left: 22px; }
+  .insights ol li { margin-bottom: 10px; }
+  .insights strong { color: var(--accent); }
+
+  /* Ângulos table */
+  .angulos {
+    width: 100%; border-collapse: collapse; margin: 12px 0 28px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  }
+  .angulos th, .angulos td {
+    padding: 10px 14px; text-align: left; font-size: 13.5px;
+    border-bottom: 1px solid var(--border);
+  }
+  .angulos th { background: var(--surface-2); color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.6px; }
+  .angulos tr:last-child td { border-bottom: none; }
+  .angulos td:first-child { color: var(--accent); font-weight: 600; }
+
+  .flag {
+    background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.25);
+    padding: 16px 20px; border-radius: 8px; margin: 18px 0 28px;
+  }
+  .flag h4 { margin: 0 0 6px; color: var(--venda); font-size: 14px; }
+  .flag p { margin: 0; font-size: 13.5px; color: #cbd5e1; }
+
+  footer {
+    padding: 24px 48px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Razzetti — Análise de Email Marketing</h1>
+  <p class="sub">9 emails recebidos de Marcos Razzetti / BlueHackers entre 14/05 e 18/05 de 2026. Anatomia do funil: do cadastro até a live ao vivo de 21/05.</p>
+  <div class="stats">
+    <div class="stat"><div class="n">9</div><div class="l">Emails</div></div>
+    <div class="stat"><div class="n">5</div><div class="l">Dias</div></div>
+    <div class="stat"><div class="n">6/9</div><div class="l">Push de form</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">Call de venda</div></div>
+    <div class="stat"><div class="n">21/05</div><div class="l">Evento alvo</div></div>
+  </div>
+</header>
+
+<main>
+
+<h2>Mapa do funil de email</h2>
+<div class="funnel">
+
+  <div class="stage onboarding">
+    <div class="stage-meta">
+      <span class="stage-tag">Ativação de onboarding</span>
+      <h3>6 emails empurram o mesmo formulário simples</h3>
+      <div class="what">Form de 2 perguntas — renda mensal + nicho. Não é triagem de venda, é segmentação básica pra personalizar a experiência dentro do Skool.</div>
+    </div>
+    <div class="stage-count">D+0 → D+4</div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <div class="stage consumo">
+    <div class="stage-meta">
+      <span class="stage-tag">Ativação de consumo</span>
+      <h3>"Aquí no hay paja" — reduz overwhelm da comunidade</h3>
+      <div class="what">Prescreve UM próximo passo: ver só o módulo 1 do curso "De 0 a $10K". Sem consumo, não há próximo upsell.</div>
+    </div>
+    <div class="stage-count">pós-entrada</div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <div class="stage venda">
+    <div class="stage-meta">
+      <span class="stage-tag">Call de 15min — venda mascarada</span>
+      <h3>"NO es una llamada de ventas" (e é venda)</h3>
+      <div class="what">Negação dupla na copy confirma o oposto. Promessa de 5 entregas impossíveis em 15min = copy de agendamento, não de execução.</div>
+    </div>
+    <div class="stage-count">SDR call</div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <div class="stage evento">
+    <div class="stage-meta">
+      <span class="stage-tag">Aquecimento de evento</span>
+      <h3>"Te lo regalo" — pré-warm pra live de 21/05</h3>
+      <div class="what">Story-mode + ameaça suave de FOMO. Único email que NÃO é triagem — é aquecimento direto pro pitch principal ao vivo.</div>
+    </div>
+    <div class="stage-count">D+4 17:50</div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <div class="stage evento" style="background: rgba(245,158,11,0.05); border-left-color: var(--evento);">
+    <div class="stage-meta">
+      <span class="stage-tag">Evento ao vivo 21/05</span>
+      <h3>Pitch principal do programa HT</h3>
+      <div class="what">ARPU peak. Tudo antes (cadastro / form / comunidade / call 15min) é infraestrutura pra ter audiência triada e quente nesse único momento.</div>
+    </div>
+    <div class="stage-count">jueves</div>
+  </div>
+
+</div>
+
+<div class="insights">
+  <h3>Por que tanto email pra um form simples</h3>
+  <p style="margin:0 0 12px;">Razzetti gasta 6 emails diferentes empurrando um formulário de 2 perguntas (renda + nicho). Não é exagero — é o ponto. O sistema dele entende que:</p>
+  <ol>
+    <li><strong>Completion de onboarding correlaciona com LTV.</strong> Quem completa o primeiro passo banal, consome o primeiro módulo. Quem consome, chega na call de 15min. A correlação justifica copy intensivo.</li>
+    <li><strong>Segmentação alimenta personalização posterior.</strong> Sem renda + nicho, todos os emails seguintes são genéricos. O dado simples destrava tudo.</li>
+    <li><strong>O ato de preencher é micro-compromisso.</strong> Quem declara renda e nicho se posiciona "dentro do projeto pessoal". Compromisso e consistência (Cialdini) — depois é mais fácil pedir a call.</li>
+  </ol>
+</div>
+
+<h2>5 ângulos diferentes pra arrancar o mesmo dado</h2>
+<table class="angulos">
+  <thead><tr><th>Email</th><th>Ângulo</th><th>Perfil que pega</th></tr></thead>
+  <tbody>
+    <tr><td>D+0 13:14 — Te faltó un paso</td><td>Ativação Skool</td><td>Lead que esqueceu fluxo</td></tr>
+    <tr><td>D+0 14:04 — Falta un paso para entrar</td><td>UX / instrucional</td><td>Lead que precisa do empurrão</td></tr>
+    <tr><td>D+1 — Se te olvidó?</td><td>Memória + porteiro humano</td><td>Lead distraído</td></tr>
+    <tr><td>D+2 — Lo que te espera adentro</td><td>FOMO de evento atual</td><td>Lead que precisa de prova social</td></tr>
+    <tr><td>D+3 — Por qué pido la encuesta</td><td>Objection handling</td><td>Lead cético sobre motivo do form</td></tr>
+    <tr><td>D+4 — 12 horas de contenido</td><td>Anchor de valor concreto</td><td>Lead que precisa ver $$$ na ponta</td></tr>
+  </tbody>
+</table>
+
+<div class="flag">
+  <h4>Bandeira amarela: negação preventiva como sinal</h4>
+  <p>Toda vez que um email precisa dizer "isso <strong>NÃO</strong> é venda" / "não é por darte valor gratis" — verifique: provavelmente É venda. No funil Razzetti, esse padrão se concentra no email da call de 15min. É o único momento em que a copy precisa atravessar uma objeção que ainda nem foi verbalizada pelo lead.</p>
+</div>
+
+<h2>Os 9 emails (cronológico)</h2>
+<div class="email-list">
+
+  <!-- EMAIL 1 -->
+  <article class="email">
+    <div class="email-meta">
+      <div class="num">Email 1 / 9</div>
+      <div class="when">2026-05-14 · 13:14</div>
+      <div class="subj">Te faltó un paso!</div>
+      <span class="intent intent-onboarding">Ativação Skool</span>
+      <div class="when">Trigger: pós-cadastro imediato</div>
+    </div>
+    <div class="email-body">
+      <div class="email-copy">Helloo Luan, vi que completaste el formulario pero no terminaste de unirte a la comunidad.
+
+Tranqui, yo soy el primero que en este tipo de cosas se termina distrayendo...
+
+El tema es que tu acceso ya está listo. Solo necesitas entrar.
+
+Es una comunidad en Skool con +12,000 empresarios digitales (y más que habrá).
+
+Adentro hay entrenamientos, procesos paso a paso y conversaciones de gente que está resolviendo los mismos problemas que vos.
+
+Toca aquí para entrar.
+
+Toma 30 segundos.
+
+-Marcos</div>
+      <div class="email-analysis">
+        <h4>Mecânica</h4>
+        <ul>
+          <li><strong>Frame de identificação imediato</strong> ("yo soy el primero que se distrae"). Despressuriza, posiciona como par.</li>
+          <li><strong>Prova social numérica</strong> ("+12,000 empresarios"). Crava tamanho antes de pedir compromisso.</li>
+          <li><strong>Atrito explícito mínimo</strong> ("30 segundos"). Oferta é só "entrar", não "completar nada".</li>
+          <li><strong>Ainda NÃO é push de form</strong>. Esse email só ativa. O form vem 50min depois.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- EMAIL 2 -->
+  <article class="email">
+    <div class="email-meta">
+      <div class="num">Email 2 / 9</div>
+      <div class="when">2026-05-14 · 14:04</div>
+      <div class="subj">Falta un paso para entrar</div>
+      <span class="intent intent-onboarding">Push form D+0</span>
+      <div class="when">Trigger: cadastro sem form</div>
+    </div>
+    <div class="email-body">
+      <div class="email-copy">Hola Luan,
+
+Te registraste hace unos minutos.
+
+Pero todavía no completaste la encuesta.
+
+Sin la encuesta, no podemos darte acceso a la comunidad.
+
+Toma menos de 1 minuto.
+
+→ Completar encuesta aquí.
+
+Nos vemos adentro.
+
+Marcos</div>
+      <div class="email-analysis">
+        <h4>Mecânica</h4>
+        <ul>
+          <li><strong>Pivô explícito pro form</strong>. Aqui Marcos para de oferecer "entrar" e introduz o passo obrigatório.</li>
+          <li><strong>Frame de bloqueio condicional</strong> ("Sin la encuesta, no podemos darte acceso"). Inverte polaridade — comunidade vira recompensa.</li>
+          <li><strong>Atrito zero declarado</strong> ("menos de 1 minuto"). E nesse caso é verdade — são só 2 perguntas.</li>
+          <li><strong>Fechamento de futuro</strong> ("Nos vemos adentro"). Presume conclusão.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- EMAIL 3 -->
+  <article class="email">
+    <div class="email-meta">
+      <div class="num">Email 3 / 9</div>
+      <div class="when">2026-05-15 · 14:04</div>
+      <div class="subj">Se te olvidó?</div>
+      <span class="intent intent-onboarding">Push form D+1</span>
+      <div class="when">Trigger: ainda sem form</div>
+    </div>
+    <div class="email-body">
+      <div class="email-copy">Hola Luan,
+
+Ayer te registraste para entrar a Empresarios Digitales.
+
+Pero no completaste la encuesta.
+
+Sin eso, no puedo enviarte el acceso.
+
+Son 5 preguntas.
+
+Menos de 60 segundos.
+
+→ Completar ahora.
+
+Marcos</div>
+      <div class="email-analysis">
+        <h4>Mecânica</h4>
+        <ul>
+          <li><strong>Memória plantada</strong> ("Ayer te registraste"). Gancho de compromisso e consistência (Cialdini).</li>
+          <li><strong>Pessoalização do gargalo</strong> ("no puedo"). Marcos vira porteiro humano, não sistema.</li>
+          <li><strong>Numeração da fricção</strong> ("5 preguntas. 60 segundos."). Desmonta desculpa de tempo.</li>
+          <li><strong>Subject como pergunta passiva</strong> ("Se te olvidó?"). Não acusa, protege ego do lead.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- EMAIL 4 -->
+  <article class="email">
+    <div class="email-meta">
+      <div class="num">Email 4 / 9</div>
+      <div class="when">2026-05-16 · 14:04</div>
+      <div class="subj">Lo que te espera adentro</div>
+      <span class="intent intent-onboarding">Push form D+2</span>
+      <div class="when">Trigger: ainda sem form</div>
+    </div>
+    <div class="email-body">
+      <div class="email-copy">Hola Luan,
+
+Quiero contarte qué está pasando adentro de la comunidad mientras no entras.
+
+Ayer hicimos una sesión en vivo donde ayudé a un coach a encontrar su cuello de botella.
+
+Estaba atascado en 3,000 USD al mes.
+
+En 45 minutos encontramos el problema exacto.
+
+Era su oferta.
+
+Estas sesiones pasan cada semana.
+
+Pero necesito que completes la encuesta para darte acceso.
+
+→ Completar encuesta (1 minuto).</div>
+      <div class="email-analysis">
+        <h4>Mecânica</h4>
+        <ul>
+          <li><strong>FOMO específico e datado</strong> ("Ayer hicimos sesión"). Não é "tem live toda semana" — é caso específico de ontem.</li>
+          <li><strong>Caso de sucesso ancorado em $3K</strong>. Alto pra ser respeitável, baixo pra ser identificável pelo avatar.</li>
+          <li><strong>Open loop</strong> ("encontramos el problema exacto. Era su oferta"). Aponta sem dar solução — entra pra ver.</li>
+          <li><strong>3 vetores Cialdini juntos</strong>: prova social + escassez + reciprocidade implícita.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- EMAIL 5 -->
+  <article class="email">
+    <div class="email-meta">
+      <div class="num">Email 5 / 9</div>
+      <div class="when">2026-05-17 · 14:04</div>
+      <div class="subj">Por qué pido la encuesta</div>
+      <span class="intent intent-onboarding">Push form D+3</span>
+      <div class="when">Trigger: ataca cético</div>
+    </div>
+    <div class="email-body">
+      <div class="email-copy">Hola Luan,
+
+Tal vez te preguntas por qué pido una encuesta antes de darte acceso.
+
+Te explico.
+
+La comunidad tiene 1,700 personas.
+
+Cuando sé en qué etapa estás y cuál es tu problema, puedo decirte exactamente qué recursos usar primero.
+
+Entonces llegas y sabes qué hacer.
+
+No pierdes tiempo buscando.
+
+Por eso la encuesta.
+
+Son 5 preguntas.
+
+→ Responder aquí.
+
+Marcos</div>
+      <div class="email-analysis">
+        <h4>Mecânica</h4>
+        <ul>
+          <li><strong>Objection handling preventivo</strong>. D+3 sem completar = resistência é desconfiança, não falta de tempo. Esse email não pede, explica.</li>
+          <li><strong>Inconsistência numérica reveladora</strong>: aqui diz "1,700 personas". Email 9 diz "+12,000 empresarios". Sinal de produção em massa, números são copy.</li>
+          <li><strong>Frame de personalização</strong> — vende form como ato de curadoria pro lead, não como dado pra empresa.</li>
+          <li><strong>Stack modular</strong>: cada email do flow ataca um perfil diferente de não-conversor.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- EMAIL 6 -->
+  <article class="email">
+    <div class="email-meta">
+      <div class="num">Email 6 / 9</div>
+      <div class="when">2026-05-18 · 10:04</div>
+      <div class="subj">te estoy esperando Luan</div>
+      <span class="intent intent-venda">Call 15min</span>
+      <div class="when">Trigger: pós-entrada, sem call agendada</div>
+    </div>
+    <div class="email-body">
+      <div class="email-copy">Luan, te escribo rápido porque vi que no agendaste tu llamada de Optimización de Oferta y Aceleración de Escalado.
+
+Esto NO es una llamada de ventas.
+
+Para empezar son solo 15 minutos con uno de nuestros Especialistas de Éxito de Cliente…
+
+(no podemos venderte nada en ese tiempo).
+
+Primero, verificamos que todos tus accesos funcionen bien.
+Segundo, creamos un plan de acción personalizado en base a tus números actuales.
+Tercero, optimizamos EN VIVO tu oferta (Persona, Promesa, Posicionamiento y Precio).
+Cuarto, auditamos los sistemas claves que necesitas para hacer $100.000 USD al mes.
+Quinto, vamos a auditar tus números y hacer proyecciones numéricas EXACTAS.
+
+Todas las personas que tuvieron éxito con este programa, empezaron por esta llamada.
+
+Toca aquí para agendarla.
+
+-Marcos</div>
+      <div class="email-analysis">
+        <h4>Mecânica</h4>
+        <ul>
+          <li><strong>Negação dupla = confirmação</strong>. "NO es una llamada de ventas... no podemos venderte nada". Sinal mais forte de que É chamada de vendas.</li>
+          <li><strong>Reframe de papel</strong>: "Especialista de Éxito" no lugar de SDR/closer. Padrão clássico HT.</li>
+          <li><strong>Promessa impossível em 15min</strong>: 5 entregas que demandariam horas. Copy de agendamento, não de execução.</li>
+          <li><strong>Âncora aspiracional</strong>: $100.000 USD/mês. Posiciona o programa pra esse patamar mesmo que o lead atual esteja em $3K.</li>
+          <li><strong>Social proof por inveja</strong>: "todos los que tuvieron éxito empezaron por esta llamada".</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- EMAIL 7 -->
+  <article class="email">
+    <div class="email-meta">
+      <div class="num">Email 7 / 9</div>
+      <div class="when">2026-05-18 · 14:04</div>
+      <div class="subj">12 horas de contenido esperándote</div>
+      <span class="intent intent-onboarding">Push form D+4</span>
+      <div class="when">Trigger: encerramento do flow</div>
+    </div>
+    <div class="email-body">
+      <div class="email-copy">Hola Luan,
+
+Adentro de la comunidad hay un curso de 12 horas.
+
+Se llama "De 0 a 10,000 USD al mes".
+
+Otros lo venden por miles de dólares.
+
+Aquí es gratis.
+
+También hay más de 200 páginas de plantillas, guiones y procesos listos para usar.
+
+Pero primero necesito tus respuestas para personalizar tu acceso.
+
+→ Encuesta (60 segundos).
+
+Marcos</div>
+      <div class="email-analysis">
+        <h4>Mecânica</h4>
+        <ul>
+          <li><strong>Pivô final de oferta concreta</strong>. Depois de 3 emails abstratos, agora cita ativos: curso 12h + 200 páginas.</li>
+          <li><strong>Comparação de preço sem âncora explícita</strong>. "Miles de dólares" sem cifra — evita verificação.</li>
+          <li><strong>Nome do curso = mecanismo do funil</strong>. "De 0 a $10K" define avatar (abaixo de $10K) e destino.</li>
+          <li><strong>Reframe final</strong>: form vendido como personalização, não exigência.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- EMAIL 8 -->
+  <article class="email">
+    <div class="email-meta">
+      <div class="num">Email 8 / 9</div>
+      <div class="when">2026-05-18 · 15:04</div>
+      <div class="subj">Luan, aquí no hay paja</div>
+      <span class="intent intent-ativacao">Ativação consumo</span>
+      <div class="when">Trigger: dentro do Skool, sem engajar</div>
+    </div>
+    <div class="email-body">
+      <div class="email-copy">Luan, dentro de Empresarios Digitales hay mucho material.
+
+Tanto que puede abrumar un poco.
+
+O que pienses que es 90% paja.
+
+Quiero que estés tranquilo: no intentes ver todo.
+
+Empieza por una cosa.
+
+Entra al curso de 12 horas y mira solo el primer módulo. El de los fundamentos para escalar de 0 a $10K al mes.
+
+Mientras otros infravaloran el contenido gratis por no pagarlo, tú le ves el valor y empiezas a tomar acción.
+
+Un módulo. Hoy.
+
+Click aquí para acceder a la primera lección.
+
+-Marcos</div>
+      <div class="email-analysis">
+        <h4>Mecânica</h4>
+        <ul>
+          <li><strong>Antecipação de objeção</strong>. "Puedes pensar que es 90% paja" — verbaliza a desconfiança do lead antes dele.</li>
+          <li><strong>Redução radical de escopo</strong> ("Un módulo. Hoy."). Tira a paralisia do menu enorme.</li>
+          <li><strong>Frame de minoria vencedora</strong> ("Mientras otros infravaloran... tú le ves el valor"). Identidade &gt; ação.</li>
+          <li><strong>Princípio</strong>: a maior fricção em comunidade-as-oferta não é entrar, é começar a consumir.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- EMAIL 9 -->
+  <article class="email">
+    <div class="email-meta">
+      <div class="num">Email 9 / 9</div>
+      <div class="when">2026-05-18 · 17:50</div>
+      <div class="subj">Te lo regalo</div>
+      <span class="intent intent-evento">Aquecimento evento</span>
+      <div class="when">Trigger: pré-warm live 21/05</div>
+    </div>
+    <div class="email-body">
+      <div class="email-copy">Luan,
+
+Anoche pasó algo curioso en el grupo.
+
+Un tipo probó los prompts de Claude que mandé con su nicho.
+
+Nada sofisticado. Los copió, los pegó y ejecutó.
+
+Me escribió a las 2 de la mañana.
+
+No podía dormir.
+
+Porque en 20 minutos vio algo que no había visto en 2 años: que llevaba todo ese tiempo construyendo sobre una base que no era.
+
+Hablándole a la persona equivocada. Cobrando lo que no debía. Armando contenido que atraía a curiosos en vez de clientes de alto valor.
+
+Y claro… todo le costaba más. Más tiempo. Más esfuerzo. Menos plata.
+
+Los prompts que le mandé son una parte de lo que alimenta la IA que muestro el jueves 21 de mayo.
+
+Los usamos para analizar nichos, detectar dónde está la plata y construir ofertas que tienen sentido.
+
+Los acabo de dejar dentro del grupo.
+
+No es por darte "valor gratis."
+
+Es porque quiero que el jueves no entres en frío.
+
+Probalo hoy. Porque si no, el jueves vas a ver cosas… pero no vas a saber qué hacer con ellas.
+
+[Entrá, probálos y después hablamos el jueves]
+
+Marcos</div>
+      <div class="email-analysis">
+        <h4>Mecânica</h4>
+        <ul>
+          <li><strong>Abertura como story-cold-open</strong>. Tira do mood "vou ler email", coloca em "vou ler história". Padrão Ben Settle.</li>
+          <li><strong>Personagem-espelho específico mas anônimo</strong>. Vagueza deliberada — qualquer um se identifica.</li>
+          <li><strong>Detalhe sensorial</strong> ("a las 2 de la mañana. No podía dormir"). Vende verossimilhança.</li>
+          <li><strong>Negação preventiva do frame "gurú gratuito"</strong> ("No es por darte valor gratis"). Atravessa objeção antes do lead pensar.</li>
+          <li><strong>FOMO específico de evento</strong> ("vas a ver cosas... pero no vas a saber qué hacer"). Compra a obrigação de ir.</li>
+          <li><strong>Único email que NÃO é triagem nem onboarding</strong>. É aquecimento direto pro pitch principal — onde o ARPU vai subir.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<h2>Princípios replicáveis</h2>
+<div class="insights">
+  <ol>
+    <li><strong>Onboarding completo importa mais que parece.</strong> Vale dedicar copy intensivo pra forçar conclusão de passos triviais. Quem não completa onboarding raramente retorna pra etapas pagas.</li>
+    <li><strong>Cada email do flow ataca um ângulo diferente.</strong> Não é o mesmo email reescrito 5 vezes — UX / memória / FOMO / objection / anchor. Perfis distintos de não-conversor.</li>
+    <li><strong>Frame "preciso disso pra te ajudar melhor" vence frame "preciso disso porque sou eu".</strong> Razzetti vende o form como personalização, nunca como dado pra empresa.</li>
+    <li><strong>Comunidade-as-oferta exige email de redução de overwhelm.</strong> Sem isso, lead entra e nunca consome. Sem consumo, não há upsell.</li>
+    <li><strong>Negação preventiva = bandeira amarela.</strong> "Isso NÃO é X" geralmente confirma "é X". Útil pra desmontar funis HT — não pra replicar.</li>
+    <li><strong>Evento ao vivo é o ARPU peak.</strong> Todo o sistema antes (cadastro / form / comunidade / call 15min) existe pra ter audiência aquecida nesse momento único. Não é o funil que vende, é o evento. O funil só prepara.</li>
+  </ol>
+</div>
+
+</main>
+
+<footer>
+  Análise consolidada de 9 emails (Marcos Razzetti / BlueHackers) — 14/05 a 18/05 de 2026 · s4.swipeoffers.com.br/razzetti
+</footer>
+
+</body>
+</html>
