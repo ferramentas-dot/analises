@@ -497,6 +497,26 @@
   .reset-btn:hover { color: var(--text); border-color: var(--accent); }
   .copy-textarea { min-height: 140px; }
   .copy-textarea.edited { border-color: var(--accent); }
+  /* SimilarWeb — caixinha "Em palavras simples" (resumo por card pra leigo) */
+  .sw-simple {
+    margin: 0 0 14px;
+    padding: 12px 16px 10px;
+    background: rgba(34, 197, 94, 0.07);
+    border: 1px solid rgba(34, 197, 94, 0.22);
+    border-left: 3px solid #22c55e;
+    border-radius: 6px;
+  }
+  .sw-simple .section-header { margin-bottom: 6px; }
+  .sw-simple .simple-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 700; color: #22c55e;
+    letter-spacing: 0.3px; text-transform: uppercase;
+  }
+  .sw-simple-textarea {
+    min-height: 92px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
   /* SimilarWeb — explicação editável e resumo executivo */
   .sw-explanation-edit { display: block; margin-top: 4px; }
   .sw-explanation-edit .section-header { margin-bottom: 6px; }
@@ -61689,6 +61709,18 @@ OS 4 GRUPOS DA ANÁLISE
                   <button class="miro-link-btn" type="button" data-card-id="sw-07-canais-de-trafego" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Três em cada quatro visitas vêm de acesso direto. Tráfego pago é praticamente zero.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-07-canais-de-trafego" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-07-canais-de-trafego"
+                    data-default="A cada 100 pessoas que visitam o site dele, 75 chegam digitando o endereço direto no navegador — sem clicar em nenhum anúncio. Quase ninguém vem por anúncio pago. Significa que o nome dele já está &quot;grudado na cabeça&quot; do público: a pessoa lembra dele sozinha e volta. Esse é o ativo mais valioso que ele tem."
+                    rows="4">A cada 100 pessoas que visitam o site dele, 75 chegam digitando o endereço direto no navegador — sem clicar em nenhum anúncio. Quase ninguém vem por anúncio pago. Significa que o nome dele já está "grudado na cabeça" do público: a pessoa lembra dele sozinha e volta. Esse é o ativo mais valioso que ele tem.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-07-canais-de-trafego">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -61735,6 +61767,18 @@ O BlueHackers construiu uma marca que cresce sem depender de mídia paga no dom�
                   <button class="miro-link-btn" type="button" data-card-id="sw-08-sankey-fontes" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Direto cresce, Email cresce. Facebook e Instagram caem. A marca está virando o canal.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-08-sankey-fontes" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-08-sankey-fontes"
+                    data-default="Esse gráfico mostra de onde, exatamente, vem cada grupo de visitantes — e mostra também o que tá crescendo (setas verdes) e o que tá caindo (setas vermelhas). O Facebook e o Instagram estão trazendo cada vez MENOS gente. Já as pessoas que digitam direto, o Google e o e-mail estão trazendo cada vez MAIS. Resumindo: ele tá ficando independente das redes sociais."
+                    rows="5">Esse gráfico mostra de onde, exatamente, vem cada grupo de visitantes — e mostra também o que tá crescendo (setas verdes) e o que tá caindo (setas vermelhas). O Facebook e o Instagram estão trazendo cada vez MENOS gente. Já as pessoas que digitam direto, o Google e o e-mail estão trazendo cada vez MAIS. Resumindo: ele tá ficando independente das redes sociais.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-08-sankey-fontes">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -61789,6 +61833,18 @@ A leitura combinada das setas é o que importa. Direto, Google e Email crescendo
                   <button class="miro-link-btn" type="button" data-card-id="sw-18-branded-vs-naobranded" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 71% das buscas no Google são pelo nome dele. SEO de termos genéricos é território aberto.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-18-branded-vs-naobranded" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-18-branded-vs-naobranded"
+                    data-default="Das pessoas que chegam pelo Google, 7 em cada 10 já sabem o nome dele e procuram &quot;Razzetti&quot; ou &quot;BlueHackers&quot; diretamente. Pouquíssimas chegam buscando palavras genéricas tipo &quot;curso de marketing&quot; ou &quot;como ganhar dinheiro&quot;. Ou seja: quem já conhece o nome dele acha fácil, mas quem quiser disputar essas buscas mais gerais não tem concorrência forte dele."
+                    rows="5">Das pessoas que chegam pelo Google, 7 em cada 10 já sabem o nome dele e procuram "Razzetti" ou "BlueHackers" diretamente. Pouquíssimas chegam buscando palavras genéricas tipo "curso de marketing" ou "como ganhar dinheiro". Ou seja: quem já conhece o nome dele acha fácil, mas quem quiser disputar essas buscas mais gerais não tem concorrência forte dele.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-18-branded-vs-naobranded">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -61835,6 +61891,18 @@ A leitura prática: termos não-branded de coaching e marketing digital hispanof
                   <button class="miro-link-btn" type="button" data-card-id="sw-06-redes-sociais" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> YouTube traz mais visita pro site do que o Instagram. Inverso do que se imagina.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-06-redes-sociais" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-06-redes-sociais"
+                    data-default="Vai surpreender: o YouTube traz MAIS gente pro site do Razzetti do que o Instagram. O Instagram dele tem mais curtidas e visualizações, mas quem realmente clica e entra no site é quem assistiu um vídeo longo no YouTube. Lição: vídeo longo prende a pessoa e ela vai até o final clicando no link. Reels viral diverte, mas não traz tanto cliente."
+                    rows="5">Vai surpreender: o YouTube traz MAIS gente pro site do Razzetti do que o Instagram. O Instagram dele tem mais curtidas e visualizações, mas quem realmente clica e entra no site é quem assistiu um vídeo longo no YouTube. Lição: vídeo longo prende a pessoa e ela vai até o final clicando no link. Reels viral diverte, mas não traz tanto cliente.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-06-redes-sociais">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -61885,6 +61953,18 @@ A leitura estratégica é clara: YouTube é o canal de maior conversão pra visi
                   <button class="miro-link-btn" type="button" data-card-id="sw-02-palavras-organicas-us" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Só 5 palavras principais ranqueiam, e quase todas são pelo nome dele. SEO genérico = inexistente.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-02-palavras-organicas-us" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-02-palavras-organicas-us"
+                    data-default="Quando alguém faz uma busca no Google nos Estados Unidos, o site do Razzetti só aparece bem se a pessoa pesquisa o NOME dele. Pra palavras gerais como &quot;coaching&quot; ou &quot;marketing digital&quot;, ele não aparece. O Google não é um canal forte pra ele. Pra quem quiser entrar nessa briga, a concorrência tá baixa."
+                    rows="4">Quando alguém faz uma busca no Google nos Estados Unidos, o site do Razzetti só aparece bem se a pessoa pesquisa o NOME dele. Pra palavras gerais como "coaching" ou "marketing digital", ele não aparece. O Google não é um canal forte pra ele. Pra quem quiser entrar nessa briga, a concorrência tá baixa.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-02-palavras-organicas-us">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -61935,6 +62015,18 @@ Razzetti tomou uma decisão clara: não competir por SEO. Apostou em direto, soc
                   <button class="miro-link-btn" type="button" data-card-id="sw-03-palavras-por-intencao" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 64% das buscas são pra aprender, só 7% são comerciais. Quem busca não está pronto pra comprar.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-03-palavras-por-intencao" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-03-palavras-por-intencao"
+                    data-default="Das pessoas que chegam pelo Google, a maioria absoluta tá só curiosa, querendo aprender alguma coisa. Pouquíssimas chegam pesquisando &quot;comprar curso&quot; ou &quot;melhor mentoria&quot;. Significa que o Google traz gente que ainda não tá pronta pra comprar — a venda só acontece depois, quando essa pessoa entra no funil dele e é aquecida."
+                    rows="4">Das pessoas que chegam pelo Google, a maioria absoluta tá só curiosa, querendo aprender alguma coisa. Pouquíssimas chegam pesquisando "comprar curso" ou "melhor mentoria". Significa que o Google traz gente que ainda não tá pronta pra comprar — a venda só acontece depois, quando essa pessoa entra no funil dele e é aquecida.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-03-palavras-por-intencao">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62008,6 +62100,18 @@ A oportunidade que aparece aqui é a fatia de 7% comerciais e 14% transacionais 
                   <button class="miro-link-btn" type="button" data-card-id="sw-10-paises-detalhado" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Colômbia lidera com 30%, mas está caindo. Argentina cresce 290%. Brasil é só 2,48%.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-10-paises-detalhado" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-10-paises-detalhado"
+                    data-default="Mostra os 14 países de onde vem o público dele. A Colômbia ainda lidera (30% do total), mas tá caindo. A Argentina, que é o país dele, tá CRESCENDO MUITO (quase 4x no trimestre). O Peru também tá explodindo. O Brasil é só 2,5% — quase nada, pra um país de 200 milhões de pessoas. Pra quem fala português, o mercado tá completamente aberto."
+                    rows="6">Mostra os 14 países de onde vem o público dele. A Colômbia ainda lidera (30% do total), mas tá caindo. A Argentina, que é o país dele, tá CRESCENDO MUITO (quase 4x no trimestre). O Peru também tá explodindo. O Brasil é só 2,5% — quase nada, pra um país de 200 milhões de pessoas. Pra quem fala português, o mercado tá completamente aberto.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-10-paises-detalhado">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62070,6 +62174,18 @@ A leitura geral: ele tem estratégia LATAM hispana clara, com Argentina e Espanh
                   <button class="miro-link-btn" type="button" data-card-id="sw-09-paises-resumo" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Mexicano e chileno consomem no celular. Argentino e colombiano usam desktop. Avatar muda por país.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-09-paises-resumo" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-09-paises-resumo"
+                    data-default="Mostra os 5 maiores países, separando quem acessa pelo CELULAR e quem acessa pelo COMPUTADOR. Mexicano e chileno entram quase só pelo celular. Argentino e colombiano usam mais o computador (provavelmente do trabalho). Isso muda o jogo: campanha de anúncio pro México precisa funcionar bonitinha no celular; campanha pra Argentina pode contar com gente acessando no horário comercial."
+                    rows="5">Mostra os 5 maiores países, separando quem acessa pelo CELULAR e quem acessa pelo COMPUTADOR. Mexicano e chileno entram quase só pelo celular. Argentino e colombiano usam mais o computador (provavelmente do trabalho). Isso muda o jogo: campanha de anúncio pro México precisa funcionar bonitinha no celular; campanha pra Argentina pode contar com gente acessando no horário comercial.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-09-paises-resumo">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62120,6 +62236,18 @@ Três insights práticos saem daí. Primeiro: campanhas miradas em México ou Ch
                   <button class="miro-link-btn" type="button" data-card-id="sw-11-profissao-educacao" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 40% trabalham em tempo integral. 47% têm faculdade. Não é desempregado, é frustrado.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-11-profissao-educacao" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-11-profissao-educacao"
+                    data-default="Quem segue ele NÃO é desempregado nem &quot;começando do zero&quot;. 4 em cada 10 trabalham num emprego fixo. Quase metade tem faculdade. É gente que já tem alguma estabilidade, mas tá insatisfeita com a carreira e quer dar um próximo passo. Esse é o público real — bem diferente do &quot;aspirante zero&quot; que ele encena nos vídeos."
+                    rows="5">Quem segue ele NÃO é desempregado nem "começando do zero". 4 em cada 10 trabalham num emprego fixo. Quase metade tem faculdade. É gente que já tem alguma estabilidade, mas tá insatisfeita com a carreira e quer dar um próximo passo. Esse é o público real — bem diferente do "aspirante zero" que ele encena nos vídeos.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-11-profissao-educacao">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62174,6 +62302,18 @@ Esse é um insight de produto importante: o discurso do Razzetti enfatiza muito 
                   <button class="miro-link-btn" type="button" data-card-id="sw-12-demografia-familia-renda" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 59% do público tem renda baixa. O avatar real é mais modesto do que o branding sugere.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-12-demografia-familia-renda" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-12-demografia-familia-renda"
+                    data-default="Mostra o tamanho da família e a renda do público dele. 6 em cada 10 pessoas têm renda BAIXA. Só 7% têm renda alta. Isso explica direitinho por que ele vende uma oferta de só US$27 ANTES de tentar vender o curso caro: a maioria do público não conseguiria pagar US$3 mil de cara. Ele &quot;sobe&quot; a pessoa aos poucos."
+                    rows="5">Mostra o tamanho da família e a renda do público dele. 6 em cada 10 pessoas têm renda BAIXA. Só 7% têm renda alta. Isso explica direitinho por que ele vende uma oferta de só US$27 ANTES de tentar vender o curso caro: a maioria do público não conseguiria pagar US$3 mil de cara. Ele "sobe" a pessoa aos poucos.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-12-demografia-familia-renda">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62236,6 +62376,18 @@ Vale notar que esse perfil — renda baixa, universidade, emprego full-time, fru
                   <button class="miro-link-btn" type="button" data-card-id="sw-13-publico-idade-sexo" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 57% são mulheres. O pico de idade é 35-54 anos, não os jovens de 25-34 que se imagina.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-13-publico-idade-sexo" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-13-publico-idade-sexo"
+                    data-default="Esse aqui é o dado mais surpreendente de TUDO: 6 em cada 10 seguidores dele são MULHERES. E a maioria tem entre 35 e 54 anos. Não é o jovem de 25 anos com sonho de carrão que ele encena nos vídeos. É mulher madura, no meio da carreira, querendo escapar do emprego CLT. Ele se comunica como cara aspiracional masculino, mas o público real é o oposto disso."
+                    rows="6">Esse aqui é o dado mais surpreendente de TUDO: 6 em cada 10 seguidores dele são MULHERES. E a maioria tem entre 35 e 54 anos. Não é o jovem de 25 anos com sonho de carrão que ele encena nos vídeos. É mulher madura, no meio da carreira, querendo escapar do emprego CLT. Ele se comunica como cara aspiracional masculino, mas o público real é o oposto disso.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-13-publico-idade-sexo">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62313,6 +62465,18 @@ O avatar 'mulher 35-54 querendo migrar do CLT pra digital' é um dos públicos m
                   <button class="miro-link-btn" type="button" data-card-id="sw-04c-subdomain-main" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 39,7K visitas/mês, bounce baixíssimo (48,91%), 1,98 páginas/visita. O maior dos 4.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-04c-subdomain-main" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-04c-subdomain-main"
+                    data-default="Essa é a &quot;porta da frente&quot; do negócio — o site institucional dele (bluehackers.com). É a página que MAIS recebe visita: quase 40 mil pessoas por mês. E quem entra fica navegando várias páginas, não sai correndo. Esse é o ativo de marca dele: mesmo se cortassem todos os anúncios pagos amanhã, a galera continuaria entrando aqui."
+                    rows="5">Essa é a "porta da frente" do negócio — o site institucional dele (bluehackers.com). É a página que MAIS recebe visita: quase 40 mil pessoas por mês. E quem entra fica navegando várias páginas, não sai correndo. Esse é o ativo de marca dele: mesmo se cortassem todos os anúncios pagos amanhã, a galera continuaria entrando aqui.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-04c-subdomain-main">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62355,6 +62519,18 @@ Quem chega aqui não tá numa jornada de compra ativa, tá explorando. Por isso 
                   <button class="miro-link-btn" type="button" data-card-id="sw-04a-subdomain-comercial-vsl" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 7,7K visitas/mês, bounce alto (73,06%), 1,43 páginas/visita. Cresceu forte de mar pra abr.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-04a-subdomain-comercial-vsl" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-04a-subdomain-comercial-vsl"
+                    data-default="Essa é a página pra onde ele manda quem clica nos anúncios pagos. Tem o vídeo de venda dele e o botão de &quot;agenda uma call comigo&quot;. Quando ele tá rodando muito anúncio, o tráfego dessa página dispara. Quando para, despenca. Ou seja: essa página é o &quot;termômetro&quot; do dinheiro que ele tá colocando em anúncio."
+                    rows="5">Essa é a página pra onde ele manda quem clica nos anúncios pagos. Tem o vídeo de venda dele e o botão de "agenda uma call comigo". Quando ele tá rodando muito anúncio, o tráfego dessa página dispara. Quando para, despenca. Ou seja: essa página é o "termômetro" do dinheiro que ele tá colocando em anúncio.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-04a-subdomain-comercial-vsl">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62397,6 +62573,18 @@ Esse sub-domínio é o termômetro do funil pago do BlueHackers. Quando o ad de 
                   <button class="miro-link-btn" type="button" data-card-id="sw-04b-subdomain-trip" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 21,1K visitas/mês, bounce 81,94%, 2,06 min de média. Segundo maior em volume.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-04b-subdomain-trip" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-04b-subdomain-trip"
+                    data-default="Essa é a página onde ele vende a oferta barata de US$27 (a porta de entrada do funil). Recebe 21 mil visitas por mês — é a segunda página mais visitada. Funciona como FILTRO: quem paga 27 dólares mostra que tá levando a coisa a sério. E só essas pessoas depois passam pra tentativa de venda do curso caro de US$3 mil."
+                    rows="5">Essa é a página onde ele vende a oferta barata de US$27 (a porta de entrada do funil). Recebe 21 mil visitas por mês — é a segunda página mais visitada. Funciona como FILTRO: quem paga 27 dólares mostra que tá levando a coisa a sério. E só essas pessoas depois passam pra tentativa de venda do curso caro de US$3 mil.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-04b-subdomain-trip">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62439,6 +62627,18 @@ O fato de receber 21K visitas mostra que o Tripware é o gatekeeper real do funi
                   <button class="miro-link-btn" type="button" data-card-id="sw-04d-subdomain-tripfree" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 2,9K visitas mas bounce de só 14,75%, 6,74 páginas/visita, 4:53 de média. O mais pegajoso.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-04d-subdomain-tripfree" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-04d-subdomain-tripfree"
+                    data-default="Essa é a Biblioteca grátis dele — mais de 200 documentos, aulas gravadas, etc. Recebe MENOS visita que as outras páginas (só 3 mil/mês), MAS quem entra fica quase 5 MINUTOS navegando. É a página mais &quot;pegajosa&quot; do site dele: quem entra aqui leva tanta coisa grátis que se sente meio que &quot;devendo&quot; — e tende a comprar algo depois pra agradecer."
+                    rows="5">Essa é a Biblioteca grátis dele — mais de 200 documentos, aulas gravadas, etc. Recebe MENOS visita que as outras páginas (só 3 mil/mês), MAS quem entra fica quase 5 MINUTOS navegando. É a página mais "pegajosa" do site dele: quem entra aqui leva tanta coisa grátis que se sente meio que "devendo" — e tende a comprar algo depois pra agradecer.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-04d-subdomain-tripfree">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62481,6 +62681,18 @@ Esses números provam uma coisa essencial: a Biblioteca é o ATIVO MAIS PEGAJOSO
                   <button class="miro-link-btn" type="button" data-card-id="sw-05-paginas-internas" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> /main e /pagina inicial concentram 56% do tráfego. Estrutura enxuta de ~14 endpoints.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-05-paginas-internas" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-05-paginas-internas"
+                    data-default="Lista as páginas mais acessadas dentro do site dele. Dois detalhes importantes: ele roda VÁRIAS versões da mesma página ao mesmo tempo, pra ver qual converte mais (teste A/B). E quem comprou o curso fica MUITO tempo logado (12-17 minutos) — sinal de que o produto é consumido de verdade, não só vendido. Resumo: estrutura enxuta, sem firula, com decisões guiadas por dado."
+                    rows="6">Lista as páginas mais acessadas dentro do site dele. Dois detalhes importantes: ele roda VÁRIAS versões da mesma página ao mesmo tempo, pra ver qual converte mais (teste A/B). E quem comprou o curso fica MUITO tempo logado (12-17 minutos) — sinal de que o produto é consumido de verdade, não só vendido. Resumo: estrutura enxuta, sem firula, com decisões guiadas por dado.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-05-paginas-internas">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62535,6 +62747,18 @@ A lição operacional é simples: poucas páginas otimizadas, com múltiplas ver
                   <button class="miro-link-btn" type="button" data-card-id="sw-16-tendencia-ano-ano" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Pico anual sempre em março-abril. 2026 já está bem acima de 2025 no mesmo período.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-16-tendencia-ano-ano" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-16-tendencia-ano-ano"
+                    data-default="Compara o tráfego do site nos últimos 3 anos. Tem um padrão claro: todo ano o pico é em março-abril (galera voltando das férias e botando meta de &quot;esse ano vou empreender&quot;). E de 2025 pra 2026, ele DOBROU o tamanho desse pico. Crescimento forte. Período de junho a agosto é o vale (férias na América Latina) — anúncio fica mais barato, mas o público também tá mais desligado."
+                    rows="6">Compara o tráfego do site nos últimos 3 anos. Tem um padrão claro: todo ano o pico é em março-abril (galera voltando das férias e botando meta de "esse ano vou empreender"). E de 2025 pra 2026, ele DOBROU o tamanho desse pico. Crescimento forte. Período de junho a agosto é o vale (férias na América Latina) — anúncio fica mais barato, mas o público também tá mais desligado.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-16-tendencia-ano-ano">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62593,6 +62817,18 @@ A leitura operacional: campanhas grandes devem rodar entre fevereiro e maio (pic
                   <button class="miro-link-btn" type="button" data-card-id="sw-14-exclusivo-mensal" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Visitantes únicos saltaram de ~7 mil pra 22 mil em 6 meses. Triplicou.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-14-exclusivo-mensal" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-14-exclusivo-mensal"
+                    data-default="Mostra quantas pessoas DIFERENTES visitam o site dele por mês (não conta a mesma pessoa duas vezes). Em só 6 meses, ele saiu de 7 mil pra 22 mil pessoas — TRIPLICOU. Esse é um ritmo de crescimento muito forte pra um negócio que já é grande."
+                    rows="4">Mostra quantas pessoas DIFERENTES visitam o site dele por mês (não conta a mesma pessoa duas vezes). Em só 6 meses, ele saiu de 7 mil pra 22 mil pessoas — TRIPLICOU. Esse é um ritmo de crescimento muito forte pra um negócio que já é grande.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-14-exclusivo-mensal">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62643,6 +62879,18 @@ O vale de novembro merece atenção. Não é só queda de tráfego — é queda 
                   <button class="miro-link-btn" type="button" data-card-id="sw-15-midia-display" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Zero investimento em banners display. Confirma que tráfego pago no domínio principal = 0%.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-15-midia-display" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-15-midia-display"
+                    data-default="&quot;Mídia display&quot; é aquele banner que aparece do lado de matérias de jornal e blogs. O resultado aqui é ZERO — ele não usa esse tipo de anúncio. Concentra todo o dinheiro de anúncio só em Facebook/Instagram e YouTube. É uma decisão acertada: banner em site de notícia converte muito pouco pra esse tipo de negócio."
+                    rows="4">"Mídia display" é aquele banner que aparece do lado de matérias de jornal e blogs. O resultado aqui é ZERO — ele não usa esse tipo de anúncio. Concentra todo o dinheiro de anúncio só em Facebook/Instagram e YouTube. É uma decisão acertada: banner em site de notícia converte muito pouco pra esse tipo de negócio.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-15-midia-display">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62701,6 +62949,18 @@ Confirma a tese geral de que orçamento de ads em info-business deve concentrar 
                   <button class="miro-link-btn" type="button" data-card-id="sw-17-traffic-engagement" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> 95.449 visitas em 3 meses, crescendo 27% ao mês. 72% no mobile. No top 25K dos sites argentinos.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-17-traffic-engagement" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-17-traffic-engagement"
+                    data-default="Resumão geral dos últimos 3 meses: foram 95 mil visitas no total, crescendo 27% por mês. 7 em cada 10 pessoas acessam pelo celular (toda página tem que funcionar bem no mobile). Comparando com outros sites: ele tá entre os 25 mil mais visitados da Argentina, o que significa um negócio bem grande pra esse nicho de coaching/marketing."
+                    rows="5">Resumão geral dos últimos 3 meses: foram 95 mil visitas no total, crescendo 27% por mês. 7 em cada 10 pessoas acessam pelo celular (toda página tem que funcionar bem no mobile). Comparando com outros sites: ele tá entre os 25 mil mais visitados da Argentina, o que significa um negócio bem grande pra esse nicho de coaching/marketing.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-17-traffic-engagement">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
@@ -62770,6 +63030,18 @@ A conclusão é simples: ele é grande pra um negócio de info-coaching latino. 
                   <button class="miro-link-btn" type="button" data-card-id="sw-01-semrush-dashboard" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
                 </div>
                 <p class="sw-destaque"><strong>💡 Destaque:</strong> Authority 17 (ok). Tráfego orgânico 412 (+14%). Backlinks 2K. IA cita ele quase nada.</p>
+                <div class="sw-simple">
+                  <div class="section-header">
+                    <span class="simple-label">📖 Em palavras simples <span class="edit-tag">editável</span></span>
+                    <button type="button" class="reset-btn" data-reset-key="copy::sw-simple-01-semrush-dashboard" title="Restaurar texto original">↺ original</button>
+                  </div>
+                  <textarea
+                    class="copy-textarea sw-simple-textarea"
+                    data-storage-key="copy::sw-simple-01-semrush-dashboard"
+                    data-default="Mostra a &quot;saúde técnica&quot; do site dele no Google E também se as IAs (ChatGPT, Gemini, etc) citam ele. No Google ele tá razoável — nada espetacular, mas decente. Nas IAs, quase ninguém cita ele ainda. Isso é uma janela: quem investir em aparecer dentro da ChatGPT/Gemini AGORA vai virar referência antes do mercado lotar."
+                    rows="5">Mostra a "saúde técnica" do site dele no Google E também se as IAs (ChatGPT, Gemini, etc) citam ele. No Google ele tá razoável — nada espetacular, mas decente. Nas IAs, quase ninguém cita ele ainda. Isso é uma janela: quem investir em aparecer dentro da ChatGPT/Gemini AGORA vai virar referência antes do mercado lotar.</textarea>
+                  <div class="save-state" data-for="copy::sw-simple-01-semrush-dashboard">não editado</div>
+                </div>
                 <div class="sw-explanation-edit">
                   <div class="section-header">
                     <span class="edit-tag">📝 explicação editável</span>
