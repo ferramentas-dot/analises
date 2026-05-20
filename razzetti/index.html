@@ -82,6 +82,7 @@
   .filter-btn.active { border-color: var(--accent); color: var(--accent); }
   .filter-btn.hidden-by-platform { display: none; }
   section[data-platform].hidden-by-platform { display: none; }
+  .stat.hidden-by-platform { display: none; }
   .export-btn {
     background: var(--accent);
     border: none;
@@ -623,9 +624,9 @@
   <p class="subtitle">Marcos Razzetti / Bluehackers · cataloga conteúdo por etapa do funil, mecanismo de captura, papel e copy. Anote o hook visual e exporte.</p>
   <div class="summary">
     <div class="stat"><div class="n">139</div><div class="l">Total · 60 reels + 29 feed + 50 YT</div></div>
-    <div class="stat"><div class="n" style="color:#0ea5e9">57</div><div class="l">TOFU · 21r+11f+25yt</div></div>
-    <div class="stat"><div class="n" style="color:#f59e0b">64</div><div class="l">MOFU · 27r+13f+24yt</div></div>
-    <div class="stat"><div class="n" style="color:#ef4444">18</div><div class="l">BOFU · 12r+5f+1yt</div></div>
+    <div class="stat not-pago"><div class="n" style="color:#0ea5e9">57</div><div class="l">TOFU · 21r+11f+25yt</div></div>
+    <div class="stat not-pago"><div class="n" style="color:#f59e0b">64</div><div class="l">MOFU · 27r+13f+24yt</div></div>
+    <div class="stat not-pago"><div class="n" style="color:#ef4444">18</div><div class="l">BOFU · 12r+5f+1yt</div></div>
     <div class="stat"><div class="n" style="color:#a855f7">56</div><div class="l">com Manychat</div></div>
   </div>
   <div class="platform-toggle">
@@ -637,9 +638,9 @@
   </div>
   <div class="controls">
     <button class="filter-btn active" data-filter="all">Todos</button>
-    <button class="filter-btn" data-filter="stage:TOFU">TOFU</button>
-    <button class="filter-btn" data-filter="stage:MOFU">MOFU</button>
-    <button class="filter-btn" data-filter="stage:BOFU">BOFU</button>
+    <button class="filter-btn not-pago" data-filter="stage:TOFU">TOFU</button>
+    <button class="filter-btn not-pago" data-filter="stage:MOFU">MOFU</button>
+    <button class="filter-btn not-pago" data-filter="stage:BOFU">BOFU</button>
     <button class="filter-btn ig-only" data-filter="kind:reel">Só reels</button>
     <button class="filter-btn ig-only" data-filter="kind:post">Só feed</button>
     <button class="filter-btn ig-only" data-filter="funnel:manychat">Com Manychat</button>
@@ -68145,9 +68146,11 @@ function applyAll() {
   filterButtons.forEach(b => {
     const isIgOnly = b.classList.contains('ig-only');
     const isPagoOnly = b.classList.contains('pago-only');
+    const isNotPago = b.classList.contains('not-pago');
     const hideIgOnly = (currentPlatform === 'yt' || currentPlatform === 'pago' || currentPlatform === 'similarweb') && isIgOnly;
     const hidePagoOnly = currentPlatform !== 'pago' && isPagoOnly;
-    if (hideIgOnly || hidePagoOnly) {
+    const hideNotPago = currentPlatform === 'pago' && isNotPago;
+    if (hideIgOnly || hidePagoOnly || hideNotPago) {
       b.classList.add('hidden-by-platform');
       if (b.classList.contains('active')) {
         b.classList.remove('active');
@@ -68157,6 +68160,9 @@ function applyAll() {
     } else {
       b.classList.remove('hidden-by-platform');
     }
+  });
+  document.querySelectorAll('.stat.not-pago').forEach(s => {
+    s.classList.toggle('hidden-by-platform', currentPlatform === 'pago');
   });
   cards.forEach(c => {
     if (currentFilter === 'all') { c.classList.remove('hidden'); return; }
