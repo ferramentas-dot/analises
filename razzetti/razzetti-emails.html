@@ -185,6 +185,82 @@
     padding: 24px 48px; border-top: 1px solid var(--border);
     color: var(--muted); font-size: 12px; text-align: center;
   }
+
+  /* Quick nav (index compacto) */
+  .quick-nav {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 22px; margin: 18px 0 28px;
+  }
+  .quick-nav h3 {
+    margin: 0 0 12px; font-size: 14px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.7px; font-weight: 700;
+  }
+  .quick-nav-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 6px;
+  }
+  .quick-nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; border-radius: 6px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.15s ease, background 0.15s ease;
+    font-size: 13px;
+  }
+  .quick-nav-item:hover { border-color: var(--accent); background: var(--surface); }
+  .quick-nav-item .qn-num {
+    flex-shrink: 0; width: 28px; height: 28px;
+    border-radius: 50%; background: var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11.5px; font-weight: 700; color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .quick-nav-item .qn-meta { flex: 1; min-width: 0; }
+  .quick-nav-item .qn-subj {
+    font-weight: 600; font-size: 12.5px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .quick-nav-item .qn-when { font-size: 10.5px; color: var(--muted); }
+  .quick-nav-item .qn-dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+  }
+  .qn-dot.onboarding { background: var(--onboarding); }
+  .qn-dot.consumo { background: var(--consumo); }
+  .qn-dot.venda { background: var(--venda); }
+  .qn-dot.evento { background: var(--evento); }
+  .qn-legend {
+    display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px;
+    padding-top: 12px; border-top: 1px solid var(--border);
+    font-size: 11.5px; color: var(--muted);
+  }
+  .qn-legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+  /* Day separators */
+  .day-separator {
+    margin: 28px 0 8px; padding: 14px 20px;
+    background: linear-gradient(90deg, var(--surface), transparent);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .day-separator:first-of-type { margin-top: 12px; }
+  .day-separator h3 {
+    margin: 0; font-size: 17px; letter-spacing: 0.3px;
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .day-separator h3 .day-label {
+    font-size: 11px; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.8px; font-weight: 700;
+  }
+  .day-separator .day-summary {
+    font-size: 12.5px; color: var(--muted); max-width: 720px; flex: 1;
+  }
+  .day-separator .day-count {
+    background: var(--surface-2); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 12px; font-size: 11.5px;
+    font-weight: 600; color: var(--text); white-space: nowrap;
+  }
 </style>
 </head>
 <body>
@@ -263,19 +339,20 @@
 
 <div class="insights">
   <h3>Por que tanto email pra um formulário simples?</h3>
-  <p style="margin:0 0 12px;">Razzetti gasta 6 emails diferentes empurrando um formulário de 2 perguntas (renda e nicho). Não é exagero — é o ponto. O sistema dele entende que:</p>
+  <p style="margin:0 0 12px;">Razzetti gasta 7 emails diferentes empurrando um formulário de 2 perguntas (renda e nicho) — e mantém esse flow vivo até o D+6, em paralelo com todo o aquecimento de evento. Não é exagero, é o ponto. O sistema dele entende que:</p>
   <ol>
     <li><strong>Quem completa o passo simples no início engaja mais depois.</strong> A pessoa que preenche o formulário tem chance muito maior de assistir o primeiro módulo. Quem assiste, chega na chamada de 15 minutos. A relação justifica investir copy pesado.</li>
     <li><strong>Sem o dado, todo email seguinte é genérico.</strong> Com renda e nicho na mão, ele consegue personalizar comunicação e recomendar material certo dentro da comunidade. O dado simples destrava todo o resto.</li>
     <li><strong>Preencher é um compromisso pequeno que prepara compromissos maiores.</strong> Quem declara renda e nicho já se posiciona dentro do projeto. Depois disso, fica mais fácil aceitar a chamada de 15 minutos.</li>
+    <li><strong>O flow de form roda em paralelo com tudo.</strong> Mesmo quando o aquecimento de evento começa, ele continua disparando push do form pra quem não preencheu. Dois trilhos rodando ao mesmo tempo — não substitui um pelo outro.</li>
   </ol>
 </div>
 
 <h2>7 ângulos diferentes pra arrancar o mesmo dado</h2>
+<p style="color: var(--muted); margin: -8px 0 14px; font-size: 13.5px;">Cada um dos 7 emails de cobrança usa um ângulo diferente — não é o mesmo texto reescrito. Cada ângulo é desenhado pra pegar um perfil de pessoa que não respondeu ainda.</p>
 <table class="angulos">
   <thead><tr><th>Email</th><th>Ângulo</th><th>Perfil que ele tenta pegar</th></tr></thead>
   <tbody>
-    <tr><td>D+0 13:14 — Te faltó un paso</td><td>Ativação da comunidade</td><td>Pessoa que esqueceu o fluxo</td></tr>
     <tr><td>D+0 14:04 — Falta un paso para entrar</td><td>Instrução direta</td><td>Pessoa que precisa do empurrão</td></tr>
     <tr><td>D+1 — Se te olvidó?</td><td>Lembrete suave + porteiro humano</td><td>Pessoa distraída</td></tr>
     <tr><td>D+2 — Lo que te espera adentro</td><td>Medo de ficar de fora (caso de ontem)</td><td>Pessoa que precisa de prova social</td></tr>
@@ -288,13 +365,47 @@
 
 <div class="flag">
   <h4>Sinal de alerta: quando ele jura que NÃO é venda</h4>
-  <p>Toda vez que um email precisa dizer "isso <strong>NÃO</strong> é venda" ou "não é pra te dar valor de graça" — desconfie: provavelmente é exatamente isso. No funil do Razzetti, esse padrão aparece concentrado no email da chamada de 15 minutos. É o único momento em que a copy precisa derrubar uma objeção que a pessoa nem chegou a verbalizar ainda.</p>
+  <p>Toda vez que um email precisa dizer "isso <strong>NÃO</strong> é venda" ou "não é pra te dar valor de graça" — desconfie: provavelmente é exatamente isso. No funil do Razzetti, esse padrão aparece concentrado nas <strong>2 chamadas de venda</strong> (emails 6 e 13) e no email 9 que aquece pro evento. São os momentos em que a copy precisa derrubar uma objeção que a pessoa nem chegou a verbalizar ainda.</p>
 </div>
 
-<h2>Os 9 emails (ordem cronológica)</h2>
+<h2>Os 15 emails (ordem cronológica)</h2>
+
+<nav class="quick-nav">
+  <h3>Índice rápido — clique pra pular pro email</h3>
+  <div class="quick-nav-grid">
+    <a href="#email-1" class="quick-nav-item"><span class="qn-num">1</span><span class="qn-meta"><div class="qn-subj">Te faltó un paso!</div><div class="qn-when">14/05 · 13:14</div></span><span class="qn-dot onboarding" title="Ativação"></span></a>
+    <a href="#email-2" class="quick-nav-item"><span class="qn-num">2</span><span class="qn-meta"><div class="qn-subj">Falta un paso para entrar</div><div class="qn-when">14/05 · 14:04</div></span><span class="qn-dot onboarding" title="Cobrança do form"></span></a>
+    <a href="#email-3" class="quick-nav-item"><span class="qn-num">3</span><span class="qn-meta"><div class="qn-subj">Se te olvidó?</div><div class="qn-when">15/05 · 14:04</div></span><span class="qn-dot onboarding" title="Cobrança do form"></span></a>
+    <a href="#email-4" class="quick-nav-item"><span class="qn-num">4</span><span class="qn-meta"><div class="qn-subj">Lo que te espera adentro</div><div class="qn-when">16/05 · 14:04</div></span><span class="qn-dot onboarding" title="Cobrança do form"></span></a>
+    <a href="#email-5" class="quick-nav-item"><span class="qn-num">5</span><span class="qn-meta"><div class="qn-subj">Por qué pido la encuesta</div><div class="qn-when">17/05 · 14:04</div></span><span class="qn-dot onboarding" title="Cobrança do form"></span></a>
+    <a href="#email-6" class="quick-nav-item"><span class="qn-num">6</span><span class="qn-meta"><div class="qn-subj">te estoy esperando Luan</div><div class="qn-when">18/05 · 10:04</div></span><span class="qn-dot venda" title="Chamada de venda"></span></a>
+    <a href="#email-7" class="quick-nav-item"><span class="qn-num">7</span><span class="qn-meta"><div class="qn-subj">12 horas de contenido</div><div class="qn-when">18/05 · 14:04</div></span><span class="qn-dot onboarding" title="Cobrança do form"></span></a>
+    <a href="#email-8" class="quick-nav-item"><span class="qn-num">8</span><span class="qn-meta"><div class="qn-subj">Luan, aquí no hay paja</div><div class="qn-when">18/05 · 15:04</div></span><span class="qn-dot consumo" title="Ativação de consumo"></span></a>
+    <a href="#email-9" class="quick-nav-item"><span class="qn-num">9</span><span class="qn-meta"><div class="qn-subj">Te lo regalo</div><div class="qn-when">18/05 · 17:50</div></span><span class="qn-dot evento" title="Aquecimento do evento"></span></a>
+    <a href="#email-10" class="quick-nav-item"><span class="qn-num">10</span><span class="qn-meta"><div class="qn-subj">Luan explícame esto</div><div class="qn-when">19/05 · 10:01</div></span><span class="qn-dot evento" title="Aquecimento do evento"></span></a>
+    <a href="#email-11" class="quick-nav-item"><span class="qn-num">11</span><span class="qn-meta"><div class="qn-subj">Cuál es tu cuello de botella?</div><div class="qn-when">19/05 · 14:04</div></span><span class="qn-dot onboarding" title="Cobrança do form"></span></a>
+    <a href="#email-12" class="quick-nav-item"><span class="qn-num">12</span><span class="qn-meta"><div class="qn-subj">Ya empezaron sin vos</div><div class="qn-when">19/05 · 14:31</div></span><span class="qn-dot evento" title="Aquecimento + escassez"></span></a>
+    <a href="#email-13" class="quick-nav-item"><span class="qn-num">13</span><span class="qn-meta"><div class="qn-subj">4P para x10 tu precio</div><div class="qn-when">20/05 · 10:08</div></span><span class="qn-dot venda" title="2ª chamada de venda"></span></a>
+    <a href="#email-14" class="quick-nav-item"><span class="qn-num">14</span><span class="qn-meta"><div class="qn-subj">Mañana es el día</div><div class="qn-when">20/05 · 13:05</div></span><span class="qn-dot evento" title="Véspera do evento"></span></a>
+    <a href="#email-15" class="quick-nav-item"><span class="qn-num">15</span><span class="qn-meta"><div class="qn-subj">Esta semana en la comunidad</div><div class="qn-when">20/05 · 14:05</div></span><span class="qn-dot onboarding" title="Cobrança do form"></span></a>
+  </div>
+  <div class="qn-legend">
+    <span><span class="qn-dot onboarding"></span>Onboarding / Cobrança do form (8)</span>
+    <span><span class="qn-dot consumo"></span>Ativação de consumo (1)</span>
+    <span><span class="qn-dot venda"></span>Chamada de venda (2)</span>
+    <span><span class="qn-dot evento"></span>Aquecimento do evento (4)</span>
+  </div>
+</nav>
+
 <div class="email-list">
 
-  <article class="email">
+  <div class="day-separator">
+    <h3>Dia 1 <span class="day-label">· quinta · 14/05/2026</span></h3>
+    <div class="day-summary">Cadastrei. Em ~50 minutos chega o 1º email (ativa Skool) e logo depois o 2º (1ª cobrança do form). Razzetti não dá folga.</div>
+    <span class="day-count">2 emails</span>
+  </div>
+
+  <article class="email" id="email-1">
     <div class="email-meta">
       <div class="num">Email 1 / 15</div>
       <div class="when">2026-05-14 · 13:14</div>
@@ -336,7 +447,7 @@ Toma 30 segundos.
     </div>
   </article>
 
-  <article class="email">
+  <article class="email" id="email-2">
     <div class="email-meta">
       <div class="num">Email 2 / 15</div>
       <div class="when">2026-05-14 · 14:04</div>
@@ -378,7 +489,13 @@ Marcos</div>
     </div>
   </article>
 
-  <article class="email">
+  <div class="day-separator">
+    <h3>Dia 2 <span class="day-label">· sexta · 15/05/2026</span></h3>
+    <div class="day-summary">Mesma hora do dia anterior (14:04). Segundo push do form — agora ele usa o gancho "ontem você se cadastrou" pra reativar compromisso.</div>
+    <span class="day-count">1 email</span>
+  </div>
+
+  <article class="email" id="email-3">
     <div class="email-meta">
       <div class="num">Email 3 / 15</div>
       <div class="when">2026-05-15 · 14:04</div>
@@ -420,7 +537,13 @@ Marcos</div>
     </div>
   </article>
 
-  <article class="email">
+  <div class="day-separator">
+    <h3>Dia 3 <span class="day-label">· sábado · 16/05/2026</span></h3>
+    <div class="day-summary">Mesma hora. Agora ele introduz prova social específica ("ontem fizemos uma sessão"). Aumenta a intensidade emocional sem subir o pedido.</div>
+    <span class="day-count">1 email</span>
+  </div>
+
+  <article class="email" id="email-4">
     <div class="email-meta">
       <div class="num">Email 4 / 15</div>
       <div class="when">2026-05-16 · 14:04</div>
@@ -464,7 +587,13 @@ Pero necesito que completes la encuesta para darte acceso.
     </div>
   </article>
 
-  <article class="email">
+  <div class="day-separator">
+    <h3>Dia 4 <span class="day-label">· domingo · 17/05/2026</span></h3>
+    <div class="day-summary">Agora explica o motivo do formulário. Em 4 dias sem resposta, ele assume que a resistência virou desconfiança — esse email serve pra responder à dúvida silenciosa.</div>
+    <span class="day-count">1 email</span>
+  </div>
+
+  <article class="email" id="email-5">
     <div class="email-meta">
       <div class="num">Email 5 / 15</div>
       <div class="when">2026-05-17 · 14:04</div>
@@ -512,7 +641,13 @@ Marcos</div>
     </div>
   </article>
 
-  <article class="email">
+  <div class="day-separator">
+    <h3>Dia 5 <span class="day-label">· segunda · 18/05/2026 · PICO DE ENVIOS</span></h3>
+    <div class="day-summary">O dia com mais emails do flow inteiro. Em 8 horas dispara 4 emails diferentes: chamada de venda + último push do form + ativação de consumo + 1º aquecimento do evento. Sinaliza que Razzetti tá esgotando os ângulos clássicos antes de virar a chave pro evento.</div>
+    <span class="day-count">4 emails</span>
+  </div>
+
+  <article class="email" id="email-6">
     <div class="email-meta">
       <div class="num">Email 6 / 15</div>
       <div class="when">2026-05-18 · 10:04</div>
@@ -559,7 +694,7 @@ Toca aquí para agendarla.
     </div>
   </article>
 
-  <article class="email">
+  <article class="email" id="email-7">
     <div class="email-meta">
       <div class="num">Email 7 / 15</div>
       <div class="when">2026-05-18 · 14:04</div>
@@ -603,7 +738,7 @@ Marcos</div>
     </div>
   </article>
 
-  <article class="email">
+  <article class="email" id="email-8">
     <div class="email-meta">
       <div class="num">Email 8 / 15</div>
       <div class="when">2026-05-18 · 15:04</div>
@@ -649,7 +784,7 @@ Click aquí para acceder a la primera lección de mi Skool 'Empresarios Digitale
     </div>
   </article>
 
-  <article class="email">
+  <article class="email" id="email-9">
     <div class="email-meta">
       <div class="num">Email 9 / 15</div>
       <div class="when">2026-05-18 · 17:50</div>
@@ -713,7 +848,13 @@ Marcos</div>
     </div>
   </article>
 
-  <article class="email">
+  <div class="day-separator">
+    <h3>Dia 6 <span class="day-label">· terça · 19/05/2026 · A virada</span></h3>
+    <div class="day-summary">O foco passa do form pro evento. 3 emails: aquecimento com contraste numérico chocante (6mil vs $425k), mais um push do form (agora com framework de gargalo) e aquecimento de escassez operacional (link só no WhatsApp). 2 dias até a live.</div>
+    <span class="day-count">3 emails</span>
+  </div>
+
+  <article class="email" id="email-10">
     <div class="email-meta">
       <div class="num">Email 10 / 15</div>
       <div class="when">2026-05-19 · 10:01</div>
@@ -786,7 +927,7 @@ PD: Al final del jueves voy a hacer un anuncio que solo escuchan los que estén 
     </div>
   </article>
 
-  <article class="email">
+  <article class="email" id="email-11">
     <div class="email-meta">
       <div class="num">Email 11 / 15</div>
       <div class="when">2026-05-19 · 14:04</div>
@@ -836,7 +977,7 @@ Marcos</div>
     </div>
   </article>
 
-  <article class="email">
+  <article class="email" id="email-12">
     <div class="email-meta">
       <div class="num">Email 12 / 15</div>
       <div class="when">2026-05-19 · 14:31</div>
@@ -890,7 +1031,13 @@ PD: El jueves a las 4:30 pm COL mando el enlace del directo al grupo de WhatsApp
     </div>
   </article>
 
-  <article class="email">
+  <div class="day-separator">
+    <h3>Dia 7 <span class="day-label">· quarta · 20/05/2026 · Véspera</span></h3>
+    <div class="day-summary">Último dia antes da live. 3 emails: 2ª chamada de venda (framework 4P com a story da Laura), aquecimento da véspera ("Mañana es el día") e ainda mais um push do form (com prova social pesada). Razzetti faz triplo esforço pra capturar tudo antes do evento.</div>
+    <span class="day-count">3 emails</span>
+  </div>
+
+  <article class="email" id="email-13">
     <div class="email-meta">
       <div class="num">Email 13 / 15</div>
       <div class="when">2026-05-20 · 10:08</div>
@@ -956,7 +1103,7 @@ Toca aquí para agendarla.
     </div>
   </article>
 
-  <article class="email">
+  <article class="email" id="email-14">
     <div class="email-meta">
       <div class="num">Email 14 / 15</div>
       <div class="when">2026-05-20 · 13:05</div>
@@ -1017,7 +1164,7 @@ Marcos</div>
     </div>
   </article>
 
-  <article class="email">
+  <article class="email" id="email-15">
     <div class="email-meta">
       <div class="num">Email 15 / 15</div>
       <div class="when">2026-05-20 · 14:05</div>
