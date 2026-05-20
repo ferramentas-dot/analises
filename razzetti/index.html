@@ -68171,11 +68171,31 @@ function applyAll() {
   });
 }
 
+// Sync URL with currentPlatform + currentFilter (preserva ?card, ?focus, ?section).
+// Não polui URL com defaults (platform=ig, filter=all).
+function syncUrl() {
+  const url = new URL(window.location.href);
+  // Não mexer se estamos em modo card/section focado
+  if (url.searchParams.has('card') || url.searchParams.has('section')) return;
+  if (currentPlatform && currentPlatform !== 'ig') {
+    url.searchParams.set('platform', currentPlatform);
+  } else {
+    url.searchParams.delete('platform');
+  }
+  if (currentFilter && currentFilter !== 'all') {
+    url.searchParams.set('filter', currentFilter);
+  } else {
+    url.searchParams.delete('filter');
+  }
+  history.replaceState(null, '', url.pathname + (url.search || '') + url.hash);
+}
+
 platformButtons.forEach(b => b.addEventListener('click', () => {
   platformButtons.forEach(x => x.classList.remove('active'));
   b.classList.add('active');
   currentPlatform = b.dataset.platform;
   applyAll();
+  syncUrl();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }));
 
@@ -68184,25 +68204,37 @@ filterButtons.forEach(b => b.addEventListener('click', () => {
   b.classList.add('active');
   currentFilter = b.dataset.filter;
   applyAll();
+  syncUrl();
 }));
 
-// Read URL hash to auto-select platform/section (used by stub redirect files)
+// Read URL hash/query to auto-select platform & filter on load
 (function() {
+  const qs = new URLSearchParams(window.location.search);
   const hash = (window.location.hash || '').replace(/^#/, '').toLowerCase();
-  if (!hash) { applyAll(); return; }
-  const map = {
+  const hashMap = {
     'instagram': 'ig', 'ig': 'ig',
     'youtube': 'yt', 'yt': 'yt',
     'trafego': 'similarweb', 'tráfego': 'similarweb', 'similarweb': 'similarweb', 'similar': 'similarweb',
     'pago': 'pago', 'trafegopago': 'pago', 'ads': 'pago', 'anuncios': 'pago'
   };
-  const target = map[hash];
-  if (!target) { applyAll(); return; }
-  const btn = document.querySelector(`.platform-btn[data-platform="${target}"]`);
-  if (btn) {
-    platformButtons.forEach(x => x.classList.remove('active'));
-    btn.classList.add('active');
-    currentPlatform = target;
+  // priority: ?platform= (explicit) > #hash (legacy stubs)
+  let target = qs.get('platform') || hashMap[hash] || null;
+  if (target) {
+    const btn = document.querySelector(`.platform-btn[data-platform="${target}"]`);
+    if (btn) {
+      platformButtons.forEach(x => x.classList.remove('active'));
+      btn.classList.add('active');
+      currentPlatform = target;
+    }
+  }
+  const wantedFilter = qs.get('filter');
+  if (wantedFilter) {
+    const fbtn = document.querySelector(`.filter-btn[data-filter="${CSS.escape(wantedFilter)}"]`);
+    if (fbtn && !fbtn.classList.contains('hidden-by-platform')) {
+      filterButtons.forEach(x => x.classList.remove('active'));
+      fbtn.classList.add('active');
+      currentFilter = wantedFilter;
+    }
   }
   applyAll();
 })();
