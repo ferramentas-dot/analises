@@ -117,8 +117,24 @@
   .intent-ativacao { background: rgba(168,85,247,0.12); color: var(--consumo); }
   .intent-venda { background: rgba(239,68,68,0.12); color: var(--venda); }
   .intent-evento { background: rgba(245,158,11,0.12); color: var(--evento); }
-  .email-body { padding: 18px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  @media (max-width: 1100px) { .email-body { grid-template-columns: 1fr; } }
+  .email-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 18px; }
+  .email-screenshot {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    display: block;
+  }
+  .email-screenshot img {
+    display: block; width: 100%; height: auto;
+    transition: opacity 0.15s ease;
+  }
+  .email-screenshot:hover img { opacity: 0.92; }
+  .email-screenshot .caption {
+    font-size: 11px; color: var(--muted); padding: 6px 12px;
+    border-top: 1px solid var(--border); background: var(--surface);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .email-text-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 1100px) { .email-text-grid { grid-template-columns: 1fr; } }
   .email-copy {
     background: var(--surface-2); border: 1px solid var(--border);
     padding: 14px 16px; border-radius: 6px;
@@ -285,6 +301,11 @@
       <div class="when">Disparo: logo depois do cadastro</div>
     </div>
     <div class="email-body">
+      <a class="email-screenshot" href="emails/01-te-falto-un-paso.png" target="_blank">
+        <img src="emails/01-te-falto-un-paso.png" alt="Print do email Te faltó un paso!" loading="lazy">
+        <div class="caption">📷 Print original — clique pra abrir em tamanho real</div>
+      </a>
+      <div class="email-text-grid">
       <div class="email-copy">Helloo Luan, vi que completaste el formulario pero no terminaste de unirte a la comunidad.
 
 Tranqui, yo soy el primero que en este tipo de cosas se termina distrayendo...
@@ -309,6 +330,7 @@ Toma 30 segundos.
           <li><strong>Ainda não cobra o formulário</strong>. Esse email só ativa. O pedido do formulário vem 50 minutos depois.</li>
         </ul>
       </div>
+      </div>
     </div>
   </article>
 
@@ -321,6 +343,11 @@ Toma 30 segundos.
       <div class="when">Disparo: cadastrou mas não preencheu</div>
     </div>
     <div class="email-body">
+      <a class="email-screenshot" href="emails/02-falta-un-paso-para-entrar.png" target="_blank">
+        <img src="emails/02-falta-un-paso-para-entrar.png" alt="Print do email Falta un paso para entrar" loading="lazy">
+        <div class="caption">📷 Print original — clique pra abrir em tamanho real</div>
+      </a>
+      <div class="email-text-grid">
       <div class="email-copy">Hola Luan,
 
 Te registraste hace unos minutos.
@@ -345,6 +372,7 @@ Marcos</div>
           <li><strong>Já trata como combinado</strong>: "a gente se vê lá dentro". Presume que vai acontecer.</li>
         </ul>
       </div>
+      </div>
     </div>
   </article>
 
@@ -357,6 +385,11 @@ Marcos</div>
       <div class="when">Disparo: ainda sem preencher</div>
     </div>
     <div class="email-body">
+      <a class="email-screenshot" href="emails/03-se-te-olvido.png" target="_blank">
+        <img src="emails/03-se-te-olvido.png" alt="Print do email Se te olvidó?" loading="lazy">
+        <div class="caption">📷 Print original — clique pra abrir em tamanho real</div>
+      </a>
+      <div class="email-text-grid">
       <div class="email-copy">Hola Luan,
 
 Ayer te registraste para entrar a Empresarios Digitales.
@@ -381,6 +414,7 @@ Marcos</div>
           <li><strong>Assunto em forma de pergunta</strong>: "Se te olvidó?" não acusa nem pressiona. Protege o ego da pessoa.</li>
         </ul>
       </div>
+      </div>
     </div>
   </article>
 
@@ -393,6 +427,11 @@ Marcos</div>
       <div class="when">Disparo: ainda sem preencher</div>
     </div>
     <div class="email-body">
+      <a class="email-screenshot" href="emails/04-lo-que-te-espera-adentro.png" target="_blank">
+        <img src="emails/04-lo-que-te-espera-adentro.png" alt="Print do email Lo que te espera adentro" loading="lazy">
+        <div class="caption">📷 Print original — clique pra abrir em tamanho real</div>
+      </a>
+      <div class="email-text-grid">
       <div class="email-copy">Hola Luan,
 
 Quiero contarte qué está pasando adentro de la comunidad mientras no entras.
@@ -419,6 +458,7 @@ Pero necesito que completes la encuesta para darte acceso.
           <li><strong>3 gatilhos juntos</strong>: prova social (caso real) + medo de perder (semanal) + ajuda implícita (Marcos vai te ajudar igual).</li>
         </ul>
       </div>
+      </div>
     </div>
   </article>
 
@@ -431,6 +471,11 @@ Pero necesito que completes la encuesta para darte acceso.
       <div class="when">Disparo: agora ataca quem desconfia</div>
     </div>
     <div class="email-body">
+      <a class="email-screenshot" href="emails/05-por-que-pido-la-encuesta.png" target="_blank">
+        <img src="emails/05-por-que-pido-la-encuesta.png" alt="Print do email Por qué pido la encuesta" loading="lazy">
+        <div class="caption">📷 Print original — clique pra abrir em tamanho real</div>
+      </a>
+      <div class="email-text-grid">
       <div class="email-copy">Hola Luan,
 
 Tal vez te preguntas por qué pido una encuesta antes de darte acceso.
@@ -461,6 +506,7 @@ Marcos</div>
           <li><strong>Cada email da sequência pega um perfil diferente de quem não respondeu</strong>. Não é o mesmo texto repetido — são ângulos novos a cada dia.</li>
         </ul>
       </div>
+      </div>
     </div>
   </article>
 
@@ -473,6 +519,11 @@ Marcos</div>
       <div class="when">Disparo: entrou mas não agendou call</div>
     </div>
     <div class="email-body">
+      <a class="email-screenshot" href="emails/06-te-estoy-esperando.png" target="_blank">
+        <img src="emails/06-te-estoy-esperando.png" alt="Print do email te estoy esperando Luan" loading="lazy">
+        <div class="caption">📷 Print original — clique pra abrir em tamanho real</div>
+      </a>
+      <div class="email-text-grid">
       <div class="email-copy">Luan, te escribo rápido porque vi que no agendaste tu llamada de Optimización de Oferta y Aceleración de Escalado.
 
 Esto NO es una llamada de ventas.
@@ -502,6 +553,7 @@ Toca aquí para agendarla.
           <li><strong>Prova social por inveja</strong>: "todos os que tiveram sucesso começaram por essa chamada". Quem não agenda fica de fora.</li>
         </ul>
       </div>
+      </div>
     </div>
   </article>
 
@@ -514,6 +566,11 @@ Toca aquí para agendarla.
       <div class="when">Disparo: último empurrão da sequência</div>
     </div>
     <div class="email-body">
+      <a class="email-screenshot" href="emails/07-12-horas-de-contenido.png" target="_blank">
+        <img src="emails/07-12-horas-de-contenido.png" alt="Print do email 12 horas de contenido esperándote" loading="lazy">
+        <div class="caption">📷 Print original — clique pra abrir em tamanho real</div>
+      </a>
+      <div class="email-text-grid">
       <div class="email-copy">Hola Luan,
 
 Adentro de la comunidad hay un curso de 12 horas.
@@ -540,6 +597,7 @@ Marcos</div>
           <li><strong>Última tentativa de virar a chave</strong>: o formulário aparece como personalização do acesso, não como exigência.</li>
         </ul>
       </div>
+      </div>
     </div>
   </article>
 
@@ -552,6 +610,11 @@ Marcos</div>
       <div class="when">Disparo: dentro da comunidade, sem engajar</div>
     </div>
     <div class="email-body">
+      <a class="email-screenshot" href="emails/08-aqui-no-hay-paja.png" target="_blank">
+        <img src="emails/08-aqui-no-hay-paja.png" alt="Print do email Luan, aquí no hay paja" loading="lazy">
+        <div class="caption">📷 Print original — clique pra abrir em tamanho real</div>
+      </a>
+      <div class="email-text-grid">
       <div class="email-copy">Luan, dentro de Empresarios Digitales hay mucho material.
 
 Tanto que puede abrumar un poco.
@@ -580,6 +643,7 @@ Click aquí para acceder a la primera lección de mi Skool 'Empresarios Digitale
           <li><strong>Princípio</strong>: a maior dificuldade em comunidade não é entrar, é começar a consumir. Sem consumo, não tem como vender o próximo passo.</li>
         </ul>
       </div>
+      </div>
     </div>
   </article>
 
@@ -592,6 +656,11 @@ Click aquí para acceder a la primera lección de mi Skool 'Empresarios Digitale
       <div class="when">Disparo: preparação pra live de 21/05</div>
     </div>
     <div class="email-body">
+      <a class="email-screenshot" href="emails/09-te-lo-regalo.png" target="_blank">
+        <img src="emails/09-te-lo-regalo.png" alt="Print do email Te lo regalo" loading="lazy">
+        <div class="caption">📷 Print original — clique pra abrir em tamanho real</div>
+      </a>
+      <div class="email-text-grid">
       <div class="email-copy">Luan,
 
 Anoche pasó algo curioso en el grupo.
@@ -637,6 +706,7 @@ Marcos</div>
           <li><strong>Medo de ficar de fora do evento</strong>: "se você não testar, na quinta vai ver coisas mas não vai saber o que fazer". Já compra a obrigação de ir à live.</li>
           <li><strong>Único email que não cobra formulário nem call</strong>. É preparação direta pro pitch principal — onde a receita real vai acontecer.</li>
         </ul>
+      </div>
       </div>
     </div>
   </article>
