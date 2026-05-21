@@ -141,7 +141,8 @@ def inject_skill_section(html: str, analyses: dict) -> str:
         if not m:
             print(f"[warn] card {vid} não encontrado no HTML")
             continue
-        article = m.group(1)
+        original_article = m.group(1)  # preservar pra .replace()
+        article = original_article
         # Se já tem skill-analysis-section, remove pra re-inserir com conteúdo atualizado
         if 'class="skill-analysis-section"' in article:
             article = re.sub(
@@ -172,7 +173,7 @@ def inject_skill_section(html: str, analyses: dict) -> str:
         if new_article == article:
             print(f"[warn] {vid} não conseguiu inserir (copy-section não casou)")
             continue
-        new_html = new_html.replace(article, new_article, 1)
+        new_html = new_html.replace(original_article, new_article, 1)
         injected += 1
     print(f"Injetadas {injected} análises da skill")
     return new_html
