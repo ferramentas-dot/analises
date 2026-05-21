@@ -74584,65 +74584,32 @@ filterButtons.forEach(b => b.addEventListener('click', () => {
   platformButtons.forEach(b => b.classList.toggle('active', b.dataset.platform === targetPlatform));
   applyAll();  // applyAll respeita currentPlatform — seções/cards da plataforma alvo ficam visíveis
 
-  // Trafego: scroll-to-section sem isolar — embed mostra a aba inteira já posicionada no grupo
-  if (prefix === 'trafego') {
-    const target = document.querySelector(`section[data-platform="similarweb"][data-group="${suffix}"]`);
-    if (!target) return;
-    const scrollToGroup = () => target.scrollIntoView({ block: 'start', behavior: 'instant' });
-    setTimeout(scrollToGroup, 80);
-    setTimeout(scrollToGroup, 400);
-    setTimeout(scrollToGroup, 1000);
-    setTimeout(() => {
-      scrollToGroup();
-      target.classList.add('pulse-highlight');
-      setTimeout(() => target.classList.remove('pulse-highlight'), 4200);
-    }, 1800);
-    window.addEventListener('load', () => setTimeout(scrollToGroup, 300));
-    return;
-  }
-
-  // Hide everything except the matching section (sobrescrevendo o que applyAll faria)
-  document.body.classList.add('focused-card');
-  const allSections = document.querySelectorAll('section[data-platform]');
-  let foundSection = null;
-  allSections.forEach(s => {
-    let match = s.dataset.platform === targetPlatform;
-    if (match && targetPlatform === 'similarweb') {
-      match = s.dataset.group === suffix;
-    } else if (match && (targetPlatform === 'ig' || targetPlatform === 'yt')) {
-      match = (s.dataset.stage || '').toLowerCase() === suffix;
-    }
-    // yt-divider e sw-divider são containers de header, nunca casam um stage
-    if (s.classList.contains('yt-divider') || s.classList.contains('sw-divider')) {
-      match = false;
-    }
-    if (match) {
-      // Garante que applyAll não tenha deixado classes que escondem
-      s.classList.remove('hidden-by-platform');
-      s.style.display = '';
-      foundSection = s;
+  // Scroll-to-section sem isolar — embed mostra a aba inteira (IG/YT/Tráfego/Pago)
+  // já posicionada na seção alvo, com pulse highlight. Tradeoff vs isolar: usuária
+  // pode rolar pra cima/baixo pra contexto adjacente em vez de só ver o deck isolado.
+  let target = null;
+  document.querySelectorAll('section[data-platform]').forEach(s => {
+    if (target) return;
+    if (s.classList.contains('yt-divider') || s.classList.contains('sw-divider')) return;
+    if (s.dataset.platform !== targetPlatform) return;
+    if (targetPlatform === 'similarweb') {
+      if (s.dataset.group === suffix) target = s;
     } else {
-      s.style.display = 'none';
+      if ((s.dataset.stage || '').toLowerCase() === suffix) target = s;
     }
   });
-  if (foundSection) {
-    // Garante que cards dentro da seção alvo fiquem visíveis (applyAll pode ter aplicado .hidden)
-    foundSection.querySelectorAll('.card, .sw-card').forEach(c => {
-      c.classList.remove('hidden');
-      c.style.display = '';
-    });
-    const back = document.createElement('div');
-    back.className = 'focused-back';
-    back.innerHTML = `
-      <span style="color: var(--muted)">📌 Visualização isolada de uma seção</span>
-      <a href="${window.location.pathname}" target="_top">← Ver análise completa</a>
-    `;
-    document.querySelector('main').prepend(back);
-    setTimeout(() => foundSection && foundSection.scrollIntoView({ block: 'start', behavior: 'instant' }), 50);
-  } else {
-    document.body.classList.remove('focused-card');
-    allSections.forEach(s => { s.style.display = ''; });
-  }
+  if (!target) return;
+
+  const scrollToTarget = () => target.scrollIntoView({ block: 'start', behavior: 'instant' });
+  setTimeout(scrollToTarget, 80);
+  setTimeout(scrollToTarget, 400);
+  setTimeout(scrollToTarget, 1000);
+  setTimeout(() => {
+    scrollToTarget();
+    target.classList.add('pulse-highlight');
+    setTimeout(() => target.classList.remove('pulse-highlight'), 4200);
+  }, 1800);
+  window.addEventListener('load', () => setTimeout(scrollToTarget, 300));
 })();
 
 // Focused single-card view via ?card=ID — used pelos stubs per-card embedados no Miro
