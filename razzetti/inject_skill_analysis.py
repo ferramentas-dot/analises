@@ -142,10 +142,15 @@ def inject_skill_section(html: str, analyses: dict) -> str:
             print(f"[warn] card {vid} não encontrado no HTML")
             continue
         article = m.group(1)
-        # Se já tem skill-analysis-section, pula
+        # Se já tem skill-analysis-section, remove pra re-inserir com conteúdo atualizado
         if 'class="skill-analysis-section"' in article:
-            print(f"[skip] {vid} já tem skill-analysis-section")
-            continue
+            article = re.sub(
+                r'\s*<section class="skill-analysis-section">.*?</section>',
+                '',
+                article,
+                flags=re.DOTALL,
+                count=1,
+            )
         # Achar o fim da copy-section: </section> que fecha a primeira <section class="copy-section">
         # Vamos procurar por '<p class="caption-quote">' (que está dentro da copy-section, perto do fim)
         # ou se não houver caption, procurar por '<div class="save-state" data-for="copy::VID"...>não editado</div>'
