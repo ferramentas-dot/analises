@@ -69339,6 +69339,23 @@ filterButtons.forEach(b => b.addEventListener('click', () => {
   platformButtons.forEach(b => b.classList.toggle('active', b.dataset.platform === targetPlatform));
   applyAll();  // applyAll respeita currentPlatform — seções/cards da plataforma alvo ficam visíveis
 
+  // Trafego: scroll-to-section sem isolar — embed mostra a aba inteira já posicionada no grupo
+  if (prefix === 'trafego') {
+    const target = document.querySelector(`section[data-platform="similarweb"][data-group="${suffix}"]`);
+    if (!target) return;
+    const scrollToGroup = () => target.scrollIntoView({ block: 'start', behavior: 'instant' });
+    setTimeout(scrollToGroup, 80);
+    setTimeout(scrollToGroup, 400);
+    setTimeout(scrollToGroup, 1000);
+    setTimeout(() => {
+      scrollToGroup();
+      target.classList.add('pulse-highlight');
+      setTimeout(() => target.classList.remove('pulse-highlight'), 4200);
+    }, 1800);
+    window.addEventListener('load', () => setTimeout(scrollToGroup, 300));
+    return;
+  }
+
   // Hide everything except the matching section (sobrescrevendo o que applyAll faria)
   document.body.classList.add('focused-card');
   const allSections = document.querySelectorAll('section[data-platform]');
