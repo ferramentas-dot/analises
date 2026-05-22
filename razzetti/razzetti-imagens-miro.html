@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Razzetti — Imagens pra organizar no Miro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="35 ilustrações hand-drawn / Excalidraw pra preencher o Miro do dossiê Razzetti — organizadas por seção (Funil, Criativos, Comportamento Orgânico, Análise Geral, Emails, Conclusão).">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://s4.swipeoffers.com.br/razzetti/razzetti-imagens-miro">
+<meta property="og:title" content="Razzetti — Imagens pra organizar no Miro">
+<meta property="og:description" content="35 ilustrações hand-drawn pra ancorar visualmente cada seção do dossiê Razzetti no Miro.">
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --surface: #131927;
+    --surface-2: #0f1422;
+    --border: #1e2638;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #f26b1d;
+    --funil: #38bdf8;
+    --criativos: #fbbf24;
+    --organico: #a855f7;
+    --analise: #10b981;
+    --emails: #6b7280;
+    --conclusao: #f26b1d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  header {
+    padding: 40px 48px 24px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(242,107,29,0.06), transparent);
+  }
+  header h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: -0.3px; }
+  header .sub { color: var(--muted); margin: 0 0 20px; max-width: 740px; }
+  header .back {
+    display: inline-block; color: var(--muted); text-decoration: none;
+    font-size: 13px; margin-bottom: 12px;
+  }
+  header .back:hover { color: var(--accent); }
+
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; }
+  .stat {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 12px 18px; border-radius: 8px; min-width: 130px;
+  }
+  .stat .n { font-size: 24px; font-weight: 700; }
+  .stat .l { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+  main { padding: 32px 48px 64px; max-width: 1400px; margin: 0 auto; }
+
+  section.tema {
+    margin: 0 0 48px;
+  }
+  section.tema h2 {
+    font-size: 20px; margin: 0 0 4px; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  section.tema h2 .tag {
+    display: inline-block; font-size: 11px; padding: 3px 10px;
+    border-radius: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  section.tema[data-tema="funil"] h2 .tag { background: rgba(56,189,248,0.15); color: var(--funil); }
+  section.tema[data-tema="criativos"] h2 .tag { background: rgba(251,191,36,0.15); color: var(--criativos); }
+  section.tema[data-tema="organico"] h2 .tag { background: rgba(168,85,247,0.15); color: var(--organico); }
+  section.tema[data-tema="analise"] h2 .tag { background: rgba(16,185,129,0.15); color: var(--analise); }
+  section.tema[data-tema="emails"] h2 .tag { background: rgba(107,114,128,0.15); color: var(--emails); }
+  section.tema[data-tema="conclusao"] h2 .tag { background: rgba(242,107,29,0.15); color: var(--conclusao); }
+
+  section.tema .desc {
+    color: var(--muted); font-size: 13.5px; margin: 0 0 16px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    transition: transform 0.15s, border-color 0.15s;
+    cursor: pointer;
+    display: flex; flex-direction: column;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .card .thumb {
+    background: #fff;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card .thumb img {
+    width: 100%; height: 100%; object-fit: contain;
+    display: block;
+  }
+  .card .meta {
+    padding: 10px 14px;
+  }
+  .card .meta .name {
+    font-size: 13px; font-weight: 600; color: var(--text);
+  }
+  .card .meta .order {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .card.empty {
+    grid-column: 1 / -1;
+    background: var(--surface-2);
+    padding: 24px;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+    cursor: default;
+  }
+  .card.empty:hover { transform: none; border-color: var(--border); }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 1000;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 24px;
+    cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 95vw; max-height: 92vh;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fff;
+  }
+  .lightbox .lb-close {
+    position: absolute; top: 16px; right: 24px;
+    color: #fff; font-size: 32px;
+    background: none; border: none; cursor: pointer;
+    font-weight: 200;
+  }
+  .lightbox .lb-name {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    color: var(--text); background: var(--surface);
+    padding: 8px 16px; border-radius: 6px; border: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  @media (max-width: 700px) {
+    header { padding: 28px 20px 16px; }
+    main { padding: 24px 20px 48px; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="./">← Voltar pro dossiê Razzetti</a>
+  <h1>📋 Imagens pra organizar no Miro</h1>
+  <p class="sub">35 ilustrações hand-drawn / Excalidraw pra ancorar visualmente cada seção do dossiê Razzetti no Miro. Organizadas por tema do board. Clica em qualquer imagem pra ampliar.</p>
+  <div class="stats">
+    <div class="stat"><div class="n">35</div><div class="l">imagens totais</div></div>
+    <div class="stat"><div class="n">6</div><div class="l">temas do board</div></div>
+    <div class="stat"><div class="n">20</div><div class="l">só na Conclusão</div></div>
+  </div>
+</header>
+
+<main>
+
+  <section class="tema" data-tema="funil">
+    <h2><span class="tag">Funil</span> 4 funis ativos + landing principal + análise de DMs</h2>
+    <p class="desc">Os 4 funis em sequência (ManyChat orgânico, Comercial VSL, Tripware $27, Tripware Free), a main page do BlueHackers, e a análise das DMs comerciais que vendem a call mascarada.</p>
+    <div class="grid">
+      <div class="card" data-img="imagens-miro/funil/01-funil-manychat.jpeg" data-name="Funil ManyChat">
+        <div class="thumb"><img src="imagens-miro/funil/01-funil-manychat.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Funil ManyChat</div><div class="order">01</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/funil/02-funil-comercial-vsl.jpeg" data-name="Funil Comercial VSL">
+        <div class="thumb"><img src="imagens-miro/funil/02-funil-comercial-vsl.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Funil Comercial VSL</div><div class="order">02</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/funil/03-funil-tripware-27.png" data-name="Funil Tripware $27">
+        <div class="thumb"><img src="imagens-miro/funil/03-funil-tripware-27.png" loading="lazy"></div>
+        <div class="meta"><div class="name">Funil Tripware $27</div><div class="order">03</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/funil/04-funil-tripware-free.png" data-name="Funil Tripware Free">
+        <div class="thumb"><img src="imagens-miro/funil/04-funil-tripware-free.png" loading="lazy"></div>
+        <div class="meta"><div class="name">Funil Tripware Free</div><div class="order">04</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/funil/05-main-page-bluehackers.jpeg" data-name="Main Page BlueHackers">
+        <div class="thumb"><img src="imagens-miro/funil/05-main-page-bluehackers.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Main Page BlueHackers</div><div class="order">05</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/funil/06-analise-de-chats.jpeg" data-name="Análise de Chats">
+        <div class="thumb"><img src="imagens-miro/funil/06-analise-de-chats.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Análise de Chats</div><div class="order">06</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tema" data-tema="criativos">
+    <h2><span class="tag">Criativos escalados</span> Biblioteca de ads que tão rodando muito</h2>
+    <p class="desc">Visão side-by-side das 3 levas de criativos: ads do Funil Comercial VSL, ads do Trip $27 e ads do Trip Free — os que tão escalados na biblioteca do Meta.</p>
+    <div class="grid">
+      <div class="card" data-img="imagens-miro/criativos-escalados/01-criativos-escalados.jpeg" data-name="Criativos Escalados">
+        <div class="thumb"><img src="imagens-miro/criativos-escalados/01-criativos-escalados.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Criativos Escalados</div><div class="order">01</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tema" data-tema="organico">
+    <h2><span class="tag">Comportamento orgânico</span> TOFU/MOFU/BOFU + 5 públicos + insights</h2>
+    <p class="desc">Estratégia de conteúdo orgânico: a pirâmide TOFU/MOFU/BOFU que alimenta o funil, os 5 públicos-alvo identificados nos posts fixados (Travado, Escalando, Marketer, Aspirante, Cético) e os insights de frequência (6-11 posts/dia, 73% reels com ManyChat).</p>
+    <div class="grid">
+      <div class="card" data-img="imagens-miro/comportamento-organico/01-tofu-mofu-bofu.jpeg" data-name="TOFU / MOFU / BOFU">
+        <div class="thumb"><img src="imagens-miro/comportamento-organico/01-tofu-mofu-bofu.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">TOFU / MOFU / BOFU</div><div class="order">01</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/comportamento-organico/02-publico-01-o-travado.jpeg" data-name="Público #1 — O Travado">
+        <div class="thumb"><img src="imagens-miro/comportamento-organico/02-publico-01-o-travado.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Público #1 — O Travado</div><div class="order">02</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/comportamento-organico/03-publico-02-o-escalando.jpeg" data-name="Público #2 — O Escalando">
+        <div class="thumb"><img src="imagens-miro/comportamento-organico/03-publico-02-o-escalando.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Público #2 — O Escalando</div><div class="order">03</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/comportamento-organico/04-publico-03-o-marketer-tecnico.jpeg" data-name="Público #3 — O Marketer Técnico">
+        <div class="thumb"><img src="imagens-miro/comportamento-organico/04-publico-03-o-marketer-tecnico.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Público #3 — O Marketer Técnico</div><div class="order">04</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/comportamento-organico/05-publico-04-o-aspirante.jpeg" data-name="Público #4 — O Aspirante">
+        <div class="thumb"><img src="imagens-miro/comportamento-organico/05-publico-04-o-aspirante.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Público #4 — O Aspirante</div><div class="order">05</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/comportamento-organico/06-publico-05-o-cetico.jpeg" data-name="Público #5 — O Cético">
+        <div class="thumb"><img src="imagens-miro/comportamento-organico/06-publico-05-o-cetico.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Público #5 — O Cético</div><div class="order">06</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/comportamento-organico/07-insights-gerais-frequencia-posts.jpeg" data-name="Insights de Frequência">
+        <div class="thumb"><img src="imagens-miro/comportamento-organico/07-insights-gerais-frequencia-posts.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Insights de Frequência</div><div class="order">07</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tema" data-tema="analise">
+    <h2><span class="tag">Análise geral dos funis</span> Dashboard de tráfego</h2>
+    <p class="desc">Visão macro do tráfego do BlueHackers via SimilarWeb — distribuição geográfica, fontes orgânicas vs pagas, bounce rate.</p>
+    <div class="grid">
+      <div class="card" data-img="imagens-miro/analise-geral/01-analise-de-trafego.jpeg" data-name="Análise de Tráfego (SimilarWeb)">
+        <div class="thumb"><img src="imagens-miro/analise-geral/01-analise-de-trafego.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Análise de Tráfego (SimilarWeb)</div><div class="order">01</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tema" data-tema="emails">
+    <h2><span class="tag">Emails</span> Ilustrações ainda não geradas</h2>
+    <p class="desc">Seção reservada pras ilustrações da análise de email marketing — ainda não geradas. Por enquanto, a análise textual completa de 15 emails fica em <a href="razzetti-emails.html" style="color: var(--accent);">razzetti-emails.html</a>.</p>
+    <div class="grid">
+      <div class="card empty">— Sem ilustrações ainda. Quando geradas, vão aparecer aqui.</div>
+    </div>
+  </section>
+
+  <section class="tema" data-tema="conclusao">
+    <h2><span class="tag">Conclusão</span> Jornada + Fragilidades + Playbook</h2>
+    <p class="desc">A seção mais densa do board: 2 imagens-síntese da Jornada (Fase 2 e Fase 3), 11 ilustrações dos buracos do funil (fragilidades), e 7 categorias do Playbook pra entrar no jogo.</p>
+    <div class="grid">
+      <div class="card" data-img="imagens-miro/conclusao/01-fase-2-master.jpeg" data-name="Fase 2 — Onde a pessoa se envolve">
+        <div class="thumb"><img src="imagens-miro/conclusao/01-fase-2-master.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Fase 2 — Onde se envolve</div><div class="order">01 · MASTER</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/02-fase-3-master.jpeg" data-name="Fase 3 — Pra onde a pessoa vai">
+        <div class="thumb"><img src="imagens-miro/conclusao/02-fase-3-master.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Fase 3 — Pra onde vai</div><div class="order">02 · MASTER</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/03-buraco-01-gap-preco.jpeg" data-name="Buraco 1 — Gap de Preço">
+        <div class="thumb"><img src="imagens-miro/conclusao/03-buraco-01-gap-preco.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 1 — Gap de Preço</div><div class="order">03 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/04-buraco-02-aquece-congela.jpeg" data-name="Buraco 2 — Aquece e Congela">
+        <div class="thumb"><img src="imagens-miro/conclusao/04-buraco-02-aquece-congela.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 2 — Aquece e Congela</div><div class="order">04 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/05-buraco-03-sem-recorrencia.jpeg" data-name="Buraco 3 — Sem Recorrência">
+        <div class="thumb"><img src="imagens-miro/conclusao/05-buraco-03-sem-recorrencia.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 3 — Sem Recorrência</div><div class="order">05 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/06-buraco-04-avatar-unico.jpeg" data-name="Buraco 4 — Avatar Único">
+        <div class="thumb"><img src="imagens-miro/conclusao/06-buraco-04-avatar-unico.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 4 — Avatar Único</div><div class="order">06 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/07-buraco-05-zero-urgencia.jpeg" data-name="Buraco 5 — Zero Urgência">
+        <div class="thumb"><img src="imagens-miro/conclusao/07-buraco-05-zero-urgencia.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 5 — Zero Urgência</div><div class="order">07 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/08-buraco-06-youtube-sem-ads.jpeg" data-name="Buraco 6 — YouTube sem Ads">
+        <div class="thumb"><img src="imagens-miro/conclusao/08-buraco-06-youtube-sem-ads.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 6 — YouTube sem Ads</div><div class="order">08 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/09-buraco-07-email-subutilizado.jpeg" data-name="Buraco 7 — Email Subutilizado">
+        <div class="thumb"><img src="imagens-miro/conclusao/09-buraco-07-email-subutilizado.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 7 — Email Subutilizado</div><div class="order">09 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/10-buraco-08-gargalo-closer.jpeg" data-name="Buraco 8 — Gargalo de Closer">
+        <div class="thumb"><img src="imagens-miro/conclusao/10-buraco-08-gargalo-closer.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 8 — Gargalo de Closer</div><div class="order">10 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/11-buraco-09-ruido-comunidade.jpeg" data-name="Buraco 9 — Ruído na Comunidade">
+        <div class="thumb"><img src="imagens-miro/conclusao/11-buraco-09-ruido-comunidade.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 9 — Ruído na Comunidade</div><div class="order">11 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/12-buraco-10-zero-parceria.jpeg" data-name="Buraco 10 — Zero Parceria">
+        <div class="thumb"><img src="imagens-miro/conclusao/12-buraco-10-zero-parceria.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 10 — Zero Parceria</div><div class="order">12 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/13-buraco-11-pt-br-vazio.jpeg" data-name="Buraco 11 — PT-BR Vazio">
+        <div class="thumb"><img src="imagens-miro/conclusao/13-buraco-11-pt-br-vazio.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Buraco 11 — PT-BR Vazio</div><div class="order">13 · BURACO</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/14-playbook-copiar.jpeg" data-name="Playbook — Copiar">
+        <div class="thumb"><img src="imagens-miro/conclusao/14-playbook-copiar.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Playbook — Copiar</div><div class="order">14 · PLAYBOOK</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/15-playbook-evitar.jpeg" data-name="Playbook — Evitar">
+        <div class="thumb"><img src="imagens-miro/conclusao/15-playbook-evitar.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Playbook — Evitar</div><div class="order">15 · PLAYBOOK</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/16-playbook-escada-produto.jpeg" data-name="Playbook — Escada de Produto">
+        <div class="thumb"><img src="imagens-miro/conclusao/16-playbook-escada-produto.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Playbook — Escada de Produto</div><div class="order">16 · PLAYBOOK</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/17-playbook-publico-ignorado.jpeg" data-name="Playbook — Público Ignorado">
+        <div class="thumb"><img src="imagens-miro/conclusao/17-playbook-publico-ignorado.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Playbook — Público Ignorado</div><div class="order">17 · PLAYBOOK</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/18-playbook-canal.jpeg" data-name="Playbook — Canal">
+        <div class="thumb"><img src="imagens-miro/conclusao/18-playbook-canal.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Playbook — Canal</div><div class="order">18 · PLAYBOOK</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/19-playbook-posicionamento.jpeg" data-name="Playbook — Posicionamento">
+        <div class="thumb"><img src="imagens-miro/conclusao/19-playbook-posicionamento.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Playbook — Posicionamento</div><div class="order">19 · PLAYBOOK</div></div>
+      </div>
+      <div class="card" data-img="imagens-miro/conclusao/20-playbook-pre-requisitos.jpeg" data-name="Playbook — Pré-Requisitos">
+        <div class="thumb"><img src="imagens-miro/conclusao/20-playbook-pre-requisitos.jpeg" loading="lazy"></div>
+        <div class="meta"><div class="name">Playbook — Pré-Requisitos</div><div class="order">20 · PLAYBOOK</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="lightbox" id="lightbox" onclick="closeLB(event)">
+  <button class="lb-close" onclick="closeLB(event)">×</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-name" id="lbName"></div>
+</div>
+
+<script>
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbName = document.getElementById('lbName');
+
+  document.querySelectorAll('.card[data-img]').forEach(card => {
+    card.addEventListener('click', () => {
+      lbImg.src = card.dataset.img;
+      lbName.textContent = card.dataset.name;
+      lb.classList.add('open');
+    });
+  });
+
+  function closeLB(e) {
+    if (e.target === lb || e.target.classList.contains('lb-close')) {
+      lb.classList.remove('open');
+      lbImg.src = '';
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      lb.classList.remove('open');
+      lbImg.src = '';
+    }
+  });
+</script>
+
+</body>
+</html>
