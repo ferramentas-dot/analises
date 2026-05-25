@@ -2,7 +2,8 @@
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
-<title>Jeremy Miner — Dashboard (em construção)</title>
+<title>Jeremy Miner — Análise estruturada (Instagram + YouTube + NEPQ Funnel)</title>
+<meta name="description" content="Jeremy Miner / 7th Level — cataloga conteúdo por etapa do funil, mecanismo de captura, papel e copy. Inclui Firecrawl Links do funil NEPQ.">
 <style>
   :root {
     --bg: #0b0f1a;
@@ -13,73 +14,711 @@
     --muted: #94a3b8;
     --dim: #64748b;
     --accent: #38bdf8;
+    --pink: #ec4899;
+    --red: #ef4444;
+    --orange: #f97316;
+    --green: #22c55e;
+    --purple: #a855f7;
+    --yellow: #eab308;
+    --manychat: #a855f7;
   }
   * { box-sizing: border-box; }
   body {
-    background: var(--bg); color: var(--text);
+    margin: 0;
     font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
-    margin: 0; padding: 56px 32px 80px;
-    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
     line-height: 1.5;
   }
-  .wrap { max-width: 1080px; margin: 0 auto; text-align: center; }
-  .badge { display: inline-block; background: var(--surface-2); color: var(--muted); padding: 4px 12px; border-radius: 999px; font-size: 11px; margin-bottom: 16px; letter-spacing: 0.5px; }
-  h1 { font-size: 34px; margin: 0 0 10px; }
-  p.lead { color: var(--muted); margin: 0 auto 28px; max-width: 600px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-  .links { margin: 0 0 40px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .links a {
-    background: var(--accent); color: var(--bg);
-    padding: 11px 20px; border-radius: 8px; text-decoration: none;
-    font-size: 13.5px; font-weight: 700;
-    display: inline-flex; align-items: center; gap: 8px;
+  header {
+    padding: 32px 40px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(11, 15, 26, 0.95);
+    backdrop-filter: blur(12px);
+    z-index: 10;
   }
-  .links a:hover { filter: brightness(1.1); }
-  .links a .count { background: rgba(11,15,26,0.2); padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+  h1 { margin: 0 0 8px; font-size: 24px; }
+  .subtitle { color: var(--muted); margin: 0 0 16px; }
 
-  .grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px; text-align: left;
-  }
-  .card {
+  .summary { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+  .stat {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
-    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 8px;
+    min-width: 120px;
   }
-  .card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
+  .stat .n { font-size: 24px; font-weight: 700; }
+  .stat .l { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat.tofu .n { color: var(--accent); }
+  .stat.mofu .n { color: var(--orange); }
+  .stat.bofu .n { color: var(--red); }
+  .stat.manychat .n { color: var(--manychat); }
+
+  .platform-toggle {
+    display: flex; gap: 0; margin: 0 0 14px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 4px; width: fit-content; flex-wrap: wrap;
+  }
+  .platform-btn {
+    background: transparent; border: none; color: var(--muted);
+    padding: 10px 22px; font-size: 14px; font-weight: 600;
+    cursor: pointer; border-radius: 7px; transition: all 0.18s ease;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .platform-btn:hover { color: var(--text); }
+  .platform-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  .platform-btn[data-platform="ig"].active { color: var(--pink); }
+  .platform-btn[data-platform="yt"].active { color: var(--red); }
+  .platform-btn[data-platform="similarweb"].active { color: var(--accent); }
+  .platform-btn[data-platform="ads"].active { color: var(--orange); }
+  .platform-btn[data-platform="conclusao"].active { color: var(--green); }
+  .platform-btn[data-platform="email"].active { color: var(--yellow); }
+  .platform-btn[data-platform="miro"].active { color: var(--purple); }
+  .platform-btn[data-platform="firecrawl"].active { color: var(--accent); }
+  .platform-btn .pcount {
+    font-size: 11px; background: var(--border); padding: 2px 7px;
+    border-radius: 10px; color: var(--muted); font-weight: 700;
+  }
+  .platform-btn.active .pcount { background: rgba(255,255,255,0.08); color: inherit; }
+
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .filter-btn {
     background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
   }
-  .card h3 { margin: 0 0 8px; font-size: 16px; color: var(--accent); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-  .card h3 .arrow { color: var(--dim); font-size: 14px; font-weight: 400; transition: transform 0.15s ease, color 0.15s ease; }
-  .card:hover h3 .arrow { color: var(--accent); transform: translateX(2px); }
-  .card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.45; }
+  .filter-btn:hover { border-color: var(--muted); }
+  .filter-btn.active { border-color: var(--accent); color: var(--accent); }
+  .export-btn {
+    background: var(--accent);
+    border: none;
+    color: #0b0f1a;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: auto;
+    font-family: inherit;
+  }
+  .export-btn:hover { filter: brightness(1.1); }
+
+  main {
+    padding: 24px 40px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  section[data-platform] { display: flex; flex-direction: column; gap: 16px; }
+  section[data-platform].hidden-by-platform { display: none; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    flex-wrap: wrap;
+  }
+  .section-head[data-platform-color="ig"]       { border-left-color: var(--pink); }
+  .section-head[data-platform-color="yt"]       { border-left-color: var(--red); }
+  .section-head[data-platform-color="similarweb"] { border-left-color: var(--accent); }
+  .section-head[data-platform-color="ads"]      { border-left-color: var(--orange); }
+  .section-head[data-platform-color="conclusao"]{ border-left-color: var(--green); }
+  .section-head[data-platform-color="email"]    { border-left-color: var(--yellow); }
+  .section-head[data-platform-color="miro"]     { border-left-color: var(--purple); }
+  .section-head[data-platform-color="firecrawl"]{ border-left-color: var(--accent); background: linear-gradient(135deg, rgba(56,189,248,0.10), rgba(168,85,247,0.05)); }
+  .section-head h2 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: 800;
+  }
+  .section-sub { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+  .section-stats {
+    display: flex; gap: 18px;
+    font-size: 13px; color: var(--muted);
+  }
+  .section-stats strong { color: var(--text); font-size: 15px; }
+  .section-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .section-actions a {
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: var(--accent);
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .section-actions a:hover { background: rgba(56, 189, 248, 0.18); border-color: var(--accent); text-decoration: none; }
+
+  .section-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 20px;
+  }
+
+  /* Empty state */
+  .empty-state {
+    grid-column: 1 / -1;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 56px 40px;
+    text-align: center;
+  }
+  .empty-state .emoji { font-size: 48px; opacity: 0.35; }
+  .empty-state h3 { margin: 16px 0 8px; font-size: 18px; color: var(--text); }
+  .empty-state p { color: var(--muted); margin: 0 auto; max-width: 500px; font-size: 13.5px; line-height: 1.6; }
+  .empty-state code { background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px; font-size: 12.5px; color: var(--text); }
+
+  /* Firecrawl card */
+  .fc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease;
+  }
+  .fc-card:hover { border-color: var(--accent); }
+  .fc-card .thumb {
+    display: block; width: 100%; aspect-ratio: 16 / 10;
+    overflow: hidden; background: #0a0a0a; cursor: zoom-in;
+  }
+  .fc-card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .fc-card .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .fc-card .title { margin: 0; font-size: 14.5px; font-weight: 700; line-height: 1.35; color: #f1f5f9; }
+  .fc-card .url { font-size: 11.5px; word-break: break-all; }
+  .fc-card .url a { color: var(--muted); }
+  .fc-card .url a:hover { color: var(--accent); }
+  .fc-card .traffic-box {
+    background: rgba(56,189,248,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 9px 12px;
+    margin-top: auto;
+  }
+  .fc-card .traffic-box .label {
+    color: var(--accent); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .fc-card .traffic-box p { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--text); }
+  .fc-card .links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .fc-card .links a {
+    font-size: 11.5px; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); color: var(--muted);
+    padding: 5px 10px; border-radius: 5px; font-weight: 600;
+  }
+  .fc-card .links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    display: none; align-items: center; justify-content: center;
+    z-index: 1000; cursor: zoom-out; padding: 20px;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 95vw; max-height: 95vh;
+    object-fit: contain;
+    box-shadow: 0 12px 60px rgba(0,0,0,0.8);
+    border-radius: 4px;
+  }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <span class="badge">SPY · OFERTAS BLACK</span>
-    <h1>Jeremy Miner</h1>
-    <p class="lead">Dashboard do spy do Jeremy Miner / 7th Level. Use as seções numeradas pra ir alimentando, no mesmo padrão do Razzetti.</p>
-    <div class="links">
-      <a href="firecrawl-links.html">🔥 Firecrawl Links <span class="count">17</span></a>
-    </div>
-    <div class="grid">
-      <a class="card" href="0-trafego.html"><h3>0 — Tráfego <span class="arrow">→</span></h3><p>SimilarWeb, SemRush, canais e demografia</p></a>
-      <a class="card" href="1-ads.html"><h3>1 — Ads <span class="arrow">→</span></h3><p>Meta Ads Library, transcrições, frames</p></a>
-      <a class="card" href="2-paginas.html"><h3>2 — Páginas <span class="arrow">→</span></h3><p>Landing pages, VSLs, checkouts</p></a>
-      <a class="card" href="3-funil.html"><h3>3 — Funil <span class="arrow">→</span></h3><p>Sequências, upsells, retargeting</p></a>
-      <a class="card" href="4-transcricoes.html"><h3>4 — Transcrições <span class="arrow">→</span></h3><p>YouTube, podcast, ads em texto</p></a>
-      <a class="card" href="5-analises-ia.html"><h3>5 — Análises IA <span class="arrow">→</span></h3><p>Dossiê estruturado por Claude</p></a>
-      <a class="card" href="6-emails.html"><h3>6 — Emails <span class="arrow">→</span></h3><p>Sequências de email marketing capturadas</p></a>
-    </div>
+
+<header>
+  <h1>Jeremy Miner — Análise estruturada (Instagram + YouTube + NEPQ Funnel)</h1>
+  <p class="subtitle">Jeremy Miner / 7th Level · cataloga conteúdo por etapa do funil, mecanismo de captura, papel e copy. Anote o hook visual e exporte.</p>
+
+  <div class="summary">
+    <div class="stat"><div class="n">198</div><div class="l">Total · 99 reels + 99 feed</div></div>
+    <div class="stat tofu"><div class="n">37</div><div class="l">TOFU · 19R+18F</div></div>
+    <div class="stat mofu"><div class="n">160</div><div class="l">MOFU · 80R+80F</div></div>
+    <div class="stat bofu"><div class="n">1</div><div class="l">BOFU · 0R+1F</div></div>
+    <div class="stat manychat"><div class="n">~160</div><div class="l">Com Manychat</div></div>
   </div>
+
+  <div class="platform-toggle" id="platform-toggle">
+    <button class="platform-btn" data-platform="ig">📷 Instagram <span class="pcount">198</span></button>
+    <button class="platform-btn" data-platform="yt">📺 YouTube <span class="pcount">0</span></button>
+    <button class="platform-btn" data-platform="similarweb">📊 Tráfego <span class="pcount">0</span></button>
+    <button class="platform-btn" data-platform="ads">🎯 Investimento em Meta-Ads <span class="pcount">0</span></button>
+    <button class="platform-btn" data-platform="conclusao">✅ Conclusão <span class="pcount">0</span></button>
+    <button class="platform-btn" data-platform="email">📧 Email Marketing <span class="pcount">0</span></button>
+    <button class="platform-btn" data-platform="miro">🎨 Imagens pra Miro <span class="pcount">0</span></button>
+    <button class="platform-btn active" data-platform="firecrawl">🔥 Firecrawl Links <span class="pcount">17</span></button>
+  </div>
+
+  <div class="controls">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="TOFU">TOFU</button>
+    <button class="filter-btn" data-filter="MOFU">MOFU</button>
+    <button class="filter-btn" data-filter="BOFU">BOFU</button>
+    <button class="filter-btn" data-filter="reel">Só reels</button>
+    <button class="filter-btn" data-filter="feed">Só feed</button>
+    <button class="filter-btn" data-filter="manychat">Com Manychat</button>
+    <button class="filter-btn" data-filter="no-manychat">Sem Manychat</button>
+    <button class="export-btn" onclick="exportJSON()">↓ Exportar minhas anotações (JSON)</button>
+  </div>
+</header>
+
+<main>
+
+  <section data-platform="ig" class="hidden-by-platform">
+    <div class="section-head" data-platform-color="ig">
+      <div>
+        <h2>INSTAGRAM</h2>
+        <p class="section-sub">99 reels + 99 estáticos de @jeremyleeminer · 81% MOFU com Manychat ativo</p>
+      </div>
+      <div class="section-stats">
+        <div><strong>198</strong> posts</div>
+        <div><strong>10.7M</strong> views (reels)</div>
+        <div><strong>257k</strong> likes</div>
+      </div>
+    </div>
+    <div class="section-grid">
+      <div class="empty-state">
+        <div class="emoji">📷</div>
+        <h3>198 posts catalogados — aguarda build dos cards</h3>
+        <p>Coleta concluída em 2026-05-25. Classificação TOFU/MOFU/BOFU pronta em <code>5 - Analises IA/jeremy-instagram-analise.md</code> (reels) e <code>jeremy-feed-analise.md</code> (estáticos). Top reel: 917k views. Próximo passo: rodar <code>build_html.py</code> equivalente ao razzetti pra renderizar os 198 cards aqui.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="yt" class="hidden-by-platform">
+    <div class="section-head" data-platform-color="yt">
+      <div>
+        <h2>YOUTUBE</h2>
+        <p class="section-sub">Vídeos longos do canal Jeremy Miner</p>
+      </div>
+      <div class="section-stats"><div><strong>0</strong> vídeos</div></div>
+    </div>
+    <div class="section-grid">
+      <div class="empty-state">
+        <div class="emoji">📺</div>
+        <h3>Sem vídeos catalogados ainda</h3>
+        <p>Vídeos do canal do Jeremy no YouTube entram aqui com thumb, transcrição, hook, super estrutura e CTAs com timestamp. Foco em curva de risco e ganchos do mecanismo NEPQ.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="similarweb" class="hidden-by-platform">
+    <div class="section-head" data-platform-color="similarweb">
+      <div>
+        <h2>TRÁFEGO</h2>
+        <p class="section-sub">SimilarWeb · SemRush · canais, demografia, sub-domínios</p>
+      </div>
+      <div class="section-stats"><div><strong>0</strong> cards</div></div>
+    </div>
+    <div class="section-grid">
+      <div class="empty-state">
+        <div class="emoji">📊</div>
+        <h3>Sem dados de tráfego ainda</h3>
+        <p>Análise de <code>nepqtraining.com</code> via SimilarWeb e SemRush: share por canal, branded/não-branded, redes sociais, palavras orgânicas, demografia, sub-domínios e visitantes únicos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="ads" class="hidden-by-platform">
+    <div class="section-head" data-platform-color="ads">
+      <div>
+        <h2>INVESTIMENTO EM META-ADS</h2>
+        <p class="section-sub">Criativos da Meta Ads Library, transcrições e frames</p>
+      </div>
+      <div class="section-stats"><div><strong>0</strong> criativos</div></div>
+    </div>
+    <div class="section-grid">
+      <div class="empty-state">
+        <div class="emoji">🎯</div>
+        <h3>Sem criativos catalogados ainda</h3>
+        <p>Criativos ativos do Jeremy Miner / 7th Level na Meta Ads Library — vídeos, statics, copies, datas de start/stop, frames-chave do hook e CTA. Organizado por funil (tripware / VSL / aquecimento).</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="conclusao" class="hidden-by-platform">
+    <div class="section-head" data-platform-color="conclusao">
+      <div>
+        <h2>CONCLUSÃO</h2>
+        <p class="section-sub">Síntese executiva · diagnóstico do funil · benchmarks</p>
+      </div>
+      <div class="section-stats"><div><strong>0</strong> insights</div></div>
+    </div>
+    <div class="section-grid">
+      <div class="empty-state">
+        <div class="emoji">✅</div>
+        <h3>Sem conclusões ainda</h3>
+        <p>Quando as outras seções tiverem material, a síntese executiva aparece aqui — diagnóstico do funil, benchmarks vs Razzetti / Full Sales / Thiago Reis, recomendações pra Swipe.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="email" class="hidden-by-platform">
+    <div class="section-head" data-platform-color="email">
+      <div>
+        <h2>EMAIL MARKETING</h2>
+        <p class="section-sub">Sequências capturadas · ativação · nurture · aquecimento</p>
+      </div>
+      <div class="section-stats"><div><strong>0</strong> emails</div></div>
+    </div>
+    <div class="section-grid">
+      <div class="empty-state">
+        <div class="emoji">📧</div>
+        <h3>Sem emails capturados ainda</h3>
+        <p>Cada email do funil de Jeremy (7th Level) com assunto, preview, CTA e dia da sequência. Padrão razzetti com anatomia: ativação, nurture, aquecimento pra live, follow-up de checkout.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="miro" class="hidden-by-platform">
+    <div class="section-head" data-platform-color="miro">
+      <div>
+        <h2>IMAGENS PRA MIRO</h2>
+        <p class="section-sub">Assets recortados pra montar o board no Miro</p>
+      </div>
+      <div class="section-stats"><div><strong>0</strong> assets</div></div>
+    </div>
+    <div class="section-grid">
+      <div class="empty-state">
+        <div class="emoji">🎨</div>
+        <h3>Sem assets prontos ainda</h3>
+        <p>Imagens recortadas e organizadas pra arrastar pro Miro board do Jeremy: prints de páginas, hooks de criativos, capturas do funil, screenshots SimilarWeb.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-platform="firecrawl">
+    <div class="section-head" data-platform-color="firecrawl">
+      <div>
+        <h2>🔥 FIRECRAWL LINKS</h2>
+        <p class="section-sub">17 URLs do <code>nepqtraining.com</code> capturadas via Firecrawl — print full-page + markdown limpo de cada uma</p>
+      </div>
+      <div class="section-actions">
+        <a href="firecrawl-links.html">Abrir página completa →</a>
+      </div>
+    </div>
+    <div class="section-grid" id="fc-grid"></div>
+  </section>
+
+</main>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" alt="">
+</div>
+
+<script id="pages-data" type="application/json">[
+  {
+    "slug": "home",
+    "url": "https://nepqtraining.com",
+    "title": "NEPQ — The New Model of Selling (home)",
+    "stage": "TOFU",
+    "role": "Opt-in / captura de telefone",
+    "source": "Multi",
+    "sources": ["Direto/Google", "Instagram bio", "YouTube canal"],
+    "traffic_note": "Página principal do domínio. Captura telefone via form ClickFunnels (\"Where should I send the training?\"). Tráfego dominante misto: navegação direta + buscas orgânicas por \"Jeremy Miner\" + redirect do link in bio.",
+    "screenshot": "screenshots/home.png",
+    "md": "home.md"
+  },
+  {
+    "slug": "ig",
+    "url": "https://nepqtraining.com/ig",
+    "title": "VSL 7-min — \"$33M Commissions As A W-2 Sales Rep\"",
+    "stage": "TOFU",
+    "role": "VSL principal (Instagram)",
+    "source": "Instagram",
+    "sources": ["Instagram bio"],
+    "traffic_note": "Tráfego dominante: link na bio do Instagram (@jeremyleeminer). Slug \"/ig\" confirma destino exclusivo de IG. VSL gancho de 7 min focada no número de comissão ($33M) — porta de entrada principal do funil pelo IG.",
+    "screenshot": "screenshots/ig.png",
+    "md": "ig.md"
+  },
+  {
+    "slug": "ig-bio-vsl-eml-opt59063799",
+    "url": "https://nepqtraining.com/ig-bio-vsl-eml-opt59063799",
+    "title": "VSL 7-min — variante split test (IG bio + email opt)",
+    "stage": "TOFU",
+    "role": "VSL split test (Instagram)",
+    "source": "Instagram",
+    "sources": ["Instagram bio"],
+    "traffic_note": "Tráfego dominante: Instagram bio (variante do /ig). Slug detalhado \"ig-bio-vsl-eml-opt\" = \"IG bio → VSL → email opt-in\" — split test de UTM/copy para isolar performance da bio do IG.",
+    "screenshot": "screenshots/ig-bio-vsl-eml-opt59063799.png",
+    "md": "ig-bio-vsl-eml-opt59063799.md"
+  },
+  {
+    "slug": "smv-yt-splt-opt-org59513372",
+    "url": "https://nepqtraining.com/smv-yt-splt-opt-org59513372",
+    "title": "VSL Objection Handling — \"$2.4MM/yr\"",
+    "stage": "TOFU",
+    "role": "VSL YouTube (split test orgânico)",
+    "source": "YouTube",
+    "sources": ["YouTube orgânico"],
+    "traffic_note": "Tráfego dominante: YouTube orgânico. Slug \"smv-yt-splt-opt-org\" = \"social media video / YouTube / split test / opt-in / organic\" — landing pra tráfego de vídeos do canal do YT, não pago. Gancho diferente do /ig (objection handling no lugar de $33M).",
+    "screenshot": "screenshots/smv-yt-splt-opt-org59513372.png",
+    "md": "smv-yt-splt-opt-org59513372.md"
+  },
+  {
+    "slug": "4-step-framework-1",
+    "url": "https://nepqtraining.com/4-step-framework-1",
+    "title": "4-Step Psychology Framework — 1.567 sales reps",
+    "stage": "TOFU",
+    "role": "VSL alternativa (Meta Ads / YT Ads)",
+    "source": "Ads pagos",
+    "sources": ["Meta Ads", "YouTube Ads"],
+    "traffic_note": "Tráfego dominante: ads pagos (Meta + YouTube). Slug sem prefixo de canal + número genérico = página de campanha multiplataforma. Prova social numérica forte (1.567 reps, 39,3%, 158 indústrias) — copy típica de criativos.",
+    "screenshot": "screenshots/4-step-framework-1.png",
+    "md": "4-step-framework-1.md"
+  },
+  {
+    "slug": "questions-2",
+    "url": "https://nepqtraining.com/questions-2",
+    "title": "NEPQ Black Book Bundle — sales page principal",
+    "stage": "MOFU",
+    "role": "Sales page (livro $27)",
+    "source": "Multi (ads + orgânico + email)",
+    "sources": ["Ads pagos", "Email", "Orgânico"],
+    "traffic_note": "Tráfego dominante: ads pagos + email da base. Sales page do principal lead product (Black Book of Questions). Recebe leads vindos das VSLs (/ig, /smv-yt, /4-step) e tráfego de retargeting.",
+    "screenshot": "screenshots/questions-2.png",
+    "md": "questions-2.md"
+  },
+  {
+    "slug": "get-black-book-1",
+    "url": "https://nepqtraining.com/get-black-book-1",
+    "title": "NEPQ Black Book — variante de sales page",
+    "stage": "MOFU",
+    "role": "Sales page (variante)",
+    "source": "Ads pagos",
+    "sources": ["Meta Ads", "Email"],
+    "traffic_note": "Tráfego dominante: ads pagos (variante). Slug \"get-black-book-1\" indica split test/destino específico de criativos. Promove a 2ª edição do livro com 80+ páginas novas — mesmo produto que /questions-2 com headline diferente.",
+    "screenshot": "screenshots/get-black-book-1.png",
+    "md": "get-black-book-1.md"
+  },
+  {
+    "slug": "ask-performance-1",
+    "url": "https://nepqtraining.com/ask-performance-1",
+    "title": "NEPQ Black Book — 2nd Edition (Ask Performance)",
+    "stage": "MOFU",
+    "role": "Sales page (Ask Performance)",
+    "source": "Ads pagos / Email",
+    "sources": ["Ads pagos", "Email"],
+    "traffic_note": "Tráfego dominante: ads pagos + email da base. \"Ask Performance\" provavelmente é uma plataforma/campanha de retargeting. Mesma oferta (Black Book 2ª ed) com headline e CTAs ajustados.",
+    "screenshot": "screenshots/ask-performance-1.png",
+    "md": "ask-performance-1.md"
+  },
+  {
+    "slug": "checkout-page1665069976273-paypal",
+    "url": "https://nepqtraining.com/checkout-page1665069976273-paypal",
+    "title": "Checkout — SPECIAL CHALLENGE-ONLY OFFER (PayPal)",
+    "stage": "BOFU",
+    "role": "Checkout (variante PayPal)",
+    "source": "Funil interno",
+    "sources": ["Funil interno pós-sales page"],
+    "traffic_note": "Tráfego dominante: redirecionamento interno das sales pages. Não recebe tráfego externo direto. Variante PayPal do checkout do NEPQ Sales Program — \"Special Challenge-Only Offer\" indica oferta limitada pós-challenge.",
+    "screenshot": "screenshots/checkout-page1665069976273-paypal.png",
+    "md": "checkout-page1665069976273-paypal.md"
+  },
+  {
+    "slug": "download-1",
+    "url": "https://nepqtraining.com/download-1",
+    "title": "NEPQ Black Book — página de download (thank-you)",
+    "stage": "POST",
+    "role": "Thank-you / download",
+    "source": "Funil interno",
+    "sources": ["Pós-compra (redirect)"],
+    "traffic_note": "Tráfego dominante: redirect pós-compra. Não recebe tráfego externo — só compradores do Black Book chegam aqui pra baixar. Página típica de \"deliver + upsell\" com 75 KB de conteúdo (mais longa, indica order bumps embutidos).",
+    "screenshot": "screenshots/download-1.png",
+    "md": "download-1.md"
+  },
+  {
+    "slug": "bboq-coaching-1",
+    "url": "https://nepqtraining.com/bboq-coaching-1",
+    "title": "1-on-1 NEPQ Coaching Call — Free booking",
+    "stage": "BOFU",
+    "role": "Upsell HT (coaching call free)",
+    "source": "Funil interno / Email",
+    "sources": ["Email pós-compra", "Funil interno"],
+    "traffic_note": "Tráfego dominante: email pra compradores do Black Book. Slug \"bboq\" = \"Black Book of Questions\" — upsell direto pro mercado de high ticket (call grátis 1-on-1 com NEPQ Expert).",
+    "screenshot": "screenshots/bboq-coaching-1.png",
+    "md": "bboq-coaching-1.md"
+  },
+  {
+    "slug": "application-page16563432685801669291335388",
+    "url": "https://nepqtraining.com/application-page16563432685801669291335388",
+    "title": "FREE Sales Audit Application — call $1.000",
+    "stage": "BOFU",
+    "role": "Aplicação HT (form Typeform)",
+    "source": "Funil interno",
+    "sources": ["Pós-VSL", "Email"],
+    "traffic_note": "Tráfego dominante: redirect pós-VSL principal e email de nurture. Form Typeform pra qualificar lead pra call de $1.000 (audit grátis). Hash longo no slug = ID interno do funnel builder.",
+    "screenshot": "screenshots/application-page16563432685801669291335388.png",
+    "md": "application-page16563432685801669291335388.md"
+  },
+  {
+    "slug": "meetup-2024",
+    "url": "https://nepqtraining.com/meetup-2024",
+    "title": "Official NEPQ LIVE Meetup 2024",
+    "stage": "BOFU",
+    "role": "Sales page evento (HT)",
+    "source": "Email da base",
+    "sources": ["Email da base de clientes"],
+    "traffic_note": "Tráfego dominante: email da base de clientes 7th Level. Evento intimista presencial (HT) — único canal viável é email pra base já aquecida. Não tem links externos pagos apontando pra cá.",
+    "screenshot": "screenshots/meetup-2024.png",
+    "md": "meetup-2024.md"
+  },
+  {
+    "slug": "7q-ai-waitlist",
+    "url": "https://nepqtraining.com/7q-ai-waitlist",
+    "title": "Ask Jeremy + 7Q.ai — exclusive waitlist",
+    "stage": "TOFU",
+    "role": "Waitlist email / produto novo",
+    "source": "Email da base",
+    "sources": ["Email da base", "Anúncios pra clientes 7th Level"],
+    "traffic_note": "Tráfego dominante: email da base 7th Level. Pergunta \"Are You A 7th Level Client Yet?\" = segmentação direta da audiência interna. Lista de espera pra produto novo (AI \"Ask Jeremy\").",
+    "screenshot": "screenshots/7q-ai-waitlist.png",
+    "md": "7q-ai-waitlist.md"
+  },
+  {
+    "slug": "refund",
+    "url": "https://nepqtraining.com/refund",
+    "title": "Cancellation and Refund Policy",
+    "stage": "LEGAL",
+    "role": "Política de reembolso",
+    "source": "Direto / Footer",
+    "sources": ["Link footer", "Pesquisa do comprador"],
+    "traffic_note": "Tráfego baixo. Acessada via footer das sales pages e por compradores buscando garantia. Não recebe tráfego externo.",
+    "screenshot": "screenshots/refund.png",
+    "md": "refund.md"
+  },
+  {
+    "slug": "meetup-refunds",
+    "url": "https://nepqtraining.com/meetup-refunds",
+    "title": "Meetup — Refund Policy",
+    "stage": "LEGAL",
+    "role": "Política de reembolso (evento)",
+    "source": "Direto / Footer evento",
+    "sources": ["Link no checkout do meetup"],
+    "traffic_note": "Tráfego baixo. Acessada por inscritos no meetup buscando política específica do evento. Linkada no checkout do /meetup-2024.",
+    "screenshot": "screenshots/meetup-refunds.png",
+    "md": "meetup-refunds.md"
+  },
+  {
+    "slug": "sweepstakes",
+    "url": "https://nepqtraining.com/sweepstakes",
+    "title": "Sweepstakes — Terms & Conditions",
+    "stage": "LEGAL",
+    "role": "Termos de sorteio",
+    "source": "Campanha sweepstakes",
+    "sources": ["Campanhas específicas de sorteio"],
+    "traffic_note": "Tráfego pontual. Acessada via campanhas de sorteio rodadas pelo 7th Level — provável uso em creativos de IG/email pra capturar leads novos via prêmio.",
+    "screenshot": "screenshots/sweepstakes.png",
+    "md": "sweepstakes.md"
+  }
+]</script>
+
+<script>
+let PAGES = [];
+let activePlatform = 'firecrawl';
+
+function load() {
+  try {
+    PAGES = JSON.parse(document.getElementById('pages-data').textContent);
+  } catch (e) {
+    console.error('Falha lendo pages-data:', e);
+    return;
+  }
+  renderFirecrawl();
+}
+
+function renderFirecrawl() {
+  const grid = document.getElementById('fc-grid');
+  grid.innerHTML = '';
+  PAGES.forEach(p => grid.appendChild(buildFcCard(p)));
+}
+
+function buildFcCard(p) {
+  const c = document.createElement('article');
+  c.className = 'fc-card';
+  const shot = 'firecrawl-links/' + p.screenshot;
+  const md   = 'firecrawl-links/' + p.md;
+  c.innerHTML = `
+    <a class="thumb" href="${shot}" onclick="openShot(event,'${shot}')">
+      <img src="${shot}" alt="print ${p.slug}" loading="lazy">
+    </a>
+    <div class="body">
+      <h3 class="title">${p.title}</h3>
+      <div class="url"><a href="${p.url}" target="_blank">${p.url}</a></div>
+      <div class="traffic-box">
+        <div class="label">Tráfego dominante</div>
+        <p>${p.traffic_note}</p>
+      </div>
+      <div class="links">
+        <a href="${md}" target="_blank">Markdown</a>
+        <a href="${shot}" target="_blank">Print completo</a>
+        <a href="${p.url}" target="_blank">Página ao vivo ↗</a>
+      </div>
+    </div>
+  `;
+  return c;
+}
+
+function openShot(ev, href) {
+  ev.preventDefault();
+  document.getElementById('lightbox-img').src = href;
+  document.getElementById('lightbox').classList.add('active');
+}
+
+function exportJSON() {
+  const data = document.getElementById('pages-data').textContent;
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'jeremy-miner-anotacoes.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Platform toggle
+document.getElementById('platform-toggle').addEventListener('click', e => {
+  const btn = e.target.closest('.platform-btn');
+  if (!btn) return;
+  document.querySelectorAll('#platform-toggle .platform-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activePlatform = btn.dataset.platform;
+  document.querySelectorAll('section[data-platform]').forEach(s => {
+    s.classList.toggle('hidden-by-platform', s.dataset.platform !== activePlatform);
+  });
+});
+
+// Stage filters (TOFU/MOFU/BOFU) - applied to firecrawl cards
+document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    // Stage filter is a no-op while firecrawl cards aren't stage-tagged in UI
+    // (it'll start working once IG/YT posts are catalogued)
+  });
+});
+
+load();
+</script>
+
 </body>
 </html>
