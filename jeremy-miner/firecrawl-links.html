@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Firecrawl Links — Jeremy Miner (nepqtraining.com)</title>
+<meta name="description" content="17 URLs do domínio nepqtraining.com (Jeremy Miner / NEPQ) capturadas via Firecrawl com print full-page e markdown limpo.">
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --surface: #131927;
+    --surface-2: #0f1422;
+    --border: #1e2638;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --dim: #64748b;
+    --accent: #38bdf8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header {
+    padding: 32px 40px 20px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(11, 15, 26, 0.95);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .head-text { max-width: 720px; }
+  .badge-tag { display: inline-block; background: var(--surface-2); color: var(--muted); padding: 4px 10px; border-radius: 999px; font-size: 11px; letter-spacing: 0.5px; margin-bottom: 10px; }
+  h1 { margin: 0 0 6px; font-size: 26px; }
+  .subtitle { color: var(--muted); margin: 0; font-size: 14px; }
+  .head-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .count {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 16px; font-size: 13px; color: var(--muted);
+  }
+  .count strong { color: var(--text); font-size: 18px; font-weight: 700; }
+  .export-btn {
+    background: var(--accent);
+    color: #0b0f1a;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .export-btn:hover { filter: brightness(1.1); text-decoration: none; }
+  .back-btn {
+    background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+    padding: 9px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none;
+  }
+  .back-btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  main { padding: 28px 40px 56px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease;
+  }
+  .card:hover { border-color: var(--accent); }
+
+  .thumb {
+    display: block; width: 100%; aspect-ratio: 16 / 10;
+    overflow: hidden; background: #0a0a0a;
+    cursor: zoom-in;
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+  .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .card-title { margin: 0; font-size: 14.5px; font-weight: 700; line-height: 1.35; color: #f1f5f9; }
+  .card-url { font-size: 11.5px; word-break: break-all; }
+  .card-url a { color: var(--muted); }
+  .card-url a:hover { color: var(--accent); }
+
+  .traffic-box {
+    background: rgba(56,189,248,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 9px 12px;
+    margin-top: auto;
+  }
+  .traffic-box .label {
+    color: var(--accent); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .traffic-box p { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--text); }
+
+  .card-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .card-links a {
+    font-size: 11.5px; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); color: var(--muted);
+    padding: 5px 10px; border-radius: 5px; font-weight: 600;
+  }
+  .card-links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    display: none; align-items: center; justify-content: center;
+    z-index: 1000; cursor: zoom-out; padding: 20px;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 95vw; max-height: 95vh;
+    object-fit: contain;
+    box-shadow: 0 12px 60px rgba(0,0,0,0.8);
+    border-radius: 4px;
+  }
+
+  footer { padding: 24px 40px; text-align: center; color: var(--dim); font-size: 12px; border-top: 1px solid var(--border); }
+  footer code { background: rgba(255,255,255,0.04); padding: 1px 6px; border-radius: 4px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-text">
+    <span class="badge-tag">SPY · JEREMY MINER · FIRECRAWL</span>
+    <h1>Firecrawl Links</h1>
+    <p class="subtitle">17 URLs do domínio <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--text);">nepqtraining.com</code> capturadas via Firecrawl — print full-page + markdown limpo de cada uma.</p>
+  </div>
+  <div class="head-actions">
+    <div class="count"><strong>17</strong> links</div>
+    <a class="back-btn" href="index.html">← Dashboard</a>
+    <button class="export-btn" type="button" onclick="exportJSON()">↓ Exportar JSON</button>
+  </div>
+</header>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  Capturado em <span id="gen-date">2026-05-25</span> · Fonte: <code>nepqtraining.com</code> via Firecrawl <code>/v2/scrape</code>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" alt="">
+</div>
+
+<script id="pages-data" type="application/json">[
+  {
+    "slug": "home",
+    "url": "https://nepqtraining.com",
+    "title": "NEPQ — The New Model of Selling (home)",
+    "stage": "TOFU",
+    "role": "Opt-in / captura de telefone",
+    "source": "Multi",
+    "sources": ["Direto/Google", "Instagram bio", "YouTube canal"],
+    "traffic_note": "Página principal do domínio. Captura telefone via form ClickFunnels (\"Where should I send the training?\"). Tráfego dominante misto: navegação direta + buscas orgânicas por \"Jeremy Miner\" + redirect do link in bio.",
+    "screenshot": "screenshots/home.png",
+    "md": "home.md"
+  },
+  {
+    "slug": "ig",
+    "url": "https://nepqtraining.com/ig",
+    "title": "VSL 7-min — \"$33M Commissions As A W-2 Sales Rep\"",
+    "stage": "TOFU",
+    "role": "VSL principal (Instagram)",
+    "source": "Instagram",
+    "sources": ["Instagram bio"],
+    "traffic_note": "Tráfego dominante: link na bio do Instagram (@jeremyleeminer). Slug \"/ig\" confirma destino exclusivo de IG. VSL gancho de 7 min focada no número de comissão ($33M) — porta de entrada principal do funil pelo IG.",
+    "screenshot": "screenshots/ig.png",
+    "md": "ig.md"
+  },
+  {
+    "slug": "ig-bio-vsl-eml-opt59063799",
+    "url": "https://nepqtraining.com/ig-bio-vsl-eml-opt59063799",
+    "title": "VSL 7-min — variante split test (IG bio + email opt)",
+    "stage": "TOFU",
+    "role": "VSL split test (Instagram)",
+    "source": "Instagram",
+    "sources": ["Instagram bio"],
+    "traffic_note": "Tráfego dominante: Instagram bio (variante do /ig). Slug detalhado \"ig-bio-vsl-eml-opt\" = \"IG bio → VSL → email opt-in\" — split test de UTM/copy para isolar performance da bio do IG.",
+    "screenshot": "screenshots/ig-bio-vsl-eml-opt59063799.png",
+    "md": "ig-bio-vsl-eml-opt59063799.md"
+  },
+  {
+    "slug": "smv-yt-splt-opt-org59513372",
+    "url": "https://nepqtraining.com/smv-yt-splt-opt-org59513372",
+    "title": "VSL Objection Handling — \"$2.4MM/yr\"",
+    "stage": "TOFU",
+    "role": "VSL YouTube (split test orgânico)",
+    "source": "YouTube",
+    "sources": ["YouTube orgânico"],
+    "traffic_note": "Tráfego dominante: YouTube orgânico. Slug \"smv-yt-splt-opt-org\" = \"social media video / YouTube / split test / opt-in / organic\" — landing pra tráfego de vídeos do canal do YT, não pago. Gancho diferente do /ig (objection handling no lugar de $33M).",
+    "screenshot": "screenshots/smv-yt-splt-opt-org59513372.png",
+    "md": "smv-yt-splt-opt-org59513372.md"
+  },
+  {
+    "slug": "4-step-framework-1",
+    "url": "https://nepqtraining.com/4-step-framework-1",
+    "title": "4-Step Psychology Framework — 1.567 sales reps",
+    "stage": "TOFU",
+    "role": "VSL alternativa (Meta Ads / YT Ads)",
+    "source": "Ads pagos",
+    "sources": ["Meta Ads", "YouTube Ads"],
+    "traffic_note": "Tráfego dominante: ads pagos (Meta + YouTube). Slug sem prefixo de canal + número genérico = página de campanha multiplataforma. Prova social numérica forte (1.567 reps, 39,3%, 158 indústrias) — copy típica de criativos.",
+    "screenshot": "screenshots/4-step-framework-1.png",
+    "md": "4-step-framework-1.md"
+  },
+  {
+    "slug": "questions-2",
+    "url": "https://nepqtraining.com/questions-2",
+    "title": "NEPQ Black Book Bundle — sales page principal",
+    "stage": "MOFU",
+    "role": "Sales page (livro $27)",
+    "source": "Multi (ads + orgânico + email)",
+    "sources": ["Ads pagos", "Email", "Orgânico"],
+    "traffic_note": "Tráfego dominante: ads pagos + email da base. Sales page do principal lead product (Black Book of Questions). Recebe leads vindos das VSLs (/ig, /smv-yt, /4-step) e tráfego de retargeting.",
+    "screenshot": "screenshots/questions-2.png",
+    "md": "questions-2.md"
+  },
+  {
+    "slug": "get-black-book-1",
+    "url": "https://nepqtraining.com/get-black-book-1",
+    "title": "NEPQ Black Book — variante de sales page",
+    "stage": "MOFU",
+    "role": "Sales page (variante)",
+    "source": "Ads pagos",
+    "sources": ["Meta Ads", "Email"],
+    "traffic_note": "Tráfego dominante: ads pagos (variante). Slug \"get-black-book-1\" indica split test/destino específico de criativos. Promove a 2ª edição do livro com 80+ páginas novas — mesmo produto que /questions-2 com headline diferente.",
+    "screenshot": "screenshots/get-black-book-1.png",
+    "md": "get-black-book-1.md"
+  },
+  {
+    "slug": "ask-performance-1",
+    "url": "https://nepqtraining.com/ask-performance-1",
+    "title": "NEPQ Black Book — 2nd Edition (Ask Performance)",
+    "stage": "MOFU",
+    "role": "Sales page (Ask Performance)",
+    "source": "Ads pagos / Email",
+    "sources": ["Ads pagos", "Email"],
+    "traffic_note": "Tráfego dominante: ads pagos + email da base. \"Ask Performance\" provavelmente é uma plataforma/campanha de retargeting. Mesma oferta (Black Book 2ª ed) com headline e CTAs ajustados.",
+    "screenshot": "screenshots/ask-performance-1.png",
+    "md": "ask-performance-1.md"
+  },
+  {
+    "slug": "checkout-page1665069976273-paypal",
+    "url": "https://nepqtraining.com/checkout-page1665069976273-paypal",
+    "title": "Checkout — SPECIAL CHALLENGE-ONLY OFFER (PayPal)",
+    "stage": "BOFU",
+    "role": "Checkout (variante PayPal)",
+    "source": "Funil interno",
+    "sources": ["Funil interno pós-sales page"],
+    "traffic_note": "Tráfego dominante: redirecionamento interno das sales pages. Não recebe tráfego externo direto. Variante PayPal do checkout do NEPQ Sales Program — \"Special Challenge-Only Offer\" indica oferta limitada pós-challenge.",
+    "screenshot": "screenshots/checkout-page1665069976273-paypal.png",
+    "md": "checkout-page1665069976273-paypal.md"
+  },
+  {
+    "slug": "download-1",
+    "url": "https://nepqtraining.com/download-1",
+    "title": "NEPQ Black Book — página de download (thank-you)",
+    "stage": "POST",
+    "role": "Thank-you / download",
+    "source": "Funil interno",
+    "sources": ["Pós-compra (redirect)"],
+    "traffic_note": "Tráfego dominante: redirect pós-compra. Não recebe tráfego externo — só compradores do Black Book chegam aqui pra baixar. Página típica de \"deliver + upsell\" com 75 KB de conteúdo (mais longa, indica order bumps embutidos).",
+    "screenshot": "screenshots/download-1.png",
+    "md": "download-1.md"
+  },
+  {
+    "slug": "bboq-coaching-1",
+    "url": "https://nepqtraining.com/bboq-coaching-1",
+    "title": "1-on-1 NEPQ Coaching Call — Free booking",
+    "stage": "BOFU",
+    "role": "Upsell HT (coaching call free)",
+    "source": "Funil interno / Email",
+    "sources": ["Email pós-compra", "Funil interno"],
+    "traffic_note": "Tráfego dominante: email pra compradores do Black Book. Slug \"bboq\" = \"Black Book of Questions\" — upsell direto pro mercado de high ticket (call grátis 1-on-1 com NEPQ Expert).",
+    "screenshot": "screenshots/bboq-coaching-1.png",
+    "md": "bboq-coaching-1.md"
+  },
+  {
+    "slug": "application-page16563432685801669291335388",
+    "url": "https://nepqtraining.com/application-page16563432685801669291335388",
+    "title": "FREE Sales Audit Application — call $1.000",
+    "stage": "BOFU",
+    "role": "Aplicação HT (form Typeform)",
+    "source": "Funil interno",
+    "sources": ["Pós-VSL", "Email"],
+    "traffic_note": "Tráfego dominante: redirect pós-VSL principal e email de nurture. Form Typeform pra qualificar lead pra call de $1.000 (audit grátis). Hash longo no slug = ID interno do funnel builder.",
+    "screenshot": "screenshots/application-page16563432685801669291335388.png",
+    "md": "application-page16563432685801669291335388.md"
+  },
+  {
+    "slug": "meetup-2024",
+    "url": "https://nepqtraining.com/meetup-2024",
+    "title": "Official NEPQ LIVE Meetup 2024",
+    "stage": "BOFU",
+    "role": "Sales page evento (HT)",
+    "source": "Email da base",
+    "sources": ["Email da base de clientes"],
+    "traffic_note": "Tráfego dominante: email da base de clientes 7th Level. Evento intimista presencial (HT) — único canal viável é email pra base já aquecida. Não tem links externos pagos apontando pra cá.",
+    "screenshot": "screenshots/meetup-2024.png",
+    "md": "meetup-2024.md"
+  },
+  {
+    "slug": "7q-ai-waitlist",
+    "url": "https://nepqtraining.com/7q-ai-waitlist",
+    "title": "Ask Jeremy + 7Q.ai — exclusive waitlist",
+    "stage": "TOFU",
+    "role": "Waitlist email / produto novo",
+    "source": "Email da base",
+    "sources": ["Email da base", "Anúncios pra clientes 7th Level"],
+    "traffic_note": "Tráfego dominante: email da base 7th Level. Pergunta \"Are You A 7th Level Client Yet?\" = segmentação direta da audiência interna. Lista de espera pra produto novo (AI \"Ask Jeremy\").",
+    "screenshot": "screenshots/7q-ai-waitlist.png",
+    "md": "7q-ai-waitlist.md"
+  },
+  {
+    "slug": "refund",
+    "url": "https://nepqtraining.com/refund",
+    "title": "Cancellation and Refund Policy",
+    "stage": "LEGAL",
+    "role": "Política de reembolso",
+    "source": "Direto / Footer",
+    "sources": ["Link footer", "Pesquisa do comprador"],
+    "traffic_note": "Tráfego baixo. Acessada via footer das sales pages e por compradores buscando garantia. Não recebe tráfego externo.",
+    "screenshot": "screenshots/refund.png",
+    "md": "refund.md"
+  },
+  {
+    "slug": "meetup-refunds",
+    "url": "https://nepqtraining.com/meetup-refunds",
+    "title": "Meetup — Refund Policy",
+    "stage": "LEGAL",
+    "role": "Política de reembolso (evento)",
+    "source": "Direto / Footer evento",
+    "sources": ["Link no checkout do meetup"],
+    "traffic_note": "Tráfego baixo. Acessada por inscritos no meetup buscando política específica do evento. Linkada no checkout do /meetup-2024.",
+    "screenshot": "screenshots/meetup-refunds.png",
+    "md": "meetup-refunds.md"
+  },
+  {
+    "slug": "sweepstakes",
+    "url": "https://nepqtraining.com/sweepstakes",
+    "title": "Sweepstakes — Terms & Conditions",
+    "stage": "LEGAL",
+    "role": "Termos de sorteio",
+    "source": "Campanha sweepstakes",
+    "sources": ["Campanhas específicas de sorteio"],
+    "traffic_note": "Tráfego pontual. Acessada via campanhas de sorteio rodadas pelo 7th Level — provável uso em creativos de IG/email pra capturar leads novos via prêmio.",
+    "screenshot": "screenshots/sweepstakes.png",
+    "md": "sweepstakes.md"
+  }
+]</script>
+
+<script>
+let PAGES = [];
+
+function load() {
+  try {
+    PAGES = JSON.parse(document.getElementById('pages-data').textContent);
+  } catch (e) {
+    document.getElementById('grid').innerHTML = '<div style="color:#94a3b8;padding:40px;text-align:center">Erro lendo dados: ' + e.message + '</div>';
+    return;
+  }
+  render();
+}
+
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  PAGES.forEach(p => grid.appendChild(buildCard(p)));
+}
+
+function buildCard(p) {
+  const card = document.createElement('article');
+  card.className = 'card';
+  const shotHref = 'firecrawl-links/' + p.screenshot;
+  const mdHref   = 'firecrawl-links/' + p.md;
+  card.innerHTML = `
+    <a class="thumb" href="${shotHref}" onclick="openShot(event, '${shotHref}')">
+      <img src="${shotHref}" alt="print ${p.slug}" loading="lazy">
+    </a>
+    <div class="card-body">
+      <h3 class="card-title">${p.title}</h3>
+      <div class="card-url"><a href="${p.url}" target="_blank">${p.url}</a></div>
+      <div class="traffic-box">
+        <div class="label">Tráfego dominante</div>
+        <p>${p.traffic_note}</p>
+      </div>
+      <div class="card-links">
+        <a href="${mdHref}" target="_blank">Markdown</a>
+        <a href="${shotHref}" target="_blank">Print completo</a>
+        <a href="${p.url}" target="_blank">Página ao vivo ↗</a>
+      </div>
+    </div>
+  `;
+  return card;
+}
+
+function openShot(ev, href) {
+  ev.preventDefault();
+  document.getElementById('lightbox-img').src = href;
+  document.getElementById('lightbox').classList.add('active');
+}
+
+function exportJSON() {
+  const data = document.getElementById('pages-data').textContent;
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'jeremy-miner-firecrawl-links.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById('gen-date').textContent = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+load();
+</script>
+
+</body>
+</html>
