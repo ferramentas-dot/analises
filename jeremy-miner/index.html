@@ -4,40 +4,81 @@
 <meta charset="utf-8">
 <title>Jeremy Miner — Dashboard (em construção)</title>
 <style>
-  body {
-    background: #0b0f1a; color: #e2e8f0;
-    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
-    margin: 0; padding: 40px;
-    min-height: 100vh;
+  :root {
+    --bg: #0b0f1a;
+    --surface: #131927;
+    --surface-2: #0f1422;
+    --border: #1e2638;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --dim: #64748b;
+    --accent: #38bdf8;
   }
-  .wrap { max-width: 960px; margin: 0 auto; text-align: center; }
-  h1 { font-size: 32px; margin: 0 0 12px; }
-  p.lead { color: #94a3b8; margin: 0 auto 32px; max-width: 600px; line-height: 1.5; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 32px; }
-  .card { background: #111827; border: 1px solid #1f2937; border-radius: 8px; padding: 20px; text-align: left; }
-  .card h3 { margin: 0 0 8px; font-size: 16px; color: #38bdf8; }
-  .card p { margin: 0; font-size: 13px; color: #64748b; line-height: 1.4; }
-  .badge { display: inline-block; background: #1e293b; color: #94a3b8; padding: 4px 10px; border-radius: 999px; font-size: 11px; margin-bottom: 16px; letter-spacing: 0.5px; }
-  .links { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .links a { background: #1e293b; color: #38bdf8; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    margin: 0; padding: 56px 32px 80px;
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; text-align: center; }
+  .badge { display: inline-block; background: var(--surface-2); color: var(--muted); padding: 4px 12px; border-radius: 999px; font-size: 11px; margin-bottom: 16px; letter-spacing: 0.5px; }
+  h1 { font-size: 34px; margin: 0 0 10px; }
+  p.lead { color: var(--muted); margin: 0 auto 28px; max-width: 600px; }
+
+  .links { margin: 0 0 40px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .links a {
+    background: var(--accent); color: var(--bg);
+    padding: 11px 20px; border-radius: 8px; text-decoration: none;
+    font-size: 13.5px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .links a:hover { filter: brightness(1.1); }
+  .links a .count { background: rgba(11,15,26,0.2); padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px; text-align: left;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+    cursor: pointer;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    background: var(--surface);
+  }
+  .card h3 { margin: 0 0 8px; font-size: 16px; color: var(--accent); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .card h3 .arrow { color: var(--dim); font-size: 14px; font-weight: 400; transition: transform 0.15s ease, color 0.15s ease; }
+  .card:hover h3 .arrow { color: var(--accent); transform: translateX(2px); }
+  .card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.45; }
 </style>
 </head>
 <body>
   <div class="wrap">
     <span class="badge">SPY · OFERTAS BLACK</span>
     <h1>Jeremy Miner</h1>
-    <p class="lead">Dashboard em construção. Use as pastas numeradas pra ir alimentando o spy desse concorrente, no mesmo padrão do Razzetti.</p>
+    <p class="lead">Dashboard do spy do Jeremy Miner / 7th Level. Use as seções numeradas pra ir alimentando, no mesmo padrão do Razzetti.</p>
     <div class="links">
-      <a href="firecrawl-links.html" style="background:#38bdf8;color:#0b0f1a">🔥 Firecrawl Links <span style="font-size:11px;background:rgba(11,15,26,0.2);padding:2px 8px;border-radius:999px;margin-left:6px">17</span></a>
+      <a href="firecrawl-links.html">🔥 Firecrawl Links <span class="count">17</span></a>
     </div>
     <div class="grid">
-      <div class="card"><h3>0 — Tráfego</h3><p>SimilarWeb, SemRush, canais e demografia</p></div>
-      <div class="card"><h3>1 — Ads</h3><p>Meta Ads Library, transcrições, frames</p></div>
-      <div class="card"><h3>2 — Páginas</h3><p>Landing pages, VSLs, checkouts</p></div>
-      <div class="card"><h3>3 — Funil</h3><p>Sequências, upsells, retargeting</p></div>
-      <div class="card"><h3>4 — Transcrições</h3><p>YouTube, podcast, ads em texto</p></div>
-      <div class="card"><h3>5 — Análises IA</h3><p>Dossiê estruturado por Claude</p></div>
-      <div class="card"><h3>6 — Emails</h3><p>Sequências de email marketing capturadas</p></div>
+      <a class="card" href="0-trafego.html"><h3>0 — Tráfego <span class="arrow">→</span></h3><p>SimilarWeb, SemRush, canais e demografia</p></a>
+      <a class="card" href="1-ads.html"><h3>1 — Ads <span class="arrow">→</span></h3><p>Meta Ads Library, transcrições, frames</p></a>
+      <a class="card" href="2-paginas.html"><h3>2 — Páginas <span class="arrow">→</span></h3><p>Landing pages, VSLs, checkouts</p></a>
+      <a class="card" href="3-funil.html"><h3>3 — Funil <span class="arrow">→</span></h3><p>Sequências, upsells, retargeting</p></a>
+      <a class="card" href="4-transcricoes.html"><h3>4 — Transcrições <span class="arrow">→</span></h3><p>YouTube, podcast, ads em texto</p></a>
+      <a class="card" href="5-analises-ia.html"><h3>5 — Análises IA <span class="arrow">→</span></h3><p>Dossiê estruturado por Claude</p></a>
+      <a class="card" href="6-emails.html"><h3>6 — Emails <span class="arrow">→</span></h3><p>Sequências de email marketing capturadas</p></a>
     </div>
   </div>
 </body>
