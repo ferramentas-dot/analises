@@ -99,6 +99,15 @@
   .card-url { font-size: 11.5px; word-break: break-all; }
   .card-url a { color: var(--muted); }
   .card-url a:hover { color: var(--accent); }
+  .card-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+  .date-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 9px; border-radius: 999px;
+    background: rgba(56,189,248,0.10); color: var(--accent);
+    border: 1px solid rgba(56,189,248,0.3); font-weight: 600;
+    cursor: help; user-select: none;
+  }
+  .date-badge.missing { background: rgba(148,163,184,0.06); color: var(--dim); border-color: var(--border); }
 
   .traffic-box {
     background: rgba(56,189,248,0.06);
@@ -166,212 +175,7 @@
   <img id="lightbox-img" alt="">
 </div>
 
-<script id="pages-data" type="application/json">[
-  {
-    "slug": "home",
-    "url": "https://nepqtraining.com",
-    "title": "NEPQ — The New Model of Selling (home)",
-    "stage": "TOFU",
-    "role": "Opt-in / captura de telefone",
-    "source": "Multi",
-    "sources": ["Direto/Google", "Instagram bio", "YouTube canal"],
-    "traffic_note": "Página principal do domínio. Captura telefone via form ClickFunnels (\"Where should I send the training?\"). Tráfego dominante misto: navegação direta + buscas orgânicas por \"Jeremy Miner\" + redirect do link in bio.",
-    "screenshot": "screenshots/home.png",
-    "md": "home.md"
-  },
-  {
-    "slug": "ig",
-    "url": "https://nepqtraining.com/ig",
-    "title": "VSL 7-min — \"$33M Commissions As A W-2 Sales Rep\"",
-    "stage": "TOFU",
-    "role": "VSL principal (Instagram)",
-    "source": "Instagram",
-    "sources": ["Instagram bio"],
-    "traffic_note": "Tráfego dominante: link na bio do Instagram (@jeremyleeminer). Slug \"/ig\" confirma destino exclusivo de IG. VSL gancho de 7 min focada no número de comissão ($33M) — porta de entrada principal do funil pelo IG.",
-    "screenshot": "screenshots/ig.png",
-    "md": "ig.md"
-  },
-  {
-    "slug": "ig-bio-vsl-eml-opt59063799",
-    "url": "https://nepqtraining.com/ig-bio-vsl-eml-opt59063799",
-    "title": "VSL 7-min — variante split test (IG bio + email opt)",
-    "stage": "TOFU",
-    "role": "VSL split test (Instagram)",
-    "source": "Instagram",
-    "sources": ["Instagram bio"],
-    "traffic_note": "Tráfego dominante: Instagram bio (variante do /ig). Slug detalhado \"ig-bio-vsl-eml-opt\" = \"IG bio → VSL → email opt-in\" — split test de UTM/copy para isolar performance da bio do IG.",
-    "screenshot": "screenshots/ig-bio-vsl-eml-opt59063799.png",
-    "md": "ig-bio-vsl-eml-opt59063799.md"
-  },
-  {
-    "slug": "smv-yt-splt-opt-org59513372",
-    "url": "https://nepqtraining.com/smv-yt-splt-opt-org59513372",
-    "title": "VSL Objection Handling — \"$2.4MM/yr\"",
-    "stage": "TOFU",
-    "role": "VSL YouTube (split test orgânico)",
-    "source": "YouTube",
-    "sources": ["YouTube orgânico"],
-    "traffic_note": "Tráfego dominante: YouTube orgânico. Slug \"smv-yt-splt-opt-org\" = \"social media video / YouTube / split test / opt-in / organic\" — landing pra tráfego de vídeos do canal do YT, não pago. Gancho diferente do /ig (objection handling no lugar de $33M).",
-    "screenshot": "screenshots/smv-yt-splt-opt-org59513372.png",
-    "md": "smv-yt-splt-opt-org59513372.md"
-  },
-  {
-    "slug": "4-step-framework-1",
-    "url": "https://nepqtraining.com/4-step-framework-1",
-    "title": "4-Step Psychology Framework — 1.567 sales reps",
-    "stage": "TOFU",
-    "role": "VSL alternativa (Meta Ads / YT Ads)",
-    "source": "Ads pagos",
-    "sources": ["Meta Ads", "YouTube Ads"],
-    "traffic_note": "Tráfego dominante: ads pagos (Meta + YouTube). Slug sem prefixo de canal + número genérico = página de campanha multiplataforma. Prova social numérica forte (1.567 reps, 39,3%, 158 indústrias) — copy típica de criativos.",
-    "screenshot": "screenshots/4-step-framework-1.png",
-    "md": "4-step-framework-1.md"
-  },
-  {
-    "slug": "questions-2",
-    "url": "https://nepqtraining.com/questions-2",
-    "title": "NEPQ Black Book Bundle — sales page principal",
-    "stage": "MOFU",
-    "role": "Sales page (livro $27)",
-    "source": "Multi (ads + orgânico + email)",
-    "sources": ["Ads pagos", "Email", "Orgânico"],
-    "traffic_note": "Tráfego dominante: ads pagos + email da base. Sales page do principal lead product (Black Book of Questions). Recebe leads vindos das VSLs (/ig, /smv-yt, /4-step) e tráfego de retargeting.",
-    "screenshot": "screenshots/questions-2.png",
-    "md": "questions-2.md"
-  },
-  {
-    "slug": "get-black-book-1",
-    "url": "https://nepqtraining.com/get-black-book-1",
-    "title": "NEPQ Black Book — variante de sales page",
-    "stage": "MOFU",
-    "role": "Sales page (variante)",
-    "source": "Ads pagos",
-    "sources": ["Meta Ads", "Email"],
-    "traffic_note": "Tráfego dominante: ads pagos (variante). Slug \"get-black-book-1\" indica split test/destino específico de criativos. Promove a 2ª edição do livro com 80+ páginas novas — mesmo produto que /questions-2 com headline diferente.",
-    "screenshot": "screenshots/get-black-book-1.png",
-    "md": "get-black-book-1.md"
-  },
-  {
-    "slug": "ask-performance-1",
-    "url": "https://nepqtraining.com/ask-performance-1",
-    "title": "NEPQ Black Book — 2nd Edition (Ask Performance)",
-    "stage": "MOFU",
-    "role": "Sales page (Ask Performance)",
-    "source": "Ads pagos / Email",
-    "sources": ["Ads pagos", "Email"],
-    "traffic_note": "Tráfego dominante: ads pagos + email da base. \"Ask Performance\" provavelmente é uma plataforma/campanha de retargeting. Mesma oferta (Black Book 2ª ed) com headline e CTAs ajustados.",
-    "screenshot": "screenshots/ask-performance-1.png",
-    "md": "ask-performance-1.md"
-  },
-  {
-    "slug": "checkout-page1665069976273-paypal",
-    "url": "https://nepqtraining.com/checkout-page1665069976273-paypal",
-    "title": "Checkout — SPECIAL CHALLENGE-ONLY OFFER (PayPal)",
-    "stage": "BOFU",
-    "role": "Checkout (variante PayPal)",
-    "source": "Funil interno",
-    "sources": ["Funil interno pós-sales page"],
-    "traffic_note": "Tráfego dominante: redirecionamento interno das sales pages. Não recebe tráfego externo direto. Variante PayPal do checkout do NEPQ Sales Program — \"Special Challenge-Only Offer\" indica oferta limitada pós-challenge.",
-    "screenshot": "screenshots/checkout-page1665069976273-paypal.png",
-    "md": "checkout-page1665069976273-paypal.md"
-  },
-  {
-    "slug": "download-1",
-    "url": "https://nepqtraining.com/download-1",
-    "title": "NEPQ Black Book — página de download (thank-you)",
-    "stage": "POST",
-    "role": "Thank-you / download",
-    "source": "Funil interno",
-    "sources": ["Pós-compra (redirect)"],
-    "traffic_note": "Tráfego dominante: redirect pós-compra. Não recebe tráfego externo — só compradores do Black Book chegam aqui pra baixar. Página típica de \"deliver + upsell\" com 75 KB de conteúdo (mais longa, indica order bumps embutidos).",
-    "screenshot": "screenshots/download-1.png",
-    "md": "download-1.md"
-  },
-  {
-    "slug": "bboq-coaching-1",
-    "url": "https://nepqtraining.com/bboq-coaching-1",
-    "title": "1-on-1 NEPQ Coaching Call — Free booking",
-    "stage": "BOFU",
-    "role": "Upsell HT (coaching call free)",
-    "source": "Funil interno / Email",
-    "sources": ["Email pós-compra", "Funil interno"],
-    "traffic_note": "Tráfego dominante: email pra compradores do Black Book. Slug \"bboq\" = \"Black Book of Questions\" — upsell direto pro mercado de high ticket (call grátis 1-on-1 com NEPQ Expert).",
-    "screenshot": "screenshots/bboq-coaching-1.png",
-    "md": "bboq-coaching-1.md"
-  },
-  {
-    "slug": "application-page16563432685801669291335388",
-    "url": "https://nepqtraining.com/application-page16563432685801669291335388",
-    "title": "FREE Sales Audit Application — call $1.000",
-    "stage": "BOFU",
-    "role": "Aplicação HT (form Typeform)",
-    "source": "Funil interno",
-    "sources": ["Pós-VSL", "Email"],
-    "traffic_note": "Tráfego dominante: redirect pós-VSL principal e email de nurture. Form Typeform pra qualificar lead pra call de $1.000 (audit grátis). Hash longo no slug = ID interno do funnel builder.",
-    "screenshot": "screenshots/application-page16563432685801669291335388.png",
-    "md": "application-page16563432685801669291335388.md"
-  },
-  {
-    "slug": "meetup-2024",
-    "url": "https://nepqtraining.com/meetup-2024",
-    "title": "Official NEPQ LIVE Meetup 2024",
-    "stage": "BOFU",
-    "role": "Sales page evento (HT)",
-    "source": "Email da base",
-    "sources": ["Email da base de clientes"],
-    "traffic_note": "Tráfego dominante: email da base de clientes 7th Level. Evento intimista presencial (HT) — único canal viável é email pra base já aquecida. Não tem links externos pagos apontando pra cá.",
-    "screenshot": "screenshots/meetup-2024.png",
-    "md": "meetup-2024.md"
-  },
-  {
-    "slug": "7q-ai-waitlist",
-    "url": "https://nepqtraining.com/7q-ai-waitlist",
-    "title": "Ask Jeremy + 7Q.ai — exclusive waitlist",
-    "stage": "TOFU",
-    "role": "Waitlist email / produto novo",
-    "source": "Email da base",
-    "sources": ["Email da base", "Anúncios pra clientes 7th Level"],
-    "traffic_note": "Tráfego dominante: email da base 7th Level. Pergunta \"Are You A 7th Level Client Yet?\" = segmentação direta da audiência interna. Lista de espera pra produto novo (AI \"Ask Jeremy\").",
-    "screenshot": "screenshots/7q-ai-waitlist.png",
-    "md": "7q-ai-waitlist.md"
-  },
-  {
-    "slug": "refund",
-    "url": "https://nepqtraining.com/refund",
-    "title": "Cancellation and Refund Policy",
-    "stage": "LEGAL",
-    "role": "Política de reembolso",
-    "source": "Direto / Footer",
-    "sources": ["Link footer", "Pesquisa do comprador"],
-    "traffic_note": "Tráfego baixo. Acessada via footer das sales pages e por compradores buscando garantia. Não recebe tráfego externo.",
-    "screenshot": "screenshots/refund.png",
-    "md": "refund.md"
-  },
-  {
-    "slug": "meetup-refunds",
-    "url": "https://nepqtraining.com/meetup-refunds",
-    "title": "Meetup — Refund Policy",
-    "stage": "LEGAL",
-    "role": "Política de reembolso (evento)",
-    "source": "Direto / Footer evento",
-    "sources": ["Link no checkout do meetup"],
-    "traffic_note": "Tráfego baixo. Acessada por inscritos no meetup buscando política específica do evento. Linkada no checkout do /meetup-2024.",
-    "screenshot": "screenshots/meetup-refunds.png",
-    "md": "meetup-refunds.md"
-  },
-  {
-    "slug": "sweepstakes",
-    "url": "https://nepqtraining.com/sweepstakes",
-    "title": "Sweepstakes — Terms & Conditions",
-    "stage": "LEGAL",
-    "role": "Termos de sorteio",
-    "source": "Campanha sweepstakes",
-    "sources": ["Campanhas específicas de sorteio"],
-    "traffic_note": "Tráfego pontual. Acessada via campanhas de sorteio rodadas pelo 7th Level — provável uso em creativos de IG/email pra capturar leads novos via prêmio.",
-    "screenshot": "screenshots/sweepstakes.png",
-    "md": "sweepstakes.md"
-  }
-]</script>
+<script id="pages-data" type="application/json">[{"slug":"home","url":"https://nepqtraining.com","title":"NEPQ — The New Model of Selling (home)","stage":"TOFU","role":"Opt-in / captura de telefone","source":"Multi","sources":["Direto/Google","Instagram bio","YouTube canal"],"traffic_note":"Página principal do domínio. Captura telefone via form ClickFunnels (\"Where should I send the training?\"). Tráfego dominante misto: navegação direta + buscas orgânicas por \"Jeremy Miner\" + redirect do link in bio.","screenshot":"screenshots/home.png","md":"home.md","date":"","date_source":"none"},{"slug":"ig","url":"https://nepqtraining.com/ig","title":"VSL 7-min — \"$33M Commissions As A W-2 Sales Rep\"","stage":"TOFU","role":"VSL principal (Instagram)","source":"Instagram","sources":["Instagram bio"],"traffic_note":"Tráfego dominante: link na bio do Instagram (@jeremyleeminer). Slug \"/ig\" confirma destino exclusivo de IG. VSL gancho de 7 min focada no número de comissão ($33M) — porta de entrada principal do funil pelo IG.","screenshot":"screenshots/ig.png","md":"ig.md","date":"","date_source":"none"},{"slug":"ig-bio-vsl-eml-opt59063799","url":"https://nepqtraining.com/ig-bio-vsl-eml-opt59063799","title":"VSL 7-min — variante split test (IG bio + email opt)","stage":"TOFU","role":"VSL split test (Instagram)","source":"Instagram","sources":["Instagram bio"],"traffic_note":"Tráfego dominante: Instagram bio (variante do /ig). Slug detalhado \"ig-bio-vsl-eml-opt\" = \"IG bio → VSL → email opt-in\" — split test de UTM/copy para isolar performance da bio do IG.","screenshot":"screenshots/ig-bio-vsl-eml-opt59063799.png","md":"ig-bio-vsl-eml-opt59063799.md","date":"","date_source":"none"},{"slug":"smv-yt-splt-opt-org59513372","url":"https://nepqtraining.com/smv-yt-splt-opt-org59513372","title":"VSL Objection Handling — \"$2.4MM/yr\"","stage":"TOFU","role":"VSL YouTube (split test orgânico)","source":"YouTube","sources":["YouTube orgânico"],"traffic_note":"Tráfego dominante: YouTube orgânico. Slug \"smv-yt-splt-opt-org\" = \"social media video / YouTube / split test / opt-in / organic\" — landing pra tráfego de vídeos do canal do YT, não pago. Gancho diferente do /ig (objection handling no lugar de $33M).","screenshot":"screenshots/smv-yt-splt-opt-org59513372.png","md":"smv-yt-splt-opt-org59513372.md","date":"2025-01-17","date_source":"wayback"},{"slug":"4-step-framework-1","url":"https://nepqtraining.com/4-step-framework-1","title":"4-Step Psychology Framework — 1.567 sales reps","stage":"TOFU","role":"VSL alternativa (Meta Ads / YT Ads)","source":"Ads pagos","sources":["Meta Ads","YouTube Ads"],"traffic_note":"Tráfego dominante: ads pagos (Meta + YouTube). Slug sem prefixo de canal + número genérico = página de campanha multiplataforma. Prova social numérica forte (1.567 reps, 39,3%, 158 indústrias) — copy típica de criativos.","screenshot":"screenshots/4-step-framework-1.png","md":"4-step-framework-1.md","date":"","date_source":"none"},{"slug":"questions-2","url":"https://nepqtraining.com/questions-2","title":"NEPQ Black Book Bundle — sales page principal","stage":"MOFU","role":"Sales page (livro $27)","source":"Multi (ads + orgânico + email)","sources":["Ads pagos","Email","Orgânico"],"traffic_note":"Tráfego dominante: ads pagos + email da base. Sales page do principal lead product (Black Book of Questions). Recebe leads vindos das VSLs (/ig, /smv-yt, /4-step) e tráfego de retargeting.","screenshot":"screenshots/questions-2.png","md":"questions-2.md","date":"","date_source":"none"},{"slug":"get-black-book-1","url":"https://nepqtraining.com/get-black-book-1","title":"NEPQ Black Book — variante de sales page","stage":"MOFU","role":"Sales page (variante)","source":"Ads pagos","sources":["Meta Ads","Email"],"traffic_note":"Tráfego dominante: ads pagos (variante). Slug \"get-black-book-1\" indica split test/destino específico de criativos. Promove a 2ª edição do livro com 80+ páginas novas — mesmo produto que /questions-2 com headline diferente.","screenshot":"screenshots/get-black-book-1.png","md":"get-black-book-1.md","date":"2025-08-27","date_source":"wayback"},{"slug":"ask-performance-1","url":"https://nepqtraining.com/ask-performance-1","title":"NEPQ Black Book — 2nd Edition (Ask Performance)","stage":"MOFU","role":"Sales page (Ask Performance)","source":"Ads pagos / Email","sources":["Ads pagos","Email"],"traffic_note":"Tráfego dominante: ads pagos + email da base. \"Ask Performance\" provavelmente é uma plataforma/campanha de retargeting. Mesma oferta (Black Book 2ª ed) com headline e CTAs ajustados.","screenshot":"screenshots/ask-performance-1.png","md":"ask-performance-1.md","date":"","date_source":"none"},{"slug":"checkout-page1665069976273-paypal","url":"https://nepqtraining.com/checkout-page1665069976273-paypal","title":"Checkout — SPECIAL CHALLENGE-ONLY OFFER (PayPal)","stage":"BOFU","role":"Checkout (variante PayPal)","source":"Funil interno","sources":["Funil interno pós-sales page"],"traffic_note":"Tráfego dominante: redirecionamento interno das sales pages. Não recebe tráfego externo direto. Variante PayPal do checkout do NEPQ Sales Program — \"Special Challenge-Only Offer\" indica oferta limitada pós-challenge.","screenshot":"screenshots/checkout-page1665069976273-paypal.png","md":"checkout-page1665069976273-paypal.md","date":"2022-10-06","date_source":"slug-ts-ms"},{"slug":"download-1","url":"https://nepqtraining.com/download-1","title":"NEPQ Black Book — página de download (thank-you)","stage":"POST","role":"Thank-you / download","source":"Funil interno","sources":["Pós-compra (redirect)"],"traffic_note":"Tráfego dominante: redirect pós-compra. Não recebe tráfego externo — só compradores do Black Book chegam aqui pra baixar. Página típica de \"deliver + upsell\" com 75 KB de conteúdo (mais longa, indica order bumps embutidos).","screenshot":"screenshots/download-1.png","md":"download-1.md","date":"","date_source":"none"},{"slug":"bboq-coaching-1","url":"https://nepqtraining.com/bboq-coaching-1","title":"1-on-1 NEPQ Coaching Call — Free booking","stage":"BOFU","role":"Upsell HT (coaching call free)","source":"Funil interno / Email","sources":["Email pós-compra","Funil interno"],"traffic_note":"Tráfego dominante: email pra compradores do Black Book. Slug \"bboq\" = \"Black Book of Questions\" — upsell direto pro mercado de high ticket (call grátis 1-on-1 com NEPQ Expert).","screenshot":"screenshots/bboq-coaching-1.png","md":"bboq-coaching-1.md","date":"","date_source":"none"},{"slug":"application-page16563432685801669291335388","url":"https://nepqtraining.com/application-page16563432685801669291335388","title":"FREE Sales Audit Application — call $1.000","stage":"BOFU","role":"Aplicação HT (form Typeform)","source":"Funil interno","sources":["Pós-VSL","Email"],"traffic_note":"Tráfego dominante: redirect pós-VSL principal e email de nurture. Form Typeform pra qualificar lead pra call de $1.000 (audit grátis). Hash longo no slug = ID interno do funnel builder.","screenshot":"screenshots/application-page16563432685801669291335388.png","md":"application-page16563432685801669291335388.md","date":"2022-06-27","date_source":"slug-ts-ms"},{"slug":"meetup-2024","url":"https://nepqtraining.com/meetup-2024","title":"Official NEPQ LIVE Meetup 2024","stage":"BOFU","role":"Sales page evento (HT)","source":"Email da base","sources":["Email da base de clientes"],"traffic_note":"Tráfego dominante: email da base de clientes 7th Level. Evento intimista presencial (HT) — único canal viável é email pra base já aquecida. Não tem links externos pagos apontando pra cá.","screenshot":"screenshots/meetup-2024.png","md":"meetup-2024.md","date":"2024","date_source":"slug-year"},{"slug":"7q-ai-waitlist","url":"https://nepqtraining.com/7q-ai-waitlist","title":"Ask Jeremy + 7Q.ai — exclusive waitlist","stage":"TOFU","role":"Waitlist email / produto novo","source":"Email da base","sources":["Email da base","Anúncios pra clientes 7th Level"],"traffic_note":"Tráfego dominante: email da base 7th Level. Pergunta \"Are You A 7th Level Client Yet?\" = segmentação direta da audiência interna. Lista de espera pra produto novo (AI \"Ask Jeremy\").","screenshot":"screenshots/7q-ai-waitlist.png","md":"7q-ai-waitlist.md","date":"2025-11-10","date_source":"wayback"},{"slug":"refund","url":"https://nepqtraining.com/refund","title":"Cancellation and Refund Policy","stage":"LEGAL","role":"Política de reembolso","source":"Direto / Footer","sources":["Link footer","Pesquisa do comprador"],"traffic_note":"Tráfego baixo. Acessada via footer das sales pages e por compradores buscando garantia. Não recebe tráfego externo.","screenshot":"screenshots/refund.png","md":"refund.md","date":"","date_source":"none"},{"slug":"meetup-refunds","url":"https://nepqtraining.com/meetup-refunds","title":"Meetup — Refund Policy","stage":"LEGAL","role":"Política de reembolso (evento)","source":"Direto / Footer evento","sources":["Link no checkout do meetup"],"traffic_note":"Tráfego baixo. Acessada por inscritos no meetup buscando política específica do evento. Linkada no checkout do /meetup-2024.","screenshot":"screenshots/meetup-refunds.png","md":"meetup-refunds.md","date":"2024-09-10","date_source":"wayback"},{"slug":"sweepstakes","url":"https://nepqtraining.com/sweepstakes","title":"Sweepstakes — Terms \u0026 Conditions","stage":"LEGAL","role":"Termos de sorteio","source":"Campanha sweepstakes","sources":["Campanhas específicas de sorteio"],"traffic_note":"Tráfego pontual. Acessada via campanhas de sorteio rodadas pelo 7th Level — provável uso em creativos de IG/email pra capturar leads novos via prêmio.","screenshot":"screenshots/sweepstakes.png","md":"sweepstakes.md","date":"","date_source":"none"}]</script>
 
 <script>
 let PAGES = [];
@@ -397,11 +201,38 @@ function buildCard(p) {
   card.className = 'card';
   const shotHref = 'firecrawl-links/' + p.screenshot;
   const mdHref   = 'firecrawl-links/' + p.md;
+
+  // Formata data: YYYY-MM-DD -> DD/MM/YYYY; YYYY -> só "YYYY"
+  let dateHtml = '';
+  if (p.date) {
+    let label = p.date;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(p.date)) {
+      const [y, m, d] = p.date.split('-');
+      label = `${d}/${m}/${y}`;
+    } else if (/^\d{4}$/.test(p.date)) {
+      label = p.date;
+    }
+    // Tooltip explicando origem da data
+    const sourceLabel = ({
+      'slug-ts-ms': 'timestamp embutido no URL',
+      'slug-ts-s':  'timestamp embutido no URL',
+      'slug-year':  'ano no nome da página',
+      'wayback':    'primeiro snapshot Wayback Machine',
+      'meta.publishedTime':   'meta publishedTime',
+      'meta.ogPublishedTime': 'meta ogPublishedTime',
+      'meta.modifiedTime':    'meta modifiedTime',
+    })[p.date_source] || (p.date_source || '—');
+    dateHtml = `<span class="date-badge" title="fonte: ${sourceLabel}">📅 ${label}</span>`;
+  } else {
+    dateHtml = `<span class="date-badge missing" title="ClickFunnels não expõe data e não há snapshot Wayback">📅 sem data</span>`;
+  }
+
   card.innerHTML = `
     <a class="thumb" href="${shotHref}" onclick="openShot(event, '${shotHref}')">
       <img src="${shotHref}" alt="print ${p.slug}" loading="lazy">
     </a>
     <div class="card-body">
+      <div class="card-meta">${dateHtml}</div>
       <h3 class="card-title">${p.title}</h3>
       <div class="card-url"><a href="${p.url}" target="_blank">${p.url}</a></div>
       <div class="traffic-box">
