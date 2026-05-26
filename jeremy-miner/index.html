@@ -443,7 +443,82 @@
     box-shadow: 0 12px 60px rgba(0,0,0,0.8);
     border-radius: 4px;
   }
-</style>
+
+  /* SimilarWeb section — copiado do razzetti */
+  .sw-divider { margin-top: 28px; }
+  .sw-header {
+    background: linear-gradient(135deg, rgba(56,189,248,0.14), rgba(168,85,247,0.08)) !important;
+    border-left: 4px solid #38bdf8 !important;
+    border-color: rgba(56,189,248,0.4) !important;
+  }
+  .sw-header h2 { font-size: 24px !important; }
+  .sw-header .section-sub { max-width: 920px; font-size: 13.5px; line-height: 1.55; color: var(--text); opacity: 0.85; }
+  .sw-header .section-sub code { background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+  .sw-grid { display: flex; flex-direction: column; gap: 22px; }
+  .sw-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    display: grid; grid-template-columns: 1fr; gap: 0;
+    align-items: stretch;
+  }
+  @media (min-width: 1100px) {
+    .sw-card { grid-template-columns: minmax(560px, 1fr) minmax(420px, 1fr); }
+  }
+  .sw-img-wrap {
+    background: var(--surface-2); position: relative;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 16px;
+    align-self: stretch;
+  }
+  .sw-img-wrap .sw-sticky {
+    position: sticky; top: 80px;
+    width: 100%;
+    display: flex; flex-direction: column; gap: 8px;
+    align-items: center;
+  }
+  .sw-img-wrap img {
+    width: 100%; max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    cursor: zoom-in;
+    transition: box-shadow 0.15s ease;
+    background: var(--bg);
+  }
+  .sw-img-wrap img:hover { box-shadow: 0 0 0 2px var(--accent); }
+  .sw-img-hint {
+    font-size: 11px; color: var(--muted); letter-spacing: 0.3px;
+  }
+  .sw-img-missing {
+    color: var(--muted); font-size: 13px; text-align: center;
+    line-height: 1.6;
+    padding: 60px 20px;
+  }
+  .sw-img-missing code {
+    background: rgba(56,189,248,0.12); color: var(--accent);
+    padding: 2px 8px; border-radius: 4px; font-size: 12px;
+    display: inline-block; margin-top: 6px;
+  }
+  .sw-body { padding: 18px 22px 20px; }
+  .sw-body h4 {
+    margin: 0 0 10px; font-size: 16px; font-weight: 700; color: var(--text);
+    line-height: 1.3;
+  }
+  .sw-destaque {
+    margin: 0 0 14px; padding: 10px 14px;
+    background: rgba(56,189,248,0.08); border-left: 3px solid var(--accent);
+    border-radius: 4px; font-size: 13.5px; line-height: 1.5; color: var(--text);
+  }
+  .sw-explanation p {
+    margin: 0 0 10px; font-size: 13.5px; line-height: 1.65; color: var(--text);
+  }
+  .sw-explanation p:last-child { margin-bottom: 0; }
+  .sw-explanation strong { color: var(--accent); }
+  .sw-explanation code {
+    background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px;
+    font-size: 12.5px; color: var(--text);
+  }
+
+  \1
 </head>
 <body>
 
@@ -462,7 +537,7 @@
   <div class="platform-toggle" id="platform-toggle">
     <button class="platform-btn" data-platform="ig">📷 Instagram <span class="pcount">198</span></button>
     <button class="platform-btn" data-platform="yt">📺 YouTube <span class="pcount">0</span></button>
-    <button class="platform-btn" data-platform="similarweb">📊 Tráfego <span class="pcount">0</span></button>
+    <button class="platform-btn" data-platform="similarweb">📊 Tráfego <span class="pcount">20</span></button>
     <button class="platform-btn" data-platform="ads">🎯 Investimento em Meta-Ads <span class="pcount">0</span></button>
     <button class="platform-btn" data-platform="conclusao">✅ Conclusão <span class="pcount">0</span></button>
     <button class="platform-btn" data-platform="email">📧 Email Marketing <span class="pcount">0</span></button>
@@ -564,20 +639,526 @@
   </section>
 
   <section data-platform="similarweb" class="hidden-by-platform">
-    <div class="section-head" data-platform-color="similarweb">
-      <div>
-        <h2>TRÁFEGO</h2>
-        <p class="section-sub">SimilarWeb · SemRush · canais, demografia, sub-domínios</p>
-      </div>
-      <div class="section-stats"><div><strong>0</strong> cards</div></div>
-    </div>
-    <div class="section-grid">
-      <div class="empty-state">
-        <div class="emoji">📊</div>
-        <h3>Sem dados de tráfego ainda</h3>
-        <p>Análise de <code>nepqtraining.com</code> via SimilarWeb e SemRush: share por canal, branded/não-branded, redes sociais, palavras orgânicas, demografia, sub-domínios e visitantes únicos.</p>
-      </div>
-    </div>
+    <!--SW_START-->
+    <section class="section sw-divider" data-platform="similarweb">
+      <header class="section-head sw-header">
+        <div>
+          <h2 style="color: #38bdf8">📊 SimilarWeb · Análise de Tráfego do Jeremy Miner / 7th Level</h2>
+          <p class="section-sub">20 prints organizados em 5 grupos por importância. Cada um vem com destaque técnico + explicação em linguagem simples. Os PNGs ficam em <code>similarweb_prints/</code>.</p>
+        </div>
+        <div class="section-stats">
+          <span><strong>20</strong> prints</span>
+          <span><strong>5</strong> grupos</span>
+        </div>
+      </header>
+    </section>
+
+        <section class="section" data-platform="similarweb" data-group="grupo1">
+          <header class="section-head" style="border-left-color: #0ea5e9">
+            <div>
+              <h2 style="color: #0ea5e9">🌐 GRUPO 1 — Domínios mapeados</h2>
+              <p class="section-sub">Onde o tráfego do Jeremy realmente vive. Compara o domínio principal (captação fria) com o subdomínio do livro (nutrição profunda).</p>
+            </div>
+            <div class="section-stats">
+              <span><strong>2</strong> prints</span>
+            </div>
+          </header>
+          <div class="sw-grid">
+            <article class="sw-card" data-id="sw-00-main-domain-nepqtraining">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/00-main-domain-nepqtraining.png" alt="Snapshot SimilarWeb do nepqtraining.com — 36.5K visitas mensais, bounce 80.45%, duração 24s" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>00-main-domain-nepqtraining.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>nepqtraining.com — visão macro do domínio principal</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> Domínio principal caindo 47% em 3 meses (68K → 36K). Bounce 80% + duração 24s + 1,27 páginas/visita = porta de entrada de VSL, não destino editorial.</p>
+                <div class="sw-explanation">
+                  <p>O nepqtraining.com é o tronco do funil do Jeremy. SimilarWeb mostra 36,5 mil visitas mensais em abril/2026 — mas o gráfico de tendência é um tobogã: fevereiro tinha 68K, março 62K, abril 36K. Perdeu quase metade do volume em 90 dias.</p>
+                  <p>Os números de engajamento confirmam a tese de porta única: <strong>bounce 80,45%</strong>, <strong>1,27 páginas por visita</strong>, <strong>duração média 24 segundos</strong>. Visitante chega, vê uma página (a VSL ou a landing do livro), e sai. Não navega.</p>
+                  <p>Isso não é defeito — é desenho. O nepqtraining.com é uma máquina de captação de leads pra ofertas. A página existe pra converter clique-em-anúncio em opt-in, não pra educar. A profundidade do consumo acontece em outro lugar (próximo card).</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-01-subdomain-nepqblackbook">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/01-subdomain-nepqblackbook.png" alt="Snapshot SimilarWeb do nepqblackbook.com — 22.9K visitas mensais, bounce 44.2%, duração 3:17, 3.72 pgs/visita" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>01-subdomain-nepqblackbook.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>nepqblackbook.com — onde o lead realmente educa</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> Subdomínio do livro engaja <strong>8x mais</strong> que o domínio principal: duração 3:17 vs 0:24, 3,72 pgs vs 1,27, bounce 44% vs 80%. É aqui que o aquecimento acontece.</p>
+                <div class="sw-explanation">
+                  <p>Mesmo SimilarWeb, mesma janela, dois mundos opostos. O nepqblackbook.com tem 22,9K visitas/mês — metade do volume do domínio principal, mas o comportamento é radicalmente diferente.</p>
+                  <p><strong>Duração média 3 minutos e 17 segundos</strong> (vs 24s do site mãe). <strong>3,72 páginas por visita</strong> (vs 1,27). <strong>Bounce 44%</strong> (vs 80%). Quem entra aqui CONSOME — lê o livro, navega capítulos, baixa anexos.</p>
+                  <p>Estrategicamente: o nepqtraining captura via paid (anúncios → VSL → opt-in), e o nepqblackbook nutre (livro → relacionamento → upsell). Os dois domínios formam um pipeline em camadas. O razzetti tem padrão parecido com bluehackers.com (institucional, baixa retenção) + sho.bluehackers (biblioteca, alta retenção).</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" data-platform="similarweb" data-group="grupo2">
+          <header class="section-head" style="border-left-color: #a855f7">
+            <div>
+              <h2 style="color: #a855f7">📡 GRUPO 2 — Canais de tráfego</h2>
+              <p class="section-sub">De onde vêm as visitas. Pago vs orgânico, distribuição por canal, tendências do trimestre.</p>
+            </div>
+            <div class="section-stats">
+              <span><strong>3</strong> prints</span>
+            </div>
+          </header>
+          <div class="sw-grid">
+            <article class="sw-card" data-id="sw-02-channels-overview">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/02-channels-overview.png" alt="Distribuição de canais por % — Paid Social 24%, Display Ads 22%, Direct 15%, Email 9.7%, Paid Search 12%" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>02-channels-overview.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Channels overview — 46% do tráfego é PAGO</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>46% do tráfego vem de mídia paga</strong> (24% paid social + 22% display + 12% paid search). Modelo oposto ao razzetti, que tem 75% direto e 0% paid no domínio principal.</p>
+                <div class="sw-explanation">
+                  <p>O Jeremy compra muito tráfego. Somando Paid Social (24,04%), Display Ads (22,27%) e Paid Search (11,87%), <strong>quase metade das visitas chegam via anúncio</strong>. O canal direto representa só 14,85%.</p>
+                  <p>Compare com o razzetti: 75% direto, 9% Google orgânico, 0% mídia paga no domínio principal. São dois modelos opostos de aquisição.</p>
+                  <p>O risco aqui é dependência: se o Meta ou o Google penalizarem a conta, o tráfego despenca da noite pro dia. A marca não é o canal — o ad spend é. Isso explica o PPC Spend de $87,4K (próximos cards) e o tom de urgência do funil.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-03-channel-traffic-trend">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/03-channel-traffic-trend.png" alt="Gráfico linha mostrando tráfego por canal Feb-May 2026, tendência geral de queda" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>03-channel-traffic-trend.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Channel traffic trend — todos os canais em declínio</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> Paid Social (48K) e Display (40K) puxam o motor, mas <strong>todos os canais caem de mar/26 em diante</strong>. Sinal de fadiga de criativo ou corte de budget.</p>
+                <div class="sw-explanation">
+                  <p>O gráfico de Feb-May 2026 mostra pico de tráfego em meados de fevereiro (todos os canais ~4-5K visitas/semana) e queda sustentada até maio (~500-1K/semana).</p>
+                  <p>Os dois canais dominantes são <strong>Paid Social (48,5K total no período)</strong> e <strong>Display Ads (40,6K)</strong>. Direct está em terceiro (26,5K). Search Paid e Email vêm logo atrás (~22K e 17K).</p>
+                  <p>A queda sincronizada de TODOS os canais sugere uma de duas coisas: (a) corte planejado de budget pra renovar criativos antes de uma campanha grande (ex.: o evento de Dallas em jul/26 que vimos nos posts orgânicos), ou (b) fadiga de público — os mesmos anúncios sendo servidos pra uma audiência saturada.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-04-traffic-sources-top11">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/04-traffic-sources-top11.png" alt="Tabela top 11 fontes de tráfego com % e variação. Direto 14.85% (-40%), Google Paid 9.99% (+8%), Mail 9.68% (-79%)" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>04-traffic-sources-top11.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Top 11 traffic sources — quase tudo caindo, só paid sobe</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> Único canal que SOBE: <strong>Google Search Paid (+8,98%)</strong>. Mail despencou 80%. Direto caiu 40%. O modelo só se sustenta pagando.</p>
+                <div class="sw-explanation">
+                  <p>Detalhamento das 11 maiores fontes individuais. Direct é a maior fatia (14,85%) — mas caiu 40,83% no período. <strong>Mail é o caso mais grave: 9,68% do tráfego, queda de 79,71%</strong>. Indica base de email queimada ou descadastros em massa.</p>
+                  <p>Google Search Paid (9,99%) é a única fonte com tendência positiva (+8,98%). Tudo o resto cai: Upwork.com (-86%), Facebook (-47%), YouTube (-65%), Google Search Orgânico (-71%).</p>
+                  <p><strong>Upwork.com como #4</strong> com 3,56% é curioso — sugere que o Jeremy paga ads na plataforma de freelancers, provavelmente recrutando vendedores (afinal a oferta dele é ensinar vendas pra fazer mais dinheiro). É um canal de qualidade aspiracional pra audiência B/C.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" data-platform="similarweb" data-group="grupo3">
+          <header class="section-head" style="border-left-color: #10b981">
+            <div>
+              <h2 style="color: #10b981">📊 GRUPO 3 — Visitas, engajamento e dispositivo</h2>
+              <p class="section-sub">Quantas pessoas, quanto tempo ficam, em que dispositivo. O comportamento revela o desenho do funil.</p>
+            </div>
+            <div class="section-stats">
+              <span><strong>3</strong> prints</span>
+            </div>
+          </header>
+          <div class="sw-grid">
+            <article class="sw-card" data-id="sw-05-monthly-visits">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/05-monthly-visits.png" alt="Métricas: 55.8K visitas mensais, 24K únicos, 76% novos vs 24% retornando, 20.6K audiência deduplicada" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>05-monthly-visits.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Monthly visits — 55,8K visitas, 76% são novos</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>76% new visitors</strong>. Site é máquina de primeira impressão, não de retenção. Volume total caiu pela metade em 3 meses (70K → 35K).</p>
+                <div class="sw-explanation">
+                  <p>55,8K visitas/mês com 23,9K usuários únicos. A relação visit/unique = 2,3 — visitante médio volta duas vezes no mês.</p>
+                  <p>Mas o detalhe importante é a divisão new vs returning: <strong>76% são primeira visita</strong>. Ou seja, três em cada quatro visitantes nunca tinham vindo. O Jeremy está sempre alimentando a boca do funil — não tem audiência cativa retornando.</p>
+                  <p>Esse padrão combina com a estratégia de mídia paga pesada. Cada anúncio leva alguém novo. O problema é que se o ad spend cai, o tráfego cai junto. Audiência deduplicada (20,6K) é o tamanho real da base que ele tocou no mês.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-06-engagement-over-time">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/06-engagement-over-time.png" alt="Métricas de engajamento: duração 57s, 1.34 páginas por visita, bounce 79.3%, 74.5K page views" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>06-engagement-over-time.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Engagement — bounce 79%, 57s por visita</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> Bounce 79,3% + duração 57s + 1,34 pgs/visita: <strong>cada visitante vê uma página e sai</strong>. UX otimizada pra captura de email, não pra navegação.</p>
+                <div class="sw-explanation">
+                  <p>Os 4 KPIs principais do SimilarWeb juntos: <strong>duração 00:00:57</strong>, <strong>1,34 páginas por visita</strong>, <strong>bounce 79,3%</strong>, <strong>74,5K page views</strong>. Todos os indicadores apontam pro mesmo padrão: visitante de uma página só.</p>
+                  <p>Pra dar contexto: site editorial saudável tem bounce 40-60% e duração 2-3 min. Funil de venda direto (VSL única) tem exatamente o perfil do Jeremy: bounce 70-85%, duração 30-90s. Não é um defeito, é um sinal de funcionamento.</p>
+                  <p>A trend line do gráfico mostra que essas métricas estavam MELHORES em fevereiro (~2:30 de duração) e degradaram pra ~50s em abril. Hipótese: tráfego mais frio agora que ele escalou ads — público mais saturado, menos qualificado.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-07-device-distribution">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/07-device-distribution.png" alt="Distribuição por dispositivo: Mobile Web 73.51%, Desktop 26.49%" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>07-device-distribution.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Device — 74% mobile</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>74% mobile</strong>. Toda a UX da landing precisa assumir uma pessoa de pé, com uma mão no celular, num intervalo de 30s.</p>
+                <div class="sw-explanation">
+                  <p>Mobile domina (73,51%) o tráfego do nepqtraining. Desktop é minoria (26,49%) — provavelmente o B2B mais velho consumindo no escritório.</p>
+                  <p>Isso explica o formato das landings dele: VSL vertical, formulário curto, CTAs grandes, botão de WhatsApp/DM em vez de chat completo. A jornada inteira é pensada pra polegar.</p>
+                  <p>Implicação prática: criativos verticais (9:16) performam melhor que quadrados. Página precisa carregar em menos de 2s no 4G. Vídeo precisa funcionar com som off (legendas obrigatórias).</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" data-platform="similarweb" data-group="grupo4">
+          <header class="section-head" style="border-left-color: #f59e0b">
+            <div>
+              <h2 style="color: #f59e0b">🔍 GRUPO 4 — Search & Ads</h2>
+              <p class="section-sub">O que ele compra no Google. PPC spend, palavras-chave, campanhas ativas, criativos de display.</p>
+            </div>
+            <div class="section-stats">
+              <span><strong>5</strong> prints</span>
+            </div>
+          </header>
+          <div class="sw-grid">
+            <article class="sw-card" data-id="sw-08-search-overview">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/08-search-overview.png" alt="Visão geral search: 7.69K total, 6.62K paid, 87.4K PPC spend, 0.33% branded vs 99.67% não-branded" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>08-search-overview.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Search overview — 99,67% não-branded, PPC Spend $87K</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> Apenas <strong>0,33% das buscas são branded</strong> ("jeremy miner" puro). 99,67% é não-branded. PPC Spend de $87,4K — o nome dele ainda não é reconhecido organicamente.</p>
+                <div class="sw-explanation">
+                  <p>Search total de 7,69K (caiu 60% YoY). Desse total, 1,07K é orgânico e 6,62K é pago. <strong>86% do tráfego de search é comprado.</strong></p>
+                  <p>PPC Spend de <strong>$87,4K</strong> com custo por visita paga de $13,20. Pra contexto, isso é um budget mensal de $20-30K só em Google Ads, sem contar Meta. Operação cara.</p>
+                  <p>O ponto crítico é o <strong>0,33% branded</strong>. Quando alguém digita só "jeremy miner" no Google sem clicar em anúncio, é praticamente ninguém. Compare com razzetti que tem 70% das buscas branded — o nome dele virou categoria. Jeremy ainda não.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-09-top-non-branded-keywords">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/09-top-non-branded-keywords.png" alt="Top palavras não-branded: jeremy miner 3.8K (+32%), nepq black book 2.2K (+246%), nepq sales 680 (+1600%)" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>09-top-non-branded-keywords.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Top non-branded keywords — explosão do "black book"</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>"nepq black book of questions" cresceu 246%</strong> no período. <strong>"nepq sales" explodiu 1600%</strong>. Sinal de pivô recente pra essa isca como hook principal.</p>
+                <div class="sw-explanation">
+                  <p>Os 5 termos não-branded que mais geram cliques: <code>jeremy miner</code> (3,8K, +33%), <code>nepq black book of questions</code> (2,2K, +246%), <code>nepq</code> (1,9K, -31%), <code>nepq sales</code> (680, +1600%), <code>black book of selling nepq</code> (390, New).</p>
+                  <p>Note a inversão: o termo "nepq" puro CAIU 31%, mas "nepq sales" e "nepq black book" EXPLODIRAM. O Jeremy está educando o mercado a buscar pelo NOME DO PRODUTO, não pelo método. Isso é estratégia de SEO bem definida.</p>
+                  <p><strong>O livro virou o hook central.</strong> Tudo no funil orgânico do IG (vimos antes que "BLACKBOOK" é o trigger Manychat #1 dele) e do paid search converge pra essa única oferta de captura.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-10-paid-search-keywords">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/10-paid-search-keywords.png" alt="Top paid search: jeremy miner 37.79%, nepq black book 21.50%, nepq 13.36%, nepq sales 6.19%, nepq sales training 5.21%" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>10-paid-search-keywords.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Paid search keywords — 80% do budget em 5 palavras</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>37,79% do orçamento de paid search é o próprio nome "jeremy miner"</strong> — está comprando a própria marca pra defender ranking de concorrentes.</p>
+                <div class="sw-explanation">
+                  <p>Distribuição do PPC spend: <code>jeremy miner</code> (37,79%, +20% no período), <code>nepq black book of questions</code> (21,5%), <code>nepq</code> (13,36%), <code>nepq sales</code> (6,19%), <code>nepq sales training</code> (5,21%). <strong>Os 5 primeiros termos consomem 84% do budget.</strong></p>
+                  <p>Comprar o próprio nome ("jeremy miner") é prática defensiva — impede que concorrentes (cursos rivais, afiliados oportunistas) ranqueiem em primeiro lugar quando alguém busca por ele. Mostra que tem competição direta pelo nicho.</p>
+                  <p>Combinado com o card anterior: o Jeremy investe $87K/mês pra comprar o próprio nome + reforçar a categoria que ele criou (NEPQ + Black Book). Estratégia coerente, mas cara — sinal de mercado competitivo.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-11-recent-campaigns">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/11-recent-campaigns.png" alt="Campanhas recentes: NEW NEPQ Black Book Of Questions, 2 instâncias com gc_ids diferentes apontando pra /get-black-book-1" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>11-recent-campaigns.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Recent campaigns — uma única campanha ativa</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>Só UMA campanha ativa</strong>: "NEW NEPQ Black Book Of Questions". Funil centralizado em um único lead magnet — simplicidade operacional alta.</p>
+                <div class="sw-explanation">
+                  <p>SimilarWeb mostra apenas 2 entradas de campanha (com gc_id diferentes — variantes A/B do mesmo criativo), e ambas levam pra <code>nepqtraining.com/get-black-book-1</code>. Apenas 1 ad ativo cada.</p>
+                  <p>Isso quebra com o que vimos no razzetti, que opera com 4 funis paralelos (tripware $27, comercial VSL, manychat, aquecimento). O Jeremy concentra tudo numa única oferta de entrada — o livro.</p>
+                  <p>Vantagem: simplicidade operacional, fácil otimizar, fácil escalar. Risco: dependência total de um único criativo + uma única landing. Se a oferta perder appeal, o funil inteiro trava.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-12-recent-ads">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/12-recent-ads.png" alt="Banners display recentes: Jeremy diante de plateia (944x494) e gráfico de vendas crescendo (955x500)" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>12-recent-ads.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Recent ads — 2 padrões de display</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> Criativos de display caem em <strong>2 padrões</strong>: autoridade física (palestra com plateia) e aspiracional abstrato (gráfico SALES↑). Pouca variação tonal.</p>
+                <div class="sw-explanation">
+                  <p>Os dois banners ativos representam dois tons opostos. O primeiro (944x494) mostra o Jeremy diante de uma plateia de centenas — apelo de autoridade física, prova social de evento ao vivo. O segundo (955x500) é um gráfico abstrato "SALES" subindo — apelo aspiracional/utilitário.</p>
+                  <p>Falta uma terceira variação testada no razzetti: a prova social específica com nome ("Camy: 1k a 10k em 3 meses"). O Jeremy tem testimonials no IG dele (vimos nos destaques), mas não usa no display.</p>
+                  <p>Hipótese de teste: rodar um banner com nome+resultado específico de aluno deve performar melhor que os dois atuais. É uma melhoria óbvia de retomar caso ele queira reverter a tendência de queda.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" data-platform="similarweb" data-group="grupo5">
+          <header class="section-head" style="border-left-color: #ec4899">
+            <div>
+              <h2 style="color: #ec4899">👥 GRUPO 5 — Demografia & público</h2>
+              <p class="section-sub">Quem é o avatar. Gênero, idade, renda, escolaridade, redes sociais, status profissional.</p>
+            </div>
+            <div class="section-stats">
+              <span><strong>7</strong> prints</span>
+            </div>
+          </header>
+          <div class="sw-grid">
+            <article class="sw-card" data-id="sw-13-gender-age-distribution">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/13-gender-age-distribution.png" alt="Gênero: Masculino 67%, Feminino 33%. Idade: 25-34 (21.5%), 55-64 (20.8%), 35-44 (18.4%), 45-54 (17.9%), 65+ (11.9%), 18-24 (9.5%)" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>13-gender-age-distribution.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Gênero e idade — dois picos demográficos</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>67% homens</strong>, dois picos de idade: <strong>25-34</strong> (vendedor jovem ambicioso) e <strong>55-64</strong> (executivo experiente). Mensagem precisa funcionar pros dois extremos.</p>
+                <div class="sw-explanation">
+                  <p>O público é majoritariamente masculino (67,12%) — consistente com o nicho de vendas B2B nos EUA. Mas o detalhe interessante é a distribuição de idade: tem dois picos quase iguais — 25-34 (21,55%) e 55-64 (20,76%).</p>
+                  <p>Isso significa que o conteúdo precisa funcionar pra dois personas distintas: o jovem subindo de carreira ("como ganhar mais como SDR/AE") e o sênior em transição ("como reinventar minha vendinha após perder o emprego corporativo").</p>
+                  <p>O razzetti tem o oposto: 60% mulheres, idade 35-54. Curiosamente as duas audiências têm o mesmo desejo central (ganhar mais), mas com motivações e contextos opostos.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-14-audience-interests">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/14-audience-interests.png" alt="Industry distribution: Social Networks 29%, Search Engines 17%, AI Chatbots & Tools 12%, Programming 11%, Email 8%" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>14-audience-interests.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Interesses do público — sales tech crowd</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> Público consome <strong>AI Chatbots (12%)</strong> e <strong>Programming/Dev (11%)</strong> além do esperado. Audiência tech-aware — receptiva a ferramentas e automação.</p>
+                <div class="sw-explanation">
+                  <p>A distribuição de interesses do público que visita nepqtraining é dominada por Social Networks (29,39%) e Search Engines (16,63%), o que é esperado. Mas surpreende o <strong>11,79% de AI Chatbots and Tools</strong> e <strong>11,17% de Programming/Dev</strong>.</p>
+                  <p>Esses dois números juntos (~23%) indicam que quase um quarto da audiência do Jeremy é da tribo tech — gente que usa ChatGPT pra produtividade, gente que conhece SaaS de sales (Salesforce, HubSpot, Outreach), gente receptiva a automação.</p>
+                  <p>Implicação: ofertas que combinam vendas + AI ou vendas + automação têm potencial alto nesse público. A nuvem de palavras no print confirma — "social media", "google apps", "instagram", "share" dominam, sinal de público que vive nas redes e nas ferramentas.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-15-behavior-social-media">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/15-behavior-social-media.png" alt="Comportamento social: Facebook 96.48%, YouTube 71.98%, Instagram 56.92%, Reddit 43.76%, X 40.39%" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>15-behavior-social-media.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Behavior / Social — Facebook 96%, lacuna no canal</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>Facebook é a rede principal do público (96%)</strong>, mas Jeremy concentra criativos em Instagram. <strong>Lacuna estratégica</strong> — pode estar deixando audiência no Facebook.</p>
+                <div class="sw-explanation">
+                  <p>Quase 100% do público de nepqtraining tem conta ativa no Facebook (96,48%). YouTube vem em segundo (71,98%) e Instagram em terceiro (56,92%). Reddit (43,76%) e X (40,39%) completam o top 5.</p>
+                  <p>Aqui tem um insight crítico: a presença orgânica do Jeremy no IG (que analisamos antes — 198 posts, 81% MOFU via Manychat) está alinhada com 57% da audiência. Mas <strong>96% dela está no Facebook</strong>, onde a presença orgânica dele é menor.</p>
+                  <p>Possível otimização: duplicar conteúdo orgânico pro Facebook (formato vídeo, native upload), aproveitando que a base já está lá. Especialmente reels com BLACKBOOK trigger — Facebook ainda tem Manychat funcionando bem.</p>
+                  <p>Curiosidade do print: aparece <strong>Fetlife (27,98%)</strong> entre as redes. Pode ser ruído de SimilarWeb ou indicar que parte do público é da subcultura BDSM/kink — improvável ser fator estratégico, mas interessante de observar.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-16-socioeconomics-summary">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/16-socioeconomics-summary.png" alt="Resumo socioeconômico: 2 pessoas no household (27%), Low income (56%), Full-time work (41%), University (48%)" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>16-socioeconomics-summary.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Socioeconomics — vendedor médio buscando subir</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> Público dominante: <strong>casado com 1 filho, renda BAIXA, trabalha full-time, formado em universidade</strong>. O "vendedor médio" americano buscando ascensão.</p>
+                <div class="sw-explanation">
+                  <p>O sumário socioeconômico do SimilarWeb pinta o avatar claramente: <strong>household de 2 pessoas (27,3%)</strong> — casal sem filhos ou com 1 filho; <strong>renda Low (56,38%)</strong> — abaixo de $50K/ano nos EUA; <strong>Full-time work (40,6%)</strong> — empregado, não empreendedor; <strong>University (48,25%)</strong> — formado em faculdade.</p>
+                  <p>Esse perfil bate com o pitch central do Jeremy: "você é vendedor, formado, trabalhando duro, mas ganhando pouco porque ninguém te ensinou a vender de verdade. Eu vou te ensinar o método".</p>
+                  <p>Próximos cards detalham cada dimensão (income, employment, education). Mas a leitura macro já entrega o playbook: oferta tem que custar pouco upfront (livro $27, treino grátis), pagamento parcelado se for high ticket, prova social via gente parecida (não C-level).</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-17-household-income">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/17-household-income.png" alt="Distribuição de renda: Low 56.38% (52.6K), Middle 34.58% (32.3K), High 9.03% (8.4K)" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>17-household-income.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Income — 56% renda baixa, só 9% high</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>56% renda BAIXA</strong>, 35% middle, apenas 9% high. Confirma o público "subir na vida via vendas" — não é C-level, é Sales Rep de campo.</p>
+                <div class="sw-explanation">
+                  <p>A distribuição de renda é assimétrica: 56,38% do público é renda baixa (52,6K usuários), 34,58% é middle (32,3K), e apenas 9,03% é renda alta (8,4K).</p>
+                  <p>Isso reforça o positioning do Jeremy. Ele não vende pra CFOs nem pra VPs de Vendas. Vende pra <strong>quem ainda não tá ganhando bem</strong> — SDRs, AEs juniores, vendedores de seguro, vendedores de B2C que querem migrar pra B2B, freelancers.</p>
+                  <p>Tem implicação na pricing: o lead magnet (livro grátis) e o tripware (algo entre $27 e $97) precisam ser a porta principal. Coaching high ticket ($5K+) é só pros 9% high — um nicho dentro do nicho.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-18-employment-status">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/18-employment-status.png" alt="Status de emprego: Full-time 40.6%, Unemployed 13.51%, Part-time 12.68%, Business owner 11.94%, Retired 9.21%" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>18-employment-status.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Employment — 14% desempregados, 12% part-time</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>13,5% desempregados + 12,7% part-time = 26%</strong> do público sem renda estável. Combinado com Low income, é o avatar de "virar a vida com vendas".</p>
+                <div class="sw-explanation">
+                  <p>Status profissional: Full-time (40,6%, 37,9K), Unemployed (13,51%, 12,6K), Part-time (12,68%, 11,8K), Business owner (11,94%, 11,1K), Retired (9,21%, 8,6K), Homemaker (8%, 7,5K), Student (2,07%, 1,9K).</p>
+                  <p><strong>1 em cada 4 visitantes está sem trabalho ou em sub-emprego.</strong> Esse é o sweet spot da narrativa de transformação que o Jeremy usa nos vídeos de 0 a $10K, $100K, etc.</p>
+                  <p>O grupo Business owner (11,94%) também é importante — são donos de pequenos negócios sem time de vendas, querendo escalar sozinhos. É outro perfil que ele atende, mas com mensagem diferente (você é o vendedor da sua própria empresa).</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="sw-card" data-id="sw-19-education">
+              <div class="sw-img-wrap">
+                <div class="sw-sticky">
+                  <img src="similarweb_prints/19-education.png" alt="Educação: University 48.25% (45K), Compulsory school 37.68% (35.2K), Postgraduate 12.24% (11.4K), None completed 1.83%" loading="lazy" onerror="this.style.display='none'; this.parentElement.parentElement.querySelector('.sw-img-missing').style.display='block'">
+                  <div class="sw-img-hint">🔍 clique pra ampliar</div>
+                </div>
+                <div class="sw-img-missing" style="display:none">
+                  📷 Print ainda não salvo<br>
+                  <code>19-education.png</code>
+                </div>
+              </div>
+              <div class="sw-body">
+                <h4>Education — 48% universitários, 38% ensino básico</h4>
+                <p class="sw-destaque"><strong>💡 Destaque:</strong> <strong>48% formados em universidade, 38% só ensino básico</strong>. Polaridade educacional — mensagem precisa ser simples o suficiente pro 38%, sofisticada o suficiente pro 48%.</p>
+                <div class="sw-explanation">
+                  <p>Distribuição educacional bimodal: 48,25% universidade completa, 37,68% só ensino obrigatório (compulsory school = high school nos EUA), 12,24% pós-graduados, 1,83% sem estudos formais.</p>
+                  <p>Quase metade tem diploma de faculdade, mas a outra metade não. O tom do conteúdo do Jeremy precisa caminhar nessa corda bamba: vocabulário simples (não jargão técnico de psicologia), mas com profundidade conceitual o bastante pros 12% pós-graduados não acharem raso.</p>
+                  <p>Isso explica a escolha estratégica dele de evitar termos como "neuro-linguistic programming" mesmo trabalhando com persuasão. Usa "tonality" em vez de "prosodic features". É linguagem de venda direta, não de academia.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+    <!--SW_END-->
   </section>
 
   <section data-platform="ads" class="hidden-by-platform">
