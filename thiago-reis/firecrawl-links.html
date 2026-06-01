@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Firecrawl Links — Thiago Reis (growthmachine.com.br)</title>
+<meta name="description" content="18 páginas do ecossistema growthmachine.com.br (Thiago Reis / Growth Machine) capturadas via Firecrawl com print full-page e markdown limpo.">
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --surface: #131927;
+    --surface-2: #0f1422;
+    --border: #1e2638;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --dim: #64748b;
+    --accent: #34d399;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header {
+    padding: 32px 40px 20px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(11, 15, 26, 0.95);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .head-text { max-width: 720px; }
+  .badge-tag { display: inline-block; background: var(--surface-2); color: var(--muted); padding: 4px 10px; border-radius: 999px; font-size: 11px; letter-spacing: 0.5px; margin-bottom: 10px; }
+  h1 { margin: 0 0 6px; font-size: 26px; }
+  .subtitle { color: var(--muted); margin: 0; font-size: 14px; }
+  .head-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .count {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 16px; font-size: 13px; color: var(--muted);
+  }
+  .count strong { color: var(--text); font-size: 18px; font-weight: 700; }
+  .export-btn {
+    background: var(--accent);
+    color: #0b0f1a;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .export-btn:hover { filter: brightness(1.1); text-decoration: none; }
+  .back-btn {
+    background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+    padding: 9px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none;
+  }
+  .back-btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  main { padding: 28px 40px 56px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease;
+  }
+  .card:hover { border-color: var(--accent); }
+
+  .thumb {
+    display: block; width: 100%; aspect-ratio: 16 / 10;
+    overflow: hidden; background: #0a0a0a;
+    cursor: zoom-in;
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+  .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .card-title { margin: 0; font-size: 14.5px; font-weight: 700; line-height: 1.35; color: #f1f5f9; }
+  .card-url { font-size: 11.5px; word-break: break-all; }
+  .card-url a { color: var(--muted); }
+  .card-url a:hover { color: var(--accent); }
+  .card-meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .stage-badge {
+    display: inline-flex; align-items: center;
+    font-size: 10.5px; padding: 3px 9px; border-radius: 999px; font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .stage-TOFU { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+  .stage-MOFU { background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); }
+  .stage-BOFU { background: rgba(248,113,113,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+  .role-badge {
+    display: inline-flex; align-items: center;
+    font-size: 11px; padding: 3px 9px; border-radius: 999px;
+    background: rgba(148,163,184,0.08); color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  .traffic-box {
+    background: rgba(52,211,153,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 9px 12px;
+    margin-top: auto;
+  }
+  .traffic-box .label {
+    color: var(--accent); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .traffic-box p { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--text); }
+
+  .card-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .card-links a {
+    font-size: 11.5px; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); color: var(--muted);
+    padding: 5px 10px; border-radius: 5px; font-weight: 600;
+  }
+  .card-links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    display: none; align-items: center; justify-content: center;
+    z-index: 1000; cursor: zoom-out; padding: 20px;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 95vw; max-height: 95vh;
+    object-fit: contain;
+    box-shadow: 0 12px 60px rgba(0,0,0,0.8);
+    border-radius: 4px;
+  }
+
+  footer { padding: 24px 40px; text-align: center; color: var(--dim); font-size: 12px; border-top: 1px solid var(--border); }
+  footer code { background: rgba(255,255,255,0.04); padding: 1px 6px; border-radius: 4px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-text">
+    <span class="badge-tag">SPY · THIAGO REIS · FIRECRAWL</span>
+    <h1>Firecrawl Links</h1>
+    <p class="subtitle">18 páginas do ecossistema <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--text);">growthmachine.com.br</code> capturadas via Firecrawl — print full-page + markdown limpo de cada uma.</p>
+  </div>
+  <div class="head-actions">
+    <div class="count"><strong>18</strong> links</div>
+    <a class="back-btn" href="index.html">← Dashboard</a>
+    <button class="export-btn" type="button" onclick="exportJSON()">↓ Exportar JSON</button>
+  </div>
+</header>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  Capturado em <span id="gen-date">2026-06-01</span> · Fonte: <code>growthmachine.com.br</code> + subdomínios via Firecrawl <code>/scrape</code>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" alt="">
+</div>
+
+<script id="pages-data" type="application/json">[
+{"slug":"home","url":"https://growthmachine.com.br","title":"Growth Machine — A Máquina de Vendas para Escalar Receita (home)","stage":"TOFU","role":"Hub institucional","traffic_note":"Página principal do domínio. Apresenta os 6 produtos (Growth Play, Prospct AI, Station AI, Expansão Comercial, Imersão Closer, Imersão Gestão), prova social (R$2,2bi, 8.000 operações) e CTA 'Diagnóstico Gratuito'. Tráfego: 45% organic search + direto + organic social (IG/YT do Thiago). 0% pago no domínio-mãe.","screenshot":"screenshots/home.png","md":"home.md"},
+{"slug":"diagnostico","url":"https://diagnostico.growthmachine.com.br","title":"Diagnóstico Comercial Gratuito — 'sua operação perde dinheiro em 3 lugares'","stage":"TOFU","role":"Lead magnet (aplicação)","traffic_note":"Isca de qualificação pra CEOs/sócios. Form multi-step de aplicação (100% grátis). É a principal porta de entrada que joga o lead pra dentro da conversa comercial high-ticket (Growth Way / Expansão).","screenshot":"screenshots/diagnostico.png","md":"diagnostico.md"},
+{"slug":"scannerdevendas","url":"https://scannerdevendas.growthmachine.com.br","title":"Scanner de Vendas — 'seu time comercial não bate meta?'","stage":"TOFU","role":"Lead magnet (quiz)","traffic_note":"Irmão do diagnóstico, captura mais leve: quiz de 2 passos que gera relatório de 'pontos cegos' do time. Mesmas provas de autoridade. Entrada pra base de leads.","screenshot":"screenshots/scannerdevendas.png","md":"scannerdevendas.md"},
+{"slug":"aulao","url":"https://lp.growthmachine.com.br/aulao","title":"Aulão Gratuito — webinar de captação","stage":"TOFU","role":"Webinar / isca","traffic_note":"Landing de aulão gratuito (subdomínio lp.). Usa a origin story do telemarketing R$473,91. Provável destino de tráfego pago + orgânico social pra capturar lead e aquecer pro tripwire/high-ticket.","screenshot":"screenshots/aulao.png","md":"aulao.md"},
+{"slug":"palestras","url":"https://palestras.growthmachine.com.br","title":"Palestras Corporativas — 'R$3,4bi em receita gerada'","stage":"TOFU","role":"Captação B2B (palestras)","traffic_note":"Página de captação de palestras corporativas. Bio densa do Thiago (R$58M de operação, 1.500m² na Berrini, livros 'Demanda Infinita' + 'Vendas Infinitas'). Vende a autoridade pra empresas contratarem keynote.","screenshot":"screenshots/palestras.png","md":"palestras.md"},
+{"slug":"lord-of-sales","url":"https://lord-of-sales.com","title":"Lords of Sales — A Batalha Comercial Medieval","stage":"TOFU","role":"Gamificação / lead gen","traffic_note":"Domínio paralelo. Competição gamificada (empresas viram 'famílias', completam missões de venda, ganham XP). Prize pool R$45k (1º R$30k, 2º R$15k em serviços; 3º-10º = 1 ano de Growth Play). Engajamento + lead gen pro Growth Play.","screenshot":"screenshots/lord-of-sales.png","md":"lord-of-sales.md"},
+{"slug":"planode90dias","url":"https://planode90dias.growthmachine.com.br","title":"Plano de 90 Dias — R$37 (de R$197)","stage":"MOFU","role":"Tripwire (R$37)","traffic_note":"Produto de entrada barato pra fundador/CEO faturando R$100k/mês. Tem 12 itens/bumps (R$47-R$97). FAQ quebra a objeção 'por que R$37?'. Filtra comprador qualificado pro funil high-ticket.","screenshot":"screenshots/planode90dias.png","md":"planode90dias.md"},
+{"slug":"growth-play","url":"https://growthmachine.com.br/growth-play","title":"Growth Play — '1º streaming de vendas da América Latina'","stage":"MOFU","role":"Recorrência (assinatura)","traffic_note":"Plataforma de formação (SDR/Closer/Gestor): aulas gravadas + mentorias ao vivo + comunidade + gamificação. 'Reduza ramp-up em até 50%'. Planos individuais e de equipe. Checkout via go.growthmachine.com.br.","screenshot":"screenshots/growth-play.png","md":"growth-play.md"},
+{"slug":"growth-play-clube","url":"https://growthplay.growthmachine.com.br/clube/growthmachine","title":"Growth Play — Clube (área logada)","stage":"MOFU","role":"Recorrência (clube)","traffic_note":"Subdomínio da plataforma Growth Play (área de membros/clube). Destino dos assinantes. Entrega o conteúdo recorrente da escola de vendas.","screenshot":"screenshots/growth-play-clube.png","md":"growth-play-clube.md"},
+{"slug":"academia","url":"https://academia.growthmachine.com.br","title":"Academia Growth Machine — cursos","stage":"MOFU","role":"Educação (cursos)","traffic_note":"Plataforma de cursos da Growth Machine. Camada educacional do ecossistema, complementar ao Growth Play. Destino de alunos.","screenshot":"screenshots/academia.png","md":"academia.md"},
+{"slug":"station-ai","url":"https://growthmachine.com.br/station-ai","title":"Station AI — 'venda até 95% mais rápido'","stage":"MOFU","role":"SaaS de IA (trial grátis)","traffic_note":"Software próprio (app em stationai.app). Automatiza PSF, SPIN Selling, scripts de cold call e follow-ups. Cadastro grátis (trial). Produto de IA que serve de isca e de recorrência.","screenshot":"screenshots/station-ai.png","md":"station-ai.md"},
+{"slug":"prospct-ai","url":"https://growthmachine.com.br/prospct-ai","title":"Prospct AI — SDR 100% virtual","stage":"MOFU","role":"SaaS recorrente (R$4-10k/mês)","traffic_note":"SDR virtual que faz cold calls, qualifica leads e agenda reuniões. Tiers exibidos: R$4.000 / R$5.000 / R$9.000 / R$10.000 / R$10.000+ por mês. Recorrência de ticket médio-alto.","screenshot":"screenshots/prospct-ai.png","md":"prospct-ai.md"},
+{"slug":"imersao-closer","url":"https://growthmachine.com.br/imersao-closer","title":"Imersão Closer — 'forma os closers mais bem pagos'","stage":"MOFU","role":"Evento (2 dias)","traffic_note":"Evento intensivo de 2 dias pra transformar vendedores em closers de elite (scripts validados, técnicas de persuasão, feedback ao vivo). Entrada via 'Garanta sua vaga'. Produto de meio de funil.","screenshot":"screenshots/imersao-closer.png","md":"imersao-closer.md"},
+{"slug":"imersao-gestor","url":"https://growthmachine.com.br/imersao-gestor","title":"Imersão Gestor — imersão para gestores comerciais","stage":"MOFU","role":"Evento (gestão)","traffic_note":"Versão da imersão voltada pra gestores/líderes comerciais. Mesmo formato de evento intensivo. Segmenta o público de gestão dentro da base.","screenshot":"screenshots/imersao-gestor.png","md":"imersao-gestor.md"},
+{"slug":"growth-way","url":"https://growthmachine.com.br/growth-way","title":"Growth Way — acelerador de 90 dias (carro-chefe)","stage":"BOFU","role":"High-ticket (acelerador)","traffic_note":"Carro-chefe high-ticket. Estrutura a 'Máquina de Vendas' em 90 dias com tech própria (GS Engage, Growth Station) + mentoria semanal. Garantia 'Risco Zero': 100% de volta + 50% cashback se não funcionar. Entrada só via diagnóstico (sem checkout público).","screenshot":"screenshots/growth-way.png","md":"growth-way.md"},
+{"slug":"expansao-comercial","url":"https://growthmachine.com.br/expansao-comercial","title":"Expansão Comercial (PEC) — 'processo que gerou R$2.2B'","stage":"BOFU","role":"High-ticket (PEC)","traffic_note":"Programa Expansão Comercial — implementação em 90 dias do processo que gerou R$2,2B. Domínio paralelo: expansaocomercial.com (95% afinidade no SimilarWeb). Back-end high-ticket. Preço via aplicação.","screenshot":"screenshots/expansao-comercial.png","md":"expansao-comercial.md"},
+{"slug":"high-growth","url":"https://growthmachine.com.br/high-growth","title":"High Growth — programa de alto crescimento","stage":"BOFU","role":"High-ticket","traffic_note":"Programa de alto crescimento (high-ticket). Página enxuta — detalhes de oferta/preço só via diagnóstico/call. Topo da escada de valor.","screenshot":"screenshots/high-growth.png","md":"high-growth.md"},
+{"slug":"espaco-growth-space","url":"https://espaco.growthmachine.com.br","title":"Growth Space — locação de espaço de eventos","stage":"TOFU","role":"Negócio adjacente","traffic_note":"Braço de negócio adjacente: locação de espaço de eventos corporativos (até 400 lugares, A/V incluso). Contato eventos@growthmachine.com.br, IG @eventos.growth. Reforça marca/presença física, não é funil do produto core.","screenshot":"screenshots/espaco-growth-space.png","md":"espaco-growth-space.md"}
+]</script>
+
+<script>
+let PAGES = [];
+
+function load() {
+  try {
+    PAGES = JSON.parse(document.getElementById('pages-data').textContent);
+  } catch (e) {
+    document.getElementById('grid').innerHTML = '<div style="color:#94a3b8;padding:40px;text-align:center">Erro lendo dados: ' + e.message + '</div>';
+    return;
+  }
+  render();
+}
+
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  PAGES.forEach(p => grid.appendChild(buildCard(p)));
+}
+
+function buildCard(p) {
+  const card = document.createElement('article');
+  card.className = 'card';
+  const shotHref = '_assets/firecrawl-links/' + p.screenshot;
+  const mdHref   = '_assets/firecrawl-links/' + p.md;
+
+  const stageHtml = `<span class="stage-badge stage-${p.stage}">${p.stage}</span>`;
+  const roleHtml = p.role ? `<span class="role-badge">${p.role}</span>` : '';
+
+  card.innerHTML = `
+    <a class="thumb" href="${shotHref}" onclick="openShot(event, '${shotHref}')">
+      <img src="${shotHref}" alt="print ${p.slug}" loading="lazy">
+    </a>
+    <div class="card-body">
+      <div class="card-meta">${stageHtml}${roleHtml}</div>
+      <h3 class="card-title">${p.title}</h3>
+      <div class="card-url"><a href="${p.url}" target="_blank">${p.url}</a></div>
+      <div class="traffic-box">
+        <div class="label">Papel no funil</div>
+        <p>${p.traffic_note}</p>
+      </div>
+      <div class="card-links">
+        <a href="${mdHref}" target="_blank">Markdown</a>
+        <a href="${shotHref}" target="_blank">Print completo</a>
+        <a href="${p.url}" target="_blank">Página ao vivo ↗</a>
+      </div>
+    </div>
+  `;
+  return card;
+}
+
+function openShot(ev, href) {
+  ev.preventDefault();
+  document.getElementById('lightbox-img').src = href;
+  document.getElementById('lightbox').classList.add('active');
+}
+
+function exportJSON() {
+  const data = document.getElementById('pages-data').textContent;
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'thiago-reis-firecrawl-links.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById('gen-date').textContent = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+load();
+</script>
+
+</body>
+</html>

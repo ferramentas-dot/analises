@@ -1,0 +1,485 @@
+=========================================================================
+DOSSIE DE INTELIGENCIA: THIAGO REIS / GROWTH MACHINE
+URL analisada: https://growthmachine.com.br + diagnostico/scanner/espaco/lord-of-sales
+Dominio raiz: growthmachine.com.br
+Data da analise: 01/06/2026
+Coleta: Firecrawl (map + scrape) + SimilarWeb + WebFetch. ~25 paginas raspadas.
+=========================================================================
+
+>> NOTA DE CATEGORIA: Isto NAO e oferta "black" classica (emagrecimento/ED/renda).
+   E uma operacao B2B HIGH-TICKET legitima: consultoria + SaaS + educacao de
+   vendas corporativas. Avatar = CEO/socio/fundador de empresa que ja fatura
+   R$100k+/mes. O dossie foi adaptado: secoes de VSL/VTurb/tripware nao se
+   aplicam como num infoproduto black; marcadas quando irrelevantes.
+
+
+PARTE 1 - EXPERT + EMPRESA
+=========================================================================
+
+------------- 1.1 - DADOS CADASTRAIS DA EMPRESA -------------
+
+| Campo                | Dado                                              |
+|----------------------|---------------------------------------------------|
+| Razao social         | Growth Machine Editora e Aceleracao LTDA          |
+| Nome fantasia / marca| Growth Machine                                    |
+| CNPJ                 | 26.324.112/0001-91                                |
+| Data de abertura     | 07/10/2016 (fonte: cnpj.biz / econodata)          |
+| Endereco (cadastral) | Rua Almirante Cochrane, 33, Sala 401 - Tijuca,    |
+|                      | Rio de Janeiro/RJ                                 |
+| Operacao fisica (decl.)| 1.500m2 na Berrini, Sao Paulo/SP (fonte:        |
+|                      | palestras.growthmachine.com.br)                   |
+| Situacao cadastral   | (nao confirmada - cnpj.biz bloqueou proxy)        |
+| Email suporte        | atendimento@growthmachine.com.br                  |
+| Horario atendimento  | seg-sex, 9h-18h                                   |
+
+>> CONFLITO DE DATA DE FUNDACAO:
+   - Receita/CNPJ: empresa aberta em 07/10/2016
+   - SimilarWeb (company card): "Year Founded 2018"
+   - Thiago (palestras/planode90dias): "22 anos de experiencia", comecou em 2002
+   A empresa "Growth Machine" como CNPJ e de 2016; os 22 anos sao a carreira
+   pessoal de Thiago em vendas (desde 2002 no telemarketing), nao a idade da
+   empresa. A narrativa mistura as duas linhas do tempo.
+
+>> CONFLITO DE SEDE: cadastro na Tijuca/RJ, mas operacao declarada de 1.500m2
+   na Berrini/SP. Provavel mudanca de operacao pra SP mantendo CNPJ no RJ.
+
+------------- 1.2 - DADOS PESSOAIS DO EXPERT -------------
+
+| Campo            | Dado                                                  |
+|------------------|-------------------------------------------------------|
+| Nome             | Thiago Reis                                           |
+| Cargo            | CEO e Fundador da Growth Machine                      |
+| Inicio carreira  | 2002, operador de telemarketing (R$ 473,91/mes)       |
+| Livros           | "Demanda Infinita" (Alta Books, 268pg,                |
+|                  | ISBN 978-8550819297) + "Vendas Infinitas"             |
+| Produtos criados | Prospct AI (Prospct.ia), Station AI                   |
+| Podcast          | Apresentador do GrowthCast                            |
+| Premio           | Influenciador B2B #1 (B2B Experience)                 |
+
+------------- 1.3 / 1.4 / 1.5 - HISTORIA E TRAJETORIA -------------
+
+A origin story que Thiago repete em todas as paginas de venda:
+
+"Em 2002, eu comecei como telemarketer ganhando R$473,91 por mes. Nao tinha
+processo, nao tinha metodo, nao tinha clareza. Tinha apenas volume e tentativa."
+[planode90dias.growthmachine.com.br]
+
+Arco narrativo: do telemarketing de R$473/mes (2002) -> 22 anos depois lidera
+uma operacao de R$58M, 100+ pessoas, 1.500m2 na Berrini. Fundou a Growth
+Machine (CNPJ 2016) posicionada como "a maior aceleradora de vendas B2B da
+America Latina". Criou a metodologia "Demanda Infinita" (virou livro
+best-seller pela Alta Books e depois "Demanda Infinita 2.0"). Diversificou:
+de consultoria pura -> educacao (Growth Play, Academia) -> software/IA
+(Prospct AI, Station AI) -> eventos (Imersoes, Lords of Sales, Growth Space).
+
+Versao "biografia" de terceiros (V4 Company blog, dez/2023) e generica/SEO,
+sem datas duras - foca em "visionario do growth marketing". Pouco util como
+fonte primaria; o material denso vem das proprias paginas de venda.
+
+------------- 1.6 - POSICIONAMENTO DECLARADO (literal) -------------
+
+PROMESSA MESTRA:
+  "90 dias para transformar sua operacao em uma Maquina de Vendas com o unico
+   acelerador que gerou +R$ 2 BI"
+  [growthmachine.com.br/growth-way]
+
+INIMIGO COMUM:
+  "improviso comercial" / "achismo" / o fundador que ainda e o vendedor
+   principal: "entre R$1M e R$10M de faturamento, o fundador ainda e o vendedor
+   principal. O time existe, mas o sistema nao."
+  [planode90dias]
+
+MECANISMO UNICO:
+  "Metodologia Demanda Infinita" / "Maquina de Vendas"
+
+AVATAR / PUBLICO:
+  "Voce e fundador, CEO ou socio de uma empresa que ja fatura R$ 100 mil/mes
+   e quer destravar o proximo nivel de vendas"
+  [planode90dias]
+  "Para CEOs e socios cansados do improviso comercial - e prontos para
+   previsibilidade de receita." [diagnostico]
+
+------------- 1.8 - NUMEROS DECLARADOS (com conflitos marcados) -------------
+
+| Numero                          | Fonte                | Obs                  |
+|---------------------------------|----------------------|----------------------|
+| R$ 3,4 bilhoes gerados          | palestras, IG, scanner| "nos ultimos 24 meses"|
+| R$ 2,2 bilhoes gerados          | home, growth-way, 90d| <- CONFLITA com 3,4bi|
+| +8.000 operacoes estruturadas   | todas                |                      |
+| +40.000 vendedores formados     | LinkedIn, planode90d |                      |
+| +48.000 alunos                  | Facebook             | <- CONFLITA com 40k  |
+| +1.000 nichos atendidos         | planode90dias        |                      |
+| 22 anos de experiencia          | planode90dias        | carreira pessoal     |
+| Operacao propria de R$ 58M      | palestras            |                      |
+| 8 das 10 maiores tech do Brasil | palestras, LinkedIn  |                      |
+
+>> CONFLITO PRINCIPAL: "R$3,4 bi" (palestras/IG) vs "R$2,2 bi" (paginas de
+   produto). Provavelmente 2,2bi e o numero antigo e 3,4bi o atualizado, mas
+   coexistem no ar simultaneamente. Idem 40k vs 48k vendedores/alunos.
+
+------------- 1.9 - CLIENTES DECLARADOS -------------
+
+TOTVS, SAP, Movida, Localiza, Tetra Pak, Sankhya, Uber, Estadao, WeWork,
+Exact Sales, Pipedrive, Intuit, VTEX, Neoassist, SEBRAE, TIVIT, Vivo.
+(consolidado de diagnostico + scanner + V4 bio + LinkedIn)
+
+------------- 1.11 - RECLAME AQUI E REPUTACAO -------------
+
+Perfil: "Growth Machine Consultoria"
+URL: https://www.reclameaqui.com.br/empresa/growth-machine-consultoria/
+- Reputacao: REGULAR
+- Nota media (12 meses): 6.4/10
+- Reclamacoes avaliadas: 10 | nota media dos consumidores: 5.4
+
+Temas dominantes das queixas (titulos literais):
+  - "Investimento extremamente alto, sem nenhum resultado e nenhum respaldo!"
+  - "Consultoria Growth Machine: Experiencia negativa e falta de resultados"
+  - "Propaganda enganosa sem resultado"
+  - "Promessa de pagamento nao cumprida apos trabalho de divulgacao em home office"
+
+Padrao: queixas concentradas em (a) consultoria cara sem ROI percebido e
+(b) relacoes de trabalho/parceria (pagamento). Volume baixo (10 avaliadas) pra
+o tamanho declarado da operacao - reputacao "Regular" e tipica de B2B caro.
+
+
+PARTE 2 - PRESENCA DIGITAL E METRICAS
+=========================================================================
+
+------------- 2.1 - REDES SOCIAIS -------------
+
+| Plataforma | Handle              | URL                                          |
+|------------|---------------------|----------------------------------------------|
+| Instagram  | @thiagoreis (pessoal)| https://www.instagram.com/thiagoreis/       |
+| Instagram  | @growthmachinebr    | https://www.instagram.com/growthmachinebr/   |
+| YouTube    | @thiago.reis.gm     | https://www.youtube.com/@thiago.reis.gm.     |
+| YouTube    | Maquina de Crescimento| https://www.youtube.com/c/M%C3%A1quinadeCrescimento |
+| LinkedIn   | thiagoreis-- (pess.) | https://br.linkedin.com/in/thiagoreis--      |
+| LinkedIn   | Growth Machine      | https://www.linkedin.com/company/growthmachine/ |
+| Facebook   | growthmachineMC     | https://www.facebook.com/growthmachineMC     |
+| Spotify    | GrowthCast          | https://open.spotify.com/show/7lKcTLsJg6BOXta99u1FzW |
+
+Bio Instagram @thiagoreis (literal):
+  "- CEO da Growth Machine - Treinamos times de vendas B2B +R$ 3.4 BI em
+   receita gerada. Participe da Maquina de Vendas e escale seu faturamento!"
+
+Bio LinkedIn (literal):
+  "Em 10 anos, ja estruturamos 8.000+ operacoes comerciais e geramos R$3.4
+   bilhoes em receita... Ja treinei mais de 40.000 vendedores e estou na
+   operacao de 8 das 10 maiores empresas do Brasil. Entre elas: TotvS, SAP,
+   Movida, Localiza, Tetra Pak..."
+
+------------- 2.7 - LIVROS -------------
+
+- "Demanda Infinita" - Alta Books, 268 paginas, ISBN 978-8550819297.
+  Amazon BR (Kindle + fisico) + Mercado Livre. Subtitulo: "tenha mais
+  clientes, receita e liberdade com a metodologia de crescimento..."
+- "Vendas Infinitas" - segundo livro (citado em palestras). Detalhes ❓.
+- "Demanda Infinita 2.0" - evolucao do conceito (apresentado no CRM Zummit 2024).
+
+------------- 2.8 - TRAFEGO PUBLICO (SimilarWeb, abril/2026) -------------
+
+Dominio: growthmachine.com.br
+| Metrica            | Valor                                              |
+|--------------------|----------------------------------------------------|
+| Total de visitas   | 12.900 / mes (<100K)                               |
+| Tendencia          | -23,6% vs mes anterior (QUEDA)                     |
+| Ranking global     | #1.710.819 (caiu de #1.353.720 em 3 meses)        |
+| Ranking Brasil     | #144.282                                           |
+| Ranking categoria  | #563 em Digital Marketing (Brasil)                |
+| Bounce rate        | 43,81%                                            |
+| Pages per visit    | 2,12                                              |
+| Duracao media      | 00:02:04                                          |
+| Top paises         | Brasil 89,51% | Portugal 6,67% | EUA 3,83%        |
+| Top canais         | 1o Organic Search 45,31% | 2o Direct | 3o Organic Social |
+| Paid / Display     | 0% (NAO faz trafego pago neste dominio)           |
+| Keywords organicas | 751 total, 100% organico. Top: "growth machine",  |
+|                    | "prospecta ai", "growth machine thiago reis",     |
+|                    | "growth machine cursos", "thiago reis desafio 50 dias" |
+| Company card SW    | Year Founded 2018 | Employees 201-500             |
+
+>> LEITURA: trafego do site institucional e PEQUENO (12,9k/mes) e CAINDO
+   (-23,6%). 0% pago no dominio principal. A operacao real de aquisicao
+   provavelmente roda em (a) organico social forte (IG/YT do Thiago), (b)
+   landing pages em subdominios separados (lp., go., planode90dias., etc) que
+   o SimilarWeb do dominio-mae nao captura, e (c) trafego pago apontando pros
+   subdominios/LPs, nao pra home. Confirmar com SimilarWeb dos subdominios.
+
+Concorrentes/similares (SimilarWeb): digitalgrowth.marketing (100% afinidade),
+expansaocomercial.com (95%), dataro.io, sdrvirtual.com.br, staage.com,
+brianbalfour.com.
+
+------------- 2.9 - DOMINIOS / SUBDOMINIOS MAPEADOS -------------
+
+| Subdominio/dominio                   | Uso                                  |
+|--------------------------------------|--------------------------------------|
+| growthmachine.com.br                 | Site institucional (WordPress)       |
+| blog.growthmachine.com.br            | Blog SEO (alto volume de posts)      |
+| lp.growthmachine.com.br              | Landing pages (aulao, ebooks, cursos)|
+| go.growthmachine.com.br              | Redirect/checkout (growth-play, etc) |
+| diagnostico.growthmachine.com.br     | Lead magnet: diagnostico comercial   |
+| scannerdevendas.growthmachine.com.br | Lead magnet: scanner de vendas       |
+| planode90dias.growthmachine.com.br   | Tripwire R$37                        |
+| palestras.growthmachine.com.br       | Captacao de palestras corporativas   |
+| espaco.growthmachine.com.br          | Growth Space (locacao de eventos)    |
+| academia.growthmachine.com.br        | Plataforma de cursos                 |
+| growthplay.growthmachine.com.br      | Growth Play (streaming de vendas)    |
+| ds.growthmachine.com.br              | Doc Sales                            |
+| faq.growthmachine.com.br             | Central de ajuda (Growth Station)    |
+| arena.growthmachine.com.br           | Arena (gamificacao?)                 |
+| cases.growthmachine.com.br           | Cases de clientes                    |
+| raiox.comercial.growthmachine.com.br | Raio-X comercial (diagnostico)       |
+| stationai.app                        | Station AI (SaaS - app proprio)      |
+| lord-of-sales.com                    | Lords of Sales (gamificacao)         |
+| expansaocomercial.com                | (dominio paralelo - PEC; via SW)     |
+
+
+PARTE 3 - MIDIA, AUTORIDADE E APARICOES
+=========================================================================
+
+- Livros: "Demanda Infinita" (best-seller Alta Books) + "Vendas Infinitas".
+- Podcast proprio: GrowthCast (Spotify).
+- Premio: Influenciador de vendas #1 / Influenciador B2B #1 (B2B Experience).
+- Aparicoes (amostra, via busca):
+  | Podcast/Programa            | Ref                                          |
+  |-----------------------------|----------------------------------------------|
+  | Vida Loka Podcast #88       | open.spotify.com/episode/4KvhgNQeZnF2Dy51w0uA6r |
+  | ROI Hunters #140            | youtube.com/watch?v=dkCoRQmGskg              |
+  | CRM Zummit 2024             | youtube.com/watch?v=MIeeKGE9MIA (Demanda Infinita 2.0)|
+  | Impactar (palestra)         | instagram.com/reel/DYsVWEkPPkI/              |
+- Canal YouTube proprio (@thiago.reis.gm) com "Auloes" e conteudo de vendas B2B.
+- NOTA: pesquisa de midia ficou em amostragem (nao exaustiva) por orcamento de
+  creditos. Aprofundar com mais buscas se quiser a PARTE 3 completa.
+
+
+PARTE 4 - STACK TECNOLOGICO
+=========================================================================
+
+>> NOTA: extracao parcial. Coletei markdown + SimilarWeb technographics, mas
+   NAO puxei rawHtml de cada pagina pra extrair pixel IDs / player configs.
+   Campos de ID exatos marcados ❓ - ver PENDENCIAS.
+
+------------- 4.1 - INFRAESTRUTURA -------------
+| Componente     | Valor                                                     |
+|----------------|-----------------------------------------------------------|
+| CMS            | WordPress (paths /wp-content/uploads/, footer "© Growth Machine")|
+| Page builder   | provavelmente Elementor ❓ (nao confirmado via rawHtml)   |
+| Subdominios    | hospedagem distribuida (Cloudflare provavel) ❓           |
+| App proprio    | stationai.app (Station AI - SaaS separado do WP)          |
+
+------------- 4.2 - PLAYER DE VIDEO -------------
+- Home e paginas de produto usam embeds de YouTube (ex: "Dia de fechamento -
+  YouTube", "fechamento marco - YouTube"). NAO foi detectado player VTurb/
+  ConverteAI nem VSL fria com barra falsa. Operacao usa YouTube como player.
+
+------------- 4.3 - CHECKOUTS / GATEWAYS -------------
+| Produto         | Destino de compra                          | Gateway      |
+|-----------------|--------------------------------------------|--------------|
+| Plano 90 Dias R$37| planode90dias.growthmachine.com.br (botao #)| ❓ proprio/checkout|
+| Station AI      | stationai.app/register (trial gratis)      | SaaS proprio |
+| Growth Play     | go.growthmachine.com.br/growth-play         | ❓           |
+| Imersoes/Way    | via diagnostico/aplicacao (sem checkout direto)| ❓        |
+Offer IDs / gateway exato (Hotmart/Kiwify/etc): ❓ nao extraido (sem rawHtml).
+
+------------- 4.4 - PIXELS / ANALYTICS (via SimilarWeb technographics) -------------
+- Google Analytics (confirmado SW) | Google Marketing Platform | Google Adsense
+- YouTube (embeds)
+- 56 tecnologias em 16 industrias (SimilarWeb). IDs especificos de FB Pixel /
+  GA4 / GTM / TikTok: ❓ nao extraidos (pendencia rawHtml).
+
+------------- 4.6 - SOFTWARE PROPRIO (diferencial do stack) -------------
+A Growth Machine NAO e so midia - ela VENDE software de vendas proprio:
+- Station AI (stationai.app): automatiza PSF, SPIN Selling, scripts de cold
+  call, follow-ups, analises. "Comece a vender ate 95% mais rapido."
+- Prospct AI (Prospct.ia): "SDR 100% virtual que automatiza o outbound - faz
+  cold calls, qualifica leads e agenda reunioes." Planos R$4.000-R$10.000+/mes.
+- GS Engage + Growth Station: tecnologia proprietaria de prospeccao/cadencia
+  citada no Growth Way.
+- Doc Sales (ds.growthmachine.com.br): documentacao/proposta de vendas.
+
+
+PARTE 5 - MAPEAMENTO DE PAGINAS (principais)
+=========================================================================
+
+🎯 CENTRAL / OFERTA:
+- growthmachine.com.br - hub institucional. Apresenta os 6 produtos (Growth
+  Play, Prospct AI, Station AI, Expansao Comercial, Imersao Closer, Imersao
+  Gestao), prova (R$2,2bi, 8.000 operacoes), CTA "Diagnostico Gratuito".
+- /growth-way - acelerador de 90 dias (carro-chefe). Tech GS Engage + Growth
+  Station, mentoria semanal, "Garantia Risco Zero + Cashback" (100% de volta
+  + 50% cashback se nao funcionar em 90 dias). Entrada via diagnostico.
+- /high-growth - programa de alto crescimento (high-ticket). Detalhes ❓.
+- /expansao-comercial - "Implemente em 90 dias o processo de Expansao
+  Comercial que gerou R$2.2B" (PEC - Programa Expansao Comercial).
+- /growth-play - "A escola de vendas mais completa do mercado. O 1o streaming
+  totalmente focado em vendas da America Latina." Assinatura SDR/Closer/Gestor.
+- /station-ai - SaaS de IA (PSF, SPIN, cold call). Trial gratis em stationai.app.
+- /prospct-ai - SDR virtual com IA. Planos R$4k-R$10k+/mes.
+- /imersao-closer - "Aumente suas vendas em 30 dias com a imersao que forma os
+  closers mais bem pagos do mercado." Evento intensivo de 2 dias.
+- /imersao-gestor - imersao para gestores comerciais. Detalhes ❓.
+
+🚪 ENTRADA / LEAD MAGNET (gratis):
+- diagnostico.growthmachine.com.br - aplicacao "diagnostico comercial gratuito"
+  pra CEOs. "Sua operacao perde dinheiro em 3 lugares."
+- scannerdevendas.growthmachine.com.br - quiz "Scanner de Vendas" (2 passos).
+  "Seu time comercial nao bate meta? Descubra os pontos cegos."
+- /script-de-vendas, /sales-model-canvas, /kanban-prospect,
+  /planilha-de-rotina-de-prospeccao - templates/ferramentas gratis (iscas).
+- lp.growthmachine.com.br/aulao + /aulao-secreto - aulao gratuito (webinar).
+- lp.growthmachine.com.br/guia-da-prospeccao, /toolkit-da-prospeccao,
+  /e-book-no-show, /curso-de-prospeccao, /software-de-prospeccao - iscas.
+- palestras.growthmachine.com.br - captacao B2B de palestras corporativas.
+
+💰 TRIPWIRE:
+- planode90dias.growthmachine.com.br - "Plano de 90 Dias" por R$37 (de R$197,
+  "81% OFF"). Tem itens/bumps numerados 01-12 (R$47 a R$97). Avatar: fundador
+  faturando R$100k/mes. Usa a origin story do telemarketing R$473,91.
+
+🔁 RECORRENCIA:
+- Growth Play (assinatura streaming) | Station AI (SaaS) | Prospct AI (SaaS R$4-10k/mes).
+
+🎮 ENGAJAMENTO/GAMIFICACAO:
+- lord-of-sales.com - "Lords of Sales: A Batalha Comercial Medieval." Empresas
+  competem em missoes de venda, prize pool R$45k (1o R$30k, 2o R$15k, 3o-10o
+  1 ano de Growth Play). Suporte wa.me/5511936228929.
+- arena.growthmachine.com.br - Arena (gamificacao). Detalhes ❓.
+
+🏢 ADJACENTE:
+- espaco.growthmachine.com.br - "Growth Space": locacao de espaco de eventos
+  corporativos (ate 400 lugares, A/V incluso). eventos@growthmachine.com.br,
+  IG @eventos.growth.
+
+📎 AUXILIAR:
+- blog.growthmachine.com.br (SEO pesado), cases.growthmachine.com.br,
+  faq.growthmachine.com.br, /trabalhe-conosco, /termos-de-uso-politicas...
+
+
+PARTE 6 - FUNIL COMPLETO
+=========================================================================
+
+------------- 6.1 - ESCADA DE VALOR -------------
+
++--------------------------------------------------------------+
+|  TOPO - HIGH TICKET (consultoria/aceleracao - preco sob app) |
+|  Growth Way (acelerador 90 dias) ........... R$ ❓ (via diag.)|
+|  Expansao Comercial / PEC .................. R$ ❓           |
+|  High Growth ............................... R$ ❓           |
++--------------------------------------------------------------+
+|  RECORRENCIA (SaaS + assinatura)                             |
+|  Prospct AI (SDR IA) ....................... R$ 4k-10k+/mes  |
+|  Station AI (SaaS) ......................... trial gratis / R$ ❓|
+|  Growth Play (streaming de vendas) ......... R$ ❓/mes       |
++--------------------------------------------------------------+
+|  MEIO - EVENTOS                                              |
+|  Imersao Closer (2 dias) ................... R$ ❓           |
+|  Imersao Gestor ............................ R$ ❓           |
++--------------------------------------------------------------+
+|  BASE - TRIPWIRE                                             |
+|  Plano de 90 Dias .......................... R$ 37 (de R$197)|
++--------------------------------------------------------------+
+|  ENTRADA - GRATUITO                                          |
+|  Diagnostico comercial | Scanner de Vendas | Aulao |        |
+|  Ebooks/templates | Palestras | Lords of Sales (gamificacao) |
++--------------------------------------------------------------+
+
+------------- 6.2 - TRIPWIRE: PLANO DE 90 DIAS -------------
+| Campo            | Dado                                               |
+|------------------|----------------------------------------------------|
+| URL              | https://planode90dias.growthmachine.com.br         |
+| Preco            | R$ 37 (de R$ 197 - "81% OFF" / "1% OFF" no topo)   |
+| Itens/bumps      | 12 itens numerados, R$47 a R$97 (modulos do plano) |
+| Avatar           | "fundador, CEO ou socio... ja fatura R$100 mil/mes"|
+| Promessa         | processo de prospeccao ativo em 90 dias            |
+| Gancho           | origin story telemarketing R$473,91 + "fundador    |
+|                  | ainda e o vendedor principal entre R$1M-R$10M"     |
+| FAQ-chave        | "Por que R$37? Tem algum catch?" -> "R$37 resolve  |
+|                  | isso em 90 dias" (quebra de objecao de preco baixo)|
+
+------------- 6.3 - CORE/RECORRENCIA -------------
+GROWTH PLAY - "1o streaming focado em vendas da America Latina". Aulas
+gravadas + mentorias ao vivo + comunidade + gamificacao. Promessas: "reduza
+ramp-up em ate 50%", "certificacoes reconhecidas". Planos individuais e de
+equipe. Entrada: go.growthmachine.com.br/growth-play. Preco ❓ (atras de fluxo).
+
+STATION AI - SaaS (stationai.app). Automatiza PSF, SPIN Selling, scripts de
+cold call, follow-ups. Cadastro gratis. "Vender ate 95% mais rapido."
+
+PROSPCT AI - SDR 100% virtual. Faz cold calls, qualifica leads, agenda
+reunioes. Tiers exibidos: R$4.000 / R$5.000 / R$9.000 / R$10.000 / R$10.000+
+por mes (provavelmente por volume/assentos).
+
+------------- 6.6 - HIGH-TICKET -------------
+GROWTH WAY (carro-chefe) - acelerador de 90 dias. "Transforme sua operacao
+em Maquina de Vendas." Inclui: estruturacao de funil/cadencias, tech propria
+(GS Engage, Growth Station), mentoria tatica semanal com especialistas.
+GARANTIA (literal): "Se a Maquina de Vendas nao estiver funcionando ao final
+dos 90 dias, voce recebe 100% do investimento de volta e ainda ganha 50% em
+cashback para reinvestir." Entrada via diagnostico (nao tem checkout publico).
+Preco ❓ - so revelado apos diagnostico/call de qualificacao.
+
+EXPANSAO COMERCIAL (PEC) - "Implemente em 90 dias o processo de Expansao
+Comercial que gerou R$2.2B." Dominio paralelo: expansaocomercial.com. Preco ❓.
+
+------------- 6.7 - DIAGRAMA DO FUNIL (visao 360) -------------
+
+   TRAFEGO ORGANICO (forte)          TRAFEGO PAGO (em LPs/subdominios)
+   IG @thiagoreis / YT / Livros      Meta/Google -> lp. / planode90dias.
+            |                                  |
+            v                                  v
+   +-------------------------------------------------------+
+   |  ENTRADA GRATIS:                                      |
+   |  Diagnostico | Scanner | Aulao | Ebooks | Palestras   |
+   +-----------------------------+-------------------------+
+            |                     |
+            v                     v
+   +-----------------+   +------------------------------+
+   | TRIPWIRE        |   | APLICACAO/DIAGNOSTICO        |
+   | Plano 90d R$37  |   | (qualifica CEO p/ high-ticket)|
+   +--------+--------+   +---------------+--------------+
+            |                            |
+            v                            v
+   +-----------------+        +-----------------------------+
+   | RECORRENCIA     |        | HIGH-TICKET (call de venda) |
+   | Growth Play     |several | Growth Way (90d) | Expansao  |
+   | Station AI      |<-cross->| Comercial | High Growth     |
+   | Prospct AI      |        +-----------------------------+
+   +-----------------+
+            |
+            v
+   GAMIFICACAO/RETENCAO: Lords of Sales, Arena (engaja base, premia c/ Growth Play)
+   ADJACENTE: Growth Space (locacao de eventos)
+
+
+PENDENCIAS E LACUNAS
+=========================================================================
+
+[PRECOS ❓ - tentado, nao atravessado]
+- Growth Way / Expansao Comercial / High Growth / Imersoes / Growth Play:
+  preco NAO publico - so via diagnostico/aplicacao/call. Para fechar: atravessar
+  o form do diagnostico com dados de teste (princ. #8) ou ligar como lead.
+- Station AI: trial gratis; preco pago ❓ (atras de cadastro no stationai.app).
+
+[STACK ❓ - falta rawHtml]
+- Pixel IDs (FB/GA4/GTM/TikTok), gateway exato dos checkouts, page builder
+  confirmado. Para fechar: scrape rawHtml de growthmachine.com.br + planode90dias
+  + station-ai e rodar regex de pixels/offers (FASE 2 da skill).
+
+[DADOS ❓ a confirmar]
+- Situacao cadastral / socios / capital social (cnpj.biz bloqueou proxy stealth;
+  usar econodata via WebFetch ou casadosdados).
+- Conflitos a resolver: R$2,2bi vs R$3,4bi; 40k vs 48k vendedores; fundacao
+  2016 (CNPJ) vs 2018 (SW) vs 2002 (carreira).
+- Trafego dos SUBDOMINIOS (lp., planode90dias., go.) no SimilarWeb - o dominio-mae
+  so mostra 12,9k/mes e -23,6%, mas a aquisicao real roda nas LPs.
+
+[O QUE O HUMANO PRECISA FAZER]
+- [ ] Atravessar diagnostico.growthmachine com dados de teste -> preco high-ticket
+- [ ] Meta Ads Library da pagina "Growth Machine"/"Thiago Reis" (a skill nao cobre
+      Ads; mas e onde vive o trafego pago - cruzar com pipeline de Ads do dossie black)
+- [ ] Coletar sequencia de email pos opt-in no diagnostico/aulao
+- [ ] Confirmar precos das imersoes e Growth Play via WhatsApp/call
+
+=========================================================================
+FIM DO DOSSIE - Thiago Reis / Growth Machine - 01/06/2026
+Gerado via /espionagem (adaptado: B2B high-ticket, nao infoproduto black)
+=========================================================================
