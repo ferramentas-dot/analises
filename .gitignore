@@ -17,3 +17,8 @@ __pycache__/
 *.description
 *.info
 *.mp4
+
+# Secrets — NUNCA commitar
+.env
+.env.*
+!.env.example
