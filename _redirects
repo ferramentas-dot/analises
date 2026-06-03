@@ -1,0 +1,5 @@
+# Aliases sem hífen -> pasta correta (Cloudflare Pages)
+/thiagoreis           /thiago-reis/            301
+/thiagoreis/*         /thiago-reis/:splat      301
+/jeremyminer          /jeremy-miner/           301
+/jeremyminer/*        /jeremy-miner/:splat     301
