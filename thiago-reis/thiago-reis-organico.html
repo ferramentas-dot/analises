@@ -416,6 +416,11 @@ footer { padding: 24px 40px; color: var(--muted); font-size: 12px; border-top: 1
 .yt-link-label{flex-shrink:0;color:var(--text);font-weight:600;min-width:150px;}
 .yt-link-url{color:var(--muted);word-break:break-all;text-decoration:none;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;}
 .yt-link-url:hover{color:#a855f7;text-decoration:underline;}
+/* cards menores lado a lado */
+.section-grid{grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px;}
+.card-top{grid-template-columns:140px 1fr;}
+.card-top .thumb img,.card-top .thumb{max-height:200px;}
+@media (max-width:760px){.section-grid{grid-template-columns:1fr;}}
 
 </style>
 </head>
@@ -453,7 +458,7 @@ footer { padding: 24px 40px; color: var(--muted); font-size: 12px; border-top: 1
         <div><h2 style="color:#ec4899">📷 Instagram — Reels + Carrosséis</h2><p class="section-sub">100 reels + 50 carrosséis classificados por funil. Use os filtros Reels/Feed.</p></div>
         <div class="section-stats"><span><strong>150</strong> cards</span></div>
       </header>
-      <div class="cards-grid">
+      <div class="section-grid">
         
     <article class="card" data-stage="TOFU" data-kind="reel" data-funnel="manychat" data-id="DIPYa6-sLWH">
       <div class="card-top">
@@ -22224,7 +22229,7 @@ Carrossel de nível médio-forte. O reframe do dado público (escassez de talent
         <div><h2 style="color:#ef4444">📺 YouTube 2025/2026</h2><p class="section-sub">Os 50 principais vídeos de 2025/2026 por views — análise de copy/retenção editável.</p></div>
         <div class="section-stats"><span><strong>50</strong> cards</span></div>
       </header>
-      <div class="cards-grid">
+      <div class="section-grid">
         
     <article class="card" data-stage="MOFU" data-kind="yt" data-funnel="organic" data-id="c2YoPKnSB6o">
       <div class="card-top">
@@ -27423,7 +27428,7 @@ Veredito forte — o vídeo mais maduro do canal em termos de formato editorial,
         <div><h2 style="color:#f59e0b">⚡ YouTube Shorts (top 50, 2025+)</h2><p class="section-sub">Top 50 shorts por views, de 2025 em diante.</p></div>
         <div class="section-stats"><span><strong>50</strong> cards</span></div>
       </header>
-      <div class="cards-grid">
+      <div class="section-grid">
         
     <article class="card" data-stage="TOFU" data-kind="short" data-funnel="organic" data-id="vSdLkjFuChE">
       <div class="card-top">
