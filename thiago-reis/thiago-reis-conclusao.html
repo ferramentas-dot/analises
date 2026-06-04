@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conclusão Geral — Thiago Reis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f1a;--surface:#131927;--surface2:#0f1422;--border:#1e2638;--text:#e6ebf2;--muted:#94a3b8;--accent:#06b6d4;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.hero{max-width:1100px;margin:0 auto;padding:48px 20px 20px}
+.kicker{color:var(--accent);font-weight:700;letter-spacing:.18em;font-size:12px}
+.hero h1{font-size:36px;font-weight:800;margin:10px 0 12px}
+.hero .sub{color:var(--muted);font-size:15px;max-width:880px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px}
+.toolbar .hint{color:var(--muted);font-size:13px}
+.toolbar .stats{display:flex;gap:14px;font-size:13px;color:var(--muted)}
+.toolbar .stats b{color:var(--text)}
+.export{background:var(--accent);color:#04222a;border:0;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;font-family:inherit;font-size:14px}
+.export:hover{filter:brightness(1.1)}
+.csec{max-width:1100px;margin:30px auto;padding:0 20px;position:relative}
+.csec-head{border-left:4px solid;padding:4px 0 4px 14px;margin-bottom:16px}
+.csec-head h2{margin:0;font-size:24px;font-weight:800}
+.csec-sub{margin:4px 0 0;color:var(--muted);font-size:14px}
+.cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.ccard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;position:relative}
+.ccard-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.cbadge{font-weight:800;font-size:11px;letter-spacing:.05em;padding:3px 10px;border-radius:6px;border:1px solid;flex:0 0 auto}
+.ccard-head h3{margin:0;font-size:16.5px;font-weight:800;flex:1;min-width:160px}
+.ccard-tools{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.edit-tag{font-size:10px;font-weight:700;color:var(--accent);background:rgba(6,182,212,.12);border:1px solid var(--accent);border-radius:5px;padding:1px 7px}
+.reset-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:6px;font-size:11px;padding:2px 9px;cursor:pointer;font-family:inherit}
+.reset-btn:hover{color:var(--text);border-color:var(--accent)}
+.save-state{font-size:11px;color:#475569;margin-left:auto}
+.save-state.dirty{color:#22c55e}
+.copy-textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:12px;font-family:inherit;font-size:13px;line-height:1.6;resize:vertical;white-space:pre-wrap;min-height:240px}
+.copy-textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+[contenteditable]{outline:none;border-radius:6px}
+[contenteditable]:focus{background:rgba(6,182,212,.10);box-shadow:inset 0 0 0 1px var(--accent)}
+.cut{position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:7px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-size:12px;z-index:3;opacity:.55}
+.cut:hover{opacity:1;border-color:#ef4444;color:#ef4444}
+.csec>.cut{top:-2px}
+[data-block].is-cut{opacity:.3;filter:grayscale(1)}
+[data-block].is-cut .cut{opacity:1;border-color:#22c55e;color:#22c55e}
+.foot{max-width:1100px;margin:30px auto 0;padding:20px;color:#5b6678;font-size:12px;border-top:1px solid var(--border)}
+@media(max-width:760px){.cgrid{grid-template-columns:1fr}.hero h1{font-size:28px}}
+</style></head>
+<body>
+<header class="hero">
+  <div class="kicker">CONCLUSÃO GERAL · O QUE EXTRAIR DESSE DOSSIÊ</div>
+  <h1 contenteditable="true">Thiago Reis / Growth Machine — como a máquina ganha dinheiro</h1>
+  <p class="sub" contenteditable="true">Destilado final do dossiê — pensado pra quem quer entender como ele fatura de verdade, por que está funcionando, onde está frágil e como atacar esse mercado sem competir de frente. Cada card é editável (autosave no navegador). Marcado [CONFIRMADO] (validado na coleta) vs [HIPÓTESE] (inferência). Sintetizado de IG (100 reels + 50 estáticos), LinkedIn (44 posts), YouTube (long-form 2026) e os 7 funis de 2 - Paginas/ + VSLs.</p>
+  <div class="toolbar">
+    <span class="hint">✎ Edite qualquer card (salva sozinho) · <b>↺ original</b> restaura · <b>x</b> corta.</span>
+    <span class="stats"><span><b>42</b> cards</span><span><b>7</b> seções</span></span>
+    <button class="export" onclick="downloadFinal()">⬇ Baixar versão final</button>
+  </div>
+</header>
+
+    <section class="csec" data-block>
+      <button class="cut" title="Cortar seção inteira" onclick="toggleCut(this)">x</button>
+      <header class="csec-head" style="border-left-color:#10b981">
+        <h2 style="color:#10b981" contenteditable="true">🛤 Etapa 1 — Como o lead encontra o Thiago</h2>
+        <p class="csec-sub" contenteditable="true">Por onde as pessoas chegam até ele — o que é pago, o que é orgânico, e quem cada porta atrai. 6 cards.</p>
+      </header>
+      <div class="cgrid">
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 TRÁFEGO PAGO</span>
+            <h3 contenteditable="true">Todo o dinheiro de anúncio dele vive num lugar só: o Meta</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e1-1" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e1-1">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e1-1" data-default="A primeira coisa que chama atenção quando você procura os anúncios do Thiago é onde eles NÃO estão. Ele não roda nada no Google nem no YouTube Ads — toda a verba de mídia paga está no Meta (Facebook e Instagram). E os anúncios não levam pro site institucional; levam pra uma página feita só pra isso, com o pixel do Facebook e o checkout da Hotmart já embutidos.
+
+Tem um detalhe que entrega muita coisa: os criativos estão no ar há 30 a 65 dias. Anúncio que sobrevive mais de um mês não é teste, é vencedor — ninguém deixa um anúncio rodando dois meses se ele não está se pagando. Então o que a gente vê aqui é um funil de aquisição já maduro e lucrativo, não alguém tateando.
+
+A linguagem desses anúncios fala com quem ainda nem conhece ele (&quot;conquiste de 5 a 50 clientes em 20 dias&quot;). É tráfego frio, gente nova. Isso importa porque mostra que o Meta é a porta de entrada de desconhecidos — e que o resto da máquina é o que aquece e converte essa galera depois." rows="13">A primeira coisa que chama atenção quando você procura os anúncios do Thiago é onde eles NÃO estão. Ele não roda nada no Google nem no YouTube Ads — toda a verba de mídia paga está no Meta (Facebook e Instagram). E os anúncios não levam pro site institucional; levam pra uma página feita só pra isso, com o pixel do Facebook e o checkout da Hotmart já embutidos.
+
+Tem um detalhe que entrega muita coisa: os criativos estão no ar há 30 a 65 dias. Anúncio que sobrevive mais de um mês não é teste, é vencedor — ninguém deixa um anúncio rodando dois meses se ele não está se pagando. Então o que a gente vê aqui é um funil de aquisição já maduro e lucrativo, não alguém tateando.
+
+A linguagem desses anúncios fala com quem ainda nem conhece ele (&quot;conquiste de 5 a 50 clientes em 20 dias&quot;). É tráfego frio, gente nova. Isso importa porque mostra que o Meta é a porta de entrada de desconhecidos — e que o resto da máquina é o que aquece e converte essa galera depois.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 ORGÂNICO</span>
+            <h3 contenteditable="true">No Instagram ele rouba a atenção que a notícia do dia já tem</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e1-2" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e1-2">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e1-2" data-default="No Instagram o jogo é outro: alcance frio, gente passando o dedo na tela. Pra furar isso, o Thiago posta quase todo dia (cerca de 1,4 post por dia) pegando carona em assunto quente — Mercado Livre, PSG, Cristiano Ronaldo, Nubank, Silvio Santos. A notícia já tem a atenção das pessoas; ele só desvia esse tráfego pro tema dele, de graça.
+
+É um cavalo de Troia: ninguém procura &quot;máquina de vendas&quot; no descanso, mas todo mundo para num post sobre futebol. Aí, no meio do assunto popular, ele encaixa a lição de negócio. Quase todo post fecha com &quot;comenta DESAFIO&quot;, que dispara uma conversa automática na DM.
+
+Vale saber o tamanho real disso: a mediana é de 17 mil visualizações por reel, mas alguns estouram (o maior do mês bateu 670 mil). O alcance é grande, só que frio — é topo de funil puro, gente que ele ainda vai precisar qualificar lá na frente." rows="13">No Instagram o jogo é outro: alcance frio, gente passando o dedo na tela. Pra furar isso, o Thiago posta quase todo dia (cerca de 1,4 post por dia) pegando carona em assunto quente — Mercado Livre, PSG, Cristiano Ronaldo, Nubank, Silvio Santos. A notícia já tem a atenção das pessoas; ele só desvia esse tráfego pro tema dele, de graça.
+
+É um cavalo de Troia: ninguém procura &quot;máquina de vendas&quot; no descanso, mas todo mundo para num post sobre futebol. Aí, no meio do assunto popular, ele encaixa a lição de negócio. Quase todo post fecha com &quot;comenta DESAFIO&quot;, que dispara uma conversa automática na DM.
+
+Vale saber o tamanho real disso: a mediana é de 17 mil visualizações por reel, mas alguns estouram (o maior do mês bateu 670 mil). O alcance é grande, só que frio — é topo de funil puro, gente que ele ainda vai precisar qualificar lá na frente.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 ORGÂNICO</span>
+            <h3 contenteditable="true">O LinkedIn é onde ele pesca o lead bom: o dono em modo de trabalho</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e1-3" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e1-3">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e1-3" data-default="Se o Instagram traz volume frio, o LinkedIn traz qualidade. A diferença é simples: no LinkedIn a pessoa não está descansando, está trabalhando — procurando fornecedor, método, gente pra contratar. O decisor chega ali já no clima de resolver problema, e por isso esse canal converte melhor pra venda cara.
+
+Ele posta com a mesma intensidade (cerca de 1,5 post por dia) e ainda faz live quase todos os dias. O formato é texto longo: abre com uma frase que contraria o senso comum, crava a autoridade (&quot;depois de estruturar mais de 8.000 operações comerciais&quot;) e termina pedindo um comentário com palavra-chave, que puxa a pessoa pra DM.
+
+Ou seja, é a mesma mecânica do Instagram (comentário vira conversa privada), mas com um público mais maduro. É de longe o canal mais qualificado do orgânico dele." rows="13">Se o Instagram traz volume frio, o LinkedIn traz qualidade. A diferença é simples: no LinkedIn a pessoa não está descansando, está trabalhando — procurando fornecedor, método, gente pra contratar. O decisor chega ali já no clima de resolver problema, e por isso esse canal converte melhor pra venda cara.
+
+Ele posta com a mesma intensidade (cerca de 1,5 post por dia) e ainda faz live quase todos os dias. O formato é texto longo: abre com uma frase que contraria o senso comum, crava a autoridade (&quot;depois de estruturar mais de 8.000 operações comerciais&quot;) e termina pedindo um comentário com palavra-chave, que puxa a pessoa pra DM.
+
+Ou seja, é a mesma mecânica do Instagram (comentário vira conversa privada), mas com um público mais maduro. É de longe o canal mais qualificado do orgânico dele.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 ORGÂNICO</span>
+            <h3 contenteditable="true">No YouTube ele pega quem já está procurando a solução</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e1-4" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e1-4">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e1-4" data-default="O YouTube funciona ao contrário do Instagram. No Insta ele interrompe quem não estava pensando no assunto; no YouTube ele aparece pra quem DIGITOU o problema — &quot;como quebrar objeção&quot;, &quot;como fazer cold call&quot;, &quot;SPIN selling&quot;. Esse lead já chega quente, porque foi ele que procurou.
+
+É um acervo enorme construído ao longo de anos (mais de 700 vídeos), e os campeões continuam trazendo gente sozinhos. O ponto que mais importa pra gente: em 2026, todos os vídeos do ano passaram a empurrar o MESMO Desafio de R$97 dos outros canais. Antes o YouTube era meio ilha; agora virou braço do mesmo funil.
+
+De quebra, ele ainda ganha uma graninha no caminho com link de afiliado (Pipedrive, Amazon) na descrição — fatura até de quem nunca vai comprar o produto principal." rows="13">O YouTube funciona ao contrário do Instagram. No Insta ele interrompe quem não estava pensando no assunto; no YouTube ele aparece pra quem DIGITOU o problema — &quot;como quebrar objeção&quot;, &quot;como fazer cold call&quot;, &quot;SPIN selling&quot;. Esse lead já chega quente, porque foi ele que procurou.
+
+É um acervo enorme construído ao longo de anos (mais de 700 vídeos), e os campeões continuam trazendo gente sozinhos. O ponto que mais importa pra gente: em 2026, todos os vídeos do ano passaram a empurrar o MESMO Desafio de R$97 dos outros canais. Antes o YouTube era meio ilha; agora virou braço do mesmo funil.
+
+De quebra, ele ainda ganha uma graninha no caminho com link de afiliado (Pipedrive, Amazon) na descrição — fatura até de quem nunca vai comprar o produto principal.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟡 A MENSAGEM-MÃE</span>
+            <h3 contenteditable="true">Contra o que ele luta: o mito de que &#x27;é só se esforçar mais&#x27;</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e1-5" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e1-5">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e1-5" data-default="Todo bom comunicador tem um inimigo declarado, e o do Thiago é o esforço sem sistema — a figura do &quot;vendedor herói&quot; que segura a empresa nas costas. A frase que resume a crença dele aparece na VSL, numa analogia de bicicleta: chega uma hora que, por mais força que você faça, a velocidade não sobe — o problema não é o esforço, é o veículo.
+
+Traduzindo: &quot;você não tem problema de esforço, tem problema de estrutura comercial&quot;. Esse é o coração de tudo que ele fala. Ele transforma um vilão abstrato (a falta de processo) em algo que a pessoa sente na pele todo dia.
+
+Pra você, isso é munição de posicionamento. Saber qual é a bandeira dele te permite levantar a bandeira oposta (ou complementar) pra conversar com quem concorda com a ideia mas não se identifica com o jeito dele." rows="13">Todo bom comunicador tem um inimigo declarado, e o do Thiago é o esforço sem sistema — a figura do &quot;vendedor herói&quot; que segura a empresa nas costas. A frase que resume a crença dele aparece na VSL, numa analogia de bicicleta: chega uma hora que, por mais força que você faça, a velocidade não sobe — o problema não é o esforço, é o veículo.
+
+Traduzindo: &quot;você não tem problema de esforço, tem problema de estrutura comercial&quot;. Esse é o coração de tudo que ele fala. Ele transforma um vilão abstrato (a falta de processo) em algo que a pessoa sente na pele todo dia.
+
+Pra você, isso é munição de posicionamento. Saber qual é a bandeira dele te permite levantar a bandeira oposta (ou complementar) pra conversar com quem concorda com a ideia mas não se identifica com o jeito dele.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟡 O AVATAR</span>
+            <h3 contenteditable="true">Ele fala pra um cliente bem específico: o dono que já fatura mais de 1 milhão</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e1-6" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e1-6">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e1-6" data-default="Apesar do alcance gigante, o Thiago não está mirando todo mundo. Quando a gente classificou os 45 posts do último mês, 27 deles (60%) falavam diretamente com o DONO da empresa, não com o vendedor. E a própria VSL deixa explícito: a oferta é &quot;pra quem fatura mais de 1 milhão por ano&quot;.
+
+Dá pra desenhar o sujeito: homem, mais ou menos 30 a 50 anos, dono de uma empresa B2B, que curte futebol e jiu-jitsu (a linguagem dos posts é toda nessa pegada). O gestor comercial e o vendedor aparecem na conversa, mas como coadjuvantes — o vendedor, inclusive, é mais usado como &quot;exemplo do erro&quot; pra cutucar o dono.
+
+Isso é importante porque mostra onde ele NÃO está olhando — e é justamente aí que sobra espaço pra você (a gente volta nisso no playbook de público ignorado)." rows="13">Apesar do alcance gigante, o Thiago não está mirando todo mundo. Quando a gente classificou os 45 posts do último mês, 27 deles (60%) falavam diretamente com o DONO da empresa, não com o vendedor. E a própria VSL deixa explícito: a oferta é &quot;pra quem fatura mais de 1 milhão por ano&quot;.
+
+Dá pra desenhar o sujeito: homem, mais ou menos 30 a 50 anos, dono de uma empresa B2B, que curte futebol e jiu-jitsu (a linguagem dos posts é toda nessa pegada). O gestor comercial e o vendedor aparecem na conversa, mas como coadjuvantes — o vendedor, inclusive, é mais usado como &quot;exemplo do erro&quot; pra cutucar o dono.
+
+Isso é importante porque mostra onde ele NÃO está olhando — e é justamente aí que sobra espaço pra você (a gente volta nisso no playbook de público ignorado).</textarea>
+        </article></div>
+    </section>
+
+    <section class="csec" data-block>
+      <button class="cut" title="Cortar seção inteira" onclick="toggleCut(this)">x</button>
+      <header class="csec-head" style="border-left-color:#10b981">
+        <h2 style="color:#10b981" contenteditable="true">🔗 Etapa 2 — Como ele aprofunda o lead</h2>
+        <p class="csec-sub" contenteditable="true">O que acontece depois do primeiro contato: como os canais se conectam e onde a pessoa se envolve de verdade. 5 cards.</p>
+      </header>
+      <div class="cgrid">
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 O MAPA</span>
+            <h3 contenteditable="true">Não importa por onde você entra, tudo desemboca no mesmo lugar</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e2-1" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e2-1">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e2-1" data-default="Quando você junta os canais, percebe que eles não são quatro funis separados — são quatro entradas pra mesma porta. No Instagram e no LinkedIn, &quot;comenta DESAFIO&quot; leva pra DM e a DM empurra pro Desafio de R$97. No YouTube, a descrição leva pro mesmo R$97 (e pro Telegram). Até o joguinho dele, o Lord of Sales, no e-mail de boas-vindas manda a pessoa fazer o &quot;diagnóstico comercial&quot;.
+
+A sacada disso é econômica: ele reaproveita a MESMA VSL e o MESMO checkout pra todo mundo. Não precisa criar página nova, oferta nova, vídeo novo pra cada canal. Um destino só, alimentado por várias bocas.
+
+Pra um concorrente, essa é a primeira coisa a entender: o R$97 é o ponto de encontro de toda a operação. É nele que o lead frio vira lead pagante." rows="13">Quando você junta os canais, percebe que eles não são quatro funis separados — são quatro entradas pra mesma porta. No Instagram e no LinkedIn, &quot;comenta DESAFIO&quot; leva pra DM e a DM empurra pro Desafio de R$97. No YouTube, a descrição leva pro mesmo R$97 (e pro Telegram). Até o joguinho dele, o Lord of Sales, no e-mail de boas-vindas manda a pessoa fazer o &quot;diagnóstico comercial&quot;.
+
+A sacada disso é econômica: ele reaproveita a MESMA VSL e o MESMO checkout pra todo mundo. Não precisa criar página nova, oferta nova, vídeo novo pra cada canal. Um destino só, alimentado por várias bocas.
+
+Pra um concorrente, essa é a primeira coisa a entender: o R$97 é o ponto de encontro de toda a operação. É nele que o lead frio vira lead pagante.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 A VSL</span>
+            <h3 contenteditable="true">O vídeo de vendas tem um truque que faz você se sentir &#x27;pego&#x27;</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e2-2" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e2-2">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e2-2" data-default="O coração da conversão é uma VSL de 6 minutos, e ela é muito bem montada. Primeiro ele dá nome ao inimigo: o &quot;vale dos 10 milhões&quot;, o lugar onde as empresas travam. Depois lista 7 armadilhas e solta a frase mágica: &quot;eu falei 7, mas se você tem 3 ou mais, já está preso&quot;. É praticamente impossível ouvir as 7 e não se reconhecer em pelo menos 3 — então todo mundo se sente diagnosticado.
+
+Com a pessoa já se sentindo &quot;doente&quot;, ele apresenta o &quot;remédio&quot; (os 4 componentes de uma máquina de vendas) e só então fala o preço. E ancora o R$97 de um jeito esperto: &quot;é menos do que você paga por um lead que perde todo dia&quot;.
+
+Esse desenho — dar nome ao inimigo, fazer a pessoa se auto-diagnosticar e só depois cobrar — é replicável em qualquer nicho. Está no nosso swipe file pra adaptar." rows="13">O coração da conversão é uma VSL de 6 minutos, e ela é muito bem montada. Primeiro ele dá nome ao inimigo: o &quot;vale dos 10 milhões&quot;, o lugar onde as empresas travam. Depois lista 7 armadilhas e solta a frase mágica: &quot;eu falei 7, mas se você tem 3 ou mais, já está preso&quot;. É praticamente impossível ouvir as 7 e não se reconhecer em pelo menos 3 — então todo mundo se sente diagnosticado.
+
+Com a pessoa já se sentindo &quot;doente&quot;, ele apresenta o &quot;remédio&quot; (os 4 componentes de uma máquina de vendas) e só então fala o preço. E ancora o R$97 de um jeito esperto: &quot;é menos do que você paga por um lead que perde todo dia&quot;.
+
+Esse desenho — dar nome ao inimigo, fazer a pessoa se auto-diagnosticar e só depois cobrar — é replicável em qualquer nicho. Está no nosso swipe file pra adaptar.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 O QUIZ</span>
+            <h3 contenteditable="true">O Scanner de Vendas é um diagnóstico que cria a dor antes de vender a cura</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e2-3" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e2-3">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e2-3" data-default="Uma das portas de entrada é um quiz, o &quot;Scanner de Vendas&quot;. Ele pergunta &quot;seu time não bate meta?&quot; e, no fim, devolve uma nota — só que vem com alguns pilares zerados (tipo Execução e Feedback em 0%) e um aviso: &quot;cada semana sem corrigir é dinheiro na mesa&quot;.
+
+O genial é que a dor não vem do Thiago dizendo que você está mal; vem de um &quot;relatório&quot; que parece neutro. A pessoa se diagnostica sozinha, vê o problema medido em número, e chega na oferta já incomodada. Aí o quiz joga ela na mesma VSL do Desafio.
+
+É uma das mecânicas mais fáceis de copiar e das que mais convertem: um quiz que devolve um resultado desconfortável vende muito mais que um quiz que só elogia." rows="13">Uma das portas de entrada é um quiz, o &quot;Scanner de Vendas&quot;. Ele pergunta &quot;seu time não bate meta?&quot; e, no fim, devolve uma nota — só que vem com alguns pilares zerados (tipo Execução e Feedback em 0%) e um aviso: &quot;cada semana sem corrigir é dinheiro na mesa&quot;.
+
+O genial é que a dor não vem do Thiago dizendo que você está mal; vem de um &quot;relatório&quot; que parece neutro. A pessoa se diagnostica sozinha, vê o problema medido em número, e chega na oferta já incomodada. Aí o quiz joga ela na mesma VSL do Desafio.
+
+É uma das mecânicas mais fáceis de copiar e das que mais convertem: um quiz que devolve um resultado desconfortável vende muito mais que um quiz que só elogia.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 O E-MAIL</span>
+            <h3 contenteditable="true">O e-mail existe e é mais esperto do que parece — mas tem um furo</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e2-4" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e2-4">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e2-4" data-default="A gente conseguiu ver os e-mails reais que ele dispara, e eles surpreendem pela qualidade. Foram quatro: um chamando pra live das 8h, um de boas-vindas do joguinho que empurra o diagnóstico, um de recuperação (&quot;você parou no quase&quot;) puxando de volta pro Desafio, e — o mais inteligente — um que separa as pessoas por cargo: &quot;esse curso é pra donos e gestores; se você é vendedor ou SDR, toma aqui um material mais prático pro seu dia a dia&quot;.
+
+Esse último mostra um cuidado raro: ele não manda a mesma mensagem pra todo mundo, adapta a oferta a quem está lendo. Isso é um motor, não um defeito.
+
+O furo aparece na entrega: todos os quatro caíram no spam. A gente volta nisso nos buracos, mas já adianta — ele escreve bem e ninguém lê." rows="13">A gente conseguiu ver os e-mails reais que ele dispara, e eles surpreendem pela qualidade. Foram quatro: um chamando pra live das 8h, um de boas-vindas do joguinho que empurra o diagnóstico, um de recuperação (&quot;você parou no quase&quot;) puxando de volta pro Desafio, e — o mais inteligente — um que separa as pessoas por cargo: &quot;esse curso é pra donos e gestores; se você é vendedor ou SDR, toma aqui um material mais prático pro seu dia a dia&quot;.
+
+Esse último mostra um cuidado raro: ele não manda a mesma mensagem pra todo mundo, adapta a oferta a quem está lendo. Isso é um motor, não um defeito.
+
+O furo aparece na entrega: todos os quatro caíram no spam. A gente volta nisso nos buracos, mas já adianta — ele escreve bem e ninguém lê.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟡 AS OBJEÇÕES</span>
+            <h3 contenteditable="true">As duas dúvidas que travam o lead antes de comprar</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e2-5" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e2-5">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e2-5" data-default="Dá pra ver, pelo que ele combate o tempo todo, quais são as objeções que mais aparecem. A número um é o clássico &quot;tá caro&quot; — tema recorrente nos reels e a razão de a VSL ancorar o preço com tanto cuidado. A número dois é mais sutil e o próprio e-mail de recuperação dá o nome: &quot;será que eu vou dar conta?&quot;. É o medo de comprar e não conseguir executar.
+
+Saber as objeções do concorrente é meio caminho andado: você já entra sabendo o que precisa responder na sua própria copy.
+
+Aqui cabe uma honestidade: a gente ainda não puxou os comentários crus nem o ReclameAqui dele, então essa leitura de objeções está baseada no que ele combate, não no que os clientes reclamam. Quando coletarmos isso, fica mais forte (está anotado no apêndice)." rows="13">Dá pra ver, pelo que ele combate o tempo todo, quais são as objeções que mais aparecem. A número um é o clássico &quot;tá caro&quot; — tema recorrente nos reels e a razão de a VSL ancorar o preço com tanto cuidado. A número dois é mais sutil e o próprio e-mail de recuperação dá o nome: &quot;será que eu vou dar conta?&quot;. É o medo de comprar e não conseguir executar.
+
+Saber as objeções do concorrente é meio caminho andado: você já entra sabendo o que precisa responder na sua própria copy.
+
+Aqui cabe uma honestidade: a gente ainda não puxou os comentários crus nem o ReclameAqui dele, então essa leitura de objeções está baseada no que ele combate, não no que os clientes reclamam. Quando coletarmos isso, fica mais forte (está anotado no apêndice).</textarea>
+        </article></div>
+    </section>
+
+    <section class="csec" data-block>
+      <button class="cut" title="Cortar seção inteira" onclick="toggleCut(this)">x</button>
+      <header class="csec-head" style="border-left-color:#10b981">
+        <h2 style="color:#10b981" contenteditable="true">🪜 Etapa 3 — Pra onde o lead sobe (a escada de produtos)</h2>
+        <p class="csec-sub" contenteditable="true">Todos os produtos, os preços que conseguimos confirmar, e como ele ganha dinheiro de verdade. 6 cards.</p>
+      </header>
+      <div class="cgrid">
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 DEGRAU 1</span>
+            <h3 contenteditable="true">O Desafio de R$97 não serve pra lucrar — serve pra filtrar</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e3-1" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e3-1">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e3-1" data-default="O primeiro degrau é o Desafio &quot;5 a 50 clientes em 20 dias&quot;, por R$97 na Hotmart, com garantia de 7 dias (são 3 aulas ao vivo, um grupo no WhatsApp e um material pra aplicar). Tem também o Lord of Sales, um &quot;joguinho&quot; de vendas que custa os mesmos R$97.
+
+A grande sacada é entender que esse R$97 não é o negócio dele. Ninguém fica rico vendendo a R$97. O papel desse produto é ser um filtro: quem paga R$97 prova que tem dinheiro e disposição, e entra numa lista diferente de quem só consome conteúdo de graça. Ele praticamente diz isso na cara, na VSL: &quot;quando você ver isso funcionando, vai querer ir mais fundo&quot;.
+
+É por isso que vale copiar: o produto barato não é pra faturar, é pra peneirar quem merece receber a oferta cara depois." rows="13">O primeiro degrau é o Desafio &quot;5 a 50 clientes em 20 dias&quot;, por R$97 na Hotmart, com garantia de 7 dias (são 3 aulas ao vivo, um grupo no WhatsApp e um material pra aplicar). Tem também o Lord of Sales, um &quot;joguinho&quot; de vendas que custa os mesmos R$97.
+
+A grande sacada é entender que esse R$97 não é o negócio dele. Ninguém fica rico vendendo a R$97. O papel desse produto é ser um filtro: quem paga R$97 prova que tem dinheiro e disposição, e entra numa lista diferente de quem só consome conteúdo de graça. Ele praticamente diz isso na cara, na VSL: &quot;quando você ver isso funcionando, vai querer ir mais fundo&quot;.
+
+É por isso que vale copiar: o produto barato não é pra faturar, é pra peneirar quem merece receber a oferta cara depois.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 DEGRAU 2</span>
+            <h3 contenteditable="true">A receita previsível mora no Growth Play, a R$97 por mês</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e3-2" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e3-2">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e3-2" data-default="Subindo a escada, aparece a parte que dá receita mês a mês: o Growth Play, uma assinatura. Custa R$97 por mês, ou R$78,92 por mês se você fecha o ano (R$947 à vista, com o desconto de 20% que ele anuncia). Entrega mais de 200 horas de conteúdo, mentorias semanais ao vivo e uma comunidade gamificada.
+
+O detalhe esperto: o prêmio do joguinho Lord of Sales é justamente um ano grátis de Growth Play. Ou seja, ele usa o joguinho pra empurrar gente pra dentro da recorrência.
+
+Isso é o que falta na maioria dos infoprodutores e o que segura o negócio dele em pé: uma fonte de dinheiro que entra todo mês, sem depender de vender de novo. Pra você, é a peça que transforma &quot;venda única&quot; em &quot;receita previsível&quot;." rows="13">Subindo a escada, aparece a parte que dá receita mês a mês: o Growth Play, uma assinatura. Custa R$97 por mês, ou R$78,92 por mês se você fecha o ano (R$947 à vista, com o desconto de 20% que ele anuncia). Entrega mais de 200 horas de conteúdo, mentorias semanais ao vivo e uma comunidade gamificada.
+
+O detalhe esperto: o prêmio do joguinho Lord of Sales é justamente um ano grátis de Growth Play. Ou seja, ele usa o joguinho pra empurrar gente pra dentro da recorrência.
+
+Isso é o que falta na maioria dos infoprodutores e o que segura o negócio dele em pé: uma fonte de dinheiro que entra todo mês, sem depender de vender de novo. Pra você, é a peça que transforma &quot;venda única&quot; em &quot;receita previsível&quot;.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 DEGRAU 3</span>
+            <h3 contenteditable="true">O dinheiro grande é por telefone — e só pra quem passa no filtro</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e3-3" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e3-3">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e3-3" data-default="No topo está o produto caro: o Growth Way (acelerador de 90 dias) e o Expansão Comercial. O preço desses não está em lugar nenhum — só sai depois que você faz um &quot;diagnóstico&quot; e é considerado qualificado. E a venda é fechada por uma pessoa, um closer, numa call.
+
+A gente confirmou esse filtro na prática: ao preencher o diagnóstico sem o perfil de cliente, não veio nenhuma ligação. Ou seja, o diagnóstico não é só uma isca bonita — é uma peneira de verdade, que decide quem merece o tempo de um vendedor humano.
+
+Faz todo sentido: closer é caro. Concentrar esse recurso só em quem tem dinheiro e perfil é o que torna a venda cara lucrativa. Vale copiar o filtro; e o &quot;ficar sem resposta&quot; de quem não passa vira oportunidade nossa (está nos buracos)." rows="13">No topo está o produto caro: o Growth Way (acelerador de 90 dias) e o Expansão Comercial. O preço desses não está em lugar nenhum — só sai depois que você faz um &quot;diagnóstico&quot; e é considerado qualificado. E a venda é fechada por uma pessoa, um closer, numa call.
+
+A gente confirmou esse filtro na prática: ao preencher o diagnóstico sem o perfil de cliente, não veio nenhuma ligação. Ou seja, o diagnóstico não é só uma isca bonita — é uma peneira de verdade, que decide quem merece o tempo de um vendedor humano.
+
+Faz todo sentido: closer é caro. Concentrar esse recurso só em quem tem dinheiro e perfil é o que torna a venda cara lucrativa. Vale copiar o filtro; e o &quot;ficar sem resposta&quot; de quem não passa vira oportunidade nossa (está nos buracos).</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟢 DEGRAU 4</span>
+            <h3 contenteditable="true">O produto de maior recorrência é um software de IA, a partir de R$6 mil/mês</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e3-4" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e3-4">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e3-4" data-default="Tem um andar ainda mais alto, e é a aposta de futuro dele: software. O Prospct AI, que é um &quot;vendedor robô&quot; (SDR de inteligência artificial), custa a partir de R$6 mil por mês, dependendo do tamanho da operação. Existe também o Station AI, sem preço público.
+
+O jeito como ele vende isso é curioso: não tem anúncio nem funil próprio pra esses produtos. Eles aparecem em vídeos do YouTube e, principalmente, são oferecidos pra quem já é cliente, lá dentro da esteira.
+
+Isso diz duas coisas. Uma: a recorrência premium (R$6 mil/mês é muito) é onde o negócio está engordando. Outra: como não tem funil de aquisição próprio, esse produto depende do lead já estar dentro — e isso, pra gente, é uma brecha (está nos buracos)." rows="13">Tem um andar ainda mais alto, e é a aposta de futuro dele: software. O Prospct AI, que é um &quot;vendedor robô&quot; (SDR de inteligência artificial), custa a partir de R$6 mil por mês, dependendo do tamanho da operação. Existe também o Station AI, sem preço público.
+
+O jeito como ele vende isso é curioso: não tem anúncio nem funil próprio pra esses produtos. Eles aparecem em vídeos do YouTube e, principalmente, são oferecidos pra quem já é cliente, lá dentro da esteira.
+
+Isso diz duas coisas. Uma: a recorrência premium (R$6 mil/mês é muito) é onde o negócio está engordando. Outra: como não tem funil de aquisição próprio, esse produto depende do lead já estar dentro — e isso, pra gente, é uma brecha (está nos buracos).</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🟡 A PROVA</span>
+            <h3 contenteditable="true">A muralha de credibilidade dele é alta — você vai ter que igualar</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e3-5" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e3-5">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e3-5" data-default="Em todo material aparece a mesma artilharia de prova: mais de R$3,4 bilhões gerados pra clientes, mais de 8.000 operações comerciais estruturadas, mais de 4.000 empresas atendidas, e nomes pesados na lista (TOTVS, TIVIT, Sankhya, Vivo, Movida). Some a isso cases com antes e depois bem específicos, tipo &quot;saiu de 2 para 7 milhões&quot;.
+
+Isso é uma muralha. Quem quiser competir com ele vai bater nessa prova o tempo todo, e o cliente vai comparar. Você não precisa ter os mesmos números, mas precisa ter UMA prova forte e específica pra não parecer pequeno do lado.
+
+Um detalhe que a gente fica de olho (e que vira buraco mais à frente): esses números mudam de um material pro outro — às vezes é R$3,4 bi, às vezes R$2,2 bi. Inconsistência de prova é uma fresta na muralha." rows="13">Em todo material aparece a mesma artilharia de prova: mais de R$3,4 bilhões gerados pra clientes, mais de 8.000 operações comerciais estruturadas, mais de 4.000 empresas atendidas, e nomes pesados na lista (TOTVS, TIVIT, Sankhya, Vivo, Movida). Some a isso cases com antes e depois bem específicos, tipo &quot;saiu de 2 para 7 milhões&quot;.
+
+Isso é uma muralha. Quem quiser competir com ele vai bater nessa prova o tempo todo, e o cliente vai comparar. Você não precisa ter os mesmos números, mas precisa ter UMA prova forte e específica pra não parecer pequeno do lado.
+
+Um detalhe que a gente fica de olho (e que vira buraco mais à frente): esses números mudam de um material pro outro — às vezes é R$3,4 bi, às vezes R$2,2 bi. Inconsistência de prova é uma fresta na muralha.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#10b981;background:#10b98122;border-color:#10b981">🔧 OPERAÇÃO</span>
+            <h3 contenteditable="true">Por dentro: ferramenta enxuta e um time que mistura humano com IA</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-e3-6" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-e3-6">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-e3-6" data-default="Olhando o &quot;motor por baixo do capô&quot;: a parte técnica é simples e barata — checkout na Hotmart, pixel do Facebook, Google Tag Manager, página leve. Nada de mirabolante, e isso é uma força (menos coisa pra quebrar).
+
+No time, ele mistura gente de verdade com automação. Tem closers humanos fechando a venda cara, e tem o SDR de IA (o Prospct) — mas repara: o robô só entra em contato com quem JÁ comprou alguma coisa. Ou seja, a IA cuida de quem já está dentro (retenção, expansão) e o humano fica livre pra fechar negócio novo.
+
+Essa divisão &quot;robô retém, humano fecha&quot; é inteligente e vale modelar. (Quantos closers ele tem exatamente, a gente ainda não sabe — está como hipótese no apêndice.)" rows="13">Olhando o &quot;motor por baixo do capô&quot;: a parte técnica é simples e barata — checkout na Hotmart, pixel do Facebook, Google Tag Manager, página leve. Nada de mirabolante, e isso é uma força (menos coisa pra quebrar).
+
+No time, ele mistura gente de verdade com automação. Tem closers humanos fechando a venda cara, e tem o SDR de IA (o Prospct) — mas repara: o robô só entra em contato com quem JÁ comprou alguma coisa. Ou seja, a IA cuida de quem já está dentro (retenção, expansão) e o humano fica livre pra fechar negócio novo.
+
+Essa divisão &quot;robô retém, humano fecha&quot; é inteligente e vale modelar. (Quantos closers ele tem exatamente, a gente ainda não sabe — está como hipótese no apêndice.)</textarea>
+        </article></div>
+    </section>
+
+    <section class="csec" data-block>
+      <button class="cut" title="Cortar seção inteira" onclick="toggleCut(this)">x</button>
+      <header class="csec-head" style="border-left-color:#22c55e">
+        <h2 style="color:#22c55e" contenteditable="true">✅ Etapa 4 — Os motores (por que ele fatura tanto)</h2>
+        <p class="csec-sub" contenteditable="true">As engrenagens que realmente carregam a operação — o que faz a máquina girar e dar dinheiro. 8 cards.</p>
+      </header>
+      <div class="cgrid">
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#22c55e;background:#22c55e22;border-color:#22c55e">🟢 MOTOR 1</span>
+            <h3 contenteditable="true">A inversão de culpa: o truque que transforma audiência em cliente</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-mot-1" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-mot-1">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-mot-1" data-default="Tem um movimento que o Thiago repete em quase todo post, e é provavelmente a coisa mais inteligente que ele faz. Ele começa parecendo atacar o vendedor — &quot;o vendedor que se esconde atrás do WhatsApp&quot;, &quot;o closer que sai dando desconto&quot; — mas repara em como termina: a culpa nunca fica com o vendedor, ela escorrega pro dono, que &quot;não montou um sistema&quot;.
+
+E não é impressão de que isso é frequente — a gente contou um por um. Em 35 dos 45 posts do último mês esse movimento aparece, e não só no feed: está nos carrosséis, nos reels e dentro da própria VSL. Quando a mesma peça aparece em três lugares, ela deixa de ser truque ocasional e vira a engrenagem central da comunicação.
+
+O porquê de funcionar acontece em dois tempos. Primeiro ele alivia: &quot;você trabalha certo, o problema não é você&quot; — e isso baixa a defesa da pessoa. No segundo seguinte, joga o problema numa falha de estrutura, que é justamente o que ele vende. E ainda tem um bônus: só o dono se sente convocado por esse discurso; o vendedor comum passa batido. É assim que ele separa, no meio de uma audiência gigante e barata, o decisor que tem dinheiro pra pagar.
+
+Pra você, é de copiar — custa quase nada. No nosso caso seria algo como: &quot;seu criativo não está fraco; o que está fraco é a sua estrutura de testes&quot;." rows="13">Tem um movimento que o Thiago repete em quase todo post, e é provavelmente a coisa mais inteligente que ele faz. Ele começa parecendo atacar o vendedor — &quot;o vendedor que se esconde atrás do WhatsApp&quot;, &quot;o closer que sai dando desconto&quot; — mas repara em como termina: a culpa nunca fica com o vendedor, ela escorrega pro dono, que &quot;não montou um sistema&quot;.
+
+E não é impressão de que isso é frequente — a gente contou um por um. Em 35 dos 45 posts do último mês esse movimento aparece, e não só no feed: está nos carrosséis, nos reels e dentro da própria VSL. Quando a mesma peça aparece em três lugares, ela deixa de ser truque ocasional e vira a engrenagem central da comunicação.
+
+O porquê de funcionar acontece em dois tempos. Primeiro ele alivia: &quot;você trabalha certo, o problema não é você&quot; — e isso baixa a defesa da pessoa. No segundo seguinte, joga o problema numa falha de estrutura, que é justamente o que ele vende. E ainda tem um bônus: só o dono se sente convocado por esse discurso; o vendedor comum passa batido. É assim que ele separa, no meio de uma audiência gigante e barata, o decisor que tem dinheiro pra pagar.
+
+Pra você, é de copiar — custa quase nada. No nosso caso seria algo como: &quot;seu criativo não está fraco; o que está fraco é a sua estrutura de testes&quot;.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#22c55e;background:#22c55e22;border-color:#22c55e">🟢 MOTOR 2</span>
+            <h3 contenteditable="true">Uma oferta de entrada só, alimentada por várias portas</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-mot-2" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-mot-2">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-mot-2" data-default="O segundo motor é a simplicidade do funil. Em vez de criar uma oferta pra cada canal, ele tem UMA porta de entrada (o Desafio de R$97) e joga todo mundo pra lá — venha do anúncio, do quiz, do diagnóstico ou do &quot;comenta DESAFIO&quot;.
+
+Isso barateia tudo. A mesma VSL, o mesmo checkout, a mesma promessa servem o lead que chegou pelo Instagram e o que chegou pelo Google de alguém que indicou. Menos peça pra manter, mais foco no que converte.
+
+E como o R$97 é um filtro (não a fonte de lucro), ele pode gastar à vontade pra trazer gente, porque sabe que o dinheiro de verdade vem depois, lá em cima na escada. É o motor que conecta o topo barato com o fundo caro." rows="13">O segundo motor é a simplicidade do funil. Em vez de criar uma oferta pra cada canal, ele tem UMA porta de entrada (o Desafio de R$97) e joga todo mundo pra lá — venha do anúncio, do quiz, do diagnóstico ou do &quot;comenta DESAFIO&quot;.
+
+Isso barateia tudo. A mesma VSL, o mesmo checkout, a mesma promessa servem o lead que chegou pelo Instagram e o que chegou pelo Google de alguém que indicou. Menos peça pra manter, mais foco no que converte.
+
+E como o R$97 é um filtro (não a fonte de lucro), ele pode gastar à vontade pra trazer gente, porque sabe que o dinheiro de verdade vem depois, lá em cima na escada. É o motor que conecta o topo barato com o fundo caro.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#22c55e;background:#22c55e22;border-color:#22c55e">🟢 MOTOR 3</span>
+            <h3 contenteditable="true">Três canais orgânicos, cada um pegando um tipo de gente</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-mot-3" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-mot-3">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-mot-3" data-default="O terceiro motor é não depender de mídia paga pra encher o topo. Ele tem três canais orgânicos trabalhando, e cada um pega a pessoa num momento diferente: o Instagram pega quem não estava pensando no assunto (atenção), o LinkedIn pega o decisor no trabalho (lead qualificado) e o YouTube pega quem já está procurando solução (intenção).
+
+Não é repetição — é cobertura. A mesma pessoa pode ser fisgada de três jeitos, e quem não morde num canal morde no outro. E o YouTube ainda se paga sozinho com afiliado, enquanto faz esse trabalho.
+
+Pra você, a lição é o mix consciente: o conteúdo &quot;viral e largo&quot; financia a autoridade, e o conteúdo &quot;técnico e qualificado&quot; converte. Os dois juntos, não um só." rows="13">O terceiro motor é não depender de mídia paga pra encher o topo. Ele tem três canais orgânicos trabalhando, e cada um pega a pessoa num momento diferente: o Instagram pega quem não estava pensando no assunto (atenção), o LinkedIn pega o decisor no trabalho (lead qualificado) e o YouTube pega quem já está procurando solução (intenção).
+
+Não é repetição — é cobertura. A mesma pessoa pode ser fisgada de três jeitos, e quem não morde num canal morde no outro. E o YouTube ainda se paga sozinho com afiliado, enquanto faz esse trabalho.
+
+Pra você, a lição é o mix consciente: o conteúdo &quot;viral e largo&quot; financia a autoridade, e o conteúdo &quot;técnico e qualificado&quot; converte. Os dois juntos, não um só.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#22c55e;background:#22c55e22;border-color:#22c55e">🟢 MOTOR 4</span>
+            <h3 contenteditable="true">O lucro está na escada, não na primeira venda</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-mot-4" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-mot-4">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-mot-4" data-default="Esse é o motor que mais gente esquece. O Thiago não vive do R$97 — ele vive do que vem depois. Sobre o mesmo cliente que entrou barato, ele empilha: a assinatura mensal (Growth Play, R$97/mês), o produto caro fechado por call (Growth Way/Expansão) e o software de R$6 mil/mês.
+
+Quer dizer: cada cliente pode render várias vezes, de várias formas. A primeira venda só abre a porta; a margem real aparece na recorrência e no high-ticket.
+
+É por isso que ele pode ser agressivo na aquisição. Quando você ganha dinheiro várias vezes do mesmo cliente, pode pagar mais caro pra trazer cada um. Quem só tem uma venda na vida do cliente não consegue competir nesse jogo." rows="13">Esse é o motor que mais gente esquece. O Thiago não vive do R$97 — ele vive do que vem depois. Sobre o mesmo cliente que entrou barato, ele empilha: a assinatura mensal (Growth Play, R$97/mês), o produto caro fechado por call (Growth Way/Expansão) e o software de R$6 mil/mês.
+
+Quer dizer: cada cliente pode render várias vezes, de várias formas. A primeira venda só abre a porta; a margem real aparece na recorrência e no high-ticket.
+
+É por isso que ele pode ser agressivo na aquisição. Quando você ganha dinheiro várias vezes do mesmo cliente, pode pagar mais caro pra trazer cada um. Quem só tem uma venda na vida do cliente não consegue competir nesse jogo.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#22c55e;background:#22c55e22;border-color:#22c55e">🟢 MOTOR 5</span>
+            <h3 contenteditable="true">O diagnóstico protege o recurso mais caro: o vendedor humano</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-mot-5" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-mot-5">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-mot-5" data-default="A venda cara dele é feita por gente, numa call — e gente custa caro. O motor inteligente aqui é o diagnóstico que vem antes: ele filtra quem entra na ligação, então o closer só gasta tempo com quem tem perfil e dinheiro.
+
+A gente viu isso funcionando: quem não passa no filtro (foi o que aconteceu no nosso teste) simplesmente não é chamado. Pode parecer rude, mas é eficiência pura — o time caro não desperdiça hora com curioso.
+
+E o robô (o SDR de IA) cobre a outra ponta: ele cuida de quem já comprou, onde o custo de mandar mais uma mensagem é zero. Humano no que é caro e decisivo, robô no que é barato e repetitivo. Vale copiar essa divisão." rows="13">A venda cara dele é feita por gente, numa call — e gente custa caro. O motor inteligente aqui é o diagnóstico que vem antes: ele filtra quem entra na ligação, então o closer só gasta tempo com quem tem perfil e dinheiro.
+
+A gente viu isso funcionando: quem não passa no filtro (foi o que aconteceu no nosso teste) simplesmente não é chamado. Pode parecer rude, mas é eficiência pura — o time caro não desperdiça hora com curioso.
+
+E o robô (o SDR de IA) cobre a outra ponta: ele cuida de quem já comprou, onde o custo de mandar mais uma mensagem é zero. Humano no que é caro e decisivo, robô no que é barato e repetitivo. Vale copiar essa divisão.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#22c55e;background:#22c55e22;border-color:#22c55e">🟢 MOTOR 6</span>
+            <h3 contenteditable="true">Ele fala diferente com cada cargo (e isso é raro)</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-mot-6" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-mot-6">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-mot-6" data-default="No meio dos e-mails apareceu um detalhe que mostra maturidade: um e-mail que separa as pessoas por cargo. Ele diz, na lata, que o curso é pra donos e gestores — e que, se você é vendedor ou SDR, é melhor pegar um material mais prático, e entrega outro presente.
+
+Isso parece pequeno, mas é o oposto do que a maioria faz (mandar a mesma mensagem pra base inteira). Ao adaptar a oferta a quem está lendo, ele reduz o &quot;lixo&quot; na esteira e faz cada pessoa sentir que aquilo foi feito pra ela.
+
+É exatamente o tipo de coisa que separa um funil amador de um profissional. Dá pra copiar fácil: pergunte o cargo (ou o nicho) na captura, e mande coisas diferentes pra cada um." rows="13">No meio dos e-mails apareceu um detalhe que mostra maturidade: um e-mail que separa as pessoas por cargo. Ele diz, na lata, que o curso é pra donos e gestores — e que, se você é vendedor ou SDR, é melhor pegar um material mais prático, e entrega outro presente.
+
+Isso parece pequeno, mas é o oposto do que a maioria faz (mandar a mesma mensagem pra base inteira). Ao adaptar a oferta a quem está lendo, ele reduz o &quot;lixo&quot; na esteira e faz cada pessoa sentir que aquilo foi feito pra ela.
+
+É exatamente o tipo de coisa que separa um funil amador de um profissional. Dá pra copiar fácil: pergunte o cargo (ou o nicho) na captura, e mande coisas diferentes pra cada um.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#22c55e;background:#22c55e22;border-color:#22c55e">🟡 A APOSTA</span>
+            <h3 contenteditable="true">Pra onde ele está apostando as fichas: inteligência artificial</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-mot-7" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-mot-7">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-mot-7" data-default="Quando você olha o que ele está empurrando com mais força ultimamente, dá pra ver o futuro da estratégia dele. Metade do conteúdo do LinkedIn gira em torno de &quot;SDR de IA&quot; e &quot;operação com inteligência artificial&quot;. O tema dos vídeos novos do YouTube em 2026 é IA. E o produto de maior recorrência (o Prospct, R$6 mil/mês) é exatamente um robô de IA.
+
+Em outras palavras: ele saiu da história de holding/M&amp;A e está se posicionando como &quot;o cara de IA em vendas&quot;. Onde um concorrente forte investe pesado costuma ser pra onde o mercado inteiro vai.
+
+A leitura pra você é direta: ter uma resposta de IA na sua oferta deixou de ser luxo. Se você ignorar isso, daqui a pouco vira commodity perto dele." rows="13">Quando você olha o que ele está empurrando com mais força ultimamente, dá pra ver o futuro da estratégia dele. Metade do conteúdo do LinkedIn gira em torno de &quot;SDR de IA&quot; e &quot;operação com inteligência artificial&quot;. O tema dos vídeos novos do YouTube em 2026 é IA. E o produto de maior recorrência (o Prospct, R$6 mil/mês) é exatamente um robô de IA.
+
+Em outras palavras: ele saiu da história de holding/M&amp;A e está se posicionando como &quot;o cara de IA em vendas&quot;. Onde um concorrente forte investe pesado costuma ser pra onde o mercado inteiro vai.
+
+A leitura pra você é direta: ter uma resposta de IA na sua oferta deixou de ser luxo. Se você ignorar isso, daqui a pouco vira commodity perto dele.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#22c55e;background:#22c55e22;border-color:#22c55e">🏰 O FOSSO</span>
+            <h3 contenteditable="true">O que protege ele de verdade não é a técnica — é o nome</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-mot-8" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-mot-8">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-mot-8" data-default="Vale separar o que é fácil e o que é difícil de copiar nele. A técnica de vendas (cold call, objeção, SPIN) é commodity — qualquer um ensina isso, tem em livro, tem no YouTube de graça. Isso não protege ninguém.
+
+O que protege o Thiago é outra coisa: a marca pessoal dele (a autoridade construída em anos), a comunidade e o ecossistema que ele montou, e o volume de prova (os milhares de cases). Isso, sim, leva tempo e dinheiro pra construir, e é o &quot;fosso&quot; de verdade do negócio.
+
+A consequência prática é importante: não dá pra ganhar dele atacando de frente, no nome dele, no &quot;quem é mais autoridade&quot;. Tem que atacar pelos buracos operacionais — e é pra lá que a gente vai agora." rows="13">Vale separar o que é fácil e o que é difícil de copiar nele. A técnica de vendas (cold call, objeção, SPIN) é commodity — qualquer um ensina isso, tem em livro, tem no YouTube de graça. Isso não protege ninguém.
+
+O que protege o Thiago é outra coisa: a marca pessoal dele (a autoridade construída em anos), a comunidade e o ecossistema que ele montou, e o volume de prova (os milhares de cases). Isso, sim, leva tempo e dinheiro pra construir, e é o &quot;fosso&quot; de verdade do negócio.
+
+A consequência prática é importante: não dá pra ganhar dele atacando de frente, no nome dele, no &quot;quem é mais autoridade&quot;. Tem que atacar pelos buracos operacionais — e é pra lá que a gente vai agora.</textarea>
+        </article></div>
+    </section>
+
+    <section class="csec" data-block>
+      <button class="cut" title="Cortar seção inteira" onclick="toggleCut(this)">x</button>
+      <header class="csec-head" style="border-left-color:#ef4444">
+        <h2 style="color:#ef4444" contenteditable="true">❌ Etapa 5 — Os buracos (por onde dá pra passar na frente)</h2>
+        <p class="csec-sub" contenteditable="true">Agora que a máquina está mapeada, fica fácil ver onde ela vaza. Cada buraco vem com a decisão: explorar ou evitar. 7 cards.</p>
+      </header>
+      <div class="cgrid">
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#ef4444;background:#ef444422;border-color:#ef4444">🟩 EXPLORAR</span>
+            <h3 contenteditable="true">O e-mail dele cai no spam (dinheiro escorrendo em silêncio)</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-bur-1" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-bur-1">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-bur-1" data-default="Essa falha a gente só descobriu porque viu de perto. O Thiago manda e-mail — e os e-mails até são bons. Só que os quatro que ele disparou foram parar na caixa de spam. Na prática é como gritar numa sala vazia: a mensagem existe, mas ninguém vê.
+
+Isso dói mais do que parece quando você junta com o resto. Quase todo post termina com &quot;comenta DESAFIO&quot;, empurrando a pessoa pra base de contatos. Ou seja, ele trabalha duro pra capturar o lead e depois perde esse mesmo lead no silêncio, porque o e-mail que deveria reaquecer a pessoa nunca chega na frente dela. É um problema técnico (reputação de envio), não de estratégia — o que o torna até mais fácil de explorar.
+
+A jogada pra você: quem entrega e-mail na caixa de entrada, e ainda monta uma sequência de verdade pra quem não comprou, recolhe de graça o lead que ele deixou esfriar. Não é tirar cliente dele; é catar o que ele deixou cair no chão." rows="13">Essa falha a gente só descobriu porque viu de perto. O Thiago manda e-mail — e os e-mails até são bons. Só que os quatro que ele disparou foram parar na caixa de spam. Na prática é como gritar numa sala vazia: a mensagem existe, mas ninguém vê.
+
+Isso dói mais do que parece quando você junta com o resto. Quase todo post termina com &quot;comenta DESAFIO&quot;, empurrando a pessoa pra base de contatos. Ou seja, ele trabalha duro pra capturar o lead e depois perde esse mesmo lead no silêncio, porque o e-mail que deveria reaquecer a pessoa nunca chega na frente dela. É um problema técnico (reputação de envio), não de estratégia — o que o torna até mais fácil de explorar.
+
+A jogada pra você: quem entrega e-mail na caixa de entrada, e ainda monta uma sequência de verdade pra quem não comprou, recolhe de graça o lead que ele deixou esfriar. Não é tirar cliente dele; é catar o que ele deixou cair no chão.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#ef4444;background:#ef444422;border-color:#ef4444">🟩 EXPLORAR</span>
+            <h3 contenteditable="true">Quem não passa no diagnóstico cai no vácuo — sem nenhuma segunda oferta</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-bur-2" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-bur-2">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-bur-2" data-default="Lembra que o diagnóstico filtra quem merece a call cara? O problema é o que acontece com quem NÃO passa. A gente confirmou na prática: preenchemos o diagnóstico sem o perfil, e não veio mais nada. Nem uma ligação, nem uma oferta menor, nem um &quot;ó, então talvez isso aqui seja melhor pra você&quot;. Silêncio.
+
+Isso é estranho, porque ele TEM produtos mais baratos (a assinatura de R$97/mês, o joguinho de R$97). Só que a ponte automática entre &quot;você não serve pro caro&quot; e &quot;então leva o barato&quot; não existe. A pessoa levantou a mão, disse que tinha interesse, e foi ignorada.
+
+Pra você, é ouro: um simples downsell automático (alguém não qualificou? oferece na hora a assinatura ou um produto de entrada) pega exatamente esse lead que ele descarta. Ele já fez o trabalho de aquecer; você só precisa não deixar cair." rows="13">Lembra que o diagnóstico filtra quem merece a call cara? O problema é o que acontece com quem NÃO passa. A gente confirmou na prática: preenchemos o diagnóstico sem o perfil, e não veio mais nada. Nem uma ligação, nem uma oferta menor, nem um &quot;ó, então talvez isso aqui seja melhor pra você&quot;. Silêncio.
+
+Isso é estranho, porque ele TEM produtos mais baratos (a assinatura de R$97/mês, o joguinho de R$97). Só que a ponte automática entre &quot;você não serve pro caro&quot; e &quot;então leva o barato&quot; não existe. A pessoa levantou a mão, disse que tinha interesse, e foi ignorada.
+
+Pra você, é ouro: um simples downsell automático (alguém não qualificou? oferece na hora a assinatura ou um produto de entrada) pega exatamente esse lead que ele descarta. Ele já fez o trabalho de aquecer; você só precisa não deixar cair.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#ef4444;background:#ef444422;border-color:#ef4444">🟩 EXPLORAR</span>
+            <h3 contenteditable="true">Toda a aquisição paga está numa cesta só: o Meta</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-bur-3" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-bur-3">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-bur-3" data-default="A gente confirmou que ele não roda Google Ads nem YouTube Ads — só Meta. Isso tem dois problemas. O primeiro é risco: se a conta do Meta cai, é bloqueada ou a política muda, o funil pago dele para de uma vez. Tudo numa cesta só.
+
+O segundo é mais interessante pra gente. O YouTube dele atrai justamente quem está procurando solução ativamente — gente quente. Mas ele não coloca anúncio nenhum em cima dessas buscas de fundo de funil (tipo &quot;consultoria comercial&quot;, &quot;estruturar time de vendas&quot;). Deixa essa intenção quente passar de graça.
+
+A oportunidade: colocar anúncio de busca (Google e YouTube) pegando exatamente quem digita a dor já no ponto de comprar. É um público com a carteira na mão que ele simplesmente não está disputando." rows="13">A gente confirmou que ele não roda Google Ads nem YouTube Ads — só Meta. Isso tem dois problemas. O primeiro é risco: se a conta do Meta cai, é bloqueada ou a política muda, o funil pago dele para de uma vez. Tudo numa cesta só.
+
+O segundo é mais interessante pra gente. O YouTube dele atrai justamente quem está procurando solução ativamente — gente quente. Mas ele não coloca anúncio nenhum em cima dessas buscas de fundo de funil (tipo &quot;consultoria comercial&quot;, &quot;estruturar time de vendas&quot;). Deixa essa intenção quente passar de graça.
+
+A oportunidade: colocar anúncio de busca (Google e YouTube) pegando exatamente quem digita a dor já no ponto de comprar. É um público com a carteira na mão que ele simplesmente não está disputando.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#ef4444;background:#ef444422;border-color:#ef4444">🟩 EXPLORAR</span>
+            <h3 contenteditable="true">O software de R$6 mil/mês não tem funil próprio pra vender</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-bur-4" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-bur-4">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-bur-4" data-default="O Prospct AI é o produto de maior recorrência dele — R$6 mil por mês é um ticket alto e que se repete. Mas, curiosamente, ele não tem um funil dedicado pra vender isso. O software aparece solto em vídeos do YouTube e, no mais das vezes, só é oferecido pra quem já é cliente lá dentro da esteira.
+
+Quer dizer: um produto que poderia ter anúncio próprio, página própria, vendedor próprio, está dependendo de a pessoa já ter entrado pela porta dos R$97. É muita receita premium sendo deixada na dependência do funil de entrada.
+
+Pra quem tiver um produto de tecnologia parecido (ou puder montar), tem espaço pra fazer o que ele não faz: vender o software direto, com funil próprio, pra quem ainda nem conhece a marca." rows="13">O Prospct AI é o produto de maior recorrência dele — R$6 mil por mês é um ticket alto e que se repete. Mas, curiosamente, ele não tem um funil dedicado pra vender isso. O software aparece solto em vídeos do YouTube e, no mais das vezes, só é oferecido pra quem já é cliente lá dentro da esteira.
+
+Quer dizer: um produto que poderia ter anúncio próprio, página própria, vendedor próprio, está dependendo de a pessoa já ter entrado pela porta dos R$97. É muita receita premium sendo deixada na dependência do funil de entrada.
+
+Pra quem tiver um produto de tecnologia parecido (ou puder montar), tem espaço pra fazer o que ele não faz: vender o software direto, com funil próprio, pra quem ainda nem conhece a marca.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#ef4444;background:#ef444422;border-color:#ef4444">🟨 EVITAR copiar</span>
+            <h3 contenteditable="true">Os vídeos virais trazem público errado — não caia nessa armadilha</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-bur-5" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-bur-5">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-bur-5" data-default="Esse aqui é diferente: não é uma oportunidade pra explorar, é um erro dele pra você NÃO repetir. Os vídeos que mais estouram (o de 670 mil, o de 475 mil, o de jiu-jitsu com 221 mil) trazem um monte de gente — só que é gente de &quot;desenvolvimento pessoal&quot;, não dono de empresa pronto pra pagar. E mais de um terço dos reels nem passa de 10 mil views.
+
+O alcance gigante engana: dá ego, dá número bonito, mas não enche o funil de cliente bom. É vaidade, não qualificação.
+
+A lição pra você é não se deixar seduzir pelo viral. Vale mais um vídeo de 5 mil views cheio de donos de empresa do que um de 500 mil cheio de curioso. Mire no avatar, não no like." rows="13">Esse aqui é diferente: não é uma oportunidade pra explorar, é um erro dele pra você NÃO repetir. Os vídeos que mais estouram (o de 670 mil, o de 475 mil, o de jiu-jitsu com 221 mil) trazem um monte de gente — só que é gente de &quot;desenvolvimento pessoal&quot;, não dono de empresa pronto pra pagar. E mais de um terço dos reels nem passa de 10 mil views.
+
+O alcance gigante engana: dá ego, dá número bonito, mas não enche o funil de cliente bom. É vaidade, não qualificação.
+
+A lição pra você é não se deixar seduzir pelo viral. Vale mais um vídeo de 5 mil views cheio de donos de empresa do que um de 500 mil cheio de curioso. Mire no avatar, não no like.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#ef4444;background:#ef444422;border-color:#ef4444">🟨 EVITAR copiar</span>
+            <h3 contenteditable="true">Ele depende demais do &#x27;comenta DESAFIO&#x27; e fala pouco no YouTube</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-bur-6" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-bur-6">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-bur-6" data-default="Dois detalhes que parecem força, mas são fragilidade. No YouTube, ele entrega aula técnica excelente, mas o convite pra dar o próximo passo fica só na descrição — ele quase não fala em voz alta &quot;vai lá no link&quot;. Quem não rola a descrição (a maioria, no celular) sai sem saber o que fazer. E ainda pede pra se inscrever cedo demais, no momento em que devia estar prendendo a pessoa.
+
+No Instagram e no LinkedIn, quase 100% da captura depende do &quot;comenta a palavra X&quot;. Se a Meta ou o LinkedIn mudarem a regra disso amanhã, o motor de leads dele engasga.
+
+Pra você, é aprendizado por contraste: sempre fale o próximo passo em voz alta (não confie na descrição) e tenha mais de uma forma de capturar, pra não ficar refém de uma mecânica só." rows="13">Dois detalhes que parecem força, mas são fragilidade. No YouTube, ele entrega aula técnica excelente, mas o convite pra dar o próximo passo fica só na descrição — ele quase não fala em voz alta &quot;vai lá no link&quot;. Quem não rola a descrição (a maioria, no celular) sai sem saber o que fazer. E ainda pede pra se inscrever cedo demais, no momento em que devia estar prendendo a pessoa.
+
+No Instagram e no LinkedIn, quase 100% da captura depende do &quot;comenta a palavra X&quot;. Se a Meta ou o LinkedIn mudarem a regra disso amanhã, o motor de leads dele engasga.
+
+Pra você, é aprendizado por contraste: sempre fale o próximo passo em voz alta (não confie na descrição) e tenha mais de uma forma de capturar, pra não ficar refém de uma mecânica só.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#ef4444;background:#ef444422;border-color:#ef4444">🟦 EVITAR copiar</span>
+            <h3 contenteditable="true">Os números dele não batem entre si — e isso abre uma fresta</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-bur-7" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-bur-7">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-bur-7" data-default="Reparando nos materiais, os números de autoridade mudam de lugar pra lugar: ora são R$3,4 bilhões gerados, ora R$2,2 bilhões; ora 8.000 operações, ora 40.000 vendedores. Pra quem passa o olho rápido, não faz diferença. Mas o cliente dele é dono de empresa B2B — gente que olha número com desconfiança.
+
+Inconsistência de prova é uma fresta na muralha: dá margem pra alguém pensar &quot;se nem os próprios números ele acerta...&quot;. Não derruba ele, mas tira força.
+
+Pro seu lado, é o erro a não cometer: escolha UMA credencial forte e martele ela sempre igual. Consistência transmite mais confiança do que número grande que muda toda hora." rows="13">Reparando nos materiais, os números de autoridade mudam de lugar pra lugar: ora são R$3,4 bilhões gerados, ora R$2,2 bilhões; ora 8.000 operações, ora 40.000 vendedores. Pra quem passa o olho rápido, não faz diferença. Mas o cliente dele é dono de empresa B2B — gente que olha número com desconfiança.
+
+Inconsistência de prova é uma fresta na muralha: dá margem pra alguém pensar &quot;se nem os próprios números ele acerta...&quot;. Não derruba ele, mas tira força.
+
+Pro seu lado, é o erro a não cometer: escolha UMA credencial forte e martele ela sempre igual. Consistência transmite mais confiança do que número grande que muda toda hora.</textarea>
+        </article></div>
+    </section>
+
+    <section class="csec" data-block>
+      <button class="cut" title="Cortar seção inteira" onclick="toggleCut(this)">x</button>
+      <header class="csec-head" style="border-left-color:#a855f7">
+        <h2 style="color:#a855f7" contenteditable="true">💡 Etapa 6 — Os playbooks (o que fazer com tudo isso)</h2>
+        <p class="csec-sub" contenteditable="true">Aqui a gente transforma a análise em jogada. O que copiar, o que evitar, onde atacar e o que você precisa ter. 7 cards.</p>
+      </header>
+      <div class="cgrid">
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#a855f7;background:#a855f722;border-color:#a855f7">🎯 POSICIONAMENTO</span>
+            <h3 contenteditable="true">Como se posicionar perto dele sem brigar de frente</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-play-pos" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-play-pos">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-play-pos" data-default="O Thiago se posiciona como o cara durão do &quot;ou faz ou tá fora&quot;, com uma estética bem masculina (futebol, jiu-jitsu, poker) e o inimigo sempre sendo o &quot;esforço sem sistema&quot;. Isso atrai um tipo de pessoa — e afasta outro.
+
+E é nesse &quot;afasta outro&quot; que mora a sua chance. Tem muita gente que concorda com a ideia (precisa de processo, de previsibilidade) mas não se identifica com o tom agressivo. Tem gestora, tem mulher em vendas, tem dono mais ponderado que acha aquilo tudo cansativo. Você pode ser a versão &quot;mesmo resultado, sem a gritaria&quot;.
+
+A outra opção, se não quiser competir, é crescer na sombra dele: virar parceiro/afiliado e pegar uma fatia do tráfego que ele já gera. Brigar de frente no nome dele, como vimos, é a pior ideia." rows="13">O Thiago se posiciona como o cara durão do &quot;ou faz ou tá fora&quot;, com uma estética bem masculina (futebol, jiu-jitsu, poker) e o inimigo sempre sendo o &quot;esforço sem sistema&quot;. Isso atrai um tipo de pessoa — e afasta outro.
+
+E é nesse &quot;afasta outro&quot; que mora a sua chance. Tem muita gente que concorda com a ideia (precisa de processo, de previsibilidade) mas não se identifica com o tom agressivo. Tem gestora, tem mulher em vendas, tem dono mais ponderado que acha aquilo tudo cansativo. Você pode ser a versão &quot;mesmo resultado, sem a gritaria&quot;.
+
+A outra opção, se não quiser competir, é crescer na sombra dele: virar parceiro/afiliado e pegar uma fatia do tráfego que ele já gera. Brigar de frente no nome dele, como vimos, é a pior ideia.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#a855f7;background:#a855f722;border-color:#a855f7">🟢 COPIAR</span>
+            <h3 contenteditable="true">O que pegar emprestado dele sem dó</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-play-copiar" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-play-copiar">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-play-copiar" data-default="Tem coisa que funciona tão bem que seria burrice não copiar. A principal é a inversão de culpa: começar falando do operador e terminar responsabilizando o dono — é o que separa cliente bom de curioso.
+
+Junto com ela, vale copiar: a oferta de entrada única alimentada por várias portas (uma VSL e um checkout pra todo mundo); a VSL que dá nome ao inimigo e faz a pessoa se auto-diagnosticar com &quot;N armadilhas&quot;; o quiz que devolve uma nota desconfortável; a assinatura mensal por cima do produto de entrada (pra ter receita recorrente); e o e-mail que muda conforme o cargo de quem lê.
+
+Nenhuma dessas coisas é cara de implementar. São jeitos de montar o funil — e ele já testou pra você o que dá certo." rows="13">Tem coisa que funciona tão bem que seria burrice não copiar. A principal é a inversão de culpa: começar falando do operador e terminar responsabilizando o dono — é o que separa cliente bom de curioso.
+
+Junto com ela, vale copiar: a oferta de entrada única alimentada por várias portas (uma VSL e um checkout pra todo mundo); a VSL que dá nome ao inimigo e faz a pessoa se auto-diagnosticar com &quot;N armadilhas&quot;; o quiz que devolve uma nota desconfortável; a assinatura mensal por cima do produto de entrada (pra ter receita recorrente); e o e-mail que muda conforme o cargo de quem lê.
+
+Nenhuma dessas coisas é cara de implementar. São jeitos de montar o funil — e ele já testou pra você o que dá certo.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#a855f7;background:#a855f722;border-color:#a855f7">🔴 EVITAR</span>
+            <h3 contenteditable="true">Os erros dele que você começa já evitando</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-play-evitar" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-play-evitar">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-play-evitar" data-default="Tão valioso quanto copiar o que funciona é não repetir o que falha. Não persiga vídeo viral só pelo número — ele enche a casa de gente que não compra. Não deixe o convite de venda só na descrição do YouTube nem peça inscrição cedo demais — fale o próximo passo em voz alta. Não coloque toda a captura numa mecânica só (o &quot;comenta X&quot;), pra não ficar refém da plataforma. E não fique trocando seus números de autoridade — escolha um e mantenha.
+
+Tem ainda uma armadilha de tamanho: tentar copiar a cadência diária multicanal dele sem ter time é receita pra desistir no segundo mês. Ele tem estrutura pra isso; comece focado num canal só.
+
+Cada um desses &quot;não faça&quot; é uma dor de cabeça que você economiza por ter olhado a operação dele primeiro." rows="13">Tão valioso quanto copiar o que funciona é não repetir o que falha. Não persiga vídeo viral só pelo número — ele enche a casa de gente que não compra. Não deixe o convite de venda só na descrição do YouTube nem peça inscrição cedo demais — fale o próximo passo em voz alta. Não coloque toda a captura numa mecânica só (o &quot;comenta X&quot;), pra não ficar refém da plataforma. E não fique trocando seus números de autoridade — escolha um e mantenha.
+
+Tem ainda uma armadilha de tamanho: tentar copiar a cadência diária multicanal dele sem ter time é receita pra desistir no segundo mês. Ele tem estrutura pra isso; comece focado num canal só.
+
+Cada um desses &quot;não faça&quot; é uma dor de cabeça que você economiza por ter olhado a operação dele primeiro.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#a855f7;background:#a855f722;border-color:#a855f7">📡 CANAIS</span>
+            <h3 contenteditable="true">O mapa de canais: onde ele é forte e onde deixou a porta aberta</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-play-canal" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-play-canal">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-play-canal" data-default="Resumindo a parte de canais: ele é forte em Instagram (atenção), YouTube (busca) e LinkedIn (B2B). Esses três funcionam bem e valem ser copiados no espírito.
+
+Onde ele peca — e onde está sua entrada: o e-mail (que cai no spam), os anúncios de busca no Google e YouTube (que ele simplesmente não faz) e o downsell automático (que não existe).
+
+O blueprint prático fica assim: rode os três orgânicos mandando todo mundo pro mesmo destino, mas faça o que ele não faz — entregue e-mail na caixa de entrada com uma sequência de verdade, e coloque anúncio de busca pegando quem já está procurando solução. Comece pelo canal de maior intenção (busca), que é o de conversão mais rápida." rows="13">Resumindo a parte de canais: ele é forte em Instagram (atenção), YouTube (busca) e LinkedIn (B2B). Esses três funcionam bem e valem ser copiados no espírito.
+
+Onde ele peca — e onde está sua entrada: o e-mail (que cai no spam), os anúncios de busca no Google e YouTube (que ele simplesmente não faz) e o downsell automático (que não existe).
+
+O blueprint prático fica assim: rode os três orgânicos mandando todo mundo pro mesmo destino, mas faça o que ele não faz — entregue e-mail na caixa de entrada com uma sequência de verdade, e coloque anúncio de busca pegando quem já está procurando solução. Comece pelo canal de maior intenção (busca), que é o de conversão mais rápida.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#a855f7;background:#a855f722;border-color:#a855f7">⚙️ PRÉ-REQUISITOS</span>
+            <h3 contenteditable="true">O que você precisa ter na mão antes de tentar competir</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-play-prereq" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-play-prereq">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-play-prereq" data-default="Pra não entrar nessa briga sem munição, esse é o mínimo. No conteúdo: ou uma máquina de postar em vários canais (o que pede gente), ou foco total num canal só pra começar — tentar fazer tudo sem time é o caminho mais curto pra travar.
+
+Na conversão: uma VSL com um inimigo nomeado e um quiz de diagnóstico; um produto de entrada barato com checkout e garantia; e — isso é inegociável pra vender caro — um closer pronto pra atender, porque a venda grande é por telefone.
+
+E pra durar: uma oferta de recorrência (pra ter dinheiro entrando todo mês) e o e-mail bem configurado (pra não repetir o erro do spam). Sem essas peças, dá pra começar, mas não dá pra escalar." rows="13">Pra não entrar nessa briga sem munição, esse é o mínimo. No conteúdo: ou uma máquina de postar em vários canais (o que pede gente), ou foco total num canal só pra começar — tentar fazer tudo sem time é o caminho mais curto pra travar.
+
+Na conversão: uma VSL com um inimigo nomeado e um quiz de diagnóstico; um produto de entrada barato com checkout e garantia; e — isso é inegociável pra vender caro — um closer pronto pra atender, porque a venda grande é por telefone.
+
+E pra durar: uma oferta de recorrência (pra ter dinheiro entrando todo mês) e o e-mail bem configurado (pra não repetir o erro do spam). Sem essas peças, dá pra começar, mas não dá pra escalar.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#a855f7;background:#a855f722;border-color:#a855f7">🌊 PÚBLICO IGNORADO</span>
+            <h3 contenteditable="true">As pessoas que ele não atende — e que estão sobrando pra você</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-play-publico" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-play-publico">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-play-publico" data-default="Como o avatar dele é estreito (dono homem, B2B, faturando mais de 1 milhão, que curte o tom durão), sobra muita gente boa de fora. E atender quem o concorrente ignora é o caminho mais limpo pra crescer sem brigar.
+
+Quem está sobrando: a empresa menor, que fatura menos de 1 milhão e que ele recusa de propósito (mas que precisa de ajuda e tem pra onde crescer); as mulheres e gestoras em vendas, mal servidas pelo tom masculino; e os nichos específicos (ele fala genérico pra &quot;empresário B2B&quot;, então um pacote feito pra um setor — clínicas, advocacia, agências — converte mais).
+
+A ideia aqui é de oceano azul: em vez de disputar o mesmo cliente que todo mundo disputa com ele, ir buscar quem ninguém está atendendo direito." rows="13">Como o avatar dele é estreito (dono homem, B2B, faturando mais de 1 milhão, que curte o tom durão), sobra muita gente boa de fora. E atender quem o concorrente ignora é o caminho mais limpo pra crescer sem brigar.
+
+Quem está sobrando: a empresa menor, que fatura menos de 1 milhão e que ele recusa de propósito (mas que precisa de ajuda e tem pra onde crescer); as mulheres e gestoras em vendas, mal servidas pelo tom masculino; e os nichos específicos (ele fala genérico pra &quot;empresário B2B&quot;, então um pacote feito pra um setor — clínicas, advocacia, agências — converte mais).
+
+A ideia aqui é de oceano azul: em vez de disputar o mesmo cliente que todo mundo disputa com ele, ir buscar quem ninguém está atendendo direito.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#a855f7;background:#a855f722;border-color:#a855f7">📁 SWIPE FILE</span>
+            <h3 contenteditable="true">Os materiais dele prontos pra você adaptar</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-play-swipe" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-play-swipe">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-play-swipe" data-default="Pra fechar a parte prática, separei os &quot;ativos roubáveis&quot; — coisas que você pode adaptar amanhã, não só entender.
+
+Ganchos que funcionaram (com o número pra você saber o peso): &quot;o melhor vendedor da minha empresa converte 2x... ele fecha 3 portas&quot; (670 mil views), &quot;tem empresário que acha que conteúdo é vaidade&quot; (475 mil), &quot;vendedor que se esconde atrás do WhatsApp não quer vender&quot; (87 mil e 522 comentários).
+
+A estrutura da VSL: dar nome ao inimigo (&quot;vale dos 10 milhões&quot;) → listar as 7 armadilhas com o gancho &quot;se você tem 3, já está preso&quot; → mostrar os 4 componentes da solução → ancorar o preço contra &quot;um lead que você perde todo dia&quot; → garantia. E dois assuntos de e-mail que valem testar: &quot;Você parou no &#x27;quase&#x27;&quot; e &quot;Amanhã, às 8h: como dominar o networking que gera vendas&quot;." rows="13">Pra fechar a parte prática, separei os &quot;ativos roubáveis&quot; — coisas que você pode adaptar amanhã, não só entender.
+
+Ganchos que funcionaram (com o número pra você saber o peso): &quot;o melhor vendedor da minha empresa converte 2x... ele fecha 3 portas&quot; (670 mil views), &quot;tem empresário que acha que conteúdo é vaidade&quot; (475 mil), &quot;vendedor que se esconde atrás do WhatsApp não quer vender&quot; (87 mil e 522 comentários).
+
+A estrutura da VSL: dar nome ao inimigo (&quot;vale dos 10 milhões&quot;) → listar as 7 armadilhas com o gancho &quot;se você tem 3, já está preso&quot; → mostrar os 4 componentes da solução → ancorar o preço contra &quot;um lead que você perde todo dia&quot; → garantia. E dois assuntos de e-mail que valem testar: &quot;Você parou no &#x27;quase&#x27;&quot; e &quot;Amanhã, às 8h: como dominar o networking que gera vendas&quot;.</textarea>
+        </article></div>
+    </section>
+
+    <section class="csec" data-block>
+      <button class="cut" title="Cortar seção inteira" onclick="toggleCut(this)">x</button>
+      <header class="csec-head" style="border-left-color:#06b6d4">
+        <h2 style="color:#06b6d4" contenteditable="true">📋 Etapa 7 — A conclusão de tudo (leia isso em 2 minutos)</h2>
+        <p class="csec-sub" contenteditable="true">Se você só puder ler uma parte, é esta. O resumo de como ele ganha dinheiro e o que você deve fazer. 3 cards.</p>
+      </header>
+      <div class="cgrid">
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#06b6d4;background:#06b6d422;border-color:#06b6d4">⚖️ O RESUMO</span>
+            <h3 contenteditable="true">Em uma frase: ele tem uma máquina de dois andares</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-master-1" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-master-1">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-master-1" data-default="Se você entender só uma coisa sobre o Thiago, entenda isto: ele opera uma máquina de dois andares. O andar de cima é barato e industrial — muito conteúdo orgânico (Instagram, LinkedIn, YouTube) mais anúncio no Meta, tudo despejando gente no Desafio de R$97. Esse andar não é pra lucrar; é pra peneirar quem tem dinheiro.
+
+O andar de baixo é caro e humano — o diagnóstico filtra, um closer fecha por telefone o produto de R$X mil, e por cima entra a assinatura (R$97/mês) e o software (R$6 mil/mês). É aqui que o dinheiro de verdade mora. O R$97 é só a escada que liga um andar ao outro, de forma barata. E a &quot;inversão de culpa&quot; é a cola que, no meio de uma multidão, faz o dono certo se reconhecer e levantar a mão.
+
+Resumindo o que fazer: copie a estrutura (entrada única + inversão de culpa + escada com recorrência) e ataque onde ele vaza." rows="13">Se você entender só uma coisa sobre o Thiago, entenda isto: ele opera uma máquina de dois andares. O andar de cima é barato e industrial — muito conteúdo orgânico (Instagram, LinkedIn, YouTube) mais anúncio no Meta, tudo despejando gente no Desafio de R$97. Esse andar não é pra lucrar; é pra peneirar quem tem dinheiro.
+
+O andar de baixo é caro e humano — o diagnóstico filtra, um closer fecha por telefone o produto de R$X mil, e por cima entra a assinatura (R$97/mês) e o software (R$6 mil/mês). É aqui que o dinheiro de verdade mora. O R$97 é só a escada que liga um andar ao outro, de forma barata. E a &quot;inversão de culpa&quot; é a cola que, no meio de uma multidão, faz o dono certo se reconhecer e levantar a mão.
+
+Resumindo o que fazer: copie a estrutura (entrada única + inversão de culpa + escada com recorrência) e ataque onde ele vaza.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#06b6d4;background:#06b6d422;border-color:#06b6d4">🎯 O PLANO</span>
+            <h3 contenteditable="true">Por onde atacar, na ordem certa</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-master-2" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-master-2">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-master-2" data-default="Primeiro, o aviso mais importante: não tente ganhar dele na autoridade. O nome e a prova dele são o fosso mais forte que tem; bater de frente nisso é perder. O caminho é atacar pelos buracos operacionais, que são fáceis e ele deixou abertos.
+
+A ordem que eu sugiro: (1) recolher o lead que ele descarta — e-mail bem entregue na caixa de entrada e um downsell automático pra quem não passa no diagnóstico dele; (2) pegar a intenção que ele ignora — anúncio de busca no Google e YouTube pra quem já está procurando; (3) atender o público que ele recusa — empresa menor, mulheres em vendas, nichos específicos; e (4) ter uma resposta de IA, porque é pra lá que ele (e o mercado) está indo.
+
+Em paralelo, copie o que funciona (a entrada única, a inversão de culpa, a escada com recorrência). A jogada é simples de dizer: modele o que dá certo, vença onde ele sangra." rows="13">Primeiro, o aviso mais importante: não tente ganhar dele na autoridade. O nome e a prova dele são o fosso mais forte que tem; bater de frente nisso é perder. O caminho é atacar pelos buracos operacionais, que são fáceis e ele deixou abertos.
+
+A ordem que eu sugiro: (1) recolher o lead que ele descarta — e-mail bem entregue na caixa de entrada e um downsell automático pra quem não passa no diagnóstico dele; (2) pegar a intenção que ele ignora — anúncio de busca no Google e YouTube pra quem já está procurando; (3) atender o público que ele recusa — empresa menor, mulheres em vendas, nichos específicos; e (4) ter uma resposta de IA, porque é pra lá que ele (e o mercado) está indo.
+
+Em paralelo, copie o que funciona (a entrada única, a inversão de culpa, a escada com recorrência). A jogada é simples de dizer: modele o que dá certo, vença onde ele sangra.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#06b6d4;background:#06b6d422;border-color:#06b6d4">🔬 A HONESTIDADE</span>
+            <h3 contenteditable="true">O que a gente confirmou, o que é palpite e o que ainda falta</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-master-3" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-master-3">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-master-3" data-default="Pra você confiar no que está aqui, vale ser claro sobre o que é o quê. A gente CONFIRMOU (vendo de perto): os preços (Growth Play, Prospct, Lord of Sales, Desafio), que ele só roda Meta, que não houve call após o diagnóstico, que o robô só fala com quem já comprou, os quatro e-mails (e que caíram no spam), e as contagens do orgânico (os 35 de 45, os 60% mirando o dono).
+
+A gente INFERIU (leitura forte, mas sem prova fechada): o custo de aquisição e o retorno por cliente, o tamanho do time de vendas, e a cadência completa de e-mail (só pegamos quatro).
+
+E AINDA FALTA (precisa comprar ou coletar): o que exatamente entrega o produto caro (bônus, garantia, suporte), a sequência de e-mail inteira, e o ReclameAqui/Trustpilot — que é onde os clientes reclamam de verdade e onde mora a fraqueza mais explorável. Isso é trabalho de uma próxima rodada. E lembrando: anúncio e preço mudam, então vale refazer esse raio-x a cada três meses." rows="13">Pra você confiar no que está aqui, vale ser claro sobre o que é o quê. A gente CONFIRMOU (vendo de perto): os preços (Growth Play, Prospct, Lord of Sales, Desafio), que ele só roda Meta, que não houve call após o diagnóstico, que o robô só fala com quem já comprou, os quatro e-mails (e que caíram no spam), e as contagens do orgânico (os 35 de 45, os 60% mirando o dono).
+
+A gente INFERIU (leitura forte, mas sem prova fechada): o custo de aquisição e o retorno por cliente, o tamanho do time de vendas, e a cadência completa de e-mail (só pegamos quatro).
+
+E AINDA FALTA (precisa comprar ou coletar): o que exatamente entrega o produto caro (bônus, garantia, suporte), a sequência de e-mail inteira, e o ReclameAqui/Trustpilot — que é onde os clientes reclamam de verdade e onde mora a fraqueza mais explorável. Isso é trabalho de uma próxima rodada. E lembrando: anúncio e preço mudam, então vale refazer esse raio-x a cada três meses.</textarea>
+        </article></div>
+    </section>
+<div class="foot">Fonte: conclusao_data.py (edite lá e rode <code>python build_conclusao.py</code> pra regenerar). Estrutura canônica espelha razzetti/ e jeremy-miner/. Sintetizado 2026-06-04.</div>
+<script>
+function ssKey(t){return t.getAttribute('data-storage-key');}
+function mark(key,dirty){document.querySelectorAll('.save-state[data-for="'+key+'"]').forEach(function(s){s.textContent=dirty?'editado ✓':'não editado';s.classList.toggle('dirty',dirty);});}
+document.querySelectorAll('.copy-textarea').forEach(function(t){
+  var key=ssKey(t); var saved=null; try{saved=localStorage.getItem(key);}catch(e){}
+  if(saved!==null){t.value=saved;mark(key,saved!==t.getAttribute('data-default'));}
+  t.addEventListener('input',function(){try{localStorage.setItem(key,t.value);}catch(e){}mark(key,t.value!==t.getAttribute('data-default'));});
+});
+document.querySelectorAll('.reset-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var key=b.getAttribute('data-reset-key');
+    var t=document.querySelector('.copy-textarea[data-storage-key="'+key+'"]');
+    if(t){t.value=t.getAttribute('data-default');try{localStorage.removeItem(key);}catch(e){}mark(key,false);}
+  });
+});
+function toggleCut(btn){btn.closest('[data-block]').classList.toggle('is-cut');}
+function downloadFinal(){
+  document.querySelectorAll('.copy-textarea').forEach(function(t){t.textContent=t.value;});
+  var clone=document.documentElement.cloneNode(true);
+  clone.querySelectorAll('[data-block].is-cut').forEach(function(x){x.remove();});
+  clone.querySelectorAll('.cut,.toolbar,.ccard-tools,script').forEach(function(x){x.remove();});
+  clone.querySelectorAll('[contenteditable]').forEach(function(x){x.removeAttribute('contenteditable');});
+  clone.querySelectorAll('.copy-textarea').forEach(function(t){t.setAttribute('readonly','');});
+  var blob=new Blob(['<!DOCTYPE html>\n'+clone.outerHTML],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='thiago-conclusao-FINAL.html';a.click();
+}
+</script>
+</body></html>

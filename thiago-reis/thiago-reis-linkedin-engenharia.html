@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Engenharia Reversa LinkedIn — thiagoreis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f1a;--surface:#131927;--surface2:#0f1422;--border:#1e2638;--text:#e6ebf2;--muted:#94a3b8;--accent:#0a66c2;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit}
+.hero{padding:48px 20px 28px;max-width:1080px;margin:0 auto}
+.kicker{color:var(--accent);font-weight:700;letter-spacing:.18em;font-size:12px}
+.hero h1{font-size:38px;font-weight:800;margin:10px 0 12px;line-height:1.1}
+.hero .sub{color:var(--muted);font-size:15px;max-width:780px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px}
+.toolbar .hint{color:var(--muted);font-size:13px}
+.export{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-family:inherit;font-size:14px}
+.export:hover{filter:brightness(1.1)}
+section{max-width:1080px;margin:0 auto;padding:8px 20px}
+.sec-h{font-size:25px;font-weight:800;margin:38px 0 6px;border-left:4px solid var(--accent);padding-left:12px}
+.sec-intro{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:830px}
+.sub-h{font-size:18px;font-weight:700;margin:28px 0 12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;margin:16px 0;position:relative}
+.card h2{margin:0 0 12px;font-size:24px;font-weight:800}
+.card h3{margin:0 0 10px;font-size:19px;font-weight:800}
+.card p{margin:8px 0}
+[contenteditable]{outline:none;border-radius:6px;transition:background .15s}
+[contenteditable]:hover{background:rgba(125,160,255,.06)}
+[contenteditable]:focus{background:rgba(125,160,255,.12);box-shadow:inset 0 0 0 1px var(--accent)}
+.cut{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:7px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-size:13px;line-height:1;z-index:2;opacity:.6;transition:.15s}
+.cut:hover{opacity:1;border-color:#ef4444;color:#ef4444}
+[data-block]{position:relative}
+[data-block].is-cut{opacity:.32;filter:grayscale(1)}
+[data-block].is-cut::after{content:'CORTADO — clique no x pra restaurar';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;color:#ef4444;font-size:13px;background:rgba(11,15,26,.35);border-radius:inherit;pointer-events:none}
+[data-block].is-cut .cut{opacity:1;border-color:#22c55e;color:#22c55e;pointer-events:auto}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.filtro{background:var(--surface2);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:10px;padding:14px}
+.filtro h4{margin:0 0 6px;font-size:15px;color:var(--accent)}
+.filtro p{margin:0;font-size:13.5px;color:var(--muted)}
+.personas{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.persona{background:var(--surface);border:1px solid var(--border);border-left:4px solid;border-radius:12px;padding:18px 18px 18px 22px;position:relative}
+.persona .pid{display:inline-block;color:#fff;font-weight:800;font-size:12px;padding:2px 9px;border-radius:6px;margin-bottom:8px}
+.persona h4{margin:0 0 2px;font-size:17px}
+.persona .ptag{font-size:12.5px;font-weight:700;margin-bottom:8px}
+.persona p{margin:0;font-size:13.5px;color:var(--muted)}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;align-items:flex-start}
+.step .num{flex:0 0 34px;height:34px;border-radius:9px;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.step h4{margin:0 0 3px;font-size:15px}.step p{margin:0;font-size:13.5px;color:var(--muted)}
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.reason{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px;position:relative}
+.reason.warn{border-color:#7c2d12;background:rgba(124,45,18,.12)}
+.reason h4{margin:0 0 6px;font-size:14.5px;color:var(--accent)}
+.reason.warn h4{color:#fb923c}
+.reason p{margin:0;font-size:13px;color:var(--muted)}
+.tema{background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--tcol);border-radius:14px;padding:20px;margin:16px 0;position:relative}
+.tema-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.tcode{color:#fff;font-weight:800;font-size:14px;padding:4px 11px;border-radius:8px}
+.tema-head h3{margin:0;font-size:20px;font-weight:800;flex:1;min-width:220px}
+.freq{font-size:12.5px;color:var(--muted);font-weight:600}
+.work{font-size:12px;font-weight:700;border:1px solid;border-radius:20px;padding:3px 11px}
+.tema-why{background:var(--surface2);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.tema-why p{margin:6px 0;font-size:14px}
+.tema-why .impact{color:var(--muted);font-size:13.5px}
+.posts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.post{display:flex;gap:12px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:10px;position:relative}
+.post .cut{top:6px;right:6px;width:22px;height:22px;font-size:11px}
+.thumb{flex:0 0 96px;width:96px;border-radius:8px;overflow:hidden;position:relative;background:#1a2233;display:block}
+.thumb.vert{height:128px}.thumb.wide{height:64px}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .play{position:absolute;bottom:5px;right:5px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;padding:1px 6px;border-radius:6px}
+.thumb.noimg img{display:none}
+.thumb.noimg::after{content:'sem prévia';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#475569;font-size:11px}
+.post-body{flex:1;min-width:0}
+.post-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:5px}
+.kind{font-weight:800;padding:1px 7px;border-radius:5px;font-size:10px;letter-spacing:.04em}
+.post .cap{font-size:12.5px;color:#cbd5e1;margin-bottom:6px;font-style:italic}
+.post .decode{font-size:12.5px;color:var(--text)}
+.post .decode b{color:var(--accent)}
+.kwbadge{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:10px;padding:1px 8px;border-radius:5px}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.shots a{display:block;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#1a2233}
+.shots img{width:100%;height:150px;object-fit:cover;object-position:top;display:block}
+.shots span{display:block;text-align:center;font-size:11px;color:var(--muted);padding:5px}
+.swipe{margin:8px 0 0;padding-left:22px}.swipe li{margin:7px 0;font-size:14px;padding-left:4px}
+@media(max-width:760px){.grid3,.personas,.reasons,.posts,.shots{grid-template-columns:1fr}.hero h1{font-size:28px}}
+.foot{max-width:1080px;margin:40px auto 0;padding:20px;color:#5b6678;font-size:12px;border-top:1px solid var(--border)}
+</style></head><body>
+
+<header class="hero">
+  <div class="kicker">ENGENHARIA REVERSA DE CONTEÚDO · LINKEDIN</div>
+  <h1 contenteditable="true">@thiagoreis no LinkedIn — a fábrica de leads B2B</h1>
+  <p class="sub" contenteditable="true">Por que ele posta o que posta no LinkedIn, os temas que escolhe e como cada um impacta cada persona. Janela: último mês (44 publicações, captura logada 04/jun/2026) · ~1,5 post/dia · 119,8 mil seguidores · quase todo post fecha em "comenta [keyword]".</p>
+  <div class="toolbar">
+    <span class="hint">✎ Todo texto é editável. Posts do LinkedIn são TEXTO — citados como quote com hook + engajamento real. Use o <b>x</b> pra cortar.</span>
+    <button class="export" onclick="downloadFinal()">⬇ Baixar versão final (só o que ficou)</button>
+  </div>
+</header>
+<section><div class="card" data-block><button class="cut" title="Cortar este bloco" onclick="toggleCut(this)">x</button><h2 contenteditable="true">A tese e a regra que governa tudo</h2><p contenteditable="true">No LinkedIn o Thiago não faz branding — faz <b>captura industrial de leads B2B sem mídia paga</b>. Mesma lógica do IG (uma tese reciclada), mas o veículo aqui é <b>texto longo estruturado</b> e <b>live quase diária</b>, e o destino é sempre a <b>DM</b>. Um tema só entra se fizer um destes três trabalhos:</p><div class="grid3"><div class="filtro"><h4 contenteditable="true">1. CAPTURAR lead B2B na DM</h4><p contenteditable="true">O LinkedIn é a fábrica de leads sem mídia paga. Quase todo post de valor termina em &#x27;comenta [keyword]&#x27; → DM. O conteúdo existe pra gerar a conversa 1:1, não pra branding.</p></div><div class="filtro"><h4 contenteditable="true">2. CONSTRUIR autoridade enterprise</h4><p contenteditable="true">Name-drop de gigante, dado de estudo, prova de número e tese de IA posicionam a Growth Machine como player sério (não infoproduto). Isso sustenta o ticket alto.</p></div><div class="filtro"><h4 contenteditable="true">3. QUALIFICAR pro high-ticket</h4><p contenteditable="true">Diagnóstico/auditoria &#x27;não é call de venda&#x27; + tripwire R$97 filtram quem é comprador. O LinkedIn nutre o decisor B2B até a aplicação pro Expansão Comercial.</p></div></div><div class="shots"><a href="_assets/linkedin/01-profile-full.png" target="_blank"><img loading="lazy" src="_assets/linkedin/01-profile-full.png" alt="Perfil"><span>Perfil</span></a><a href="_assets/linkedin/00-feed.png" target="_blank"><img loading="lazy" src="_assets/linkedin/00-feed.png" alt="Feed"><span>Feed</span></a><a href="_assets/linkedin/02-activity-full.png" target="_blank"><img loading="lazy" src="_assets/linkedin/02-activity-full.png" alt="Atividade"><span>Atividade</span></a><a href="_assets/linkedin/03-month-full.png" target="_blank"><img loading="lazy" src="_assets/linkedin/03-month-full.png" alt="Mês"><span>Mês</span></a></div></div></section>
+<section><h2 class="sec-h">As 4 personas no LinkedIn</h2><p class="sec-intro" contenteditable="true">O público do LinkedIn é mais profissional e qualificado que o do IG — o decisor (P1) e o gestor (P2) estão em modo de trabalho, não de descanso. Por isso este canal converte melhor pro high-ticket.</p><div class="personas"><div class="persona" data-block style="border-color:#0a66c2"><button class="cut" onclick="toggleCut(this)">x</button><div class="pid" style="background:#0a66c2">P1</div><h4 contenteditable="true">Dono / CEO de PME B2B</h4><div class="ptag" style="color:#0a66c2" contenteditable="true">É O CLIENTE — e aqui está ATIVO</div><p contenteditable="true">No LinkedIn o dono não está descansando — está procurando fornecedor, método, gente pra contratar. É um decisor em modo de trabalho. Por isso o LinkedIn converte melhor pra high-ticket: o P1 chega mais qualificado e com intenção. Toda a tese de IA e os name-drops de gigante miram nele.</p></div><div class="persona" data-block style="border-color:#38bdf8"><button class="cut" onclick="toggleCut(this)">x</button><div class="pid" style="background:#38bdf8">P2</div><h4 contenteditable="true">Gestor comercial / Head de vendas</h4><div class="ptag" style="color:#38bdf8" contenteditable="true">Influencia forte — quer estruturar o time</div><p contenteditable="true">É a persona mais densa do LinkedIn. Vive a dor de 'meu time não bate meta', 'depende de mim', 'não tenho processo'. Consome os playbooks táticos e os takes de cultura/gestão. Vira o advogado interno e muitas vezes é quem comenta a keyword e entra na DM.</p></div><div class="persona" data-block style="border-color:#a855f7"><button class="cut" onclick="toggleCut(this)">x</button><div class="pid" style="background:#a855f7">P3</div><h4 contenteditable="true">Vendedor / SDR / closer</h4><div class="ptag" style="color:#a855f7" contenteditable="true">Consome técnica — mais qualificado que no IG</div><p contenteditable="true">No LinkedIn o vendedor é profissional e ativo (não é só espelho como no IG). Consome técnica de prospecção, objeção, Sales Navigator. Alguns viram clientes diretos das imersões (Closer/Gestor) ou indicam o método pro chefe. É também quem mais engaja nos posts de cultura linha-dura.</p></div><div class="persona" data-block style="border-color:#22c55e"><button class="cut" onclick="toggleCut(this)">x</button><div class="pid" style="background:#22c55e">P4</div><h4 contenteditable="true">Pares, parceiros e mercado</h4><div class="ptag" style="color:#22c55e" contenteditable="true">Validação de autoridade (não é alcance pop)</div><p contenteditable="true">Diferente do IG, o 'topo largo' do LinkedIn não é pop-culture — é o ECOSSISTEMA profissional: outros experts, parceiros (Salesforce, Pipedrive), imprensa de negócios, o ranking Favikon. Os name-drops e recaps de evento miram essa validação de pares, que retroalimenta a autoridade que converte o P1/P2.</p></div></div></section>
+<section><h2 class="sec-h">O motor: COMENTA [KEYWORD] → DM</h2><p class="sec-intro" contenteditable="true">A mecânica central do canal. Quase todo post substantivo termina pedindo um comentário com uma palavra-chave; o material vai na DM. No mês foram ~15 keywords (DESAFIO, CONSULTIVO, 3K, COPA, TREINO, SERVIÇO, ESPAÇO…).</p><div class="steps"><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">1</div><div><h4 contenteditable="true">POST DE VALOR</h4><p contenteditable="true">Framework, história ou dado que entrega utilidade real e prende o decisor. A 1ª linha é sempre um hook contrarian / número chocante.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">2</div><div><h4 contenteditable="true">ÂNCORA DE AUTORIDADE</h4><p contenteditable="true">&#x27;Depois de estruturar mais de 8.000 operações comerciais…&#x27; — o selo de credibilidade, repetido em ~1/3 dos posts.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">3</div><div><h4 contenteditable="true">LISTA NUMERADA + TL;DR</h4><p contenteditable="true">3 portas, 5 passos, 7 movimentos. Dá valor de graça e ancora a próxima etapa.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">4</div><div><h4 contenteditable="true">COMENTA [KEYWORD]</h4><p contenteditable="true">O CTA. Comentário com palavra-chave (DESAFIO, CONSULTIVO, 3K, COPA, TREINO…) — o resto entrega na DM.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">5</div><div><h4 contenteditable="true">DM = ENTREGA + QUALIFICAÇÃO</h4><p contenteditable="true">O material grátis vai na DM e abre o diálogo. O comentário funciona como pixel (alimenta o algoritmo) e a DM como funil.</p></div></div></div><h3 class="sub-h" contenteditable="true">Por que comentário e não link (os 6 motivos)</h3><div class="reasons"><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Comentário é pixel</h4><p contenteditable="true">Comentar com keyword alimenta o algoritmo do LinkedIn (engajamento puxa alcance orgânico) — sem pagar mídia.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">DM é o funil</h4><p contenteditable="true">A entrega do material acontece na DM, onde o time qualifica e empurra pro tripwire/diagnóstico. O lead se auto-seleciona ao comentar.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Sem depender de link</h4><p contenteditable="true">Link no post derruba alcance no LinkedIn. 'Comenta X' contorna a punição de link e ainda gera prova social pública.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Live diária = evento de venda</h4><p contenteditable="true">'Dia de Fechamento — a oferta sai do ar quando a live acabar.' Urgência ao vivo, quase todo dia, sem custo de mídia.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Volume &gt; viral</h4><p contenteditable="true">~1,5 post/dia. Ele não otimiza o viral por post — otimiza frequência e nº de comentários-com-keyword (= leads). A média de engajamento é modesta de propósito.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Owned audience</h4><p contenteditable="true">Cada DM vira contato quente e conexão B2B. O LinkedIn constrói uma lista proprietária de decisores — ativo que não depende de plataforma de ads.</p></div></div></section>
+<section><h2 class="sec-h">Os 8 pilares de conteúdo — e por que ELE escolhe cada um</h2><p class="sec-intro" contenteditable="true">Os pilares giram em 3 eixos: <b>capturar lead</b> (playbook gated), <b>construir autoridade</b> (contrarian, name-drop, origem, dado, IA, prova) e <b>qualificar</b> (diagnóstico → high-ticket). Tudo a serviço do mesmo funil de DM.</p><div class="tema" data-block style="--tcol:#0a66c2"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#0a66c2">1</span><h3 contenteditable="true">Contrarian: &#x27;X morreu / é mito&#x27;</h3><span class="freq" contenteditable="true">🔴 Abre quase todo post</span><span class="work" style="border-color:#0a66c2;color:#0a66c2" contenteditable="true">Construir autoridade</span></div><div class="tema-why"><p contenteditable="true">Ataca a crença consolidada do mercado pra se posicionar como quem enxerga diferente. É o hook que para o scroll do profissional e estabelece o frame 'todo mundo faz errado, eu vou te mostrar o certo'. Polariza o suficiente pra gerar comentário sem queimar o decisor.</p><p class="impact" contenteditable="true"><b>P2</b> e <b>P3</b> param pra discordar ou concordar (debate). <b>P1</b> reconhece o frame de autoridade.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 2 d</span> <span class="stats">♥ 13 · 💬 3</span></div>
+        <div class="cap" contenteditable="true">“&quot;Relacionamento com o cliente&quot; virou a frase mais vazia do comercial.”</div>
+        <div class="decode" contenteditable="true">'Relacionamento com o cliente virou a frase mais vazia' — desmonta o clichê e mostra a Sicredi tratando base como ativo.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 1 sem</span> <span class="stats">♥ 15 · 💬 6</span> <span class="kwbadge">comenta DESAFIO</span></div>
+        <div class="cap" contenteditable="true">“&quot;Ligação não funciona mais.&quot;”</div>
+        <div class="decode" contenteditable="true">'Ligação não funciona mais' (falso) → refuta com dado e ancora a keyword DESAFIO.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 3 sem</span> <span class="stats">♥ 29 · 💬 40</span></div>
+        <div class="cap" contenteditable="true">“Não é o mercado.”</div>
+        <div class="decode" contenteditable="true">'Não é o mercado' — tira a desculpa externa e joga a responsabilidade pro gestor (inversão de culpa, igual ao IG).</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#38bdf8"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#38bdf8">2</span><h3 contenteditable="true">Autoridade emprestada / name-drop</h3><span class="freq" contenteditable="true">🔴 Recorrente</span><span class="work" style="border-color:#38bdf8;color:#38bdf8" contenteditable="true">Construir autoridade</span></div><div class="tema-why"><p contenteditable="true">Pega emprestada a credibilidade de gigantes e nomes conhecidos. 'Sentei à mesa da Salesforce', 'almocei com quem vendeu a Neoway por 1,8 bi'. Posiciona a Growth Machine como par de enterprise, não como infoproduto — o que justifica o ticket alto e atrai o P1.</p><p class="impact" contenteditable="true"><b>P1</b> é o alvo (autoridade enterprise vende high-ticket). <b>P4</b> (pares/mercado) valida e amplifica.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 3 d</span> <span class="stats">♥ 127 · 💬 4 · ↻ 1</span></div>
+        <div class="cap" contenteditable="true">“Almocei com quem vendeu a Neoway por R$ 1,8 bilhão.”</div>
+        <div class="decode" contenteditable="true">'Almocei com quem vendeu a Neoway por R$1,8 bilhão' — 127 reações. Proximidade com quem fez o exit que o P1 sonha.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 2 sem</span> <span class="stats">♥ 127 · 💬 18 · ↻ 1</span> <span class="kwbadge">comenta MÁQUINA</span></div>
+        <div class="cap" contenteditable="true">“Conheci a 🎤 Renata Centurión em 2017.”</div>
+        <div class="decode" contenteditable="true">Renata Centurión / palestra — autoridade por associação com nomes respeitados do mercado.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 2 sem</span> <span class="stats">♥ 106 · 💬 39 · ↻ 1</span> <span class="kwbadge">comenta 3K</span></div>
+        <div class="cap" contenteditable="true">“Sobreviver ao maior cancelamento da história da internet não é para qualquer um.”</div>
+        <div class="decode" contenteditable="true">'Sobreviver ao maior cancelamento da história' (Igor 3k) — newsjacking + name-drop, keyword 3K, 39 comentários.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#a855f722;color:#a855f7">LIVE/VÍDEO</span>
+          <span class="date">há 3 sem</span> <span class="stats">♥ 15 · 💬 4 · ↻ 1</span></div>
+        <div class="cap" contenteditable="true">“O que a maior empresa de educação do Brasil me ensinou sobre vendas.”</div>
+        <div class="decode" contenteditable="true">'O que a maior empresa de educação do Brasil (Cogna) me ensinou' — credencial enterprise emprestada.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#a855f7"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#a855f7">3</span><h3 contenteditable="true">Origin story / vulnerabilidade</h3><span class="freq" contenteditable="true">🟠 Os de maior REAÇÃO</span><span class="work" style="border-color:#a855f7;color:#a855f7" contenteditable="true">Construir autoridade (por identificação)</span></div><div class="tema-why"><p contenteditable="true">Humaniza e cria identificação profunda. O telemarketer de R$473, a mãe que vendia marmita, a falência de R$300k. São os posts de MAIOR reação do mês — a vulnerabilidade gera conexão emocional que a técnica não gera, e ancora a narrativa 'se eu saí do fundo, meu método funciona'.</p><p class="impact" contenteditable="true"><b>Todas</b> as personas reagem (alcance amplo). <b>P1/P2</b> projetam a própria jornada; <b>P3</b> aspira.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 3 sem</span> <span class="stats">♥ 164 · 💬 29</span></div>
+        <div class="cap" contenteditable="true">“Cabelo despenteado, camisa amassada e 30kg a mais.”</div>
+        <div class="decode" contenteditable="true">'Cabelo despenteado, camisa amassada e 30kg a mais' — 164 reações (top do mês). Antes/depois pessoal = prova viva de transformação.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 3 sem</span> <span class="stats">♥ 67 · 💬 12</span> <span class="kwbadge">comenta DESAFIO</span></div>
+        <div class="cap" contenteditable="true">“Minha mãe acordava às 5 da manhã.”</div>
+        <div class="decode" contenteditable="true">'Minha mãe acordava às 5 da manhã' — origem humilde + keyword DESAFIO. Emoção que puxa o lead pro tripwire.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#a855f722;color:#a855f7">LIVE/VÍDEO</span>
+          <span class="date">há 2 sem</span> <span class="stats">♥ 41 · 💬 12</span> <span class="kwbadge">comenta DESAFIO</span></div>
+        <div class="cap" contenteditable="true">“Não tinha grana pra cursinho de inglês”</div>
+        <div class="decode" contenteditable="true">'Não tinha grana pra cursinho de inglês' — a virada pela disciplina, ancorando o DESAFIO.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#22c55e"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#22c55e">4</span><h3 contenteditable="true">Playbook numerado / valor tático</h3><span class="freq" contenteditable="true">🔴 O corpo da maioria</span><span class="work" style="border-color:#22c55e;color:#22c55e" contenteditable="true">Capturar lead (gated pela keyword)</span></div><div class="tema-why"><p contenteditable="true">Entrega valor real e acionável — mas guarda a versão completa (templates, checklist, scripts) atrás do 'comenta X'. É o motor de captura: o post prova que o método é bom, e quem quer o material inteiro comenta a keyword e entra na DM. Utilidade gratuita é a isca mais eficiente do canal.</p><p class="impact" contenteditable="true"><b>P2</b> e <b>P3</b> são os que mais comentam pra pegar o material. <b>P1</b> salva e delega.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 23 h</span> <span class="stats">♥ 9 · 💬 6</span> <span class="kwbadge">comenta COPA</span></div>
+        <div class="cap" contenteditable="true">“A Copa vai esvaziar o pipeline de 9 em cada 10 empresas.”</div>
+        <div class="decode" contenteditable="true">'A Copa vai esvaziar o pipeline de 9 em cada 10 empresas' — 7 movimentos em checklist, keyword COPA → Mapa Pipeline. Newsjacking + playbook + captura.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 3 d</span> <span class="stats">♥ 20 · 💬 1</span></div>
+        <div class="cap" contenteditable="true">“3 perguntas para saber se suas vendas estão prontas para 2026:”</div>
+        <div class="decode" contenteditable="true">'3 perguntas pra saber se suas vendas estão prontas pra 2026' — auto-diagnóstico no post: o lead sente a dor sozinho.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 1 sem</span> <span class="stats">♥ 37 · 💬 6 · ↻ 1</span></div>
+        <div class="cap" contenteditable="true">“Você só precisa fechar 3 portas para fechar uma venda sem colocar pressão.”</div>
+        <div class="decode" contenteditable="true">'Você só precisa fechar 3 portas pra fechar uma venda sem pressão' — framework nomeado, alto salvamento.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 2 sem</span> <span class="stats">♥ 19 · 💬 8 · ↻ 1</span> <span class="kwbadge">comenta TREINO</span></div>
+        <div class="cap" contenteditable="true">“Treinar o time de vendas todos os dias dá muito trabalho.”</div>
+        <div class="decode" contenteditable="true">'Treinar o time todo dia dá trabalho' — keyword TREINO entrega o método de treino diário.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#f97316"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#f97316">5</span><h3 contenteditable="true">Tese de IA / futuro das vendas</h3><span class="freq" contenteditable="true">🔴 A APOSTA ATUAL</span><span class="work" style="border-color:#f97316;color:#f97316" contenteditable="true">Construir autoridade + criar urgência</span></div><div class="tema-why"><p contenteditable="true">Metade do conteúdo do mês orbita IA na prospecção (SDR de IA / Prospct.IA / operação agêntica). É a nova narrativa de diferenciação — saiu do 'M&A/holding' pra 'líder de IA em vendas'. Cria FOMO ('99% dos vendedores não sabe usar IA') e posiciona o produto de software/IA, que é a fronteira de receita nova.</p><p class="impact" contenteditable="true"><b>P1</b> (medo de obsolescência + apelo de eficiência/custo) e <b>P2</b> (operação). É o tema que mais fala com decisor.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 4 sem</span> <span class="stats">♥ 116 · 💬 18 · ↻ 10</span></div>
+        <div class="cap" contenteditable="true">“A IA do nosso SDR faz 400 ligações por hora.”</div>
+        <div class="decode" contenteditable="true">'A IA do nosso SDR faz 400 ligações por hora' — 116 reações, 10 reposts. Prova da máquina de IA rodando ao vivo.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 2 sem</span> <span class="stats">♥ 30 · 💬 8</span> <span class="kwbadge">comenta SERVIÇO</span></div>
+        <div class="cap" contenteditable="true">“Me chamaram de destruidor de empregos.”</div>
+        <div class="decode" contenteditable="true">'Me chamaram de destruidor de empregos' — polariza sobre IA, keyword SERVIÇO. Abraça a polêmica pra posicionar a tese.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 2 sem</span> <span class="stats">♥ 13 · 💬 11</span></div>
+        <div class="cap" contenteditable="true">“99% dos vendedores não sabem usar IA para vender.”</div>
+        <div class="decode" contenteditable="true">'99% dos vendedores não sabem usar IA pra vender' — cria o gap e se coloca como quem sabe.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#06b6d4"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#06b6d4">6</span><h3 contenteditable="true">Argumento com estudo / dado</h3><span class="freq" contenteditable="true">🟡 Blindagem do discurso</span><span class="work" style="border-color:#06b6d4;color:#06b6d4" contenteditable="true">Construir autoridade</span></div><div class="tema-why"><p contenteditable="true">Mehrabian, McKinsey, Gartner, SPIN/Rackham, Princeton, Harvard, pesquisa do próprio LinkedIn. A ciência blinda o discurso contra o ceticismo do decisor B2B — que desconfia de 'achismo de guru'. Faz a opinião soar como pesquisa.</p><p class="impact" contenteditable="true"><b>P1/P2</b> (decisores céticos que precisam de lastro). Reduz a resistência racional antes do CTA.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 1 sem</span> <span class="stats">♥ 21 · 💬 5</span></div>
+        <div class="cap" contenteditable="true">“54% dos novos logos enterprise não falaram com vendedor.”</div>
+        <div class="decode" contenteditable="true">'54% dos novos logos enterprise não falaram com vendedor' — dado que sustenta a tese de inbound/IA.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 4 sem</span> <span class="stats">♥ 16 · 💬 1</span></div>
+        <div class="cap" contenteditable="true">“Apenas 28% dos vendedores batem meta.”</div>
+        <div class="decode" contenteditable="true">'Apenas 28% dos vendedores batem meta' — número-âncora que instala a dor de performance do time.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#ef4444"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#ef4444">7</span><h3 contenteditable="true">Chefe linha-dura / cultura polarizadora</h3><span class="freq" contenteditable="true">🟠 Os de mais COMENTÁRIO</span><span class="work" style="border-color:#ef4444;color:#ef4444" contenteditable="true">Construir autoridade (por polarização)</span></div><div class="tema-why"><p contenteditable="true">Posições extremas sobre gestão: 'ou faz o que eu mando ou tá fora', '200 ligações/dia', 'contrato atleta, não vendedor'. Polariza de propósito → gera o maior volume de comentários (debate = alcance). Atrai o gestor que quer 'mão firme' e afasta quem não é o público — funciona como filtro de avatar.</p><p class="impact" contenteditable="true"><b>P2</b> (gestor que se identifica com a dureza) e <b>P3</b> (que se defende ou aspira). Debate = sinal de alcance.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 1 sem</span> <span class="stats">♥ 51 · 💬 57 · ↻ 2</span></div>
+        <div class="cap" contenteditable="true">“Na minha empresa não tem essa opção.”</div>
+        <div class="decode" contenteditable="true">'Na minha empresa não tem essa opção' — 57 comentários (recorde de debate do mês). Cultura linha-dura que divide a audiência.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#0a66c222;color:#0a66c2">TEXTO</span>
+          <span class="date">há 3 sem</span> <span class="stats">♥ 67 · 💬 9</span></div>
+        <div class="cap" contenteditable="true">“Eu não olho currículo.”</div>
+        <div class="decode" contenteditable="true">'Eu não olho currículo' — critério de contratação contraintuitivo que gera discussão e posiciona o método.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#eab308"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#eab308">8</span><h3 contenteditable="true">Prova em tempo real / flex de números</h3><span class="freq" contenteditable="true">🟡 Recap de evento</span><span class="work" style="border-color:#eab308;color:#eab308" contenteditable="true">Construir autoridade</span></div><div class="tema-why"><p contenteditable="true">Mostra a máquina rodando ao vivo: recap do High Growth, '300 vendedores na sala', 'R$2,5M em 37h', '615 inscritos no Desafio'. A prova social ao vivo (foto de evento cheio, número grande) é o que mais gera REAÇÃO — valida que o ecossistema existe e está em movimento.</p><p class="impact" contenteditable="true"><b>P4</b> (pares/mercado) amplifica o recap. <b>P1/P2</b> sentem o 'todo mundo já está dentro, e eu?'.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#a855f722;color:#a855f7">LIVE/VÍDEO</span>
+          <span class="date">há 1 sem</span> <span class="stats">♥ 141 · 💬 18 · ↻ 4</span></div>
+        <div class="cap" contenteditable="true">“Esse foi o High Growth mais difícil de todos.”</div>
+        <div class="decode" contenteditable="true">'Esse foi o High Growth mais difícil de todos' — 141 reações. Recap de evento = prova de comunidade ativa.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#a855f722;color:#a855f7">LIVE/VÍDEO</span>
+          <span class="date">há 1 sem</span> <span class="stats">♥ 22 · 💬 3</span></div>
+        <div class="cap" contenteditable="true">“300 vendedores na sala.”</div>
+        <div class="decode" contenteditable="true">'300 vendedores na sala' — número de palco como prova de tração.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind" style="background:#a855f722;color:#a855f7">LIVE/VÍDEO</span>
+          <span class="date">há 3 sem</span> <span class="stats">♥ 71 · 💬 18</span></div>
+        <div class="cap" contenteditable="true">“A maioria das pessoas vai a eventos para assistir palestras.”</div>
+        <div class="decode" contenteditable="true">'A maioria vai a eventos pra assistir palestras' — reposiciona o próprio evento como lugar de fazer negócio.</div>
+      </div>
+    </div></div></div></section>
+<section><h2 class="sec-h">Por que funciona como sistema</h2><div class="reasons"><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Cadência industrial</h4><p contenteditable="true">~1,5 post/dia + live quase diária. Não é branding — é linha de montagem de leads. Volume é a estratégia.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Comentário como pixel, DM como funil</h4><p contenteditable="true">O 'comenta X' contorna a punição de link, alimenta o algoritmo e abre a conversa 1:1 onde o time qualifica.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Mesmo destino dos outros canais</h4><p contenteditable="true">As keywords convergem no tripwire R$97 (Desafio) + diagnóstico → high-ticket. LinkedIn, IG e YouTube alimentam o mesmo fundo de funil.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Autoridade enterprise sustenta o ticket</h4><p contenteditable="true">Name-drop + dado + tese de IA tiram a GM da prateleira de 'infoproduto' e a colocam como fornecedor sério — o que permite cobrar caro.</p></div></div></section>
+<section><h2 class="sec-h">Pontos cegos / oportunidade</h2><div class="reasons"><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Engajamento modesto por post</h4><p contenteditable="true">Mediana ~20–40 reações e comentários em 1 dígito. Depende de volume; poucos posts furam de verdade.</p></div><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Números inconsistentes</h4><p contenteditable="true">8.000 operações / 40.000 vendedores / R$3,4 bi (ora R$2,2 bi). A repetição de credenciais que não batem pode minar a confiança do decisor atento.</p></div><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Lives canceladas / agenda instável</h4><p contenteditable="true">Vários posts de 'LIVE' com 0–2 reações e 'evento cancelado'. Testa demais e queima frequência sem retorno.</p></div><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Dependência da mecânica de keyword</h4><p contenteditable="true">Se o LinkedIn punir o 'comenta X' (como já aconteceu em outras plataformas), o motor de captura trava.</p></div></div><div class="card" data-block><button class="cut" title="Cortar este bloco" onclick="toggleCut(this)">x</button><h3 contenteditable="true">O que a Swipe Offers tira disso</h3><ol class="swipe"><li contenteditable="true">Comment-to-DM com keyword temática (não genérica) — &#x27;comenta CRIATIVO&#x27; que entrega um material específico, não &#x27;comenta EU QUERO&#x27;.</li><li contenteditable="true">Utilidade gratuita gated pela keyword &gt; post inspiracional. Os que mais geram lead são checklist/template/script com acesso fechado atrás de um comentário.</li><li contenteditable="true">Origin story / vulnerabilidade pra alcance; take polarizador pra comentário; dado/estudo pra blindar. Cada pilar tem uma função — não misturar tudo no mesmo post.</li><li contenteditable="true">Âncora de autoridade repetida (&#x27;depois de estruturar mais de 8.000 operações&#x27;) vira selo de marca — escolher uma credencial e martelar.</li><li contenteditable="true">Live diária como evento de fechamento com urgência real (&#x27;sai do ar quando acabar&#x27;) — barato e converte quente.</li></ol></div></section>
+<div class="foot">Base: _coleta/linkedin_ultimo_mes.txt (44 posts do último mês, captura logada 04/jun/2026) + 5 - Analises IA/linkedin-analise.md. Screenshots: _assets/linkedin/. Posts do LinkedIn são texto — sem thumbnail individual. Gerado por build_linkedin_eng.py.</div>
+<script>
+function toggleCut(btn){btn.closest('[data-block]').classList.toggle('is-cut');}
+function downloadFinal(){
+  var clone=document.documentElement.cloneNode(true);
+  clone.querySelectorAll('[data-block].is-cut').forEach(function(e){e.remove();});
+  clone.querySelectorAll('.cut').forEach(function(e){e.remove();});
+  clone.querySelectorAll('.toolbar').forEach(function(e){e.remove();});
+  clone.querySelectorAll('[contenteditable]').forEach(function(e){e.removeAttribute('contenteditable');});
+  clone.querySelectorAll('script').forEach(function(e){e.remove();});
+  var out='<!DOCTYPE html>\n'+clone.outerHTML;
+  var blob=new Blob([out],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=(document.title||'final').replace(/[^a-z0-9]+/gi,'-')+'-FINAL.html';a.click();
+}
+</script>
+</body></html>

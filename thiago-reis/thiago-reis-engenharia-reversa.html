@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Engenharia Reversa — @thiagoreis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f1a;--surface:#131927;--surface2:#0f1422;--border:#1e2638;--text:#e6ebf2;--muted:#94a3b8;--accent:#F26B1D;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+a{color:inherit}
+.hero{padding:48px 20px 28px;max-width:1080px;margin:0 auto}
+.kicker{color:var(--accent);font-weight:700;letter-spacing:.18em;font-size:12px}
+.hero h1{font-size:38px;font-weight:800;margin:10px 0 12px;line-height:1.1}
+.hero .sub{color:var(--muted);font-size:15px;max-width:760px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px}
+.toolbar .hint{color:var(--muted);font-size:13px}
+.export{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-family:inherit;font-size:14px}
+.export:hover{filter:brightness(1.08)}
+section{max-width:1080px;margin:0 auto;padding:8px 20px}
+.sec-h{font-size:25px;font-weight:800;margin:38px 0 6px;border-left:4px solid var(--accent);padding-left:12px}
+.sec-intro{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:820px}
+.sub-h{font-size:18px;font-weight:700;margin:28px 0 12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;margin:16px 0;position:relative}
+.card h2{margin:0 0 12px;font-size:24px;font-weight:800}
+.card p{margin:8px 0}
+[contenteditable]{outline:none;border-radius:6px;transition:background .15s}
+[contenteditable]:hover{background:rgba(242,107,29,.06)}
+[contenteditable]:focus{background:rgba(242,107,29,.10);box-shadow:inset 0 0 0 1px var(--accent)}
+.cut{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:7px;border:1px solid var(--border);
+  background:var(--surface2);color:var(--muted);cursor:pointer;font-size:13px;line-height:1;z-index:2;opacity:.6;transition:.15s}
+.cut:hover{opacity:1;border-color:#ef4444;color:#ef4444}
+[data-block]{position:relative}
+[data-block].is-cut{opacity:.32;filter:grayscale(1)}
+[data-block].is-cut::after{content:'CORTADO — clique no ✕ pra restaurar';position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-weight:700;color:#ef4444;font-size:13px;background:rgba(11,15,26,.35);border-radius:inherit;pointer-events:none}
+[data-block].is-cut .cut{opacity:1;border-color:#22c55e;color:#22c55e;pointer-events:auto}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.filtro{background:var(--surface2);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:10px;padding:14px}
+.filtro h4{margin:0 0 6px;font-size:15px;color:var(--accent)}
+.filtro p{margin:0;font-size:13.5px;color:var(--muted)}
+.personas{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.persona{background:var(--surface);border:1px solid var(--border);border-left:4px solid;border-radius:12px;padding:18px 18px 18px 22px;position:relative}
+.persona .pid{display:inline-block;color:#fff;font-weight:800;font-size:12px;padding:2px 9px;border-radius:6px;margin-bottom:8px}
+.persona h4{margin:0 0 2px;font-size:17px}
+.persona .ptag{font-size:12.5px;font-weight:700;margin-bottom:8px}
+.persona p{margin:0;font-size:13.5px;color:var(--muted)}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;align-items:flex-start}
+.step .num{flex:0 0 34px;height:34px;border-radius:9px;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.step h4{margin:0 0 3px;font-size:15px}.step p{margin:0;font-size:13.5px;color:var(--muted)}
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.reason{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px;position:relative}
+.reason.warn{border-color:#7c2d12;background:rgba(124,45,18,.12)}
+.reason h4{margin:0 0 6px;font-size:14.5px;color:var(--accent)}
+.reason.warn h4{color:#fb923c}
+.reason p{margin:0;font-size:13px;color:var(--muted)}
+.tema{background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--tcol);border-radius:14px;padding:20px;margin:16px 0;position:relative}
+.tema-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.tcode{color:#fff;font-weight:800;font-size:14px;padding:4px 11px;border-radius:8px}
+.tema-head h3{margin:0;font-size:20px;font-weight:800;flex:1;min-width:220px}
+.freq{font-size:12.5px;color:var(--muted);font-weight:600}
+.work{font-size:12px;font-weight:700;border:1px solid;border-radius:20px;padding:3px 11px}
+.tema-why{background:var(--surface2);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.tema-why p{margin:6px 0;font-size:14px}
+.tema-why .impact{color:var(--muted);font-size:13.5px}
+.posts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.post{display:flex;gap:12px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:10px;position:relative}
+.post .cut{top:6px;right:6px;width:22px;height:22px;font-size:11px}
+.thumb{flex:0 0 84px;width:84px;height:112px;border-radius:8px;overflow:hidden;position:relative;background:#1a2233;display:block}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .play{position:absolute;bottom:5px;right:5px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;padding:1px 6px;border-radius:6px}
+.thumb.noimg img{display:none}
+.thumb.noimg::after{content:'sem prévia';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#475569;font-size:11px}
+.post-body{flex:1;min-width:0}
+.post-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:5px}
+.kind{font-weight:800;padding:1px 7px;border-radius:5px;font-size:10px;letter-spacing:.04em}
+.kind.reel{background:rgba(242,107,29,.18);color:var(--accent)}
+.kind.static{background:rgba(14,165,233,.18);color:#0ea5e9}
+.post .cap{font-size:12.5px;color:#cbd5e1;margin-bottom:6px;font-style:italic}
+.post .decode{font-size:12.5px;color:var(--text)}
+.post .decode b{color:var(--accent)}
+.swipe{margin:8px 0 0;padding-left:22px}.swipe li{margin:7px 0;font-size:14px}
+ol.swipe li{padding-left:4px}
+@media(max-width:760px){.grid3,.personas,.reasons,.posts{grid-template-columns:1fr}.hero h1{font-size:28px}}
+.foot{max-width:1080px;margin:40px auto 0;padding:20px;color:#5b6678;font-size:12px;border-top:1px solid var(--border)}
+</style></head>
+<body>
+
+<header class="hero">
+  <div class="kicker">ENGENHARIA REVERSA DE CONTEÚDO</div>
+  <h1 contenteditable="true">@thiagoreis — por que ele posta o que posta</h1>
+  <p class="sub" contenteditable="true">O racional por trás dos temas: que assuntos ele escolhe, por que esses e não outros, e como cada um impacta cada persona. Janela: 2026-05-05 → 2026-06-04 · 45 posts (33 reels + 12 estáticos) · TOFU 71% · MOFU 27% · CTA "DESAFIO" em ~100%.</p>
+  <div class="toolbar">
+    <span class="hint">✎ Todo texto é editável. Clique e digite. Use o <b>✕</b> pra cortar um bloco.</span>
+    <button class="export" onclick="downloadFinal()">⬇ Baixar versão final (só o que ficou)</button>
+  </div>
+</header>
+<section><div class="card" data-block><button class="cut" title="Cortar este bloco" onclick="toggleCut(this)">✕</button><h2 contenteditable="true">A tese única (e a regra que governa tudo)</h2><p contenteditable="true">Ele não posta "conteúdo de vendas". Opera <b>uma tese só, reciclada infinitamente</b>: <i>"empresa não cresce por talento/herói, cresce por sistema/processo/máquina de vendas"</i> — e troca apenas a <b>fantasia</b> que veste essa tese. A notícia do dia é a fantasia. O resto é sempre igual. Por isso parece sempre "a mesma coisa com roupa diferente": porque é.</p><p contenteditable="true">Antes de listar os temas, a regra de fundo: <b>ele não escolhe assunto por achar interessante</b>. Um tema só entra no feed se fizer um destes três trabalhos pro negócio:</p><div class="grid3"><div class="filtro"><h4 contenteditable="true">1. CRIAR o problema que o produto resolve</h4><p contenteditable="true">Fazer o dono SENTIR uma dor que a Growth Machine cura: falta de processo, depender de vendedor-estrela, não ter previsibilidade. Sem dor, não existe oferta. É o trabalho mais comum dos posts.</p></div><div class="filtro"><h4 contenteditable="true">2. QUEBRAR uma objeção de compra</h4><p contenteditable="true">Dissolver antecipadamente o motivo de NÃO contratar: &#x27;conteúdo é vaidade&#x27;, &#x27;tá caro&#x27;, &#x27;meu mercado tá difícil&#x27;, &#x27;lead é que falta&#x27;. Ele mata a objeção antes de você a verbalizar.</p></div><div class="filtro"><h4 contenteditable="true">3. VENDER a identidade aspiracional</h4><p contenteditable="true">Mostrar o mundo que o cliente quer pertencer: a &#x27;sala dos reis&#x27;, o ambiente, a mentalidade de dono de verdade, o poker no High Growth. Vende o pertencimento, não a ferramenta. É o que sustenta o high-ticket.</p></div></div></div></section>
+<section><h2 class="sec-h">As 4 personas que ele mira</h2><p class="sec-intro" contenteditable="true">A genialidade do funil: uma frase só serve às 4 ao mesmo tempo — a celebridade puxa P4, a dor operacional prende P3, o espelho acorda P2, e a inversão de culpa fecha em P1.</p><div class="personas"><div class="persona" data-block style="border-color:#F26B1D"><button class="cut" onclick="toggleCut(this)">✕</button><div class="pid" style="background:#F26B1D">P1</div><h4 contenteditable="true">Dono / empresário de PME</h4><div class="ptag" style="color:#F26B1D" contenteditable="true">É O CLIENTE REAL — compra</div><p contenteditable="true">Fatura 6–8 dígitos, normalmente depende de 1 ou 2 vendedores-estrela e não tem processo. É o decisor que assina o diagnóstico, o Expansão Comercial, o high-ticket. TODA copy do Thiago, não importa o tema, termina mirando nele. Os outros três personas existem pra trazê-lo até aqui ou pra usá-lo de espelho.</p></div><div class="persona" data-block style="border-color:#0ea5e9"><button class="cut" onclick="toggleCut(this)">✕</button><div class="pid" style="background:#0ea5e9">P2</div><h4 contenteditable="true">Líder / gestor comercial</h4><div class="ptag" style="color:#0ea5e9" contenteditable="true">Influencia a compra</div><p contenteditable="true">Head de vendas, sócio comercial, gerente. Sente na pele a dor operacional (&#x27;meu time só performa quando eu cobro&#x27;, &#x27;depende do fulano&#x27;). É o advogado interno da compra: leva o tema pro dono. Os reels técnicos (talking-head) são o conteúdo que mais o fideliza.</p></div><div class="persona" data-block style="border-color:#a855f7"><button class="cut" onclick="toggleCut(this)">✕</button><div class="pid" style="background:#a855f7">P3</div><h4 contenteditable="true">Vendedor / operador</h4><div class="ptag" style="color:#a855f7" contenteditable="true">NÃO compra — é instrumento</div><p contenteditable="true">Closer, SDR, representante. Nunca é o cliente. Serve a dois propósitos: (1) é o ESPELHO atacado pra acordar o chefe (&#x27;seu vendedor faz isso&#x27;) e (2) é o MEGAFONE — se defende nos comentários, marca colega, compartilha → alcance grátis. O Thiago vende a SOLUÇÃO do vendedor pro dono, nunca vende pro vendedor.</p></div><div class="persona" data-block style="border-color:#22c55e"><button class="cut" onclick="toggleCut(this)">✕</button><div class="pid" style="background:#22c55e">P4</div><h4 contenteditable="true">Empreendedor aspiracional / audiência ampla</h4><div class="ptag" style="color:#22c55e" contenteditable="true">NÃO compra (ainda) — paga o alcance</div><p contenteditable="true">Gente fora da bolha B2B, atraída por futebol, celebridade, pop culture, self-improvement. Quase nunca vira lead qualificado. Mas é o COMBUSTÍVEL do algoritmo: infla views, autoridade social e joga donos ocasionais pra dentro do feed, onde os posts de conversão capturam. Vaidade &gt; qualificação.</p></div></div></section>
+<section><h2 class="sec-h">O motor: NEWSJACKING → CASE → ESPELHO → CULPA → DESAFIO</h2><p class="sec-intro" contenteditable="true">Você notou certo: ele pega notícia/empresa/celebridade do momento e destrincha "o que a empresa X fez certo". Mas isso é só a camada 1 de 5. A fórmula completa, presente em quase todo estático e em ~1/3 dos reels:</p><div class="steps"><div class="step" data-block><button class="cut" onclick="toggleCut(this)">✕</button><div class="num">1</div><div><h4 contenteditable="true">ÂNCORA DE ATENÇÃO</h4><p contenteditable="true">Notícia/marca/atleta que JÁ tem tração. Carona de alcance: a notícia já gastou o orçamento de atenção do público; ele só desvia o tráfego. Produção ≈ zero (tweet-card preto, layout fixo).</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">✕</button><div class="num">2</div><div><h4 contenteditable="true">RELEITURA CONTRAINTUITIVA</h4><p contenteditable="true">&#x27;O que parece X é na verdade Y&#x27; (perder o craque melhorou o time; o estádio não é estádio, é familiaridade). Cria o gap de curiosidade que segura o swipe/retenção.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">✕</button><div class="num">3</div><div><h4 contenteditable="true">ESPELHO</h4><p contenteditable="true">&#x27;Sua empresa faz exatamente isso.&#x27; Vira o caso de fora num diagnóstico de dentro. O leitor deixa de assistir e começa a se ver.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">✕</button><div class="num">4</div><div><h4 contenteditable="true">INVERSÃO DE CULPA</h4><p contenteditable="true">O erro é do DONO, não do operador. É o passo que QUALIFICA: filtra o decisor (P1) do meio da audiência ampla. Começa parecendo falar do vendedor e termina responsabilizando quem assina o cheque.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">✕</button><div class="num">5</div><div><h4 contenteditable="true">CTA &#x27;DESAFIO&#x27;</h4><p contenteditable="true">Comenta → DM automática (Manychat) → diagnóstico. Amarra reels e estáticos no mesmo funil. O KPI real não é like — é comentário-gatilho = lead.</p></div></div></div><h3 class="sub-h" contenteditable="true">Os 6 motivos estratégicos por trás de usar notícia/empresa</h3><div class="reasons"><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Carona de atenção (newsjacking)</h4><p contenteditable="true">A notícia já tem a atenção paga. Ele desvia o tráfego de graça e a custo de produção zero.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Autoridade emprestada e verificável</h4><p contenteditable="true">&#x27;O Nubank investiu 900 mi no Palmeiras&#x27; é um fato checável. A prova da tese vem de fora — ele não precisa provar sozinho.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Cavalo de Troia (fura a bolha)</h4><p contenteditable="true">Ninguém busca &#x27;máquina de vendas previsível&#x27; no descanso. Mas todo mundo para num post de CR7. A pop culture entrega o conceito B2B pra quem nunca pediria.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Tradução do abstrato</h4><p contenteditable="true">&#x27;Processo &gt; talento&#x27;, &#x27;LTV&#x27;, &#x27;ativo de lembrança&#x27; são invisíveis. La Masia, Mbappé e Disney tornam o conceito visual e concreto em 3 segundos.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Evergreen disfarçado de novidade</h4><p contenteditable="true">A tese nunca muda — só a fantasia. Dá frescor pro algoritmo (parece jornal) e reciclagem infinita (a mesma lição vira Real Madrid, Neymar, PSG, Arsenal no mesmo mês).</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Recência = relevância</h4><p contenteditable="true">Postar sobre a Copa antes da Copa, sobre o Diabo Veste Prada 2 na estreia, sobre Neymar x Robinho no calor da treta → surfa o pico de busca e o &#x27;todo mundo tá falando disso&#x27;.</p></div></div></section>
+<section><h2 class="sec-h">Os 8 temas recorrentes — e por que ELE escolhe cada um</h2><p class="sec-intro" contenteditable="true">O padrão que responde sua pergunta: os temas giram em 3 eixos, todos a serviço da venda — <b>as dores que o produto resolve</b>, <b>as objeções pra não comprar</b> e <b>a identidade que o cliente quer ter</b>. Futebol, celebridade e notícia são só o transporte; o destino é sempre um desses eixos.</p><div class="tema" data-block style="--tcol:#F26B1D"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#F26B1D">T1</span><h3 contenteditable="true">Depende de herói/estrela — falta SISTEMA/PROCESSO</h3><span class="freq" contenteditable="true">🔴 Tema dominante</span><span class="work" style="border-color:#F26B1D;color:#F26B1D" contenteditable="true">Cria o problema</span></div><div class="tema-why"><p contenteditable="true">É <b>literalmente a dor que o produto cura</b>. Máquina de vendas = processo que não depende de talento individual. Sem essa dor instalada na cabeça do dono, a oferta da Growth Machine não faz sentido. Por isso é o tema mais martelado do mês — saiu 4 vezes só em analogia de futebol, além dos reels de prova interna.</p><p class="impact" contenteditable="true"><b>P1</b> é o alvo: o medo de que 'se o fulano sair, o faturamento vai junto' é visceral pra quem é dono. <b>P2</b> reconhece a dor operacional na hora. <b>P3</b> é o 'herói' usado de exemplo (consome, às vezes se ofende). <b>P4</b> entra pela emoção do futebol e fica pra lição.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DY5tqVomiAe/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DY5tqVomiAe.jpg" alt="DY5tqVomiAe" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-29</span> <span class="stats">♥ 505 · 💬 36 · TOFU</span></div>
+        <div class="cap" contenteditable="true">O Real Madrid ficou conhecido por contratar estrelas.</div>
+        <div class="decode" contenteditable="true">Real Madrid (contrata estrela) vs. Barça/La Masia (forma no sistema) → 'empresa que depende de herói vive no risco'.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DYf27YSGgGi/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DYf27YSGgGi.jpg" alt="DYf27YSGgGi" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-18</span> <span class="stats">♥ 694 · 💬 42 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Durante anos, o Brasil acreditou que ter um craque bastava e talvez esse tenha sido o maior erro da nossa seleção.</div>
+        <div class="decode" contenteditable="true">Seleção brasileira: 'craque bastava' foi o maior erro. Talento sem sistema gera momentos; sistema + talento gera domínio.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DYTIHxTjL4w/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DYTIHxTjL4w.jpg" alt="DYTIHxTjL4w" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-14</span> <span class="stats">♥ 6136 · 💬 137 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Muita gente olha para o PSG sem Mbappé e pensa que isso prova que estrela não importa.</div>
+        <div class="decode" contenteditable="true">PSG sem Mbappé: nenhuma operação cresce saudável dependendo de uma pessoa só. Espelho direto do 'vendedor fora da curva carregando tudo'.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DYN8V34DAob/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DYN8V34DAob.jpg" alt="DYN8V34DAob" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-12</span> <span class="stats">♥ 4141 · 💬 30 · TOFU</span></div>
+        <div class="cap" contenteditable="true">LEGENDA</div>
+        <div class="decode" contenteditable="true">Arsenal/Arteta: parecer forte ≠ ser estruturalmente forte. A virada começou quando pararam de proteger os próprios erros.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYQMWkFJRT_/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYQMWkFJRT_.jpg" alt="DYQMWkFJRT_" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-12</span> <span class="stats">▶ 670k views · ♥ 37210 · 💬 482 · TOFU</span></div>
+        <div class="cap" contenteditable="true">“O melhor vendedor da minha empresa converte 2x mais do que todos os outros.”</div>
+        <div class="decode" contenteditable="true">670k — O FLAGSHIP. 'Meu melhor vendedor converte 2x, fui descobrir por quê.' Resposta: 3 portas = é sistematizável, não é dom. Prova interna + a tese inteira em 1 reel.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYNnG-xpZup/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYNnG-xpZup.jpg" alt="DYNnG-xpZup" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-11</span> <span class="stats">▶ 27k views · ♥ 428 · 💬 15 · TOFU</span></div>
+        <div class="cap" contenteditable="true">O jiu-jitsu brasileiro fez uma coisa que poucas empresas conseguem fazer: transformou método em domínio global.</div>
+        <div class="decode" contenteditable="true">Jiu-jitsu brasileiro transformou MÉTODO em domínio global — mesma lógica de sistema replicável vence talento solto.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#0ea5e9"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#0ea5e9">T2</span><h3 contenteditable="true">Venda começa na ATENÇÃO — demanda se constrói antes da oferta</h3><span class="freq" contenteditable="true">🔴 Frequência alta</span><span class="work" style="border-color:#0ea5e9;color:#0ea5e9" contenteditable="true">Cria problema + quebra objeção</span></div><div class="tema-why"><p contenteditable="true">Expande a dor de 'preciso de mais lead' pra 'preciso GERAR demanda' — o que justifica um serviço maior e mais estratégico que tráfego. E, de quebra, justifica o próprio modelo de conteúdo do Thiago (ele vive o que prega). É o tema que sustenta a venda de posicionamento/marca, não só de processo de fechamento.</p><p class="impact" contenteditable="true"><b>P1</b> é levado a pensar em construção de marca (ticket maior). <b>P4</b> entra em massa — esses são os posts de marca famosa que mais furam a bolha (alcance). <b>P2</b> valida. <b>P3</b> é o menos atingido.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DY-hX-CGsmN/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DY-hX-CGsmN.jpg" alt="DY-hX-CGsmN" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-30</span> <span class="stats">♥ 997 · 💬 35 · MOFU</span></div>
+        <div class="cap" contenteditable="true">A maioria das empresas desaparece da cabeça do cliente minutos depois da reunião.</div>
+        <div class="decode" contenteditable="true">Michael Jackson lembrado há 20 anos: marca inesquecível cria emoção, não vende preço. 'Quem domina atenção domina mercado.'</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DYx-Ne7GlP4/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DYx-Ne7GlP4.jpg" alt="DYx-Ne7GlP4" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-25</span> <span class="stats">♥ 209 · TOFU</span></div>
+        <div class="cap" contenteditable="true">A Copa do Mundo de 2026 nem começou e as maiores marcas do planeta já estão disputando o jogo mais importante de todos:</div>
+        <div class="decode" contenteditable="true">Copa 2026 / Coca, Adidas, Visa: marcas entram ANTES do cliente estar pronto. 'Venda começa na atenção, não na oferta.'</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DYskilKmg1M/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DYskilKmg1M.jpg" alt="DYskilKmg1M" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-23</span> <span class="stats">♥ 1392 · 💬 19 · MOFU</span></div>
+        <div class="cap" contenteditable="true">Cristiano Ronaldo não jogou dinheiro em qualquer lugar. Ele estudou onde a atenção do mundo está indo e foi na frente. Enquanto todo mundo olhava pro óbvio, ele escolheu um canal do YouTube brasileiro. Isso não foi por acaso.</div>
+        <div class="decode" contenteditable="true">CR7 escolheu um canal BR no YouTube: investiu onde a atenção está, não no óbvio. Canal certo = demanda diária.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DYF3wB0muME/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DYF3wB0muME.jpg" alt="DYF3wB0muME" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-08</span> <span class="stats">♥ 323 · 💬 21 · TOFU</span></div>
+        <div class="cap" contenteditable="true">O Diabo Veste Prada 2 não explodiu em bilheteria só porque era um filme novo.</div>
+        <div class="decode" contenteditable="true">Diabo Veste Prada 2 / Disney: a venda nasceu em 2006, não na estreia. Ativo de lembrança construído ao longo de anos.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DYBA277lS9-/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DYBA277lS9-.jpg" alt="DYBA277lS9-" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-06</span> <span class="stats">♥ 1901 · 💬 166 · TOFU</span></div>
+        <div class="cap" contenteditable="true">A maioria das empresas ainda acredita que vender mais depende só de fazer mais oferta, gerar mais lead e colocar mais vendedor na rua.</div>
+        <div class="decode" contenteditable="true">Nubank × Palmeiras Parque (R$900mi): comprou presença, repetição e familiaridade — não um estádio. Demanda nasce antes da venda.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DY0O9ZDJgkN/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DY0O9ZDJgkN.jpg" alt="DY0O9ZDJgkN" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-26</span> <span class="stats">▶ 13k views · ♥ 133 · 💬 8 · MOFU</span></div>
+        <div class="cap" contenteditable="true">O mercado inteiro ainda acha que marketing serve pra gerar lead.</div>
+        <div class="decode" contenteditable="true">'Marketing serve pra gerar lead' (errado) → serve pra comprar espaço na mente. Versão reel do mesmo tema.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYvFrMapawL/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYvFrMapawL.jpg" alt="DYvFrMapawL" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-24</span> <span class="stats">▶ 8k views · ♥ 130 · 💬 7 · MOFU</span></div>
+        <div class="cap" contenteditable="true">A maior parte dos empresários desiste exatamente na fase em que o mercado começa a prestar atenção.</div>
+        <div class="decode" contenteditable="true">O empresário desiste exatamente quando o mercado começa a prestar atenção — persistência na fase invisível.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#a855f7"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#a855f7">T3</span><h3 contenteditable="true">Objeção de PREÇO / &#x27;tá caro&#x27; / margem / valor de percepção</h3><span class="freq" contenteditable="true">🟠 Recorrente</span><span class="work" style="border-color:#a855f7;color:#a855f7" contenteditable="true">Quebra objeção + demonstra técnica</span></div><div class="tema-why"><p contenteditable="true">É a dor MAIS universal de quem vende — relatabilidade máxima, gera salvamento e compartilhamento entre vendedores. Serve pra duas coisas: demonstrar competência técnica (autoridade) e dissolver a objeção de preço que o próprio lead do Thiago vai ter ('o programa é caro'). Quem domina objeção de preço acredita que ele domina vendas.</p><p class="impact" contenteditable="true"><b>P3</b> aprende e salva (vira fã). <b>P2</b> aplica no time. <b>P1</b> reconhece que perde margem por desconto. <b>P4</b> passa mais direto — é tema técnico, menos viral.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DY3Hyucp4Iw/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DY3Hyucp4Iw.jpg" alt="DY3Hyucp4Iw" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-27</span> <span class="stats">▶ 22k views · ♥ 559 · 💬 11 · TOFU</span></div>
+        <div class="cap" contenteditable="true">A pior coisa que um vendedor pode ouvir é: “Tá caro.”</div>
+        <div class="decode" contenteditable="true">'A pior coisa que um vendedor ouve: tá caro' — e o erro que ele comete logo depois (dar desconto).</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYsUKZqJsoF/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYsUKZqJsoF.jpg" alt="DYsUKZqJsoF" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-23</span> <span class="stats">▶ 9k views · ♥ 109 · 💬 8 · MOFU</span></div>
+        <div class="cap" contenteditable="true">“Tá caro.”</div>
+        <div class="decode" contenteditable="true">'Tá caro' quebra vendedor fraco porque o emocional entra em desespero. Técnica de ancoragem de valor.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DYYIiWemtXN/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DYYIiWemtXN.jpg" alt="DYYIiWemtXN" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-15</span> <span class="stats">♥ 460 · 💬 47 · MOFU</span></div>
+        <div class="cap" contenteditable="true">A conta parece não fechar, os jovens estão bebendo menos.</div>
+        <div class="decode" contenteditable="true">Ambev: 'jovens bebendo menos' e mesmo assim lucro maior → crise não justifica baixar preço/dar desconto. Vender melhor > vender barato.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DY--ULMs2pt/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DY--ULMs2pt.jpg" alt="DY--ULMs2pt" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-31</span> <span class="stats">▶ 27k views · ♥ 583 · 💬 6 · TOFU</span></div>
+        <div class="cap" contenteditable="true">A maior parte das empresas quebra porque compete em CUSTO, enquanto as empresas gigantes dominam VALOR DE PERCEPÇÃO.</div>
+        <div class="decode" contenteditable="true">27k — Empresa quebra porque compete em CUSTO; gigante domina VALOR DE PERCEPÇÃO.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYxpOIyJfTt/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYxpOIyJfTt.jpg" alt="DYxpOIyJfTt" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-25</span> <span class="stats">▶ 15k views · ♥ 211 · 💬 26 · TOFU</span></div>
+        <div class="cap" contenteditable="true">A maioria das empresas acha que crescimento vem de conquistar mais clientes.</div>
+        <div class="decode" contenteditable="true">Crescimento não vem de MAIS clientes, vem de MONETIZAR melhor (LTV / valor por cliente).</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#22c55e"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#22c55e">T4</span><h3 contenteditable="true">VELOCIDADE / execução / matar a burocracia</h3><span class="freq" contenteditable="true">🟠 Recorrente</span><span class="work" style="border-color:#22c55e;color:#22c55e" contenteditable="true">Cria urgência</span></div><div class="tema-why"><p contenteditable="true">Lisonjeia o tomador de ação (o dono que se vê como ágil) e ataca o incumbente lento. Injeta URGÊNCIA — 'oportunidade não espera aprovação' — que é o combustível emocional pra agir AGORA (e comentar DESAFIO agora). Transforma indecisão em custo concreto.</p><p class="impact" contenteditable="true"><b>P1</b> se vê no espelho da empresa lenta/burocrática e sente urgência. <b>P2</b> reconhece a lentidão dos processos internos. <b>P4</b> entra pela marca (Mercado Livre).</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DZBHKMmGipl/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DZBHKMmGipl.jpg" alt="DZBHKMmGipl" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-31</span> <span class="stats">♥ 1562 · 💬 45 · TOFU</span></div>
+        <div class="cap" contenteditable="true">A maioria das empresas acha que perde mercado por falta de estratégia.</div>
+        <div class="decode" contenteditable="true">Mercado Livre venceu por VELOCIDADE, não por produto revolucionário. 'Empresa lenta discute, empresa rápida executa.'</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYArj9AAsiu/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYArj9AAsiu.jpg" alt="DYArj9AAsiu" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-06</span> <span class="stats">▶ 8k views · ♥ 62 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Você sabia que o tempo que você demora para tomar uma decisão pode aumentar o custo de aquisição de um produto ou serviço? Quanto mais rápido você decidir, mais fácil fica para o vendedor apresentar uma proposta comercial diferenciada e vantajosa. Mas essa proposta só faz sentido se você estiver pronto para decidir agora.</div>
+        <div class="decode" contenteditable="true">O tempo que você demora pra decidir AUMENTA o custo de aquisição. Indecisão tem preço.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#eab308"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#eab308">T5</span><h3 contenteditable="true">Vendedor PROFISSIONAL vs. amador (postura, técnica, follow-up)</h3><span class="freq" contenteditable="true">🟠 Recorrente</span><span class="work" style="border-color:#eab308;color:#eab308" contenteditable="true">Demonstra técnica + cria problema</span></div><div class="tema-why"><p contenteditable="true">Constrói autoridade técnica (prova que ele sabe vender de verdade) e, ao atacar o operador amador, ACORDA o dono: 'é isso que acontece no meu time'. É o tema que mais gera o engajamento de COMENTÁRIO (o vendedor se defende) e o que mais fideliza P2/P3. A maioria dos talking-head e dos reels de polarização cai aqui.</p><p class="impact" contenteditable="true"><b>P3</b> é atacado de propósito → se defende, comenta, gera alcance grátis. <b>P1</b> concorda e se identifica ('meu vendedor é assim'). <b>P2</b> aplica. <b>P4</b> curte a polêmica.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYnVUpspwDP/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYnVUpspwDP.jpg" alt="DYnVUpspwDP" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-21</span> <span class="stats">▶ 88k views · ♥ 2416 · 💬 522 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Vendedor que se esconde atrás de WhatsApp não quer vender.</div>
+        <div class="decode" contenteditable="true">87k, 522 comentários (recorde do mês) — 'Vendedor que se esconde no WhatsApp não quer vender / na minha empresa é ditadura.' Polarização máxima.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DX-B65yDiTz/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DX-B65yDiTz.jpg" alt="DX-B65yDiTz" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-05</span> <span class="stats">▶ 157k views · ♥ 5400 · 💬 69 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Muita gente romantiza esse discurso de que vender é só ter coragem, ouvir não e partir para cima.</div>
+        <div class="decode" contenteditable="true">156k — Desmonta o discurso de que 'vender é só coragem'. Profissionaliza o vendedor.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYVnEyUJK_i/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYVnEyUJK_i.jpg" alt="DYVnEyUJK_i" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-14</span> <span class="stats">▶ 61k views · ♥ 2856 · 💬 49 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Você ainda acha que vende produto, mas o cliente já te comprou ou te descartou nos primeiros 3 segundos.</div>
+        <div class="decode" contenteditable="true">61k — 'O cliente já te comprou ou descartou nos 3 primeiros segundos.' Postura/percepção antes do pitch.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYDoyxnp7Nt/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYDoyxnp7Nt.jpg" alt="DYDoyxnp7Nt" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-08</span> <span class="stats">▶ 141k views · ♥ 3546 · 💬 121 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Muita gente olha para esse momento do Silvio Santos e enxerga só uma brincadeira.</div>
+        <div class="decode" contenteditable="true">141k — Silvio Santos vendendo: 'as pessoas compram o vendedor antes do produto'. Newsjacking + técnica.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYiMv6kpAsm/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYiMv6kpAsm.jpg" alt="DYiMv6kpAsm" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-19</span> <span class="stats">▶ 15k views · ♥ 313 · 💬 99 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Só 2% dos vendedores fazem follow-up do jeito certo, o resto tá tentando bater meta na força bruta e ignorando matemática básica.</div>
+        <div class="decode" contenteditable="true">Só 2% dos vendedores fazem follow-up certo — matemática básica do comercial.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYfoSMQpFrP/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYfoSMQpFrP.jpg" alt="DYfoSMQpFrP" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-18</span> <span class="stats">▶ 55k views · ♥ 2636 · 💬 59 · TOFU</span></div>
+        <div class="cap" contenteditable="true">O mercado está cheio de faixa branca querendo vender como faixa preta.</div>
+        <div class="decode" contenteditable="true">55k — 'Faixa branca querendo vender como faixa preta.' Os atalhos que o amador toma.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYdSlTaJc-r/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYdSlTaJc-r.jpg" alt="DYdSlTaJc-r" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-17</span> <span class="stats">▶ 18k views · ♥ 493 · 💬 1 · MOFU</span></div>
+        <div class="cap" contenteditable="true">Tá cheio de vendedor passivo por aí.</div>
+        <div class="decode" contenteditable="true">'Vendedor passivo esperando a venda cair no prato.' Ataca a passividade.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYatWl4pzVK/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYatWl4pzVK.jpg" alt="DYatWl4pzVK" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-16</span> <span class="stats">▶ 16k views · ♥ 145 · 💬 14 · MOFU</span></div>
+        <div class="cap" contenteditable="true">Tem vendedor que passa o dia inteiro esperando lead responder, esperando o marketing gerar demanda, esperando o cliente voltar, esperando o mês salvar a meta e é exatamente por isso que vive no sufoco!</div>
+        <div class="decode" contenteditable="true">Mesma tese da passividade: vendedor esperando lead/marketing/o mês salvar.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DY5Y2iVJhIg/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DY5Y2iVJhIg.jpg" alt="DY5Y2iVJhIg" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-28</span> <span class="stats">▶ 23k views · ♥ 952 · 💬 20 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Você acha que convence alguém pela lógica?</div>
+        <div class="decode" contenteditable="true">23k — 'Você convence pela lógica? Errado.' Venda é emocional, não racional.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DY20rzFJiwA/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DY20rzFJiwA.jpg" alt="DY20rzFJiwA" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-27</span> <span class="stats">▶ 22k views · ♥ 594 · 💬 6 · TOFU</span></div>
+        <div class="cap" contenteditable="true">O melhor vendedor da minha empresa faz TRÊS perguntas em praticamente toda venda.</div>
+        <div class="decode" contenteditable="true">'Meu melhor vendedor faz 3 perguntas em toda venda.' Técnica replicável de qualificação.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYaQjDxJun0/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYaQjDxJun0.jpg" alt="DYaQjDxJun0" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-16</span> <span class="stats">▶ 5k views · ♥ 80 · 💬 1 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Quando eu estou em um processo comercial, o meu objetivo não é ficar tentando provar que eu estou certo.</div>
+        <div class="decode" contenteditable="true">'Meu objetivo não é provar que estou certo' — escuta > despejo de informação.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYX3iCJJSaZ/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYX3iCJJSaZ.jpg" alt="DYX3iCJJSaZ" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-15</span> <span class="stats">▶ 17k views · ♥ 483 · 💬 14 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Cara, cliente estratégico não se recupera na insistência, se recupera na inteligência.</div>
+        <div class="decode" contenteditable="true">Cliente estratégico se recupera na INTELIGÊNCIA, não na insistência.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#ec4899"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#ec4899">T6</span><h3 contenteditable="true">CONTEÚDO/atenção DÁ DINHEIRO (meta)</h3><span class="freq" contenteditable="true">🟡 Pontual, mas viral</span><span class="work" style="border-color:#ec4899;color:#ec4899" contenteditable="true">Quebra objeção</span></div><div class="tema-why"><p contenteditable="true">Mata a objeção número 1 ao serviço dele ('isso é vaidade, não dá retorno'), usando ele mesmo e cases como prova. É um post que justifica retroativamente TODO o resto do feed e posiciona a venda de conteúdo/marca.</p><p class="impact" contenteditable="true"><b>P1</b> é o alvo único: quebra a resistência de investir em conteúdo. <b>P4</b> viraliza (475k) mas converte pouco.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYp90ROJrFW/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYp90ROJrFW.jpg" alt="DYp90ROJrFW" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-22</span> <span class="stats">▶ 475k views · ♥ 20175 · 💬 316 · MOFU</span></div>
+        <div class="cap" contenteditable="true">Tem empresário que ainda acha que conteúdo é “vaidade”.</div>
+        <div class="decode" contenteditable="true">475k — 'Tem empresário que acha que conteúdo é vaidade' → Renato Cariani / 5 bilhões de views como prova de que conteúdo é máquina de receita.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#06b6d4"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#06b6d4">T7</span><h3 contenteditable="true">MENTALIDADE / ambiente / &#x27;sala dos reis&#x27; / liderança</h3><span class="freq" contenteditable="true">🟡 Pontual</span><span class="work" style="border-color:#06b6d4;color:#06b6d4" contenteditable="true">Vende identidade</span></div><div class="tema-why"><p contenteditable="true">Posiciona o HIGH-TICKET (Expansão Comercial, mastermind, eventos High Growth). Vende a SALA, não a ferramenta — o ambiente, o convívio com quem já chegou, a mentalidade. É o tema que sustenta o ticket mais alto e o desejo de pertencimento. Inclui os posts de bastidor/ambiente que mostram o mundo do cliente.</p><p class="impact" contenteditable="true"><b>P1</b> de ticket mais alto é o alvo (quem já tem grana e quer ambiente). <b>P4</b> aspira. <b>P2</b> e <b>P3</b> consomem como sonho de futuro.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DY8AYhopiq_/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DY8AYhopiq_.jpg" alt="DY8AYhopiq_" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-29</span> <span class="stats">▶ 6k views · ♥ 47 · 💬 1 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Muitos empresários passam anos procurando a ferramenta perfeita para crescer. Um novo funil, uma nova estratégia, um novo processo comercial. E, de fato, ferramentas são importantes. Elas ajudam a executar melhor e aumentam suas chances de vencer a batalha.</div>
+        <div class="decode" contenteditable="true">'Sala dos reis vs. o ferreiro': ferramentas ajudam, mas o ambiente acelera. Vende o convívio, não o produto.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYicSxwph6W/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYicSxwph6W.jpg" alt="DYicSxwph6W" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-19</span> <span class="stats">▶ 8k views · ♥ 81 · 💬 2 · TOFU</span></div>
+        <div class="cap" contenteditable="true">O maior investimento que você vai fazer pra crescer não é financeiro, é psicológico.</div>
+        <div class="decode" contenteditable="true">'O maior investimento pra crescer não é financeiro, é psicológico.' Mentalidade de quem aceita pagar o preço.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYnr05aJa6X/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYnr05aJa6X.jpg" alt="DYnr05aJa6X" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-22</span> <span class="stats">▶ 8k views · ♥ 167 · 💬 6 · BOFU</span></div>
+        <div class="cap" contenteditable="true">Você não sobe o nível da sua venda só com experiência.</div>
+        <div class="decode" contenteditable="true">'Você sobe o nível da venda quando aceita ser lapidado.' Disposição a mudar = porta pro programa.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYLCy71Jw-m/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYLCy71Jw-m.jpg" alt="DYLCy71Jw-m" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-10</span> <span class="stats">▶ 222k views · ♥ 15668 · 💬 152 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Talvez o jiu-jitsu seja o esporte que mais ensina sobre vendas sem falar uma palavra sobre vendas.</div>
+        <div class="decode" contenteditable="true">221k — Jiu-jitsu ensina vendas sem falar de vendas. Disciplina, lapidação, por que empresário pratica. Mentalidade + ambiente de elite.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/p/DYDTlH6Gm_r/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/estaticos_previews/DYDTlH6Gm_r.jpg" alt="DYDTlH6Gm_r" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">❏</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind static">CARROSSEL</span> <span class="date">2026-05-07</span> <span class="stats">♥ 369 · 💬 21 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Muita gente vai olhar essa situação do Neymar com o Robinho Jr. e enxergar só uma discussão de treino!</div>
+        <div class="decode" contenteditable="true">Neymar x Robinho Jr.: liderança só é testada quando aparece alguém que ameaça seu espaço. Ego do líder/dono.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYlLhXGsIK5/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYlLhXGsIK5.jpg" alt="DYlLhXGsIK5" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-21</span> <span class="stats">▶ 8k views · ♥ 3 · 💬 15 · MOFU</span></div>
+        <div class="cap" contenteditable="true">É noite de poker aqui no High Growth!</div>
+        <div class="decode" contenteditable="true">Poker night no High Growth — bastidor do ambiente. Vende a experiência/pertencimento do evento.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYZlbH0O6av/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYZlbH0O6av.jpg" alt="DYZlbH0O6av" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-16</span> <span class="stats">▶ 5k views · ♥ 80 · 💬 30 · MOFU</span></div>
+        <div class="cap" contenteditable="true">Você que está procurando um espaço de eventos em São Paulo precisa conhecer o espaço da Growth Machine no BM500 — literalmente no coração financeiro da cidade.</div>
+        <div class="decode" contenteditable="true">Espaço de eventos da Growth Machine no centro financeiro de SP — mostra o mundo físico da marca.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYQgyG-s9v8/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYQgyG-s9v8.jpg" alt="DYQgyG-s9v8" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-13</span> <span class="stats">▶ 6k views · ♥ 91 · 💬 1 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Gerar oportunidades qualificadas é essencial para fechar vendas e escalar seu negócio. Com uma hora de call exclusiva e acesso a um podcast com mais de 1 milhão de seguidores e 12 milhões de alcance mensal, você pode transferir autoridade e conquistar seguidores que se tornam clientes fiéis.</div>
+        <div class="decode" contenteditable="true">Oferta direta: call exclusiva + acesso a podcast/ambiente. Um dos poucos BOFU-ish do feed.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#f97316"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#f97316">T8</span><h3 contenteditable="true">MUDANÇA de mercado / IA / &#x27;Google morreu&#x27;</h3><span class="freq" contenteditable="true">🟡 Pontual</span><span class="work" style="border-color:#f97316;color:#f97316" contenteditable="true">Cria urgência (FOMO)</span></div><div class="tema-why"><p contenteditable="true">Medo de ficar obsoleto. Posiciona o Thiago como quem está À FRENTE da curva e força o 'eu preciso me atualizar antes que seja tarde'. É urgência de outra natureza — não é a empresa lenta, é o mercado mudando embaixo dos pés.</p><p class="impact" contenteditable="true"><b>P1</b> e <b>P2</b> sentem o medo de obsolescência. <b>P4</b> entra pelo tema quente (IA). Pouco P3.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYkvOtGpbne/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYkvOtGpbne.jpg" alt="DYkvOtGpbne" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-20</span> <span class="stats">▶ 21k views · ♥ 494 · 💬 145 · MOFU</span></div>
+        <div class="cap" contenteditable="true">O Google morreu pra quem ainda joga o jogo antigo.</div>
+        <div class="decode" contenteditable="true">'O Google morreu pra quem joga o jogo antigo' — 60% não clica em resultado, vai no Gemini. Mudança de comportamento de busca.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYc-EBeJqd1/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYc-EBeJqd1.jpg" alt="DYc-EBeJqd1" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-17</span> <span class="stats">▶ 10k views · ♥ 187 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Todo mundo tá repetindo a mesma narrativa: A IA não vai substituir você, só vai deixar você mais produtivo.</div>
+        <div class="decode" contenteditable="true">Contraria a narrativa morna sobre IA usando a Humans& (meio bilhão de investimento) como prova de ruptura real.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYSv6tfp4Yb/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYSv6tfp4Yb.jpg" alt="DYSv6tfp4Yb" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-13</span> <span class="stats">▶ 7k views · ♥ 68 · 💬 6 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Tem gente querendo que o governo pare a IA, porque “vai destruir empregos”.</div>
+        <div class="decode" contenteditable="true">'Querem o governo parar a IA pra salvar empregos' — irmão, isso já aconteceu antes. Inevitabilidade da mudança.</div>
+      </div>
+    </div></div></div></section>
+<section><h2 class="sec-h">Os 5 formatos de reel (onde ele diversifica)</h2><p class="sec-intro" contenteditable="true">Os estáticos são quase monotemáticos (newsjacking). Os reels é onde ele varia o FORMATO — cada um resolve um problema diferente do funil.</p><div class="tema" data-block style="--tcol:#0ea5e9"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#0ea5e9">A</span><h3 contenteditable="true">Newsjacking de celebridade / pop culture</h3></div><div class="tema-why"><p contenteditable="true">Mesmo motor dos estáticos, mas em vídeo. É o MAIOR motor de alcance bruto — quase todos os virais ≥100k do mês são deste tipo. Pega P4 em massa. Custo de produção baixo (split-screen com clipe + legenda).</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYvUyr6pKFy/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYvUyr6pKFy.jpg" alt="DYvUyr6pKFy" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-24</span> <span class="stats">▶ 115k views · ♥ 3286 · 💬 29 · TOFU</span></div>
+        <div class="cap" contenteditable="true">O Ratinho falou uma verdade que destrói 90% dos empreendedores: “Se você não sabe vender, nem tente empreender.”</div>
+        <div class="decode" contenteditable="true">115k — Ratinho: 'se não sabe vender, nem tente empreender'.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYDoyxnp7Nt/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYDoyxnp7Nt.jpg" alt="DYDoyxnp7Nt" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-08</span> <span class="stats">▶ 141k views · ♥ 3546 · 💬 121 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Muita gente olha para esse momento do Silvio Santos e enxerga só uma brincadeira.</div>
+        <div class="decode" contenteditable="true">141k — Silvio Santos vendendo um relógio.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYLCy71Jw-m/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYLCy71Jw-m.jpg" alt="DYLCy71Jw-m" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-10</span> <span class="stats">▶ 222k views · ♥ 15668 · 💬 152 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Talvez o jiu-jitsu seja o esporte que mais ensina sobre vendas sem falar uma palavra sobre vendas.</div>
+        <div class="decode" contenteditable="true">221k — Jiu-jitsu / Zuckerberg pratica.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#F26B1D"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#F26B1D">B</span><h3 contenteditable="true">Talking-head técnico (a &#x27;sala de aula&#x27;)</h3></div><div class="tema-why"><p contenteditable="true">Demonstra competência em vez de afirmá-la. Maiores salvamentos e melhor qualificação. Terno + microfone + fundo escuro = registro de máxima credibilidade. Converte P2/P3 em fãs e prepara P1 pra confiar.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYQMWkFJRT_/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYQMWkFJRT_.jpg" alt="DYQMWkFJRT_" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-12</span> <span class="stats">▶ 670k views · ♥ 37210 · 💬 482 · TOFU</span></div>
+        <div class="cap" contenteditable="true">“O melhor vendedor da minha empresa converte 2x mais do que todos os outros.”</div>
+        <div class="decode" contenteditable="true">670k — '3 portas' do melhor vendedor (o maior do mês).</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYVnEyUJK_i/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYVnEyUJK_i.jpg" alt="DYVnEyUJK_i" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-14</span> <span class="stats">▶ 61k views · ♥ 2856 · 💬 49 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Você ainda acha que vende produto, mas o cliente já te comprou ou te descartou nos primeiros 3 segundos.</div>
+        <div class="decode" contenteditable="true">61k — 'cliente te comprou em 3 segundos'.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYiMv6kpAsm/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYiMv6kpAsm.jpg" alt="DYiMv6kpAsm" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-19</span> <span class="stats">▶ 15k views · ♥ 313 · 💬 99 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Só 2% dos vendedores fazem follow-up do jeito certo, o resto tá tentando bater meta na força bruta e ignorando matemática básica.</div>
+        <div class="decode" contenteditable="true">follow-up dos 2%.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#a855f7"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#a855f7">C</span><h3 contenteditable="true">Polarização / insulto funcional (motor de debate)</h3></div><div class="tema-why"><p contenteditable="true">Posição extrema = comentário = sinal de interesse pro algoritmo. Ataca o operador (P3) de propósito: ele se defende (alcance grátis) e o dono (P1) concorda. Comentário público &gt; like passivo.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYnVUpspwDP/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYnVUpspwDP.jpg" alt="DYnVUpspwDP" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-21</span> <span class="stats">▶ 88k views · ♥ 2416 · 💬 522 · TOFU</span></div>
+        <div class="cap" contenteditable="true">Vendedor que se esconde atrás de WhatsApp não quer vender.</div>
+        <div class="decode" contenteditable="true">87k / 522 comentários — 'vendedor no WhatsApp / ditadura'.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYfoSMQpFrP/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYfoSMQpFrP.jpg" alt="DYfoSMQpFrP" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-18</span> <span class="stats">▶ 55k views · ♥ 2636 · 💬 59 · TOFU</span></div>
+        <div class="cap" contenteditable="true">O mercado está cheio de faixa branca querendo vender como faixa preta.</div>
+        <div class="decode" contenteditable="true">55k — 'faixa branca querendo vender como faixa preta'.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#22c55e"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#22c55e">D</span><h3 contenteditable="true">Prova interna / bastidor (realidade operacional)</h3></div><div class="tema-why"><p contenteditable="true">&#x27;Mostrar a competência acontecendo&#x27; supera &#x27;falar sobre ela&#x27;. Humaniza, prova que o método existe na prática dele e exibe o ambiente (mundo do P1). Constrói desejo de pertencimento.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYlLhXGsIK5/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYlLhXGsIK5.jpg" alt="DYlLhXGsIK5" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-21</span> <span class="stats">▶ 8k views · ♥ 3 · 💬 15 · MOFU</span></div>
+        <div class="cap" contenteditable="true">É noite de poker aqui no High Growth!</div>
+        <div class="decode" contenteditable="true">poker night no High Growth.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYZlbH0O6av/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYZlbH0O6av.jpg" alt="DYZlbH0O6av" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-16</span> <span class="stats">▶ 5k views · ♥ 80 · 💬 30 · MOFU</span></div>
+        <div class="cap" contenteditable="true">Você que está procurando um espaço de eventos em São Paulo precisa conhecer o espaço da Growth Machine no BM500 — literalmente no coração financeiro da cidade.</div>
+        <div class="decode" contenteditable="true">espaço de eventos da Growth Machine em SP.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#ec4899"><button class="cut" onclick="toggleCut(this)">✕</button><div class="tema-head"><span class="tcode" style="background:#ec4899">E</span><h3 contenteditable="true">Conteúdo sobre conteúdo (meta — vende a própria estratégia)</h3></div><div class="tema-why"><p contenteditable="true">Ataca a objeção nº1 do P1 (&#x27;isso não dá dinheiro&#x27;), usando case como prova. Justifica retroativamente todo o resto do feed e posiciona o serviço.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar este post" onclick="toggleCut(this)">✕</button>
+      <a class="thumb" href="https://www.instagram.com/reel/DYp90ROJrFW/" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/instagram/previews/DYp90ROJrFW.jpg" alt="DYp90ROJrFW" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="kind reel">REEL</span> <span class="date">2026-05-22</span> <span class="stats">▶ 475k views · ♥ 20175 · 💬 316 · MOFU</span></div>
+        <div class="cap" contenteditable="true">Tem empresário que ainda acha que conteúdo é “vaidade”.</div>
+        <div class="decode" contenteditable="true">475k — 'conteúdo é vaidade?' / Renato Cariani 5 bi de views.</div>
+      </div>
+    </div></div></div></section>
+<section><h2 class="sec-h">Por que funciona como SISTEMA (não posts soltos)</h2><div class="reasons"><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Mesma tese, mil fantasias</h4><p contenteditable="true">Frequência alta (~1,4 post/dia) sem repetir visualmente e sem cansar o algoritmo, mas martelando a mesma dor até virar memória de marca.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">CTA &#x27;DESAFIO&#x27; universal</h4><p contenteditable="true">Amarra reels + estáticos no MESMO funil de DM. A métrica pública (like) engana — o KPI real é comentário-gatilho = lead. Por isso posts com 3 likes e 40 comentários fazem sentido.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Cauda longa aceita de propósito</h4><p contenteditable="true">43% dos reels ficam &lt;10k views. Ele posta volume e deixa o algoritmo eleger os vencedores — barato porque a produção é quase zero.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Topo largo financia a base de conversão</h4><p contenteditable="true">Faceless/celebridade (P4) puxa alcance; talking-head/estático (P1) qualifica e converte. Os dois são necessários — um paga o outro.</p></div></div></section>
+<section><h2 class="sec-h">Pontos cegos / oportunidade competitiva</h2><div class="reasons"><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Dependência total de Manychat (~100%)</h4><p contenteditable="true">Sem o gatilho, o engajamento desaba. Refém de política da Meta.</p></div><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Fadiga de tese</h4><p contenteditable="true">&#x27;Depende de herói, falta sistema&#x27; saiu 4× em um mês (Real Madrid, Neymar, PSG, Arsenal). Funciona pra audiência nova, arrisca queimar quem já segue.</p></div><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Caption no piloto automático</h4><p contenteditable="true">Em vários posts a legenda é só &#x27;comenta DESAFIO&#x27; e não reforça o conceito. Quando integra (manda &#x27;ler a legenda&#x27;), fica muito mais forte. Gap evidente.</p></div><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">✕</button><h4 contenteditable="true">Vaidade vs. qualificação</h4><p contenteditable="true">Os virais trazem seguidor errado (P4 que nunca compra). Números bonitos, lead frio.</p></div></div><div class="card" data-block><button class="cut" title="Cortar este bloco" onclick="toggleCut(this)">✕</button><h3 contenteditable="true">O que a Swipe Offers tira disso</h3><ol class="swipe"><li contenteditable="true">Newsjacking de marca/notícia → lição de marketing → CTA de palavra específica. Ex: &#x27;como a [marca] cortou X e escalou criativo → seu erro → comenta TESTE&#x27;. Plug-and-play.</li><li contenteditable="true">Naming proprietário pra dor conhecida (dar nome novo ao problema antigo) → salvamento + recall.</li><li contenteditable="true">Tese única reciclada em fantasias diferentes &gt; 30 temas dispersos. Escolher 3 teses e martelar.</li><li contenteditable="true">Topo largo (cultura pop) financia base de conversão (técnico). Mix consciente, não aleatório.</li><li contenteditable="true">Integrar caption ao conteúdo — onde o Thiago é preguiçoso, a Swipe pode ganhar.</li></ol></div></section>
+<div class="foot">Base: _coleta/reel_context (100 reels) + _coleta/static_context (50 estáticos), filtro 2026-05-05→06-04. Imagens: _assets/instagram/. Gerado por build_engenharia_reversa.py. Análises individuais em 5 - Analises IA/instagram-reels e /instagram-estaticos.</div>
+<script>
+function toggleCut(btn){btn.closest('[data-block]').classList.toggle('is-cut');}
+function downloadFinal(){
+  var clone=document.documentElement.cloneNode(true);
+  clone.querySelectorAll('[data-block].is-cut').forEach(function(e){e.remove();});
+  clone.querySelectorAll('.cut').forEach(function(e){e.remove();});
+  clone.querySelectorAll('.toolbar').forEach(function(e){e.remove();});
+  clone.querySelectorAll('[contenteditable]').forEach(function(e){e.removeAttribute('contenteditable');});
+  clone.querySelectorAll('script').forEach(function(e){e.remove();});
+  var out='<!DOCTYPE html>\n'+clone.outerHTML;
+  var blob=new Blob([out],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='engenharia-reversa-thiagoreis-FINAL.html';a.click();
+}
+</script>
+</body></html>

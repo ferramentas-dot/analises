@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Engenharia Reversa YouTube — thiagoreis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f1a;--surface:#131927;--surface2:#0f1422;--border:#1e2638;--text:#e6ebf2;--muted:#94a3b8;--accent:#ff0033;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit}
+.hero{padding:48px 20px 28px;max-width:1080px;margin:0 auto}
+.kicker{color:var(--accent);font-weight:700;letter-spacing:.18em;font-size:12px}
+.hero h1{font-size:38px;font-weight:800;margin:10px 0 12px;line-height:1.1}
+.hero .sub{color:var(--muted);font-size:15px;max-width:780px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px}
+.toolbar .hint{color:var(--muted);font-size:13px}
+.export{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-family:inherit;font-size:14px}
+.export:hover{filter:brightness(1.1)}
+section{max-width:1080px;margin:0 auto;padding:8px 20px}
+.sec-h{font-size:25px;font-weight:800;margin:38px 0 6px;border-left:4px solid var(--accent);padding-left:12px}
+.sec-intro{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:830px}
+.sub-h{font-size:18px;font-weight:700;margin:28px 0 12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;margin:16px 0;position:relative}
+.card h2{margin:0 0 12px;font-size:24px;font-weight:800}
+.card h3{margin:0 0 10px;font-size:19px;font-weight:800}
+.card p{margin:8px 0}
+[contenteditable]{outline:none;border-radius:6px;transition:background .15s}
+[contenteditable]:hover{background:rgba(125,160,255,.06)}
+[contenteditable]:focus{background:rgba(125,160,255,.12);box-shadow:inset 0 0 0 1px var(--accent)}
+.cut{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:7px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-size:13px;line-height:1;z-index:2;opacity:.6;transition:.15s}
+.cut:hover{opacity:1;border-color:#ef4444;color:#ef4444}
+[data-block]{position:relative}
+[data-block].is-cut{opacity:.32;filter:grayscale(1)}
+[data-block].is-cut::after{content:'CORTADO — clique no x pra restaurar';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;color:#ef4444;font-size:13px;background:rgba(11,15,26,.35);border-radius:inherit;pointer-events:none}
+[data-block].is-cut .cut{opacity:1;border-color:#22c55e;color:#22c55e;pointer-events:auto}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.filtro{background:var(--surface2);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:10px;padding:14px}
+.filtro h4{margin:0 0 6px;font-size:15px;color:var(--accent)}
+.filtro p{margin:0;font-size:13.5px;color:var(--muted)}
+.personas{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.persona{background:var(--surface);border:1px solid var(--border);border-left:4px solid;border-radius:12px;padding:18px 18px 18px 22px;position:relative}
+.persona .pid{display:inline-block;color:#fff;font-weight:800;font-size:12px;padding:2px 9px;border-radius:6px;margin-bottom:8px}
+.persona h4{margin:0 0 2px;font-size:17px}
+.persona .ptag{font-size:12.5px;font-weight:700;margin-bottom:8px}
+.persona p{margin:0;font-size:13.5px;color:var(--muted)}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;align-items:flex-start}
+.step .num{flex:0 0 34px;height:34px;border-radius:9px;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.step h4{margin:0 0 3px;font-size:15px}.step p{margin:0;font-size:13.5px;color:var(--muted)}
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.reason{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px;position:relative}
+.reason.warn{border-color:#7c2d12;background:rgba(124,45,18,.12)}
+.reason h4{margin:0 0 6px;font-size:14.5px;color:var(--accent)}
+.reason.warn h4{color:#fb923c}
+.reason p{margin:0;font-size:13px;color:var(--muted)}
+.tema{background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--tcol);border-radius:14px;padding:20px;margin:16px 0;position:relative}
+.tema-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.tcode{color:#fff;font-weight:800;font-size:14px;padding:4px 11px;border-radius:8px}
+.tema-head h3{margin:0;font-size:20px;font-weight:800;flex:1;min-width:220px}
+.freq{font-size:12.5px;color:var(--muted);font-weight:600}
+.work{font-size:12px;font-weight:700;border:1px solid;border-radius:20px;padding:3px 11px}
+.tema-why{background:var(--surface2);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.tema-why p{margin:6px 0;font-size:14px}
+.tema-why .impact{color:var(--muted);font-size:13.5px}
+.posts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.post{display:flex;gap:12px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:10px;position:relative}
+.post .cut{top:6px;right:6px;width:22px;height:22px;font-size:11px}
+.thumb{flex:0 0 96px;width:96px;border-radius:8px;overflow:hidden;position:relative;background:#1a2233;display:block}
+.thumb.vert{height:128px}.thumb.wide{height:64px}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .play{position:absolute;bottom:5px;right:5px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;padding:1px 6px;border-radius:6px}
+.thumb.noimg img{display:none}
+.thumb.noimg::after{content:'sem prévia';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#475569;font-size:11px}
+.post-body{flex:1;min-width:0}
+.post-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:5px}
+.kind{font-weight:800;padding:1px 7px;border-radius:5px;font-size:10px;letter-spacing:.04em}
+.post .cap{font-size:12.5px;color:#cbd5e1;margin-bottom:6px;font-style:italic}
+.post .decode{font-size:12.5px;color:var(--text)}
+.post .decode b{color:var(--accent)}
+.kwbadge{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:10px;padding:1px 8px;border-radius:5px}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.shots a{display:block;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#1a2233}
+.shots img{width:100%;height:150px;object-fit:cover;object-position:top;display:block}
+.shots span{display:block;text-align:center;font-size:11px;color:var(--muted);padding:5px}
+.swipe{margin:8px 0 0;padding-left:22px}.swipe li{margin:7px 0;font-size:14px;padding-left:4px}
+@media(max-width:760px){.grid3,.personas,.reasons,.posts,.shots{grid-template-columns:1fr}.hero h1{font-size:28px}}
+.foot{max-width:1080px;margin:40px auto 0;padding:20px;color:#5b6678;font-size:12px;border-top:1px solid var(--border)}
+</style></head><body>
+
+<header class="hero">
+  <div class="kicker">ENGENHARIA REVERSA DE CONTEÚDO · YOUTUBE</div>
+  <h1 contenteditable="true">@thiago.reis.gm no YouTube — o acervo de SEO que captura intenção</h1>
+  <p class="sub" contenteditable="true">Por que ele escolhe cada tema e como impacta cada persona. Recorte: vídeos long-form de 2026 (13). 197 mil inscritos · o YouTube captura INTENÇÃO de busca (oposto do IG, que captura atenção) e monetiza em camadas — afiliado + Telegram + Desafio R$97.</p>
+  <div class="toolbar">
+    <span class="hint">✎ Todo texto é editável. Cada vídeo tem thumbnail + dados + funil. Use o <b>x</b> pra cortar.</span>
+    <button class="export" onclick="downloadFinal()">⬇ Baixar versão final (só o que ficou)</button>
+  </div>
+</header>
+<section><div class="card" data-block><button class="cut" title="Cortar este bloco" onclick="toggleCut(this)">x</button><h2 contenteditable="true">A tese e a regra que governa tudo</h2><p contenteditable="true">No YouTube o jogo é <b>SEO de dor operacional</b>: ele escolhe os temas que o vendedor e o gestor DIGITAM na busca. Não é "último mês" — é acervo perene. A mesma tese ("vender é sistema/método, não talento") aparece, mas o veículo é a <b>aula longa</b> e o destino é monetização em camadas. Um tema só entra se fizer um destes três trabalhos:</p><div class="grid3"><div class="filtro"><h4 contenteditable="true">1. CAPTURAR intenção de busca</h4><p contenteditable="true">O YouTube é SEO: ele escolhe temas que o profissional DIGITA (&#x27;como vender por telefone&#x27;, &#x27;quebrar objeção&#x27;). Captura intenção — o oposto do IG, que captura atenção no scroll.</p></div><div class="filtro"><h4 contenteditable="true">2. MONETIZAR o tráfego de passagem</h4><p contenteditable="true">Afiliado Pipedrive/Amazon/SEGSMART no caminho fatura mesmo de quem não vira cliente. Receita passiva enquanto o funil principal roda.</p></div><div class="filtro"><h4 contenteditable="true">3. NUTRIR pra owned audience + funil</h4><p contenteditable="true">Telegram (lista própria) + Desafio R$97 → diagnóstico → high-ticket. O vídeo gratuito é topo; a conversão é externa e em camadas.</p></div></div></div></section>
+<section><h2 class="sec-h">As 4 personas no YouTube</h2><p class="sec-intro" contenteditable="true">A grande diferença pro IG: aqui o <b>vendedor (P3)</b> é o consumidor nº1, porque é ele que busca o how-to. O decisor (P1) entra pela camada nova de IA e pelos cases. O público vem mais quente (busca ativa) e qualificado.</p><div class="personas"><div class="persona" data-block style="border-color:#a855f7"><button class="cut" onclick="toggleCut(this)">x</button><div class="pid" style="background:#a855f7">P3</div><h4 contenteditable="true">Vendedor / SDR / closer</h4><div class="ptag" style="color:#a855f7" contenteditable="true">O CONSUMIDOR PRIMÁRIO do canal</div><p contenteditable="true">Diferente do IG (onde é só espelho), no YouTube o vendedor é o público nº1. É ele que <b>digita</b> 'como quebrar objeção', 'técnica de cold call', 'SPIN selling' na busca. O YouTube serve o operador diretamente com how-to — e monetiza esse tráfego via afiliado (Pipedrive/Amazon) mesmo quando ele não compra nada.</p></div><div class="persona" data-block style="border-color:#38bdf8"><button class="cut" onclick="toggleCut(this)">x</button><div class="pid" style="background:#38bdf8">P2</div><h4 contenteditable="true">Gestor comercial / Head de vendas</h4><div class="ptag" style="color:#38bdf8" contenteditable="true">Busca pra treinar o time</div><p contenteditable="true">Procura método pra estruturar e treinar a equipe ('como multiplicar vendas', 'gerar leads todo dia'). Consome as aulas mais estratégicas e os cases. É quem leva o método pra dentro da empresa e vira ponte pro high-ticket.</p></div><div class="persona" data-block style="border-color:#ff0033"><button class="cut" onclick="toggleCut(this)">x</button><div class="pid" style="background:#ff0033">P1</div><h4 contenteditable="true">Dono / CEO de PME</h4><div class="ptag" style="color:#ff0033" contenteditable="true">Alvo da camada nova (IA + case)</div><p contenteditable="true">O dono não busca 'cold call', mas é fisgado pelos temas de IA ('IA vai te tornar milionário em 2026'), pelos cases de crescimento ('crescem 40% ao mês') e pelo mindset ('se começasse do zero'). É a camada de 2026 que mira o decisor.</p></div><div class="persona" data-block style="border-color:#22c55e"><button class="cut" onclick="toggleCut(this)">x</button><div class="pid" style="background:#22c55e">P4</div><h4 contenteditable="true">Buscador frio / curioso de vendas</h4><div class="ptag" style="color:#22c55e" contenteditable="true">Vira owned audience (Telegram)</div><p contenteditable="true">Quem cai por busca ampla sem intenção de compra. O YouTube captura esse tráfego pro <b>Telegram</b> (owned audience) e pro afiliado — transforma curiosidade em lista proprietária que o funil nutre depois.</p></div></div></section>
+<section><h2 class="sec-h">O motor: BUSCA → AULA → COMENTÁRIO → AFILIADO → FUNIL</h2><p class="sec-intro" contenteditable="true">A mecânica do canal: capturar intenção de busca, entregar aula densa, gamificar comentário, monetizar o tráfego de passagem com afiliado e nutrir pro funil unificado.</p><div class="steps"><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">1</div><div><h4 contenteditable="true">TÍTULO + THUMB DE BUSCA</h4><p contenteditable="true">Listicle com número e promessa máxima (&#x27;8 técnicas&#x27;, &#x27;7 únicas coisas&#x27;) casado com a query que o vendedor digita. SEO puro.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">2</div><div><h4 contenteditable="true">AULA GRATUITA (entrega real)</h4><p contenteditable="true">Conteúdo técnico denso de 8–15min. Constrói autoridade e tempo de tela (que o algoritmo premia).</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">3</div><div><h4 contenteditable="true">DESAFIO DE COMENTÁRIOS</h4><p contenteditable="true">&#x27;Se bater 200 comentários, libero o script.&#x27; Engajamento gamificado barato — vídeos com desafio chegam a 350–405 comentários.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">4</div><div><h4 contenteditable="true">AFILIADO NO CAMINHO</h4><p contenteditable="true">Pipedrive / Amazon / SEGSMART embutidos como &#x27;ferramenta necessária&#x27;. Monetiza o tráfego de passagem sem vender produto próprio.</p></div></div><div class="step" data-block><button class="cut" onclick="toggleCut(this)">x</button><div class="num">5</div><div><h4 contenteditable="true">CTA EXTERNO</h4><p contenteditable="true">Telegram (owned audience) + Desafio R$97 (lord-of-sales.com/desafio-v2). Em 2026 todo vídeo converge nesse mesmo tripwire.</p></div></div></div><h3 class="sub-h" contenteditable="true">Por que esses temas e esse modelo (os 6 motivos)</h3><div class="reasons"><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Intenção &gt; atenção</h4><p contenteditable="true">No YouTube o lead já quer aquilo (digitou a busca). Vem mais quente e qualificado que o scroll frio do IG.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Evergreen = ativo de aquisição</h4><p contenteditable="true">'3 segredos de vendas' rende views há anos. Em 2026 ele RE-SOBE os campeões (telefone, SPIN, objeções) com título/thumb novos — reaproveita o ativo.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Afiliado fatura o tráfego frio</h4><p contenteditable="true">Quem nunca vai comprar o high-ticket ainda clica no Pipedrive/Amazon. Receita passiva sobre o volume.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Telegram = owned audience</h4><p contenteditable="true">Tira o lead da plataforma pra uma lista própria (t.me/CanaldoTR) que ele controla e nutre — não depende do algoritmo.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Desafio de comentários</h4><p contenteditable="true">O prêmio concreto ('libero o script') gera volume de comentário que o algoritmo lê como interesse → mais alcance.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Convergência no R$97 (2026)</h4><p contenteditable="true">A virada do ano: o YouTube saiu do 'só Telegram/Pipedrive' e passou a empurrar o MESMO Desafio R$97 do IG/LinkedIn. Funil unificado.</p></div></div></section>
+<section><h2 class="sec-h">Os 8 temas de 2026 — e por que ELE escolhe cada um</h2><p class="sec-intro" contenteditable="true">Dois blocos: o <b>acervo operacional reciclado</b> (cold call, SPIN, objeções, prospecção) que captura busca do vendedor/gestor, e a <b>camada nova de 2026</b> (IA, cases, mindset) que mira o decisor. Tudo converge no Desafio R$97.</p><div class="tema" data-block style="--tcol:#ff0033"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#ff0033">T1</span><h3 contenteditable="true">Cold call / venda por telefone</h3><span class="freq" contenteditable="true">🔴 Evergreen reciclado</span><span class="work" style="border-color:#ff0033;color:#ff0033" contenteditable="true">Capturar intenção (P3)</span></div><div class="tema-why"><p contenteditable="true">A dor operacional mais buscada do vendedor B2B. É um dos evergreens campeões do canal, RE-SUBIDO em 2026 com título/thumb novos. Captura quem digita 'como vender por telefone' e demonstra competência técnica na prática.</p><p class="impact" contenteditable="true"><b>P3</b> é o alvo direto (busca a técnica). <b>P2</b> usa pra treinar o time.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=FKMu607K0-Q" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/FKMu607K0-Q.jpg" alt="FKMu607K0-Q" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-03-16</span> <span class="stats">▶ 14.6k · ♥ 1305 · 💬 336 · 18m40s</span></div>
+        <div class="cap" contenteditable="true">8 TÉCNICAS DE VENDAS POR TELEFONE QUE SÃO INFALÍVEIS</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span></div>
+        <div class="decode" contenteditable="true">'8 técnicas de vendas por telefone que são infalíveis' — re-upload do clássico (194k histórico) com nova roupagem. Listicle de busca pura.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=bYHMwJ7So44" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/bYHMwJ7So44.jpg" alt="bYHMwJ7So44" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-05-13</span> <span class="stats">▶ 3.4k · ♥ 427 · 💬 13 · 18m15s</span></div>
+        <div class="cap" contenteditable="true">Como gerei R$3,4 BILHÕES em vendas usando esse método de Cold Call</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span></div>
+        <div class="decode" contenteditable="true">'Como gerei R$3,4 BILHÕES usando esse método de Cold Call' — credencial bilionária colada na técnica pra emprestar autoridade.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#f97316"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#f97316">T2</span><h3 contenteditable="true">Método / técnica consultiva (SPIN, multiplicar)</h3><span class="freq" contenteditable="true">🔴 Núcleo técnico</span><span class="work" style="border-color:#f97316;color:#f97316" contenteditable="true">Capturar intenção + autoridade</span></div><div class="tema-why"><p contenteditable="true">O acervo de método de venda consultiva: SPIN, as 'únicas coisas que importam', react de venda real. É o coração da proposta de valor (vender por método, não por talento) — a mesma tese do IG, mas aqui ensinada em profundidade pra quem busca aprender.</p><p class="impact" contenteditable="true"><b>P3/P2</b> aprendem o método. <b>P1</b> vê que existe sistema replicável (puxa pro diagnóstico).</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=xX4QgbYJqEc" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/xX4QgbYJqEc.jpg" alt="xX4QgbYJqEc" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-04-15</span> <span class="stats">▶ 12.3k · ♥ 877 · 💬 105 · 34m03s</span></div>
+        <div class="cap" contenteditable="true">SPIN Selling — A Técnica Que Separa Vendedor Mediano de Alta Performance</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span><span class="kind" style="background:#a855f722;color:#a855f7">Curso grátis</span></div>
+        <div class="decode" contenteditable="true">'SPIN Selling — a técnica que separa vendedor mediano de alta performance' — evergreen (164k histórico) re-subido em 2026.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=W8tmeRbS6Kk" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/W8tmeRbS6Kk.jpg" alt="W8tmeRbS6Kk" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-01-19</span> <span class="stats">▶ 3.2k · ♥ 283 · 💬 30 · 16m42s</span></div>
+        <div class="cap" contenteditable="true">COMO MULTIPLICAR VENDAS: As 7 Únicas Coisas Que Você Precisa Dominar</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span></div>
+        <div class="decode" contenteditable="true">'Como multiplicar vendas: as 7 únicas coisas que você precisa dominar' — listicle de fechamento de loop (promessa de payoff completo).</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=y5-HlMh-7To" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/y5-HlMh-7To.jpg" alt="y5-HlMh-7To" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-01-12</span> <span class="stats">▶ 7.4k · ♥ 649 · 💬 152 · 26m52s</span></div>
+        <div class="cap" contenteditable="true">React: Analisando Minha Venda de R$ 25 Mil Técnica por Técnica</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span><span class="kind" style="background:#eab30822;color:#eab308">Amazon afil</span><span class="kind" style="background:#a855f722;color:#a855f7">Curso grátis</span></div>
+        <div class="decode" contenteditable="true">'React: analisando minha venda de R$25 mil técnica por técnica' — demo/meta-demonstração: mostra a competência acontecendo, não fala dela.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#a855f7"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#a855f7">T3</span><h3 contenteditable="true">Objeções</h3><span class="freq" contenteditable="true">🟠 Dor universal</span><span class="work" style="border-color:#a855f7;color:#a855f7" contenteditable="true">Capturar intenção (P3)</span></div><div class="tema-why"><p contenteditable="true">'Como quebrar qualquer objeção' é busca perene de todo vendedor — a dor mais relatable do comercial. Outro evergreen campeão (213k histórico) reciclado em 2026.</p><p class="impact" contenteditable="true"><b>P3</b> direto (a objeção é a dor diária dele). <b>P2</b> aplica no time.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=ZecIGaGB9_k" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/ZecIGaGB9_k.jpg" alt="ZecIGaGB9_k" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-04-01</span> <span class="stats">▶ 3.6k · ♥ 354 · 💬 16 · 20m24s</span></div>
+        <div class="cap" contenteditable="true">COMO LIDAR COM OBJEÇÕES: O GUIA DEFINITIVO PARA QUEBRAR QUALQUER OBJEÇÃO DO SEU CLIENTE</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span></div>
+        <div class="decode" contenteditable="true">'Como lidar com objeções: o guia definitivo pra quebrar qualquer objeção' — promessa máxima ('qualquer') + 'guia definitivo' = SEO de cauda perene.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#06b6d4"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#06b6d4">T4</span><h3 contenteditable="true">Prospecção / geração de leads</h3><span class="freq" contenteditable="true">🟠 Topo do operacional</span><span class="work" style="border-color:#06b6d4;color:#06b6d4" contenteditable="true">Capturar intenção (P2/P3)</span></div><div class="tema-why"><p contenteditable="true">Como gerar demanda de forma previsível — a ponte entre a dor operacional do vendedor e a tese de 'máquina de vendas' do produto. Tema que conecta busca operacional com a oferta de sistema.</p><p class="impact" contenteditable="true"><b>P2</b> (responsável por gerar pipeline) e <b>P3</b> (SDR). Liga direto na promessa do Desafio.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=PP_jAK5k7u4" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/PP_jAK5k7u4.jpg" alt="PP_jAK5k7u4" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-04-22</span> <span class="stats">▶ 1.8k · ♥ 186 · 💬 4 · 10m30s</span></div>
+        <div class="cap" contenteditable="true">Como Gerar Leads Qualificados Todo Dia (Outbound, Inbound e Indicação)</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span></div>
+        <div class="decode" contenteditable="true">'Como gerar leads qualificados todo dia (outbound, inbound e indicação)' — cobre os 3 canais = abrangência de busca + promessa de previsibilidade.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#ff6a00"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#ff6a00">T5</span><h3 contenteditable="true">IA em vendas (a aposta de 2026)</h3><span class="freq" contenteditable="true">🔴 A CAMADA NOVA</span><span class="work" style="border-color:#ff6a00;color:#ff6a00" contenteditable="true">Construir autoridade + criar urgência (P1)</span></div><div class="tema-why"><p contenteditable="true">A grande virada de 2026: metade da energia nova vai pra IA em vendas. Sai do how-to operacional e mira o DECISOR com FOMO ('milionário em 2026') e prova de operação real ('8x de retorno'). É a narrativa de diferenciação que posiciona o software/IA (Prospct.IA) e justifica o ticket alto.</p><p class="impact" contenteditable="true"><b>P1</b> é o alvo (medo de obsolescência + eficiência/custo). <b>P2</b> pensa na operação.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=BqU0cUJRjh4" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/BqU0cUJRjh4.jpg" alt="BqU0cUJRjh4" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-03-04</span> <span class="stats">▶ 7.0k · ♥ 539 · 💬 15 · 19m46s</span></div>
+        <div class="cap" contenteditable="true">Como a Inteligência Artificial Vai Te Tornar Milionário em 2026 (Sem Teoria)</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span><span class="kind" style="background:#a855f722;color:#a855f7">Curso grátis</span></div>
+        <div class="decode" contenteditable="true">'Como a IA vai te tornar milionário em 2026 (sem teoria)' — FOMO + promessa máxima + 'sem teoria' (anti-papo-furado). Mira o dono.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=ZuOEuVJK86Y" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/ZuOEuVJK86Y.jpg" alt="ZuOEuVJK86Y" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-03-11</span> <span class="stats">▶ 1.9k · ♥ 170 · 💬 18 · 20m46s</span></div>
+        <div class="cap" contenteditable="true">Como Usei IA Para Gerar 8x de Retorno na Growth Machine (Operação Real)</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span><span class="kind" style="background:#a855f722;color:#a855f7">Curso grátis</span></div>
+        <div class="decode" contenteditable="true">'Como usei IA pra gerar 8x de retorno na Growth Machine (operação real)' — prova interna: ele mesmo como case da própria tese de IA.</div>
+      </div>
+    </div>
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=zpEmuRPJ1hQ" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/zpEmuRPJ1hQ.jpg" alt="zpEmuRPJ1hQ" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-02-13</span> <span class="stats">▶ 1.7k · ♥ 100 · 💬 17 · 43m59s</span></div>
+        <div class="cap" contenteditable="true">Como é trabalhar numa tech beirando R$ 1 BILHÃO?</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span><span class="kind" style="background:#a855f722;color:#a855f7">Curso grátis</span></div>
+        <div class="decode" contenteditable="true">'Como é trabalhar numa tech beirando R$1 bilhão?' — posiciona a GM como tech de verdade (não infoproduto). Autoridade enterprise.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#22c55e"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#22c55e">T6</span><h3 contenteditable="true">Case / prova de crescimento</h3><span class="freq" contenteditable="true">🟡 Top de views 2026</span><span class="work" style="border-color:#22c55e;color:#22c55e" contenteditable="true">Construir autoridade</span></div><div class="tema-why"><p contenteditable="true">Autoridade emprestada verificável (igual ao IG): pega um case real de crescimento e destrincha o segredo. Foi o vídeo MAIS visto de 2026 — o formato 'revelaram o segredo' fecha o loop de curiosidade e atrai o decisor que quer o mesmo resultado.</p><p class="impact" contenteditable="true"><b>P1/P2</b> projetam a própria empresa no case. Curiosidade ('qual é o segredo?') segura a retenção.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=XoDrVhx7TAA" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/XoDrVhx7TAA.jpg" alt="XoDrVhx7TAA" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-03-20</span> <span class="stats">▶ 18.0k · ♥ 215 · 💬 21 · 1h04m</span></div>
+        <div class="cap" contenteditable="true">ELES CRESCEM 40% AO MÊS E REVELARAM O SEGREDO AQUI</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span><span class="kind" style="background:#a855f722;color:#a855f7">Curso grátis</span></div>
+        <div class="decode" contenteditable="true">'Eles crescem 40% ao mês e revelaram o segredo aqui' — 18k (top 2026). Loop de curiosidade + prova de resultado de cliente real.</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#eab308"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#eab308">T7</span><h3 contenteditable="true">Mentalidade / origem / recomeço</h3><span class="freq" contenteditable="true">🟡 Aspiracional</span><span class="work" style="border-color:#eab308;color:#eab308" contenteditable="true">Construir autoridade (por identificação)</span></div><div class="tema-why"><p contenteditable="true">Versão YouTube do pilar de vulnerabilidade/origem do LinkedIn. 'Se eu começasse do zero' constrói identificação e ancora a narrativa 'meu método funciona porque eu vivi isso'. Atrai quem está começando ou recomeçando.</p><p class="impact" contenteditable="true"><b>P1/P3</b> projetam a própria jornada. Constrói o vínculo emocional que a técnica não cria.</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=HcAMNpTDqXU" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/HcAMNpTDqXU.jpg" alt="HcAMNpTDqXU" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-02-09</span> <span class="stats">▶ 7.9k · ♥ 898 · 💬 91 · 21m25s</span></div>
+        <div class="cap" contenteditable="true">O que eu faria se eu começasse do ZERO novamente (7 lições brutais)</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span><span class="kind" style="background:#a855f722;color:#a855f7">Curso grátis</span></div>
+        <div class="decode" contenteditable="true">'O que eu faria se começasse do ZERO novamente (7 lições brutais)' — listicle + vulnerabilidade + 'brutais' (promessa de verdade dura).</div>
+      </div>
+    </div></div></div><div class="tema" data-block style="--tcol:#0ea5e9"><button class="cut" onclick="toggleCut(this)">x</button><div class="tema-head"><span class="tcode" style="background:#0ea5e9">T8</span><h3 contenteditable="true">Contrarian / newsjacking</h3><span class="freq" contenteditable="true">🟡 Pontual</span><span class="work" style="border-color:#0ea5e9;color:#0ea5e9" contenteditable="true">Construir autoridade</span></div><div class="tema-why"><p contenteditable="true">O mesmo motor de newsjacking do IG, em formato longo: pega um tema cultural (marcas de luxo) e faz a releitura contraintuitiva ligada a vendas/percepção de valor. Fura a bolha técnica e atrai público mais amplo.</p><p class="impact" contenteditable="true"><b>P1/P4</b> entram pelo tema cultural; a lição puxa pra valor/preço (tema T3 do IG).</p></div><div class="posts">
+    <div class="post" data-block>
+      <button class="cut" title="Cortar" onclick="toggleCut(this)">x</button>
+      <a class="thumb wide" href="https://www.youtube.com/watch?v=Fh-k7trLaeA" target="_blank" rel="noopener">
+        <img loading="lazy" src="_assets/youtube/thumbs/Fh-k7trLaeA.jpg" alt="Fh-k7trLaeA" onerror="this.parentNode.classList.add('noimg')">
+        <span class="play">▶</span>
+      </a>
+      <div class="post-body">
+        <div class="post-meta"><span class="date">2026-02-02</span> <span class="stats">▶ 2.0k · ♥ 188 · 💬 9 · 15m59s</span></div>
+        <div class="cap" contenteditable="true">VOCÊ FOI ENGANADO A VIDA TODA POR MARCAS DE LUXO</div>
+        <div class="post-meta"><span class="kind" style="background:#ff003322;color:#ff0033">Desafio R$97</span><span class="kind" style="background:#a855f722;color:#a855f7">Curso grátis</span></div>
+        <div class="decode" contenteditable="true">'Você foi enganado a vida toda por marcas de luxo' — releitura de percepção de valor (mesma tese 'venda valor, não preço') via gancho de curiosidade.</div>
+      </div>
+    </div></div></div></section>
+<section><h2 class="sec-h">Por que funciona como sistema</h2><div class="reasons"><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Acervo evergreen + reciclagem</h4><p contenteditable="true">Os campeões (telefone, SPIN, objeções) são re-subidos com título/thumb novos. O canal é um ativo de SEO que rende views por anos.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Monetização em camadas</h4><p contenteditable="true">Afiliado no caminho (Pipedrive/Amazon/SEGSMART) + Telegram owned + Desafio R$97. Cada visita pode render por 3 rotas diferentes.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Convergência de 2026</h4><p contenteditable="true">Todo vídeo do ano empurra o MESMO Desafio R$97 dos outros canais — o YouTube deixou de ser ilha e virou braço do funil unificado.</p></div><div class="reason" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Intenção quente</h4><p contenteditable="true">A audiência do YouTube busca ativamente (não passa por scroll) — engaja muito mais (comentário mediana ~109 no top) e é mais qualificada.</p></div></div></section>
+<section><h2 class="sec-h">Pontos cegos / oportunidade</h2><div class="reasons"><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Subscribe pitch precoce</h4><p contenteditable="true">Em ~80% dos vídeos ele pede like/inscrição ANTES de entregar valor (0:30–2:00), na janela mais cara de retenção. Quebra o momentum do hook.</p></div><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Funil mudo</h4><p contenteditable="true">Os CTAs de conversão vivem só na descrição — raramente há ponte VERBAL pro Telegram/Desafio/Pipedrive. Deposita 100% da conversão em quem abre a descrição.</p></div><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Cauda longa de 74%</h4><p contenteditable="true">3 de cada 4 vídeos morrem com <5k views. Muito conteúdo produzido sem curadoria/repackaging dos evergreens que funcionam.</p></div><div class="reason warn" data-block><button class="cut" onclick="toggleCut(this)">x</button><h4 contenteditable="true">Dependência de afiliado</h4><p contenteditable="true">Boa parte da monetização de topo é Pipedrive/Amazon (receita terceirizada). Se o afiliado muda regra/comissão, a receita de topo cai.</p></div></div><div class="card" data-block><button class="cut" title="Cortar este bloco" onclick="toggleCut(this)">x</button><h3 contenteditable="true">O que a Swipe Offers tira disso</h3><ol class="swipe"><li contenteditable="true">Acervo evergreen de SEO — vídeos de dor operacional perene (&#x27;como baixar CPA&#x27;, &#x27;como escalar criativo&#x27;) viram ativo de aquisição de longo prazo.</li><li contenteditable="true">Desafio de comentários (&#x27;200 comentários → libero o template&#x27;) é engajamento barato e replicável em qualquer canal.</li><li contenteditable="true">CTA VERBAL explícito (o erro do Thiago vira aprendizado): sempre criar ponte falada pro próximo passo, nunca confiar só na descrição.</li><li contenteditable="true">Reaproveitar/re-subir os campeões com título e thumb novos em vez de só produzir conteúdo novo que morre.</li><li contenteditable="true">Demo / meta-demonstração (react de venda real, ferramenta funcionando) bate qualquer explicação conceitual.</li></ol></div></section>
+<div class="foot">Base: _coleta/yt_context/ (vídeos de 2026) + thumbs em _coleta/yt_thumbs/ + 5 - Analises IA/youtube-analise.md. Recorte: long-form 2026. Gerado por build_youtube_eng.py.</div>
+<script>
+function toggleCut(btn){btn.closest('[data-block]').classList.toggle('is-cut');}
+function downloadFinal(){
+  var clone=document.documentElement.cloneNode(true);
+  clone.querySelectorAll('[data-block].is-cut').forEach(function(e){e.remove();});
+  clone.querySelectorAll('.cut').forEach(function(e){e.remove();});
+  clone.querySelectorAll('.toolbar').forEach(function(e){e.remove();});
+  clone.querySelectorAll('[contenteditable]').forEach(function(e){e.removeAttribute('contenteditable');});
+  clone.querySelectorAll('script').forEach(function(e){e.remove();});
+  var out='<!DOCTYPE html>\n'+clone.outerHTML;
+  var blob=new Blob([out],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=(document.title||'final').replace(/[^a-z0-9]+/gi,'-')+'-FINAL.html';a.click();
+}
+</script>
+</body></html>
