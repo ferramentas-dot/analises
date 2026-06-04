@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Imagens pro Miro — thiagoreis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f1a;--surface:#131927;--surface2:#0f1422;--border:#1e2638;--text:#e6ebf2;--muted:#94a3b8;--accent:#F26B1D;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit}
+.hero{padding:48px 20px 28px;max-width:1080px;margin:0 auto}
+.kicker{color:var(--accent);font-weight:700;letter-spacing:.18em;font-size:12px}
+.hero h1{font-size:38px;font-weight:800;margin:10px 0 12px;line-height:1.1}
+.hero .sub{color:var(--muted);font-size:15px;max-width:780px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px}
+.toolbar .hint{color:var(--muted);font-size:13px}
+.export{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-family:inherit;font-size:14px}
+.export:hover{filter:brightness(1.1)}
+section{max-width:1080px;margin:0 auto;padding:8px 20px}
+.sec-h{font-size:25px;font-weight:800;margin:38px 0 6px;border-left:4px solid var(--accent);padding-left:12px}
+.sec-intro{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:830px}
+.sub-h{font-size:18px;font-weight:700;margin:28px 0 12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;margin:16px 0;position:relative}
+.card h2{margin:0 0 12px;font-size:24px;font-weight:800}
+.card h3{margin:0 0 10px;font-size:19px;font-weight:800}
+.card p{margin:8px 0}
+[contenteditable]{outline:none;border-radius:6px;transition:background .15s}
+[contenteditable]:hover{background:rgba(125,160,255,.06)}
+[contenteditable]:focus{background:rgba(125,160,255,.12);box-shadow:inset 0 0 0 1px var(--accent)}
+.cut{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:7px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-size:13px;line-height:1;z-index:2;opacity:.6;transition:.15s}
+.cut:hover{opacity:1;border-color:#ef4444;color:#ef4444}
+[data-block]{position:relative}
+[data-block].is-cut{opacity:.32;filter:grayscale(1)}
+[data-block].is-cut::after{content:'CORTADO — clique no x pra restaurar';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;color:#ef4444;font-size:13px;background:rgba(11,15,26,.35);border-radius:inherit;pointer-events:none}
+[data-block].is-cut .cut{opacity:1;border-color:#22c55e;color:#22c55e;pointer-events:auto}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.filtro{background:var(--surface2);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:10px;padding:14px}
+.filtro h4{margin:0 0 6px;font-size:15px;color:var(--accent)}
+.filtro p{margin:0;font-size:13.5px;color:var(--muted)}
+.personas{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.persona{background:var(--surface);border:1px solid var(--border);border-left:4px solid;border-radius:12px;padding:18px 18px 18px 22px;position:relative}
+.persona .pid{display:inline-block;color:#fff;font-weight:800;font-size:12px;padding:2px 9px;border-radius:6px;margin-bottom:8px}
+.persona h4{margin:0 0 2px;font-size:17px}
+.persona .ptag{font-size:12.5px;font-weight:700;margin-bottom:8px}
+.persona p{margin:0;font-size:13.5px;color:var(--muted)}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;align-items:flex-start}
+.step .num{flex:0 0 34px;height:34px;border-radius:9px;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.step h4{margin:0 0 3px;font-size:15px}.step p{margin:0;font-size:13.5px;color:var(--muted)}
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.reason{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px;position:relative}
+.reason.warn{border-color:#7c2d12;background:rgba(124,45,18,.12)}
+.reason h4{margin:0 0 6px;font-size:14.5px;color:var(--accent)}
+.reason.warn h4{color:#fb923c}
+.reason p{margin:0;font-size:13px;color:var(--muted)}
+.tema{background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--tcol);border-radius:14px;padding:20px;margin:16px 0;position:relative}
+.tema-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.tcode{color:#fff;font-weight:800;font-size:14px;padding:4px 11px;border-radius:8px}
+.tema-head h3{margin:0;font-size:20px;font-weight:800;flex:1;min-width:220px}
+.freq{font-size:12.5px;color:var(--muted);font-weight:600}
+.work{font-size:12px;font-weight:700;border:1px solid;border-radius:20px;padding:3px 11px}
+.tema-why{background:var(--surface2);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.tema-why p{margin:6px 0;font-size:14px}
+.tema-why .impact{color:var(--muted);font-size:13.5px}
+.posts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.post{display:flex;gap:12px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:10px;position:relative}
+.post .cut{top:6px;right:6px;width:22px;height:22px;font-size:11px}
+.thumb{flex:0 0 96px;width:96px;border-radius:8px;overflow:hidden;position:relative;background:#1a2233;display:block}
+.thumb.vert{height:128px}.thumb.wide{height:64px}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .play{position:absolute;bottom:5px;right:5px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;padding:1px 6px;border-radius:6px}
+.thumb.noimg img{display:none}
+.thumb.noimg::after{content:'sem prévia';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#475569;font-size:11px}
+.post-body{flex:1;min-width:0}
+.post-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:5px}
+.kind{font-weight:800;padding:1px 7px;border-radius:5px;font-size:10px;letter-spacing:.04em}
+.post .cap{font-size:12.5px;color:#cbd5e1;margin-bottom:6px;font-style:italic}
+.post .decode{font-size:12.5px;color:var(--text)}
+.post .decode b{color:var(--accent)}
+.kwbadge{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:10px;padding:1px 8px;border-radius:5px}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.shots a{display:block;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#1a2233}
+.shots img{width:100%;height:150px;object-fit:cover;object-position:top;display:block}
+.shots span{display:block;text-align:center;font-size:11px;color:var(--muted);padding:5px}
+.swipe{margin:8px 0 0;padding-left:22px}.swipe li{margin:7px 0;font-size:14px;padding-left:4px}
+@media(max-width:760px){.grid3,.personas,.reasons,.posts,.shots{grid-template-columns:1fr}.hero h1{font-size:28px}}
+.foot{max-width:1080px;margin:40px auto 0;padding:20px;color:#5b6678;font-size:12px;border-top:1px solid var(--border)}
+</style><style>
+.miro-block{max-width:1100px;margin:28px auto;padding:0 20px}
+.miro-block h2{font-size:20px;font-weight:800;border-left:4px solid;padding-left:12px;margin:0 0 16px}
+.miro-block h2 .ct{font-size:12px;color:var(--muted);font-weight:600}
+.miro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.miro-card{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:.15s}
+.miro-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.miro-card img{width:100%;display:block;background:#fff}
+.miro-card .cap{display:block;padding:9px 12px;font-size:12.5px;color:var(--text)}
+.miro-card .cap b{color:var(--accent)}
+@media(max-width:760px){.miro-grid{grid-template-columns:1fr}}
+</style></head><body>
+<style>.topnav{position:sticky;top:0;z-index:60;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:rgba(11,15,26,.94);backdrop-filter:blur(8px);border-bottom:1px solid #1e2638;padding:8px 16px;}.topnav a{color:#94a3b8;text-decoration:none;font:600 12.5px Manrope,-apple-system,"Segoe UI",sans-serif;padding:5px 11px;border-radius:7px;border:1px solid transparent;white-space:nowrap;}.topnav a:hover{color:#e6ebf2;background:#131927;border-color:#1e2638;}.topnav a.back{color:#F26B1D;font-weight:800;}.topnav a.cur{color:#e6ebf2;background:#131927;border-color:#334155;font-weight:800;cursor:default;}</style><nav class="topnav"><a class="back" href="thiago-reis-organico.html">← Voltar ao dossiê</a><a class="" href="thiago-reis-hub.html">🧭 Hub</a><a class="" href="thiago-reis-conclusao.html">📋 Conclusão · Negócio</a><a class="" href="thiago-reis-funis-engenharia.html">🔧 Funis</a><a class="" href="thiago-reis-engenharia-reversa.html">📷 IG</a><a class="" href="thiago-reis-linkedin-engenharia.html">💼 LinkedIn</a><a class="" href="thiago-reis-youtube-engenharia.html">▶️ YouTube</a><a class="cur" href="thiago-reis-miro.html">🎨 Miro</a></nav>
+<header class="hero"><div class="kicker">DOSSIÊ · IMAGENS PRO MIRO</div><h1 contenteditable="true">Thiago Reis — Imagens pro Miro</h1><p class="sub" contenteditable="true">As 25 imagens hand-drawn da conclusão, organizadas pelos 5 blocos (Jornada → Motores → Buracos → Playbook → Master). Clique pra abrir em tamanho real e arraste pro seu board no Miro. Os originais renomeados em ordem estão em <code>7 - Imagens Miro/</code>.</p></header><section class="miro-block"><h2 style="border-left-color:#10b981;color:#10b981">🛤 Jornada <span class="ct">3 imgs</span></h2><div class="miro-grid"><a class="miro-card" href="_assets/miro/01-etapa-1-por-onde-o-lead-chega.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/01-etapa-1-por-onde-o-lead-chega.jpg" alt="Etapa 1 — Por onde o lead chega"><span class="cap"><b>01.</b> Etapa 1 — Por onde o lead chega</span></a><a class="miro-card" href="_assets/miro/02-etapa-2-onde-o-lead-se-envolve.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/02-etapa-2-onde-o-lead-se-envolve.jpg" alt="Etapa 2 — Onde o lead se envolve"><span class="cap"><b>02.</b> Etapa 2 — Onde o lead se envolve</span></a><a class="miro-card" href="_assets/miro/03-etapa-3-escada-de-valor.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/03-etapa-3-escada-de-valor.jpg" alt="Etapa 3 — A escada de valor"><span class="cap"><b>03.</b> Etapa 3 — A escada de valor</span></a></div></section><section class="miro-block"><h2 style="border-left-color:#22c55e;color:#22c55e">✅ Motores <span class="ct">8 imgs</span></h2><div class="miro-grid"><a class="miro-card" href="_assets/miro/04-motor-portas-de-entrada-redundantes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/04-motor-portas-de-entrada-redundantes.jpg" alt="Portas de entrada redundantes"><span class="cap"><b>04.</b> Portas de entrada redundantes</span></a><a class="miro-card" href="_assets/miro/05-motor-pago-com-prova-previa.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/05-motor-pago-com-prova-previa.jpg" alt="Pago com prova prévia (orgânico testa, pago escala)"><span class="cap"><b>05.</b> Pago com prova prévia (orgânico testa, pago escala)</span></a><a class="miro-card" href="_assets/miro/06-motor-inversao-de-culpa.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/06-motor-inversao-de-culpa.jpg" alt="A inversão de culpa"><span class="cap"><b>06.</b> A inversão de culpa</span></a><a class="miro-card" href="_assets/miro/07-motor-um-tripwire-varias-portas.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/07-motor-um-tripwire-varias-portas.jpg" alt="Um tripwire, várias portas"><span class="cap"><b>07.</b> Um tripwire, várias portas</span></a><a class="miro-card" href="_assets/miro/08-motor-conteudo-multicanal.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/08-motor-conteudo-multicanal.jpg" alt="Conteúdo multi-canal (topo grátis)"><span class="cap"><b>08.</b> Conteúdo multi-canal (topo grátis)</span></a><a class="miro-card" href="_assets/miro/09-motor-dinheiro-na-escada.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/09-motor-dinheiro-na-escada.jpg" alt="O dinheiro está na escada"><span class="cap"><b>09.</b> O dinheiro está na escada</span></a><a class="miro-card" href="_assets/miro/10-motor-diagnostico-protege-closer.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/10-motor-diagnostico-protege-closer.jpg" alt="O diagnóstico protege o closer"><span class="cap"><b>10.</b> O diagnóstico protege o closer</span></a><a class="miro-card" href="_assets/miro/11-motor-o-fosso-e-a-marca.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/11-motor-o-fosso-e-a-marca.jpg" alt="O fosso é a marca, não a técnica"><span class="cap"><b>11.</b> O fosso é a marca, não a técnica</span></a></div></section><section class="miro-block"><h2 style="border-left-color:#ef4444;color:#ef4444">❌ Buracos <span class="ct">7 imgs</span></h2><div class="miro-grid"><a class="miro-card" href="_assets/miro/12-buraco-email-no-spam.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/12-buraco-email-no-spam.jpg" alt="O e-mail cai no spam"><span class="cap"><b>12.</b> O e-mail cai no spam</span></a><a class="miro-card" href="_assets/miro/13-buraco-sem-downsell.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/13-buraco-sem-downsell.jpg" alt="Sem downsell pro não-qualificado"><span class="cap"><b>13.</b> Sem downsell pro não-qualificado</span></a><a class="miro-card" href="_assets/miro/14-buraco-so-meta.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/14-buraco-so-meta.jpg" alt="Aquisição 100% no Meta"><span class="cap"><b>14.</b> Aquisição 100% no Meta</span></a><a class="miro-card" href="_assets/miro/15-buraco-saas-sem-funil.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/15-buraco-saas-sem-funil.jpg" alt="SaaS de R$6k sem funil próprio"><span class="cap"><b>15.</b> SaaS de R$6k sem funil próprio</span></a><a class="miro-card" href="_assets/miro/16-buraco-caca-a-viral.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/16-buraco-caca-a-viral.jpg" alt="Caça a viral (vaidade)"><span class="cap"><b>16.</b> Caça a viral (vaidade)</span></a><a class="miro-card" href="_assets/miro/17-buraco-funil-mudo-manychat.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/17-buraco-funil-mudo-manychat.jpg" alt="Funil mudo + refém do Manychat"><span class="cap"><b>17.</b> Funil mudo + refém do Manychat</span></a><a class="miro-card" href="_assets/miro/18-buraco-numeros-inconsistentes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/18-buraco-numeros-inconsistentes.jpg" alt="Números que não batem"><span class="cap"><b>18.</b> Números que não batem</span></a></div></section><section class="miro-block"><h2 style="border-left-color:#a855f7;color:#a855f7">💡 Playbook <span class="ct">6 imgs</span></h2><div class="miro-grid"><a class="miro-card" href="_assets/miro/19-playbook-posicionamento.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/19-playbook-posicionamento.jpg" alt="Posicionamento de contraste"><span class="cap"><b>19.</b> Posicionamento de contraste</span></a><a class="miro-card" href="_assets/miro/20-playbook-o-que-copiar.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/20-playbook-o-que-copiar.jpg" alt="O que copiar"><span class="cap"><b>20.</b> O que copiar</span></a><a class="miro-card" href="_assets/miro/21-playbook-o-que-evitar.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/21-playbook-o-que-evitar.jpg" alt="O que evitar"><span class="cap"><b>21.</b> O que evitar</span></a><a class="miro-card" href="_assets/miro/22-playbook-mapa-de-canais.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/22-playbook-mapa-de-canais.jpg" alt="Mapa de canais"><span class="cap"><b>22.</b> Mapa de canais</span></a><a class="miro-card" href="_assets/miro/23-playbook-pre-requisitos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/23-playbook-pre-requisitos.jpg" alt="Pré-requisitos"><span class="cap"><b>23.</b> Pré-requisitos</span></a><a class="miro-card" href="_assets/miro/24-playbook-publico-ignorado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/24-playbook-publico-ignorado.jpg" alt="Público ignorado (oceano azul)"><span class="cap"><b>24.</b> Público ignorado (oceano azul)</span></a></div></section><section class="miro-block"><h2 style="border-left-color:#06b6d4;color:#06b6d4">📋 Conclusão master <span class="ct">1 imgs</span></h2><div class="miro-grid"><a class="miro-card" href="_assets/miro/25-master-maquina-de-2-andares.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/miro/25-master-maquina-de-2-andares.jpg" alt="A máquina de 2 andares"><span class="cap"><b>25.</b> A máquina de 2 andares</span></a></div></section>
+<div class="foot">Imagens geradas via Gemini (hand-drawn, acento #F26B1D) a partir de 5 - Analises IA/prompts-imagens-miro-conclusao.md. Originais em 7 - Imagens Miro/.</div>
+<script>
+function toggleCut(btn){btn.closest('[data-block]').classList.toggle('is-cut');}
+function downloadFinal(){
+  var clone=document.documentElement.cloneNode(true);
+  clone.querySelectorAll('[data-block].is-cut').forEach(function(e){e.remove();});
+  clone.querySelectorAll('.cut').forEach(function(e){e.remove();});
+  clone.querySelectorAll('.toolbar').forEach(function(e){e.remove();});
+  clone.querySelectorAll('[contenteditable]').forEach(function(e){e.removeAttribute('contenteditable');});
+  clone.querySelectorAll('script').forEach(function(e){e.remove();});
+  var out='<!DOCTYPE html>\n'+clone.outerHTML;
+  var blob=new Blob([out],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=(document.title||'final').replace(/[^a-z0-9]+/gi,'-')+'-FINAL.html';a.click();
+}
+</script>
+</body></html>
