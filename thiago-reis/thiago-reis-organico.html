@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Thiago Reis — Growth Machine · Conteúdo Orgânico</title>
-<meta name="description" content="Spy do orgânico do Thiago Reis (vendas B2B): 100 reels + 50 carrosséis + 50 vídeos YouTube 2025/2026 + 50 shorts classificados por funil, com análise de copy editável (autosave) e métricas. Anote e exporte.">
+<meta name="description" content="Spy completo do Thiago Reis (vendas B2B): conteúdo orgânico (Instagram, YouTube 2025/2026, Shorts), Tráfego (SimilarWeb+SEMrush) e LinkedIn (engenharia reversa) — tudo numa página só. Navegue pelas abas. Análise editável com autosave; anote e exporte.">
 <style>
 @charset "utf-8";
 
@@ -403,6 +403,11 @@ footer { padding: 24px 40px; color: var(--muted); font-size: 12px; border-top: 1
    esconde abas inativas (display: none simples). Perf ganho fica no
    lazy-init das textareas via IntersectionObserver no JS. */
 
+/* abas Tráfego/LinkedIn */
+.platform-btn[data-platform="similarweb"].active{color:#38bdf8;}
+.platform-btn[data-platform="linkedin"].active{color:#0a66c2;}
+.sw-destaque .metric,.sw-explanation .metric{display:inline-block;font-size:11px;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:0 4px 5px 0;}
+.sw-card .sw-body{padding:14px 16px 16px;}
 /* extras thiago */
 .no-thumb{display:flex;align-items:center;justify-content:center;height:100%;color:#475569;font-size:12px;}
 .empty-section{padding:60px 40px;text-align:center;color:#64748b;}
@@ -427,7 +432,7 @@ footer { padding: 24px 40px; color: var(--muted); font-size: 12px; border-top: 1
 <body>
 <header>
   <h1>Thiago Reis — Growth Machine · Conteúdo Orgânico</h1>
-  <p class="subtitle">Spy do orgânico do Thiago Reis (vendas B2B): 100 reels + 50 carrosséis + 50 vídeos YouTube 2025/2026 + 50 shorts classificados por funil, com análise de copy editável (autosave) e métricas. Anote e exporte.</p>
+  <p class="subtitle">Spy completo do Thiago Reis (vendas B2B): conteúdo orgânico (Instagram, YouTube 2025/2026, Shorts), Tráfego (SimilarWeb+SEMrush) e LinkedIn (engenharia reversa) — tudo numa página só. Navegue pelas abas. Análise editável com autosave; anote e exporte.</p>
   <div class="summary">
     <div class="stat"><div class="n">250</div><div class="l">Total · 100 reels + 50 feed + 50 YT 2025/26 + 50 shorts</div></div>
     <div class="stat"><div class="n" style="color:#0ea5e9">166</div><div class="l">TOFU</div></div>
@@ -438,6 +443,10 @@ footer { padding: 24px 40px; color: var(--muted); font-size: 12px; border-top: 1
     <button class="platform-btn active" data-platform="ig">📷 Instagram <span class="pcount">150</span></button>
     <button class="platform-btn" data-platform="yt">📺 YouTube 2025/2026 <span class="pcount">50</span></button>
     <button class="platform-btn" data-platform="short">⚡ Shorts <span class="pcount">50</span></button>
+    <button class="platform-btn" data-platform="similarweb">📊 Tráfego <span class="pcount">15</span></button>
+    <button class="platform-btn" data-platform="linkedin">💼 LinkedIn <span class="pcount">44</span></button>
+    <a class="platform-btn" data-platform="paginas" href="firecrawl-links.html">🔥 Páginas + Links</a>
+    <a class="platform-btn" data-platform="dossie" href="dossie_thiago-reis.html">🕵 Dossiê</a>
     </div>
   <div class="controls">
     <button class="filter-btn active" data-filter="all">Todos</button>
@@ -447,7 +456,6 @@ footer { padding: 24px 40px; color: var(--muted); font-size: 12px; border-top: 1
     <button class="filter-btn ig-only" data-filter="kind:reel">Só reels</button>
     <button class="filter-btn ig-only" data-filter="kind:post">Só carrosséis</button>
     <button class="filter-btn ig-only" data-filter="funnel:manychat">Com Manychat</button>
-    <a class="filter-btn" href="index.html" style="text-decoration:none">← Dashboard</a>
     <button class="export-btn" id="exportBtn">⬇ Exportar minhas anotações (JSON)</button>
   </div>
 </header>
@@ -32468,6 +32476,421 @@ Short médio-forte com potencial de BOFU inexplorado: o formato de demonstraçã
     </article>
       </div>
     </section>
+
+    <section class="section sw-divider" data-platform="similarweb">
+      <header class="section-head sw-header">
+        <div><h2 style="color:#38bdf8">📊 Tráfego — ecossistema Growth Machine (SimilarWeb + SEMrush)</h2><p class="section-sub">15 prints organizados em 4 grupos por domínio. Cada card traz um resumo em palavras simples + a análise. Janela abr/2026. Clique nas imagens pra ampliar.</p></div>
+        <div class="section-stats"><span><strong>15</strong> prints</span><span><strong>4</strong> grupos</span></div>
+      </header>
+    </section>
+
+    <section class="sw-resumo" data-platform="similarweb">
+      <div class="section-header">
+        <h3>📋 Resumo — pra passar pra alguém <span class="edit-tag">editável</span></h3>
+        <button type="button" class="reset-btn" data-reset-key="copy::trafego-resumo" title="Restaurar texto original">↺ original</button>
+      </div>
+      <p class="resumo-sub">A versão de 2 minutos do tráfego inteiro. Quem bate o olho aqui já entende o essencial sem abrir os 15 cards. Editável — ajuste o tom pra quem você vai mandar.</p>
+      <textarea class="copy-textarea" data-storage-key="copy::trafego-resumo" rows="35" data-default="O QUE É ESSE MATERIAL
+Um raio-X do tráfego do ecossistema Growth Machine (o site do Thiago Reis e os domínios das ofertas dele) feito com duas ferramentas: SimilarWeb e SEMrush. São 15 prints organizados por domínio — quantas visitas cada um recebe, de onde vêm e pra onde a atenção (e o dinheiro) está indo. As duas ferramentas divergem nos números; uso as duas pra triangular.
+
+A LEITURA EM UMA FRASE
+O Thiago parou de concentrar tudo num site só e passou a rodar um domínio dedicado pra cada oferta. O site-mãe voltou a crescer forte (+56%), a aposta nova de alto valor (Expansão Comercial) está explodindo (+96%), e o produto barato de entrada (Desafio de R$97) está esfriando (−33%).
+
+OS INSIGHTS MAIS IMPORTANTES
+
+1. O site principal (growthmachine.com.br) voltou a crescer: ~15 mil visitas/mês, +56% no trimestre. Vive de gente que digita o endereço direto + busca no Google (juntos ~79%) — é puro reconhecimento de marca/autoridade. E começou a fazer anúncio pago (~9% do tráfego), coisa que antes não existia.
+
+2. expansaocomercial.com é a aposta da vez. Saiu do zero para ~3,7 mil visitas em abril (+96%, tráfego direto +563%). É o funil de alto valor (Programa Expansão Comercial). Quem entra no formulário fica quase 10 minutos na página — é gente qualificada preenchendo uma aplicação, não curioso passando.
+
+3. desafio1a10milhoes.com.br (o tripwire de R$97) está esfriando: −33% no trimestre. O produto barato de entrada perdeu fôlego no período.
+
+4. lord-of-sales.com é o brinquedo novo: gamificação (ranking, missões, prêmios). Cresceu do zero. E aqui está o ouro: as visitas vêm de LinkedIn (15%), YouTube (10%) e até do ChatGPT (7%). Ou seja, o conteúdo orgânico dele alimenta esse funil — e a busca por IA já manda gente pra lá.
+
+5. Ele se trata como afiliado dos próprios produtos: existe um link de indicação rastreado (/r/thiago7482) que mede exatamente quanto tráfego o próprio Thiago manda.
+
+6. lp.growthmachine (as páginas de captura/isca) está caindo (4,3 mil → 2,9 mil). O esforço migrou das LPs genéricas pros domínios dedicados de cada oferta.
+
+POR QUE ISSO IMPORTA (pra Swipe)
+- O playbook do Thiago é claro: um domínio dedicado por oferta + conteúdo orgânico (YouTube/LinkedIn) empurrando pro funil pago, com link de indicação rastreável.
+- O que mais cresce é o alto valor (expansaocomercial) — é onde vale ficar de olho.
+- O ChatGPT já aparece como fonte de tráfego real: a busca por IA virou um canal de aquisição de verdade.
+
+OS GRUPOS DA ANÁLISE
+1 — Visão geral: os 4 domínios lado a lado (quem manda, quem cresce, quem cai).
+2 — growthmachine.com.br: o site-mãe (autoridade) — canais, fontes e a LP de captura.
+3 — expansaocomercial.com: o funil de alto valor em explosão.
+4 — lord-of-sales.com: a gamificação nova e de onde vem o tráfego dela.">O QUE É ESSE MATERIAL
+Um raio-X do tráfego do ecossistema Growth Machine (o site do Thiago Reis e os domínios das ofertas dele) feito com duas ferramentas: SimilarWeb e SEMrush. São 15 prints organizados por domínio — quantas visitas cada um recebe, de onde vêm e pra onde a atenção (e o dinheiro) está indo. As duas ferramentas divergem nos números; uso as duas pra triangular.
+
+A LEITURA EM UMA FRASE
+O Thiago parou de concentrar tudo num site só e passou a rodar um domínio dedicado pra cada oferta. O site-mãe voltou a crescer forte (+56%), a aposta nova de alto valor (Expansão Comercial) está explodindo (+96%), e o produto barato de entrada (Desafio de R$97) está esfriando (−33%).
+
+OS INSIGHTS MAIS IMPORTANTES
+
+1. O site principal (growthmachine.com.br) voltou a crescer: ~15 mil visitas/mês, +56% no trimestre. Vive de gente que digita o endereço direto + busca no Google (juntos ~79%) — é puro reconhecimento de marca/autoridade. E começou a fazer anúncio pago (~9% do tráfego), coisa que antes não existia.
+
+2. expansaocomercial.com é a aposta da vez. Saiu do zero para ~3,7 mil visitas em abril (+96%, tráfego direto +563%). É o funil de alto valor (Programa Expansão Comercial). Quem entra no formulário fica quase 10 minutos na página — é gente qualificada preenchendo uma aplicação, não curioso passando.
+
+3. desafio1a10milhoes.com.br (o tripwire de R$97) está esfriando: −33% no trimestre. O produto barato de entrada perdeu fôlego no período.
+
+4. lord-of-sales.com é o brinquedo novo: gamificação (ranking, missões, prêmios). Cresceu do zero. E aqui está o ouro: as visitas vêm de LinkedIn (15%), YouTube (10%) e até do ChatGPT (7%). Ou seja, o conteúdo orgânico dele alimenta esse funil — e a busca por IA já manda gente pra lá.
+
+5. Ele se trata como afiliado dos próprios produtos: existe um link de indicação rastreado (/r/thiago7482) que mede exatamente quanto tráfego o próprio Thiago manda.
+
+6. lp.growthmachine (as páginas de captura/isca) está caindo (4,3 mil → 2,9 mil). O esforço migrou das LPs genéricas pros domínios dedicados de cada oferta.
+
+POR QUE ISSO IMPORTA (pra Swipe)
+- O playbook do Thiago é claro: um domínio dedicado por oferta + conteúdo orgânico (YouTube/LinkedIn) empurrando pro funil pago, com link de indicação rastreável.
+- O que mais cresce é o alto valor (expansaocomercial) — é onde vale ficar de olho.
+- O ChatGPT já aparece como fonte de tráfego real: a busca por IA virou um canal de aquisição de verdade.
+
+OS GRUPOS DA ANÁLISE
+1 — Visão geral: os 4 domínios lado a lado (quem manda, quem cresce, quem cai).
+2 — growthmachine.com.br: o site-mãe (autoridade) — canais, fontes e a LP de captura.
+3 — expansaocomercial.com: o funil de alto valor em explosão.
+4 — lord-of-sales.com: a gamificação nova e de onde vem o tráfego dela.</textarea>
+      <div class="save-state" data-for="copy::trafego-resumo">não editado</div>
+    </section>
+
+        <section class="section" data-platform="similarweb" data-group="trafego-grupo1">
+          <header class="section-head" style="border-left-color:#0ea5e9">
+            <div><h2 style="color:#0ea5e9">🌐 GRUPO 1 — Visão geral</h2><p class="section-sub">Os 4 domínios do ecossistema comparados.</p></div>
+            <div class="section-actions"><button class="miro-link-btn section-miro-btn" type="button" data-section-id="trafego-grupo1" title="Copiar URL pra embedar essa seção no Miro">📎 Seção Miro</button></div>
+            <div class="section-stats"><span><strong>1</strong> prints</span></div>
+          </header>
+          <div class="sw-grid">
+        <article class="sw-card" data-id="traf-comparacao">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/semrush-comparacao-4-dominios.png" alt="Visão geral — os 4 domínios lado a lado" loading="lazy" data-zoom-src="_assets/trafego/semrush-comparacao-4-dominios.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>Visão geral — os 4 domínios lado a lado</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-comparacao" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> Em um quadro só: o site principal manda (66% do tráfego), dois funis novos estão em rampa de lançamento e o tripwire de R$97 está caindo.</p>
+            <div class="sw-explanation"><p><b>growthmachine.com.br</b> 65,66% (15,3 mil, ▲+56%) · <b>expansaocomercial.com</b> 13,69% (▲+96%, direto +563%) · <b>desafio1a10milhoes</b> 13,69% (▼−33%) · <b>lord-of-sales.com</b> 6,96% (✦ novo).</p><p>Leitura: o domínio-mãe recuperou força; expansaocomercial e lord-of-sales são as apostas em lançamento; o desafio (tripwire pago) esfriou.</p></div>
+          </div>
+        </article></div>
+        </section>
+
+        <section class="section" data-platform="similarweb" data-group="trafego-grupo2">
+          <header class="section-head" style="border-left-color:#34d399">
+            <div><h2 style="color:#34d399">🏢 GRUPO 2 — growthmachine.com.br (o site-mãe)</h2><p class="section-sub">~51 mil visitas em 3 meses. Site de autoridade orgânica que começou a fazer mídia paga.</p></div>
+            <div class="section-actions"><button class="miro-link-btn section-miro-btn" type="button" data-section-id="trafego-grupo2" title="Copiar URL pra embedar essa seção no Miro">📎 Seção Miro</button></div>
+            <div class="section-stats"><span><strong>5</strong> prints</span></div>
+          </header>
+          <div class="sw-grid">
+        <article class="sw-card" data-id="traf-gm-overview">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/sw-growthmachine-overview.png" alt="growthmachine.com.br — visão dos canais" loading="lazy" data-zoom-src="_assets/trafego/sw-growthmachine-overview.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>growthmachine.com.br — visão dos canais</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-gm-overview" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> O site principal recebe ~51 mil visitas em 3 meses e vive de marca: quase 8 em cada 10 visitas são gente que digita o endereço ou busca no Google.</p>
+            <div class="sw-explanation"><p><span class='metric'>Direto 47,79%</span><span class='metric'>Busca org. 31,21%</span><span class='metric'>Social pago 5,72%</span><span class='metric'>Display 2,88%</span> Direto + SEO ≈ 79%.</p><p>Novidade: ~9% do tráfego agora é pago (social pago + display + busca paga). No recon inicial era 0% pago — ele começou a investir em anúncio.</p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-gm-fontes">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/sw-growthmachine-fontes.png" alt="growthmachine.com.br — de onde vêm as visitas" loading="lazy" data-zoom-src="_assets/trafego/sw-growthmachine-fontes.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>growthmachine.com.br — de onde vêm as visitas</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-gm-fontes" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> O tráfego direto ainda é o maior, mas está perdendo peso; o social está crescendo rápido (+171%). YouTube e Facebook aparecem como pontes.</p>
+            <div class="sw-explanation"><p><span class='metric'>Direto 47,79% ▼−50%</span><span class='metric'>Google #1 25%</span><span class='metric'>Social ▲+171%</span><span class='metric'>YouTube 1,75%</span><span class='metric'>Facebook 1,41%</span></p><p>Referrals próprios: nichoos.com e growthstation.app (sites do próprio ecossistema mandando tráfego).</p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-gm-canais">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/sw-growthmachine-canais-totais.png" alt="growthmachine.com.br — volume por canal" loading="lazy" data-zoom-src="_assets/trafego/sw-growthmachine-canais-totais.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>growthmachine.com.br — volume por canal</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-gm-canais" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> O tamanho real de cada canal em número de visitas (fev–mai). Direto e busca orgânica dominam; o pago já soma alguns milhares.</p>
+            <div class="sw-explanation"><p><span class='metric'>Direto 25,9k</span><span class='metric'>Orgânico 19,4k</span><span class='metric'>Social org. 4,4k</span><span class='metric'>Social pago 3,1k</span><span class='metric'>Display 1,5k</span><span class='metric'>IA (Gen AI) 362</span></p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-gm-semanal">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/sw-growthmachine-canais-semanal.png" alt="growthmachine.com.br — tráfego por semana" loading="lazy" data-zoom-src="_assets/trafego/sw-growthmachine-canais-semanal.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>growthmachine.com.br — tráfego por semana</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-gm-semanal" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> O tráfego tem picos nas semanas de campanha/lançamento (~3,5 mil), depois volta ao normal. Mostra que ele trabalha por ondas de lançamento.</p>
+            <div class="sw-explanation"><p>Picos visíveis em 23/fev e 23/mar — semanas de evento/abertura de oferta.</p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-lp-gm">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/sw-lp-growthmachine.png" alt="lp.growthmachine.com.br — caindo" loading="lazy" data-zoom-src="_assets/trafego/sw-lp-growthmachine.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>lp.growthmachine.com.br — caindo</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-lp-gm" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> O subdomínio das páginas de isca/captura está perdendo tráfego. O esforço migrou pras páginas dedicadas de cada oferta.</p>
+            <div class="sw-explanation"><p><span class='metric'>2,9k/mês ▼ (era 4,3k)</span><span class='metric'>bounce 71,76%</span><span class='metric'>1,42 pág</span><span class='metric'>0:33</span> Comportamento típico de página de captura: entra, vê uma coisa, sai.</p></div>
+          </div>
+        </article></div>
+        </section>
+
+        <section class="section" data-platform="similarweb" data-group="trafego-grupo3">
+          <header class="section-head" style="border-left-color:#22c55e">
+            <div><h2 style="color:#22c55e">🚀 GRUPO 3 — expansaocomercial.com (alto valor, +96%)</h2><p class="section-sub">O funil de alto valor em explosão. Aplicação/diagnóstico do Programa Expansão Comercial.</p></div>
+            <div class="section-actions"><button class="miro-link-btn section-miro-btn" type="button" data-section-id="trafego-grupo3" title="Copiar URL pra embedar essa seção no Miro">📎 Seção Miro</button></div>
+            <div class="section-stats"><span><strong>3</strong> prints</span></div>
+          </header>
+          <div class="sw-grid">
+        <article class="sw-card" data-id="traf-exp-sw">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/sw-form-expansaocomercial.png" alt="expansaocomercial.com — visitas no tempo (SimilarWeb)" loading="lazy" data-zoom-src="_assets/trafego/sw-form-expansaocomercial.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>expansaocomercial.com — visitas no tempo (SimilarWeb)</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-exp-sw" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> Saiu do zero pra ~3,7 mil visitas em abril. É um funil novo, em rampa agressiva — a aposta de alto valor da casa.</p>
+            <div class="sw-explanation"><p><span class='metric'>0→3,7k em abr</span><span class='metric'>bounce 71%</span><span class='metric'>1,48 pág</span><span class='metric'>0:54</span> No SEMrush, o tráfego direto desse domínio subiu +563%.</p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-exp-resumo">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/semrush-form-expansao-resumo.png" alt="form.expansaocomercial.com — resumo (SEMrush)" loading="lazy" data-zoom-src="_assets/trafego/semrush-form-expansao-resumo.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>form.expansaocomercial.com — resumo (SEMrush)</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-exp-resumo" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> O subdomínio medido é o formulário de aplicação. Quem entra fica quase 10 minutos — sinal de gente qualificada preenchendo, não curioso.</p>
+            <div class="sw-explanation"><p><span class='metric'>2,3 mil visitas</span><span class='metric'>403 únicos</span><span class='metric'>duração 9:47</span><span class='metric'>100% desktop</span></p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-exp-canais">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/semrush-form-expansao-canais.png" alt="expansaocomercial.com — canais" loading="lazy" data-zoom-src="_assets/trafego/semrush-form-expansao-canais.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>expansaocomercial.com — canais</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-exp-canais" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> A maior parte vem direto (tráfego de marca: YouTube, e-mail e anúncios apontando pro nome da oferta).</p>
+            <div class="sw-explanation"><p><span class='metric'>Direto ~1,5k</span><span class='metric'>Pago ~250</span><span class='metric'>Social org. ~480</span> Direto altíssimo = campanhas mandando gente buscar o nome.</p></div>
+          </div>
+        </article></div>
+        </section>
+
+        <section class="section" data-platform="similarweb" data-group="trafego-grupo4">
+          <header class="section-head" style="border-left-color:#a78bfa">
+            <div><h2 style="color:#a78bfa">👑 GRUPO 4 — lord-of-sales.com (gamificação nova)</h2><p class="section-sub">Ranking/missões de vendas. Cresce por orgânico social (LinkedIn/YouTube) + IA. Alta retenção.</p></div>
+            <div class="section-actions"><button class="miro-link-btn section-miro-btn" type="button" data-section-id="trafego-grupo4" title="Copiar URL pra embedar essa seção no Miro">📎 Seção Miro</button></div>
+            <div class="section-stats"><span><strong>6</strong> prints</span></div>
+          </header>
+          <div class="sw-grid">
+        <article class="sw-card" data-id="traf-los-journey">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/semrush-lordofsales-journey.png" alt="lord-of-sales.com — de onde vem o tráfego" loading="lazy" data-zoom-src="_assets/trafego/semrush-lordofsales-journey.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>lord-of-sales.com — de onde vem o tráfego</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-los-journey" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> Metade vem do próprio site, mas o resto vem de LinkedIn, YouTube e ChatGPT. É o conteúdo orgânico dele alimentando o funil — e a IA já manda gente.</p>
+            <div class="sw-explanation"><p><span class='metric'>próprio 50,7%</span><span class='metric'>Google 17,4%</span><span class='metric'>LinkedIn 15,1%</span><span class='metric'>YouTube 10%</span><span class='metric'>ChatGPT 6,9%</span></p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-los-paginas">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/semrush-lordofsales-paginas.png" alt="lord-of-sales.com — páginas mais visitadas" loading="lazy" data-zoom-src="_assets/trafego/semrush-lordofsales-paginas.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>lord-of-sales.com — páginas mais visitadas</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-los-paginas" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> A página de indicação do próprio Thiago (/r/thiago7482) aparece no top: ele opera como embaixador rastreado dos próprios produtos.</p>
+            <div class="sw-explanation"><p><span class='metric'>home 39,8%</span><span class='metric'>/recursos 21,5%</span><span class='metric'>/dashboard 10,9%</span><span class='metric'>/desafio-v2 10%</span><span class='metric'>/r/thiago7482 6,9%</span></p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-los-resumo">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/semrush-lordofsales-resumo.png" alt="lord-of-sales.com — resumo (SEMrush)" loading="lazy" data-zoom-src="_assets/trafego/semrush-lordofsales-resumo.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>lord-of-sales.com — resumo (SEMrush)</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-los-resumo" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> Pelo formato de jogo (ranking/missões), a retenção é alta: a pessoa abre várias páginas e fica 3 minutos. Bem diferente de uma LP comum.</p>
+            <div class="sw-explanation"><p><span class='metric'>1,6 mil</span><span class='metric'>3,3 pág/visita</span><span class='metric'>3:06</span><span class='metric'>bounce 46%</span> (o SimilarWeb é mais conservador e estima bounce 93%.)</p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-los-canais">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/semrush-lordofsales-canais.png" alt="lord-of-sales.com — canais" loading="lazy" data-zoom-src="_assets/trafego/semrush-lordofsales-canais.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>lord-of-sales.com — canais</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-los-canais" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> Cresce sem mídia paga — só orgânico social (LinkedIn/YouTube) + busca + IA.</p>
+            <div class="sw-explanation"><p><span class='metric'>Direto ~810</span><span class='metric'>Social org. ~400</span><span class='metric'>Orgânico ~280</span><span class='metric'>IA ~110</span></p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-los-tendencia">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/semrush-lordofsales-tendencia.png" alt="lord-of-sales.com — tendência" loading="lazy" data-zoom-src="_assets/trafego/semrush-lordofsales-tendencia.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>lord-of-sales.com — tendência</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-los-tendencia" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> O tráfego direto dispara pra ~2,8 mil em maio — provável janela de uma nova temporada do desafio/competição.</p>
+            <div class="sw-explanation"><p>Picos coincidem com aberturas de temporada da gamificação.</p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="traf-los-sw">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/trafego/sw-lord-of-sales.png" alt="lord-of-sales.com — visitas no tempo (SimilarWeb)" loading="lazy" data-zoom-src="_assets/trafego/sw-lord-of-sales.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>lord-of-sales.com — visitas no tempo (SimilarWeb)</h4>
+              <button class="miro-link-btn" type="button" data-card-id="traf-los-sw" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> Leitura conservadora do SimilarWeb: 0 → ~996 visitas em abril. Confirma que é um domínio recém-lançado em crescimento.</p>
+            <div class="sw-explanation"><p><span class='metric'>0→996 em abr</span><span class='metric'>bounce 93%</span><span class='metric'>1 pág</span></p></div>
+          </div>
+        </article></div>
+        </section>
+
+    <section class="section sw-divider" data-platform="linkedin">
+      <header class="section-head sw-header">
+        <div><h2 style="color:#0a66c2">💼 LinkedIn — como ele se comporta (engenharia reversa)</h2><p class="section-sub">44 publicações do último mês, com acesso logado. Como ele usa o LinkedIn, como vende e como gera diagnósticos. Comece pelo Resumo.</p></div>
+        <div class="section-stats"><span><strong>44</strong> posts/mês</span><span><strong>119,8k</strong> seguidores</span></div>
+      </header>
+    </section>
+
+    <section class="sw-resumo" data-platform="linkedin">
+      <div class="section-header">
+        <h3>📋 Resumo — pra passar pra alguém <span class="edit-tag">editável</span></h3>
+        <button type="button" class="reset-btn" data-reset-key="copy::linkedin-resumo" title="Restaurar texto original">↺ original</button>
+      </div>
+      <p class="resumo-sub">Tudo que ele faz no LinkedIn em palavras simples. Quem lê aqui já entende a estratégia inteira. Editável.</p>
+      <textarea class="copy-textarea" data-storage-key="copy::linkedin-resumo" rows="39" data-default="O QUE É ESSE MATERIAL
+Uma engenharia reversa de como o Thiago Reis usa o LinkedIn, feita com acesso logado em cima das 44 publicações do último mês: o que ele posta, com que frequência, como vende e como gera diagnósticos.
+
+A LEITURA EM UMA FRASE
+O LinkedIn dele não é vitrine — é uma fábrica de leads. Posta ~1,5 vez por dia e quase todo post termina com &quot;Comenta tal palavra que eu te mando no direct&quot;. É assim que ele transforma post em conversa de venda, sem gastar com anúncio.
+
+OS INSIGHTS MAIS IMPORTANTES
+
+1. Volume: 119.841 seguidores, ~1,5 post por dia (26 texto + 18 lives no mês) + live quase todo dia. Não é sobre viralizar um post — é sobre aparecer o tempo todo.
+
+2. A mecânica central é &quot;Comenta X → DM&quot;. Quase todo post pede um comentário com uma palavra-chave (DESAFIO, CONSULTIVO, IMAGEM, MÁQUINA...). O comentário faz duas coisas: alimenta o algoritmo (mais comentário = mais alcance) E abre uma conversa no direct, onde o time qualifica e vende.
+
+3. Quase todo post longo segue a mesma receita: (1) gancho que quebra uma crença na 1ª linha, (2) a frase de autoridade &quot;depois de estruturar mais de 8.000 operações comerciais&quot;, (3) uma lista numerada com dica prática, (4) um resumo de uma linha, (5) o &quot;Comenta X&quot;.
+
+4. Como ele vende: post de valor → &quot;Comenta DESAFIO&quot; → direct → tripwire de R$97 (&quot;Desafio 5 a 50 clientes em 20 dias&quot;, com garantia de devolver 10x) → diagnóstico → produto de alto valor. As lives quase diárias são eventos de fechamento ao vivo (&quot;a oferta sai do ar quando a live acabar&quot;).
+
+5. Como ele gera diagnóstico: chama a call de vendas de &quot;auditoria, não call de venda&quot; — &quot;eu olhando seus números, seu funil, seus gargalos&quot;. Tira a resistência. Também usa auto-diagnóstico no post (&quot;3 perguntas pra saber se suas vendas estão prontas&quot;) pra pessoa sentir a dor sozinha.
+
+6. O que dá mais REAÇÃO: emoção/história de origem (telemarketer que ganhava R$473, mãe que vendia marmita) e autoridade emprestada (almoçou com quem vendeu empresa por R$1,8 bilhão). O que dá mais COMENTÁRIO (= mais lead): post polêmico que gera debate + ferramenta pronta de graça fechada atrás de um comentário.
+
+7. A aposta de discurso do mês é IA na prospecção (SDR de IA / Prospct.IA): &quot;a IA faz 400 ligações por hora, mas quem fecha é o humano&quot;. Metade do conteúdo orbita isso.
+
+POR QUE ISSO IMPORTA (pra Swipe)
+Dá pra copiar a fórmula inteira: post longo (gancho que quebra uma crença + prova de autoridade + lista prática + &quot;Comenta X&quot;) em cadência diária, usando o comentário como captura e o direct como entrega da isca. História pessoal pra alcance, ferramenta gratuita pra gerar comentário, polêmica pra gerar debate. Tripwire barato com garantia forte como porta de entrada pro alto valor. Barato, escalável e independente de mídia paga.
+
+OS 8 PILARES DE CONTEÚDO
+1 — Contrarian &quot;X morreu/é mito&quot;: ataca a crença do mercado (&quot;ligação não funciona&quot;, &quot;cold call tá morto&quot;) pra se posicionar.
+2 — Autoridade emprestada: name-drop de gigantes (Salesforce/Benioff, Deloitte, Anthropic, Neoway).
+3 — Origin story/vulnerabilidade: telemarketer R$473, mãe marmiteira, falido R$300k. Gera as maiores reações.
+4 — Playbook numerado: &quot;5 passos&quot;, &quot;3 portas&quot;, &quot;7 comportamentos&quot; — valor tático de graça.
+5 — Tese de IA / SDR agêntico: a aposta atual (Prospct.IA, &quot;IA na largada, humano na chegada&quot;).
+6 — Argumento com estudo/dado: Mehrabian, McKinsey, SPIN, Harvard — blindagem científica.
+7 — Chefe linha-dura: &quot;ou faz o que eu mando ou tá fora&quot; — polariza e gera debate.
+8 — Flex de números em tempo real: &quot;428 reuniões&quot;, &quot;R$2,5M em 37h&quot; — mostra a máquina rodando.">O QUE É ESSE MATERIAL
+Uma engenharia reversa de como o Thiago Reis usa o LinkedIn, feita com acesso logado em cima das 44 publicações do último mês: o que ele posta, com que frequência, como vende e como gera diagnósticos.
+
+A LEITURA EM UMA FRASE
+O LinkedIn dele não é vitrine — é uma fábrica de leads. Posta ~1,5 vez por dia e quase todo post termina com &quot;Comenta tal palavra que eu te mando no direct&quot;. É assim que ele transforma post em conversa de venda, sem gastar com anúncio.
+
+OS INSIGHTS MAIS IMPORTANTES
+
+1. Volume: 119.841 seguidores, ~1,5 post por dia (26 texto + 18 lives no mês) + live quase todo dia. Não é sobre viralizar um post — é sobre aparecer o tempo todo.
+
+2. A mecânica central é &quot;Comenta X → DM&quot;. Quase todo post pede um comentário com uma palavra-chave (DESAFIO, CONSULTIVO, IMAGEM, MÁQUINA...). O comentário faz duas coisas: alimenta o algoritmo (mais comentário = mais alcance) E abre uma conversa no direct, onde o time qualifica e vende.
+
+3. Quase todo post longo segue a mesma receita: (1) gancho que quebra uma crença na 1ª linha, (2) a frase de autoridade &quot;depois de estruturar mais de 8.000 operações comerciais&quot;, (3) uma lista numerada com dica prática, (4) um resumo de uma linha, (5) o &quot;Comenta X&quot;.
+
+4. Como ele vende: post de valor → &quot;Comenta DESAFIO&quot; → direct → tripwire de R$97 (&quot;Desafio 5 a 50 clientes em 20 dias&quot;, com garantia de devolver 10x) → diagnóstico → produto de alto valor. As lives quase diárias são eventos de fechamento ao vivo (&quot;a oferta sai do ar quando a live acabar&quot;).
+
+5. Como ele gera diagnóstico: chama a call de vendas de &quot;auditoria, não call de venda&quot; — &quot;eu olhando seus números, seu funil, seus gargalos&quot;. Tira a resistência. Também usa auto-diagnóstico no post (&quot;3 perguntas pra saber se suas vendas estão prontas&quot;) pra pessoa sentir a dor sozinha.
+
+6. O que dá mais REAÇÃO: emoção/história de origem (telemarketer que ganhava R$473, mãe que vendia marmita) e autoridade emprestada (almoçou com quem vendeu empresa por R$1,8 bilhão). O que dá mais COMENTÁRIO (= mais lead): post polêmico que gera debate + ferramenta pronta de graça fechada atrás de um comentário.
+
+7. A aposta de discurso do mês é IA na prospecção (SDR de IA / Prospct.IA): &quot;a IA faz 400 ligações por hora, mas quem fecha é o humano&quot;. Metade do conteúdo orbita isso.
+
+POR QUE ISSO IMPORTA (pra Swipe)
+Dá pra copiar a fórmula inteira: post longo (gancho que quebra uma crença + prova de autoridade + lista prática + &quot;Comenta X&quot;) em cadência diária, usando o comentário como captura e o direct como entrega da isca. História pessoal pra alcance, ferramenta gratuita pra gerar comentário, polêmica pra gerar debate. Tripwire barato com garantia forte como porta de entrada pro alto valor. Barato, escalável e independente de mídia paga.
+
+OS 8 PILARES DE CONTEÚDO
+1 — Contrarian &quot;X morreu/é mito&quot;: ataca a crença do mercado (&quot;ligação não funciona&quot;, &quot;cold call tá morto&quot;) pra se posicionar.
+2 — Autoridade emprestada: name-drop de gigantes (Salesforce/Benioff, Deloitte, Anthropic, Neoway).
+3 — Origin story/vulnerabilidade: telemarketer R$473, mãe marmiteira, falido R$300k. Gera as maiores reações.
+4 — Playbook numerado: &quot;5 passos&quot;, &quot;3 portas&quot;, &quot;7 comportamentos&quot; — valor tático de graça.
+5 — Tese de IA / SDR agêntico: a aposta atual (Prospct.IA, &quot;IA na largada, humano na chegada&quot;).
+6 — Argumento com estudo/dado: Mehrabian, McKinsey, SPIN, Harvard — blindagem científica.
+7 — Chefe linha-dura: &quot;ou faz o que eu mando ou tá fora&quot; — polariza e gera debate.
+8 — Flex de números em tempo real: &quot;428 reuniões&quot;, &quot;R$2,5M em 37h&quot; — mostra a máquina rodando.</textarea>
+      <div class="save-state" data-for="copy::linkedin-resumo">não editado</div>
+    </section>
+
+        <section class="section" data-platform="linkedin" data-group="linkedin-grupo1">
+          <header class="section-head" style="border-left-color:#0a66c2">
+            <div><h2 style="color:#0a66c2">🔎 GRUPO 1 — Perfil, funil e o que performa</h2><p class="section-sub">O essencial do comportamento, com o print do perfil.</p></div>
+            <div class="section-actions"><button class="miro-link-btn section-miro-btn" type="button" data-section-id="linkedin-grupo1" title="Copiar URL pra embedar essa seção no Miro">📎 Seção Miro</button></div>
+            <div class="section-stats"><span><strong>3</strong> prints</span></div>
+          </header>
+          <div class="sw-grid">
+        <article class="sw-card" data-id="li-perfil">
+          <div class="sw-img-wrap"><div class="sw-sticky">
+          <img src="_assets/linkedin/01-profile-full.png" alt="O perfil (captura logada)" loading="lazy" data-zoom-src="_assets/linkedin/01-profile-full.png">
+          <div class="sw-img-hint">🔍 clique pra ampliar</div></div></div>
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>O perfil (captura logada)</h4>
+              <button class="miro-link-btn" type="button" data-card-id="li-perfil" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> 119.841 seguidores. Headline atual: 'CEO e Fundador @ Growth Machine | Driving Go to Market Strategy'. Botão fixo: 'Acessar meu site'.</p>
+            <div class="sw-explanation"><p>O posicionamento 'GM4E/aquisição de empresas' que aparecia em dado antigo NÃO está mais na bio — agora é go-to-market puro, com a aposta em IA/SDR (Prospct.IA).</p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="li-funil">
+          
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>Como ele vende — o funil 'Comenta X → DM'</h4>
+              <button class="miro-link-btn" type="button" data-card-id="li-funil" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> Post de valor → pede comentário com palavra-chave → manda a isca no direct → tripwire R$97 → diagnóstico → alto valor.</p>
+            <div class="sw-explanation"><p><b>1.</b> Post de valor (framework/história/dado) constrói autoridade. <b>2.</b> 'Comenta DESAFIO' — o comentário dá alcance e abre o direct. <b>3.</b> No direct entrega o material e qualifica. <b>4.</b> Tripwire R$97 ('5 a 50 clientes em 20 dias', garantia 10x). <b>5.</b> Diagnóstico/'auditoria' qualifica pro alto valor (PEC/mentoria).</p><p>~15 palavras-chave no mês; <b>DESAFIO</b> é a recorrente. As lives quase diárias são eventos de fechamento em tempo real.</p></div>
+          </div>
+        </article>
+        <article class="sw-card" data-id="li-performa">
+          
+          <div class="sw-body">
+            <div class="sw-body-head"><h4>O que performa (só o mês real)</h4>
+              <button class="miro-link-btn" type="button" data-card-id="li-performa" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+            </div>
+            <p class="sw-destaque"><strong>📝 Em palavras simples:</strong> Emoção/autoridade puxa reação; polêmica e ferramenta-grátis-fechada-atrás-de-comentário puxam comentário (= lead).</p>
+            <div class="sw-explanation"><p><b>Top reações:</b> Efeito Halo 164 · recap de evento 'High Growth' 141 · almoço Neoway R$1,8bi 127 · palestra Renata 127 · 'SDR de IA faz 400 ligações/h' 116.</p><p><b>Top comentários:</b> 'ou faz o que eu mando ou tá fora' 57 (polêmica) · roteiro CONSULTIVO 40 · podcast Igor 3k 39 · playbook Sales Navigator 34. Ele não otimiza viral por post — otimiza frequência + nº de comentários-com-keyword.</p></div>
+          </div>
+        </article></div>
+        </section>
 </main>
 <div class="lightbox" id="swLightbox"><button class="lightbox-close" type="button" aria-label="Fechar">✕</button><img src="" alt="zoom"><div class="lightbox-hint">clique fora ou ESC pra fechar</div></div>
 <footer>Anotações salvas no <code>localStorage</code> (chaves <code>copy::&lt;id&gt;</code>, <code>analise-geral::&lt;id&gt;</code>, <code>hook::&lt;id&gt;</code>). Exporte o JSON pra não perder. Thumbs locais — clique no card pra abrir o original.</footer>
@@ -32494,10 +32917,12 @@ function applyAll() {
     const isIgOnly = b.classList.contains('ig-only');
     const isPagoOnly = b.classList.contains('pago-only');
     const isNotPago = b.classList.contains('not-pago');
-    const hideIgOnly = (currentPlatform === 'yt' || currentPlatform === 'pago' || currentPlatform === 'similarweb' || currentPlatform === 'conclusao') && isIgOnly;
+    const isStageBtn = ((b.dataset.filter)||'').indexOf('stage:') === 0;
+    const hideStageHere = (currentPlatform === 'similarweb' || currentPlatform === 'linkedin') && isStageBtn;
+    const hideIgOnly = (currentPlatform === 'yt' || currentPlatform === 'pago' || currentPlatform === 'similarweb' || currentPlatform === 'conclusao' || currentPlatform === 'linkedin') && isIgOnly;
     const hidePagoOnly = currentPlatform !== 'pago' && isPagoOnly;
     const hideNotPago = (currentPlatform === 'pago' || currentPlatform === 'conclusao') && isNotPago;
-    if (hideIgOnly || hidePagoOnly || hideNotPago) {
+    if (hideIgOnly || hidePagoOnly || hideNotPago || hideStageHere) {
       b.classList.add('hidden-by-platform');
       if (b.classList.contains('active')) {
         b.classList.remove('active');
