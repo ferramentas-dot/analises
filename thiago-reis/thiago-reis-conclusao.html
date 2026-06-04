@@ -52,7 +52,7 @@ body{margin:0;font-family:Manrope,-apple-system,'Segoe UI',sans-serif;background
   <p class="sub" contenteditable="true">Destilado final do dossiê — pensado pra quem quer entender como ele fatura de verdade, por que está funcionando, onde está frágil e como atacar esse mercado sem competir de frente. Cada card é editável (autosave no navegador). Marcado [CONFIRMADO] (validado na coleta) vs [HIPÓTESE] (inferência). Sintetizado de IG (100 reels + 50 estáticos), LinkedIn (44 posts), YouTube (long-form 2026) e os 7 funis de 2 - Paginas/ + VSLs.</p>
   <div class="toolbar">
     <span class="hint">✎ Edite qualquer card (salva sozinho) · <b>↺ original</b> restaura · <b>x</b> corta.</span>
-    <span class="stats"><span><b>42</b> cards</span><span><b>7</b> seções</span></span>
+    <span class="stats"><span><b>43</b> cards</span><span><b>7</b> seções</span></span>
     <button class="export" onclick="downloadFinal()">⬇ Baixar versão final</button>
   </div>
 </header>
@@ -775,6 +775,27 @@ Pro seu lado, é o erro a não cometer: escolha UMA credencial forte e martele e
 Inconsistência de prova é uma fresta na muralha: dá margem pra alguém pensar &quot;se nem os próprios números ele acerta...&quot;. Não derruba ele, mas tira força.
 
 Pro seu lado, é o erro a não cometer: escolha UMA credencial forte e martele ela sempre igual. Consistência transmite mais confiança do que número grande que muda toda hora.</textarea>
+        </article>
+        <article class="ccard" data-block>
+          <button class="cut" title="Cortar card" onclick="toggleCut(this)">x</button>
+          <div class="ccard-head">
+            <span class="cbadge" style="color:#ef4444;background:#ef444422;border-color:#ef4444">🟩 EXPLORAR</span>
+            <h3 contenteditable="true">O que os clientes reclamam: o ReclameAqui entrega a fraqueza de bandeja</h3>
+          </div>
+          <div class="ccard-tools">
+            <span class="edit-tag">editável</span>
+            <button type="button" class="reset-btn" data-reset-key="copy::neg-bur-8" title="Restaurar texto original">↺ original</button>
+            <span class="save-state" data-for="copy::neg-bur-8">não editado</span>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::neg-bur-8" data-default="Aqui a fraqueza não é palpite nosso — é o próprio cliente falando. No ReclameAqui, a &quot;Growth Machine Consultoria&quot; está como &quot;Não recomendada&quot;, com cerca de 11 reclamações e apenas 9,1% respondidas. Ou seja: quem reclama, na prática, fica sem resposta.
+
+E o que reclamam é específico e repetido. Primeiro, resultado: gente que pagou caro na consultoria e diz não ter tido faturamento nenhum, &quot;investimento alto sem respaldo&quot;, &quot;propaganda enganosa, investimento sem resultados&quot; — bate de frente com a muralha de prova dos bilhões. Segundo, perturbação: relatos de ligação e WhatsApp toda semana por um ano, inclusive com gravação da voz do próprio Thiago insistindo — o que era só uma impressão do tom agressivo virou queixa pública. Terceiro, cobrança: &quot;exigir cobrança integral&quot;, &quot;paguei à vista e desapareceram&quot;, promessa de cancelamento sem multa que depois virou cobrança cheia.
+
+Pra você, isso é um mapa de onde ele sangra confiança. Dá pra entrar oferecendo exatamente o oposto do que dói: venda consultiva sem perturbação (pega quem foi queimado pela insistência), garantia clara sem letra miúda no cancelamento, e acompanhamento de resultado de verdade — três coisas que as reclamações dele dizem que faltam." rows="13">Aqui a fraqueza não é palpite nosso — é o próprio cliente falando. No ReclameAqui, a &quot;Growth Machine Consultoria&quot; está como &quot;Não recomendada&quot;, com cerca de 11 reclamações e apenas 9,1% respondidas. Ou seja: quem reclama, na prática, fica sem resposta.
+
+E o que reclamam é específico e repetido. Primeiro, resultado: gente que pagou caro na consultoria e diz não ter tido faturamento nenhum, &quot;investimento alto sem respaldo&quot;, &quot;propaganda enganosa, investimento sem resultados&quot; — bate de frente com a muralha de prova dos bilhões. Segundo, perturbação: relatos de ligação e WhatsApp toda semana por um ano, inclusive com gravação da voz do próprio Thiago insistindo — o que era só uma impressão do tom agressivo virou queixa pública. Terceiro, cobrança: &quot;exigir cobrança integral&quot;, &quot;paguei à vista e desapareceram&quot;, promessa de cancelamento sem multa que depois virou cobrança cheia.
+
+Pra você, isso é um mapa de onde ele sangra confiança. Dá pra entrar oferecendo exatamente o oposto do que dói: venda consultiva sem perturbação (pega quem foi queimado pela insistência), garantia clara sem letra miúda no cancelamento, e acompanhamento de resultado de verdade — três coisas que as reclamações dele dizem que faltam.</textarea>
         </article></div>
     </section>
 
@@ -994,15 +1015,15 @@ Em paralelo, copie o que funciona (a entrada única, a inversão de culpa, a esc
             <button type="button" class="reset-btn" data-reset-key="copy::neg-master-3" title="Restaurar texto original">↺ original</button>
             <span class="save-state" data-for="copy::neg-master-3">não editado</span>
           </div>
-          <textarea class="copy-textarea" data-storage-key="copy::neg-master-3" data-default="Pra você confiar no que está aqui, vale ser claro sobre o que é o quê. A gente CONFIRMOU (vendo de perto): os preços (Growth Play, Prospct, Lord of Sales, Desafio), que ele só roda Meta, que não houve call após o diagnóstico, que o robô só fala com quem já comprou, os quatro e-mails (e que caíram no spam), e as contagens do orgânico (os 35 de 45, os 60% mirando o dono).
+          <textarea class="copy-textarea" data-storage-key="copy::neg-master-3" data-default="Pra você confiar no que está aqui, vale ser claro sobre o que é o quê. A gente CONFIRMOU (vendo de perto): os preços (Growth Play, Prospct, Lord of Sales, Desafio), que ele só roda Meta, que não houve call após o diagnóstico, que o robô só fala com quem já comprou, os quatro e-mails (e que caíram no spam), as contagens do orgânico (os 35 de 45, os 60% mirando o dono) e a voz do cliente no ReclameAqui (reputação &quot;Não recomendada&quot;, ~11 reclamações e só 9,1% respondidas — com queixas repetidas de resultado, perturbação e cobrança).
 
 A gente INFERIU (leitura forte, mas sem prova fechada): o custo de aquisição e o retorno por cliente, o tamanho do time de vendas, e a cadência completa de e-mail (só pegamos quatro).
 
-E AINDA FALTA (precisa comprar ou coletar): o que exatamente entrega o produto caro (bônus, garantia, suporte), a sequência de e-mail inteira, e o ReclameAqui/Trustpilot — que é onde os clientes reclamam de verdade e onde mora a fraqueza mais explorável. Isso é trabalho de uma próxima rodada. E lembrando: anúncio e preço mudam, então vale refazer esse raio-x a cada três meses." rows="13">Pra você confiar no que está aqui, vale ser claro sobre o que é o quê. A gente CONFIRMOU (vendo de perto): os preços (Growth Play, Prospct, Lord of Sales, Desafio), que ele só roda Meta, que não houve call após o diagnóstico, que o robô só fala com quem já comprou, os quatro e-mails (e que caíram no spam), e as contagens do orgânico (os 35 de 45, os 60% mirando o dono).
+E AINDA FALTA (precisa comprar ou coletar): o que exatamente entrega o produto caro (bônus, garantia, suporte), a sequência de e-mail inteira, os comentários crus do IG/YouTube (objeções pré-compra) e a nota 0-10 exata do ReclameAqui (a página bloqueia robô — pega-se abrindo no navegador). Isso é trabalho de uma próxima rodada. E lembrando: anúncio e preço mudam, então vale refazer esse raio-x a cada três meses." rows="13">Pra você confiar no que está aqui, vale ser claro sobre o que é o quê. A gente CONFIRMOU (vendo de perto): os preços (Growth Play, Prospct, Lord of Sales, Desafio), que ele só roda Meta, que não houve call após o diagnóstico, que o robô só fala com quem já comprou, os quatro e-mails (e que caíram no spam), as contagens do orgânico (os 35 de 45, os 60% mirando o dono) e a voz do cliente no ReclameAqui (reputação &quot;Não recomendada&quot;, ~11 reclamações e só 9,1% respondidas — com queixas repetidas de resultado, perturbação e cobrança).
 
 A gente INFERIU (leitura forte, mas sem prova fechada): o custo de aquisição e o retorno por cliente, o tamanho do time de vendas, e a cadência completa de e-mail (só pegamos quatro).
 
-E AINDA FALTA (precisa comprar ou coletar): o que exatamente entrega o produto caro (bônus, garantia, suporte), a sequência de e-mail inteira, e o ReclameAqui/Trustpilot — que é onde os clientes reclamam de verdade e onde mora a fraqueza mais explorável. Isso é trabalho de uma próxima rodada. E lembrando: anúncio e preço mudam, então vale refazer esse raio-x a cada três meses.</textarea>
+E AINDA FALTA (precisa comprar ou coletar): o que exatamente entrega o produto caro (bônus, garantia, suporte), a sequência de e-mail inteira, os comentários crus do IG/YouTube (objeções pré-compra) e a nota 0-10 exata do ReclameAqui (a página bloqueia robô — pega-se abrindo no navegador). Isso é trabalho de uma próxima rodada. E lembrando: anúncio e preço mudam, então vale refazer esse raio-x a cada três meses.</textarea>
         </article></div>
     </section>
 <div class="foot">Fonte: conclusao_data.py (edite lá e rode <code>python build_conclusao.py</code> pra regenerar). Estrutura canônica espelha razzetti/ e jeremy-miner/. Sintetizado 2026-06-04.</div>
