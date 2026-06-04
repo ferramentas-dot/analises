@@ -2,40 +2,135 @@
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
-<title>Thiago Reis — Análise de Tráfego (SimilarWeb + SemRush)</title>
-<meta name="description" content="Cards de tráfego: canais, demografia, países, sub-domínios e SEO. {{preencher destaques principais}}.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thiago Reis — Análise de Tráfego (SimilarWeb + SEMrush)</title>
+<meta name="description" content="Tráfego do ecossistema Growth Machine (abr/2026): 4 domínios, canais, fontes e tendências via SimilarWeb + SEMrush. growthmachine +56%, expansaocomercial +96%, lord-of-sales novo, desafio1a10milhoes -33%.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://s4.swipeoffers.com.br/thiago-reis/thiago-reis-trafego">
-<meta property="og:title" content="Thiago Reis — Análise de Tráfego (SimilarWeb + SemRush)">
-<meta property="og:description" content="Cards de tráfego: canais, demografia, países, sub-domínios e SEO. {{preencher destaques principais}}.">
-<meta property="og:image" content="https://s4.swipeoffers.com.br/thiago-reis/og-cover.jpg">
-<meta property="og:image:alt" content="Thiago Reis — Análise de Tráfego (SimilarWeb + SemRush)">
+<meta property="og:title" content="Thiago Reis — Análise de Tráfego (SimilarWeb + SEMrush)">
+<meta property="og:description" content="4 domínios do ecossistema Growth Machine analisados (abr/2026): canais, fontes, tendências e leitura estratégica.">
+<meta property="og:image" content="https://s4.swipeoffers.com.br/thiago-reis/_assets/trafego/semrush-comparacao-4-dominios.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Thiago Reis — Análise de Tráfego (SimilarWeb + SemRush)">
-<meta name="twitter:description" content="Cards de tráfego: canais, demografia, países, sub-domínios e SEO. {{preencher destaques principais}}.">
-<meta name="twitter:image" content="https://s4.swipeoffers.com.br/thiago-reis/og-cover.jpg">
-<script>window.location.replace('index.html?platform=similarweb');</script>
 <style>
-  body {
-    background: #0b0f1a; color: #e2e8f0;
-    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
-    margin: 0; padding: 40px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 100vh; text-align: center;
-  }
-  h1 { font-size: 22px; margin: 0 0 12px; }
-  p { color: #94a3b8; margin: 0 0 20px; max-width: 540px; line-height: 1.5; }
-  a {
-    background: #38bdf8; color: #0b0f1a; padding: 12px 24px; border-radius: 6px;
-    text-decoration: none; font-weight: 600;
-  }
-  img { max-width: 280px; margin-bottom: 24px; border-radius: 8px; opacity: 0.75; }
+  :root{--bg:#0b0f1a;--surface:#131927;--surface2:#0f1422;--border:#1e2638;--text:#e2e8f0;--muted:#94a3b8;--dim:#64748b;--accent:#38bdf8;--green:#34d399;--red:#f87171;--amber:#f59e0b;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;}
+  a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+  header{padding:32px 40px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(11,15,26,.95);backdrop-filter:blur(12px);z-index:10;}
+  .badge-tag{display:inline-block;background:var(--surface2);color:var(--muted);padding:4px 10px;border-radius:999px;font-size:11px;letter-spacing:.5px;margin-bottom:10px;}
+  h1{margin:0 0 6px;font-size:25px;} .subtitle{color:var(--muted);margin:0;font-size:14px;max-width:820px;}
+  .back{margin-top:14px;display:inline-block;background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600;}
+  .back:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;}
+  main{padding:24px 40px 56px;max-width:1180px;margin:0 auto;}
+  /* KPIs */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0 10px;}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+  .kpi .dom{font-size:13px;color:var(--muted);font-weight:600;word-break:break-all;}
+  .kpi .v{font-size:26px;font-weight:800;margin:4px 0 2px;}
+  .kpi .t{font-size:12.5px;font-weight:700;}
+  .up{color:var(--green);} .down{color:var(--red);} .new{color:var(--accent);}
+  .leitura{background:rgba(56,189,248,.06);border-left:3px solid var(--accent);border-radius:6px;padding:14px 18px;margin:18px 0;font-size:14px;}
+  .leitura b{color:#fff;}
+  h2{font-size:19px;margin:38px 0 4px;display:flex;align-items:center;gap:10px;}
+  h2 .pill{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;}
+  .sec-sub{color:var(--muted);font-size:13.5px;margin:0 0 16px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;}
+  .card .shot{display:block;width:100%;background:#0a0a0a;cursor:zoom-in;border-bottom:1px solid var(--border);}
+  .card .shot img{width:100%;display:block;object-fit:contain;}
+  .card .body{padding:13px 15px 15px;}
+  .card h3{margin:0 0 7px;font-size:14px;color:#f1f5f9;}
+  .card p{margin:0;font-size:12.8px;color:var(--text);}
+  .card .metric{display:inline-block;font-size:11.5px;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:5px;padding:2px 8px;margin:0 5px 5px 0;}
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.93);display:none;align-items:center;justify-content:center;z-index:1000;cursor:zoom-out;padding:20px;}
+  .lightbox.active{display:flex;} .lightbox img{max-width:95vw;max-height:95vh;object-fit:contain;border-radius:4px;box-shadow:0 12px 60px rgba(0,0,0,.8);}
+  footer{padding:24px 40px;text-align:center;color:var(--dim);font-size:12px;border-top:1px solid var(--border);}
 </style>
 </head>
 <body>
-  <img src="og-cover.jpg" alt="" onerror="this.style.display='none'">
-  <h1>Thiago Reis — Análise de Tráfego (SimilarWeb + SemRush)</h1>
-  <p>Cards de tráfego: canais, demografia, países, sub-domínios e SEO. {{preencher destaques principais}}.</p>
-  <a href="index.html?platform=similarweb">Abrir análise →</a>
+<header>
+  <span class="badge-tag">SPY · THIAGO REIS · TRÁFEGO</span>
+  <h1>Análise de Tráfego — ecossistema Growth Machine</h1>
+  <p class="subtitle">4 domínios (abr/2026) triangulados via <b>SimilarWeb</b> + <b>SEMrush</b>. As estimativas divergem entre as ferramentas; uso as duas pra leitura. Clique nas imagens pra ampliar.</p>
+  <a class="back" href="index.html">← Dashboard</a>
+</header>
+<main>
+
+  <div class="kpis">
+    <div class="kpi"><div class="dom">growthmachine.com.br</div><div class="v">15,3 mil</div><div class="t up">▲ +56,02% · share 65,66%</div></div>
+    <div class="kpi"><div class="dom">expansaocomercial.com</div><div class="v">3,2 mil</div><div class="t up">▲ +95,88% · direto +563%</div></div>
+    <div class="kpi"><div class="dom">desafio1a10milhoes.com.br</div><div class="v">3,2 mil</div><div class="t down">▼ −32,58% · esfriando</div></div>
+    <div class="kpi"><div class="dom">lord-of-sales.com</div><div class="v">1,6 mil</div><div class="t new">✦ novo (+100%)</div></div>
+  </div>
+
+  <div class="leitura">
+    <b>Leitura central:</b> a Growth Machine migrou de "tudo no growthmachine.com.br" para <b>domínios dedicados por oferta</b>. O domínio-mãe voltou a crescer forte (+56%, era queda no recon inicial). O dinheiro novo está em <b>expansaocomercial.com</b> (high-ticket, explodindo) e o engajamento em <b>lord-of-sales.com</b> (gamificação nova). O tripwire pago <b>desafio1a10milhoes (R$97) está esfriando (−33%)</b>. Aquisição = orgânico social + direto, com <b>mídia paga subindo</b>; YouTube e LinkedIn são as pontes, e <b>ChatGPT já aparece como fonte (tráfego de IA)</b>.
+  </div>
+
+  <h2>📊 Comparativo dos 4 domínios <span class="pill" style="background:rgba(56,189,248,.12);color:var(--accent)">SEMrush</span></h2>
+  <p class="sec-sub">Market share, visitas e tendência lado a lado.</p>
+  <div class="grid">
+    <div class="card" style="grid-column:1/-1">
+      <a class="shot" href="_assets/trafego/semrush-comparacao-4-dominios.png"><img src="_assets/trafego/semrush-comparacao-4-dominios.png" alt="comparação 4 domínios"></a>
+      <div class="body"><h3>Visão geral — 4 domínios</h3>
+        <p><span class="metric">growthmachine 65,66%</span><span class="metric">expansao 13,69% ▲+96%</span><span class="metric">desafio 13,69% ▼−33%</span><span class="metric">lord-of-sales 6,96% ✦novo</span> O domínio-mãe lidera; expansaocomercial e lord-of-sales em rampa de lançamento; desafio1a10milhoes em queda.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>🏢 growthmachine.com.br <span class="pill" style="background:rgba(52,211,153,.12);color:var(--green)">▲ +56%</span></h2>
+  <p class="sec-sub">~51,1 mil visitas (Fev–Abr, ~17k/mês). Site de autoridade orgânica que começou a fazer mídia paga.</p>
+  <div class="grid">
+    <div class="card"><a class="shot" href="_assets/trafego/sw-growthmachine-overview.png"><img src="_assets/trafego/sw-growthmachine-overview.png" alt=""></a>
+      <div class="body"><h3>Canais (overview) — 51,1k visitas</h3><p><span class="metric">Direto 47,79%</span><span class="metric">Busca org. 31,21%</span><span class="metric">Social pago 5,72%</span><span class="metric">Display 2,88%</span> Direto + SEO ≈ 79%. <b>~9% pago</b> (social pago + display + busca paga) — ≠ recon inicial que era 0% pago.</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/sw-growthmachine-fontes.png"><img src="_assets/trafego/sw-growthmachine-fontes.png" alt=""></a>
+      <div class="body"><h3>Top fontes</h3><p><span class="metric">Direto 47,79% ▼−50%</span><span class="metric">Google #1 25%</span><span class="metric">Social ▲+171%</span><span class="metric">YouTube 1,75%</span><span class="metric">Facebook 1,41%</span> Direto perde peso; social cresce forte. Referrals próprios: nichoos.com e growthstation.app.</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/sw-growthmachine-canais-totais.png"><img src="_assets/trafego/sw-growthmachine-canais-totais.png" alt=""></a>
+      <div class="body"><h3>Totais de canal (Fev–Mai)</h3><p><span class="metric">Direto 25,9k</span><span class="metric">Org. 19,4k</span><span class="metric">Social org. 4,4k</span><span class="metric">Social pago 3,1k</span><span class="metric">Display 1,5k</span><span class="metric">Gen AI 362</span> Volume real por canal.</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/sw-growthmachine-canais-semanal.png"><img src="_assets/trafego/sw-growthmachine-canais-semanal.png" alt=""></a>
+      <div class="body"><h3>Tráfego por semana</h3><p>Direto e busca oscilam com picos (~3,5k) em semanas de campanha/lançamento (23/fev e 23/mar).</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/sw-lp-growthmachine.png"><img src="_assets/trafego/sw-lp-growthmachine.png" alt=""></a>
+      <div class="body"><h3>lp.growthmachine.com.br — caindo</h3><p><span class="metric">2,9k/mês ▼</span><span class="metric">bounce 71,76%</span><span class="metric">1,42 pág</span><span class="metric">0:33</span> Subdomínio de iscas/LPs perdendo tráfego (4,3k→2,9k) — esforço migrou pros domínios dedicados.</p></div></div>
+  </div>
+
+  <h2>🚀 expansaocomercial.com <span class="pill" style="background:rgba(52,211,153,.12);color:var(--green)">▲ +96% (high-ticket)</span></h2>
+  <p class="sec-sub">Funil novo em rampa agressiva: 0 → 3,7 mil visitas em abril. A aposta high-ticket atual (PEC).</p>
+  <div class="grid">
+    <div class="card"><a class="shot" href="_assets/trafego/sw-form-expansaocomercial.png"><img src="_assets/trafego/sw-form-expansaocomercial.png" alt=""></a>
+      <div class="body"><h3>Visits over time (SimilarWeb)</h3><p><span class="metric">0→3,7k em abr</span><span class="metric">bounce 71,14%</span><span class="metric">1,48 pág</span><span class="metric">0:54</span> Rampa de lançamento — direto +563% no SEMrush.</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/semrush-form-expansao-resumo.png"><img src="_assets/trafego/semrush-form-expansao-resumo.png" alt=""></a>
+      <div class="body"><h3>Resumo (SEMrush)</h3><p><span class="metric">2,3 mil visitas</span><span class="metric">403 únicos</span><span class="metric">duração 9:47</span><span class="metric">100% desktop</span> Subdomínio = form de diagnóstico/aplicação. Quem entra fica (9:47).</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/semrush-form-expansao-canais.png"><img src="_assets/trafego/semrush-form-expansao-canais.png" alt=""></a>
+      <div class="body"><h3>Canais</h3><p><span class="metric">Direto ~1,5k</span><span class="metric">Pago ~250</span><span class="metric">Social org. ~480</span> Direto altíssimo = tráfego branded (YT/email/ads apontando pro nome).</p></div></div>
+  </div>
+
+  <h2>👑 lord-of-sales.com <span class="pill" style="background:rgba(56,189,248,.12);color:var(--accent)">✦ novo</span></h2>
+  <p class="sec-sub">Gamificação (ranking/missões). 0 → ~1–1,6 mil em abril, com direto disparando em maio. Lead gen via LinkedIn/YouTube/IA.</p>
+  <div class="grid">
+    <div class="card"><a class="shot" href="_assets/trafego/semrush-lordofsales-journey.png"><img src="_assets/trafego/semrush-lordofsales-journey.png" alt=""></a>
+      <div class="body"><h3>Traffic Journey — de onde vem</h3><p><span class="metric">próprio 50,7%</span><span class="metric">Google 17,4%</span><span class="metric">LinkedIn 15,1%</span><span class="metric">YouTube 10%</span><span class="metric">ChatGPT 6,9%</span> <b>LinkedIn + YouTube</b> são as fontes externas; <b>ChatGPT</b> já aparece (tráfego de IA).</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/semrush-lordofsales-paginas.png"><img src="_assets/trafego/semrush-lordofsales-paginas.png" alt=""></a>
+      <div class="body"><h3>Top páginas</h3><p><span class="metric">home 39,8%</span><span class="metric">/recursos 21,5%</span><span class="metric">/dashboard 10,9%</span><span class="metric">/desafio-v2 10%</span><span class="metric">/r/thiago7482 6,9%</span> O <b>/r/thiago7482</b> é o link de indicação do Thiago — ele opera como embaixador rastreado.</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/semrush-lordofsales-resumo.png"><img src="_assets/trafego/semrush-lordofsales-resumo.png" alt=""></a>
+      <div class="body"><h3>Resumo (SEMrush)</h3><p><span class="metric">1,6 mil</span><span class="metric">3,3 pág/visita</span><span class="metric">3:06</span><span class="metric">bounce 46%</span> Alta retenção pelo formato gamificado (≠ SimilarWeb que estima bounce 93%).</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/semrush-lordofsales-canais.png"><img src="_assets/trafego/semrush-lordofsales-canais.png" alt=""></a>
+      <div class="body"><h3>Canais</h3><p><span class="metric">Direto ~810</span><span class="metric">Social org. ~400</span><span class="metric">Orgânico ~280</span><span class="metric">IA ~110</span> Sem mídia paga — cresce por orgânico social + IA.</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/semrush-lordofsales-tendencia.png"><img src="_assets/trafego/semrush-lordofsales-tendencia.png" alt=""></a>
+      <div class="body"><h3>Tendência</h3><p>Direto disparando pra ~2,8 mil em maio — provável janela de desafio/competição.</p></div></div>
+    <div class="card"><a class="shot" href="_assets/trafego/sw-lord-of-sales.png"><img src="_assets/trafego/sw-lord-of-sales.png" alt=""></a>
+      <div class="body"><h3>Visits over time (SimilarWeb)</h3><p><span class="metric">0→996 em abr</span><span class="metric">bounce 93%</span><span class="metric">1 pág</span> Leitura conservadora do SimilarWeb (vs SEMrush mais otimista).</p></div></div>
+  </div>
+
+  <div class="leitura" style="margin-top:32px;border-left-color:var(--green)">
+    <b>Pra Swipe:</b> o playbook do Thiago é <b>domínio dedicado por oferta</b> + tráfego orgânico (YouTube/LinkedIn) alimentando funil pago, com <b>link de indicação rastreável</b> (/r/...). O que mais cresce é <b>expansaocomercial.com</b> (high-ticket) — vale vigiar de perto.
+  </div>
+</main>
+<div class="lightbox" id="lb" onclick="this.classList.remove('active')"><img src="" alt="zoom"></div>
+<footer>Fonte: SimilarWeb + SEMrush Traffic Analytics · janela abr/2026 (canais Fev–Mai) · 15 capturas em <code>0 - Trafego/</code> · análise em <code>analise-trafego.md</code></footer>
+<script>
+  document.querySelectorAll('.shot').forEach(a=>a.addEventListener('click',e=>{
+    e.preventDefault();const lb=document.getElementById('lb');lb.querySelector('img').src=a.getAttribute('href');lb.classList.add('active');
+  }));
+</script>
 </body>
 </html>
