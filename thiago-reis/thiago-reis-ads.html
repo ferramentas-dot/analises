@@ -1,0 +1,2545 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Thiago Reis / Growth Machine — análise de tráfego pago (Meta Ads Library)</title>
+<meta name="description" content="27 criativos pagos únicos EM VÍDEO do Thiago Reis, organizados por funil (Scanner, Diagnóstico, Expansão Comercial). Cada card aplica o framework analise-copy-trafego-pago em 10 blocos. Anote e exporte.">
+<style>
+@charset "utf-8";
+
+:root { --bg: #0b0f1a; --surface: #131927; --surface-2: #0f1422; --border: #1e2638; --text: #e2e8f0; --muted: #94a3b8; --accent: #38bdf8; --manychat: #a855f7; }
+
+* { box-sizing: border-box; }
+
+body { margin: 0px; font-family: -apple-system, "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+
+header { padding: 32px 40px 16px; border-bottom: 1px solid var(--border); position: sticky; top: 0px; background: rgba(11, 15, 26, 0.95); backdrop-filter: blur(12px); z-index: 10; }
+
+h1 { margin: 0px 0px 8px; font-size: 24px; }
+
+.subtitle { color: var(--muted); margin: 0px 0px 16px; }
+
+.summary { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+
+.stat { background: var(--surface); border: 1px solid var(--border); padding: 12px 16px; border-radius: 8px; min-width: 120px; }
+
+.stat .n { font-size: 24px; font-weight: 700; }
+
+.stat .l { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.platform-toggle { display: flex; gap: 0px; margin: 0px 0px 14px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 4px; width: fit-content; }
+
+.platform-btn { background: transparent; border: none; color: var(--muted); padding: 10px 22px; font-size: 14px; font-weight: 600; cursor: pointer; border-radius: 7px; transition: 0.18s; display: inline-flex; align-items: center; gap: 8px; }
+
+.platform-btn:hover { color: var(--text); }
+
+.platform-btn.active { background: var(--surface); color: var(--text); box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 8px; }
+
+.platform-btn[data-platform="ig"].active { color: rgb(236, 72, 153); }
+
+.platform-btn[data-platform="yt"].active { color: rgb(239, 68, 68); }
+
+.platform-btn[data-platform="similarweb"].active { color: rgb(56, 189, 248); }
+
+.platform-btn[data-platform="pago"].active { color: rgb(251, 191, 36); }
+
+.platform-btn[data-platform="email"] { color: rgb(16, 185, 129); text-decoration: none; }
+
+.platform-btn[data-platform="email"]:hover { color: rgb(52, 211, 153); }
+
+.platform-btn[data-platform="imagens-miro"] { color: rgb(242, 107, 29); text-decoration: none; }
+
+.platform-btn[data-platform="imagens-miro"]:hover { color: rgb(255, 138, 74); }
+
+.platform-btn .pcount { font-size: 11px; background: var(--border); padding: 2px 7px; border-radius: 10px; color: var(--muted); font-weight: 700; }
+
+.platform-btn.active .pcount { background: rgba(255, 255, 255, 0.08); color: inherit; }
+
+.controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+.filter-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+
+.filter-btn.active { border-color: var(--accent); color: var(--accent); }
+
+.filter-btn.hidden-by-platform { display: none; }
+
+section[data-platform].hidden-by-platform { display: none; }
+
+.stat.hidden-by-platform { display: none; }
+
+.export-btn { background: var(--accent); border: none; color: rgb(11, 15, 26); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-left: auto; }
+
+.export-btn:hover { filter: brightness(1.1); }
+
+main { padding: 24px 40px 48px; display: flex; flex-direction: column; gap: 36px; }
+
+.section { display: flex; flex-direction: column; gap: 16px; }
+
+.section-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 18px; background: var(--surface); border-top-color: ; border-top-style: ; border-top-width: ; border-right-color: ; border-right-style: ; border-right-width: ; border-bottom-color: ; border-bottom-style: ; border-bottom-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-left: 4px solid; border-radius: 8px; position: sticky; top: 0px; z-index: 5; backdrop-filter: blur(12px); flex-wrap: wrap; }
+
+.section-head h2 { margin: 0px; font-size: 22px; letter-spacing: 1px; font-weight: 800; }
+
+.section-sub { margin: 4px 0px 0px; color: var(--muted); font-size: 13px; }
+
+.section-stats { display: flex; gap: 18px; font-size: 13px; color: var(--muted); }
+
+.section-stats strong { color: var(--text); font-size: 15px; }
+
+.section-actions { display: flex; gap: 8px; }
+
+.download-transcripts-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--accent); padding: 7px 12px; border-radius: 6px; cursor: pointer; font-size: 12.5px; font-weight: 600; transition: 0.15s; }
+
+.download-transcripts-btn:hover:not(:disabled) { background: rgba(56, 189, 248, 0.18); border-color: var(--accent); }
+
+.download-transcripts-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.download-transcripts-btn .dl-count { opacity: 0.7; font-weight: 400; margin-left: 2px; }
+
+.section-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 20px; }
+
+.yt-divider { margin-top: 28px; }
+
+.yt-header { background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(168, 85, 247, 0.08)) !important; border-left: 4px solid rgba(239, 68, 68, 0.4) !important; border-top-color: rgba(239, 68, 68, 0.4) !important; border-right-color: rgba(239, 68, 68, 0.4) !important; border-bottom-color: rgba(239, 68, 68, 0.4) !important; }
+
+.yt-header h2 { font-size: 24px !important; }
+
+.yt-header .section-sub { max-width: 920px; font-size: 13.5px; line-height: 1.55; color: var(--text); opacity: 0.85; }
+
+.yt-header .section-sub code { background: rgba(255, 255, 255, 0.06); padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+
+.sw-divider { margin-top: 28px; }
+
+.sw-header { background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(168, 85, 247, 0.08)) !important; border-left: 4px solid rgba(56, 189, 248, 0.4) !important; border-top-color: rgba(56, 189, 248, 0.4) !important; border-right-color: rgba(56, 189, 248, 0.4) !important; border-bottom-color: rgba(56, 189, 248, 0.4) !important; }
+
+.sw-header h2 { font-size: 24px !important; }
+
+.sw-header .section-sub { max-width: 920px; font-size: 13.5px; line-height: 1.55; color: var(--text); opacity: 0.85; }
+
+.sw-header .section-sub code { background: rgba(255, 255, 255, 0.06); padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+
+.sw-grid { display: flex; flex-direction: column; gap: 22px; }
+
+.sw-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: grid; grid-template-columns: 1fr; gap: 0px; align-items: stretch; }
+
+@media (min-width: 1100px) {
+  .sw-card { grid-template-columns: minmax(560px, 1fr) minmax(420px, 1fr); }
+}
+
+.sw-img-wrap { background: var(--surface-2); position: relative; display: flex; align-items: flex-start; justify-content: center; padding: 16px; align-self: stretch; }
+
+.sw-img-wrap .sw-sticky { position: sticky; top: 80px; width: 100%; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+
+.sw-img-wrap img { width: 100%; max-width: 100%; height: auto; border-radius: 6px; cursor: zoom-in; transition: box-shadow 0.15s; background: var(--bg); }
+
+.sw-img-wrap img:hover { box-shadow: 0 0 0 2px var(--accent); }
+
+.sw-img-hint { font-size: 11px; color: var(--muted); letter-spacing: 0.3px; }
+
+.sw-img-wrap-multi { padding: 14px; }
+
+.sw-multi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+
+.sw-multi-tile { margin: 0px; display: flex; flex-direction: column; gap: 4px; background: var(--bg); border-radius: 6px; padding: 6px; }
+
+.sw-multi-tile img { width: 100%; height: auto; border-radius: 4px; cursor: zoom-in; background: var(--bg); }
+
+.sw-multi-tile img:hover { box-shadow: 0 0 0 2px var(--accent); }
+
+.sw-multi-tile figcaption { font-size: 11px; color: var(--muted); text-align: center; padding: 2px 4px; line-height: 1.3; }
+
+.sw-multi-missing { opacity: 0.4; }
+
+.sw-img-missing { color: var(--muted); font-size: 13px; text-align: center; line-height: 1.6; padding: 60px 20px; }
+
+.sw-img-missing code { background: rgba(56, 189, 248, 0.12); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-size: 12px; display: inline-block; margin-top: 6px; }
+
+.sw-body { padding: 18px 22px 20px; }
+
+.sw-body h4 { margin: 0px 0px 10px; font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.3; }
+
+.sw-destaque { margin: 0px 0px 14px; padding: 10px 14px; background: rgba(56, 189, 248, 0.08); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 13.5px; line-height: 1.5; color: var(--text); }
+
+.sw-explanation p { margin: 0px 0px 10px; font-size: 13.5px; line-height: 1.65; color: var(--text); }
+
+.sw-explanation p:last-child { margin-bottom: 0px; }
+
+.sw-explanation strong { color: var(--accent); }
+
+.sw-explanation code { background: rgba(255, 255, 255, 0.06); padding: 1px 6px; border-radius: 4px; font-size: 12.5px; color: var(--text); }
+
+.lightbox { position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.92); display: none; align-items: center; justify-content: center; z-index: 1000; cursor: zoom-out; padding: 20px; }
+
+.lightbox.active { display: flex; }
+
+.lightbox img { max-width: 95vw; max-height: 95vh; object-fit: contain; box-shadow: rgba(0, 0, 0, 0.8) 0px 12px 60px; border-radius: 4px; }
+
+.lightbox-close { position: absolute; top: 16px; right: 20px; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+
+.lightbox-close:hover { background: rgba(255, 255, 255, 0.2); }
+
+.lightbox-hint { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 12px; background: rgba(0, 0, 0, 0.5); padding: 6px 12px; border-radius: 4px; }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.15s; }
+
+.card:hover { border-color: var(--accent); }
+
+.card.hidden { display: none; }
+
+.card-top { display: grid; grid-template-columns: 180px 1fr; gap: 14px; padding: 14px; border-bottom: 1px solid var(--border); }
+
+.thumb { display: block; width: 180px; height: 180px; overflow: hidden; background: rgb(10, 10, 10); border-radius: 8px; flex-shrink: 0; }
+
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.no-thumb { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; }
+
+.card-head { display: flex; flex-direction: column; gap: 8px; min-width: 0px; }
+
+.badges { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.badge { font-size: 11px; padding: 3px 8px; border-radius: 999px; border: 1px solid; font-weight: 600; letter-spacing: 0.3px; }
+
+.badge.stage { text-transform: uppercase; }
+
+.badge.kind { color: var(--muted); background: rgba(148, 163, 184, 0.08); border-color: var(--border); }
+
+.badge.funnel { color: var(--muted); background: rgba(148, 163, 184, 0.08); border-color: var(--border); font-weight: 500; }
+
+.badge.funnel.manychat { color: var(--manychat); background: rgba(168, 85, 247, 0.12); border-color: var(--manychat); }
+
+.badge.formato { color: rgb(52, 211, 153); background: rgba(52, 211, 153, 0.1); border-color: rgb(52, 211, 153); font-weight: 500; }
+
+h3 { margin: 0px; font-size: 15px; line-height: 1.35; }
+
+.meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--muted); }
+
+.meta .date { margin-left: auto; }
+
+.meta .views { color: rgb(56, 189, 248); font-weight: 600; }
+
+.link { color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 500; }
+
+.link:hover { text-decoration: underline; }
+
+.card-links { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+.miro-link-btn, .sw-body-head .miro-link-btn { background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.35); color: var(--manychat); padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 11.5px; font-weight: 600; transition: 0.15s; white-space: nowrap; }
+
+.miro-link-btn:hover { background: rgba(168, 85, 247, 0.22); border-color: var(--manychat); }
+
+.miro-link-btn.copied { background: rgba(34, 197, 94, 0.18); border-color: rgb(34, 197, 94); color: rgb(34, 197, 94); }
+
+.sw-body-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+
+.sw-body-head h4 { margin: 0px; flex: 1 1 0%; }
+
+body.focused-card header, body.focused-card footer, body.focused-card .section-head, body.focused-card .yt-divider { display: none !important; }
+
+body.focused-card .section { margin: 0px !important; }
+
+body.focused-card main { padding: 12px !important; }
+
+body.focused-card .focused-back { position: sticky; top: 0px; z-index: 10; padding: 10px 12px; background: var(--bg); border-bottom: 1px solid var(--border); align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; display: flex !important; }
+
+body.focused-card .focused-back a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+body.focused-card .focused-back a:hover { text-decoration: underline; }
+
+.focused-back { display: none; }
+
+body.focused-card .section-head { text-align: center; flex-direction: column !important; align-items: center !important; }
+
+body.focused-card .section-head > div:first-child { text-align: center; max-width: 720px; }
+
+body.focused-card .section-head .section-actions { margin-top: 8px; }
+
+body.focused-card .section-head .section-stats { justify-content: center; flex-wrap: wrap; }
+
+@keyframes pulse-highlight-anim { 
+  0%, 100% { box-shadow: rgba(56, 189, 248, 0) 0px 0px 0px 0px; }
+  25% { box-shadow: rgba(56, 189, 248, 0.45) 0px 0px 0px 6px; }
+  50% { box-shadow: rgba(56, 189, 248, 0.25) 0px 0px 0px 12px; }
+  75% { box-shadow: rgba(56, 189, 248, 0.45) 0px 0px 0px 6px; }
+}
+
+.pulse-highlight { animation: 1.4s ease-in-out 0s 3 normal none running pulse-highlight-anim; border-radius: 10px; position: relative; z-index: 2; }
+
+.analysis { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 14px; background: var(--surface-2); }
+
+.analysis section { display: flex; flex-direction: column; gap: 6px; }
+
+.analysis h4 { margin: 0px 0px 4px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; }
+
+.analysis p { margin: 0px; font-size: 13.5px; line-height: 1.6; color: var(--text); }
+
+.analysis p + p { margin-top: 10px; }
+
+.caption-quote { color: var(--muted); font-style: italic; border-left: 2px solid var(--border); padding-left: 10px; margin-top: 10px !important; font-size: 12.5px !important; }
+
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+
+.edit-tag { font-size: 10px; font-weight: 600; padding: 2px 6px; background: rgba(56, 189, 248, 0.12); color: var(--accent); border-radius: 4px; margin-left: 6px; letter-spacing: 0.3px; }
+
+.reset-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; }
+
+.reset-btn:hover { color: var(--text); border-color: var(--accent); }
+
+.copy-textarea { min-height: 140px; }
+
+.copy-textarea.edited { border-color: var(--accent); }
+
+.copy-section-analise-geral { margin-top: 14px; padding: 14px 14px 12px; background: rgba(168, 85, 247, 0.06); border-left: 3px solid rgb(168, 85, 247); border-radius: 6px; }
+
+.copy-section-analise-geral .section-header { gap: 8px; flex-wrap: wrap; }
+
+.copy-section-analise-geral h4 { color: rgb(196, 181, 253); }
+
+.copy-section-analise-geral .copy-textarea { min-height: 180px; }
+
+.sw-simple { margin: 0px 0px 14px; padding: 12px 16px 10px; background: rgba(34, 197, 94, 0.07); border-width: 1px 1px 1px 3px; border-style: solid; border-color: rgba(34, 197, 94, 0.22) rgba(34, 197, 94, 0.22) rgba(34, 197, 94, 0.22) rgb(34, 197, 94); border-image: initial; border-radius: 6px; }
+
+.sw-simple .section-header { margin-bottom: 6px; }
+
+.sw-simple .simple-label { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: rgb(34, 197, 94); letter-spacing: 0.3px; text-transform: uppercase; }
+
+.sw-simple-textarea { min-height: 92px; font-size: 14px; line-height: 1.55; }
+
+.sw-explanation-edit { display: block; margin-top: 4px; }
+
+.sw-explanation-edit .section-header { margin-bottom: 6px; }
+
+.sw-explanation-textarea { min-height: 220px; font-size: 13.5px; line-height: 1.6; }
+
+.sw-resumo { margin: 24px auto 32px; max-width: 1100px; padding: 22px 26px; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(56, 189, 248, 0.06)); border-width: 1px 1px 1px 4px; border-style: solid; border-color: rgba(34, 197, 94, 0.32) rgba(34, 197, 94, 0.32) rgba(34, 197, 94, 0.32) rgb(34, 197, 94); border-image: initial; border-radius: 10px; }
+
+.sw-resumo h3 { margin: 0px 0px 4px; font-size: 18px; color: rgb(34, 197, 94); display: flex; align-items: center; gap: 8px; }
+
+.sw-resumo .resumo-sub { margin: 0px 0px 14px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+.sw-resumo-textarea { min-height: 460px; font-size: 13.5px; line-height: 1.65; }
+
+.sw-resumo .section-header { margin-bottom: 6px; }
+
+.transcript-section details { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0px; }
+
+.transcript-section summary { cursor: pointer; padding: 10px 12px; font-size: 12.5px; color: var(--muted); font-weight: 600; user-select: none; list-style: none; }
+
+.transcript-section summary::-webkit-details-marker { display: none; }
+
+.transcript-section summary::before { content: "▸ "; display: inline-block; transition: transform 0.15s; color: var(--accent); }
+
+.transcript-section details[open] summary::before { transform: rotate(90deg); }
+
+.transcript-section summary:hover { color: var(--text); }
+
+.transcript-section .t-len { color: var(--muted); font-weight: 400; opacity: 0.7; margin-left: 4px; }
+
+.transcript-text { margin: 0px; padding: 12px 14px; border-top: 1px solid var(--border); white-space: pre-wrap; overflow-wrap: break-word; font-family: -apple-system, "Segoe UI", system-ui, sans-serif; font-size: 12.5px; line-height: 1.6; color: var(--text); max-height: 380px; overflow-y: auto; }
+
+textarea { width: 100%; min-height: 90px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 10px; font-family: inherit; font-size: 13px; line-height: 1.45; resize: vertical; }
+
+textarea:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+
+.save-state { font-size: 11px; color: var(--muted); align-self: flex-end; margin-top: -4px; }
+
+.save-state.saved { color: rgb(34, 197, 94); }
+
+.save-state.saving { color: var(--accent); }
+
+footer { padding: 24px 40px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }
+
+.skill-analysis-section details { background: var(--bg); border: 1px solid rgb(239, 68, 68); border-radius: 6px; padding: 0px; }
+
+.skill-analysis-section summary { cursor: pointer; padding: 10px 12px; font-size: 12.5px; color: rgb(252, 165, 165); font-weight: 600; user-select: none; list-style: none; }
+
+.skill-analysis-section summary::-webkit-details-marker { display: none; }
+
+.skill-analysis-section summary::before { content: "▸ "; display: inline-block; transition: transform 0.15s; color: rgb(239, 68, 68); }
+
+.skill-analysis-section details[open] summary::before { transform: rotate(90deg); }
+
+.skill-analysis-section summary:hover { color: rgb(254, 202, 202); }
+
+.skill-analysis-section summary code { background: rgba(239, 68, 68, 0.12); padding: 1px 6px; border-radius: 3px; font-size: 11px; color: rgb(252, 165, 165); }
+
+.skill-analysis-content { padding: 14px 16px; border-top: 1px solid rgb(239, 68, 68); font-size: 13px; line-height: 1.65; color: var(--text); max-height: 600px; overflow-y: auto; }
+
+.skill-analysis-content h1 { font-size: 17px; margin: 0px 0px 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); color: var(--text); }
+
+.skill-analysis-content h2 { font-size: 14px; margin: 18px 0px 8px; padding: 6px 10px; background: var(--surface-2); border-left: 3px solid rgb(239, 68, 68); border-radius: 4px; color: var(--text); }
+
+.skill-analysis-content h3 { font-size: 13.5px; margin: 12px 0px 6px; color: var(--text); }
+
+.skill-analysis-content h4 { font-size: 12px; margin: 10px 0px 4px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; }
+
+.skill-analysis-content p { margin: 0px 0px 10px; color: var(--text); }
+
+.skill-analysis-content ul, .skill-analysis-content ol { margin: 0px 0px 12px; padding-left: 20px; }
+
+.skill-analysis-content li { margin-bottom: 4px; }
+
+.skill-analysis-content strong { color: var(--text); font-weight: 700; }
+
+.skill-analysis-content code { background: var(--surface-2); padding: 1px 5px; border-radius: 3px; font-size: 12px; color: rgb(251, 191, 36); }
+
+.skill-analysis-content blockquote { margin: 10px 0px; padding: 8px 14px; background: var(--surface-2); border-left: 3px solid var(--muted); border-radius: 4px; color: var(--text); font-size: 12.5px; }
+
+.skill-analysis-content table { width: 100%; border-collapse: collapse; margin: 12px 0px; font-size: 12.5px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+
+.skill-analysis-content th, .skill-analysis-content td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+
+.skill-analysis-content th { background: var(--bg); color: var(--muted); text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.4px; }
+
+.skill-analysis-content tr:last-child td { border-bottom: none; }
+
+.skill-analysis-content hr { border: none; height: 1px; background: var(--border); margin: 16px 0px; }
+
+.skill-analysis-content a { color: var(--accent); text-decoration: none; }
+
+.skill-analysis-content a:hover { text-decoration: underline; }
+
+/* NOTA: removi content-visibility: auto + display:none !important porque
+   estavam bugando thumbs e layout. O CSS hidden-by-platform original já
+   esconde abas inativas (display: none simples). Perf ganho fica no
+   lazy-init das textareas via IntersectionObserver no JS. */
+
+/* extras thiago-reis (laranja Growth Machine) */
+.platform-btn[data-platform="pago"].active { color: #F26B1D; }
+.section.hidden-by-platform { display: none; }
+.landing-block { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.landing-cta { display: inline-block; background: rgba(242,107,29,0.14); border: 1px solid rgba(242,107,29,0.45); color: #F26B1D; font-weight: 700; font-size: 12.5px; padding: 8px 12px; border-radius: 7px; text-decoration: none; transition: all .15s; }
+.landing-cta:hover { border-color: #F26B1D; background: rgba(242,107,29,0.25); }
+
+</style>
+</head>
+<body>
+<header>
+  <h1>Thiago Reis / Growth Machine — análise de tráfego pago (Meta Ads Library)</h1>
+  <p class="subtitle">27 criativos pagos únicos EM VÍDEO do Thiago Reis, organizados por funil (Scanner, Diagnóstico, Expansão Comercial). Cada card aplica o framework analise-copy-trafego-pago em 10 blocos. Anote e exporte.</p>
+  <div class="summary">
+    
+    <div class="stat"><div class="n">27</div><div class="l">criativos únicos</div></div>
+    <div class="stat"><div class="n" style="color:#22c55e">22</div><div class="l">🟢 escala</div></div>
+    <div class="stat"><div class="n" style="color:#F26B1D">5</div><div class="l">🟡 médio</div></div>
+    <div class="stat"><div class="n" style="color:#ef4444">0</div><div class="l">🔴 fraco</div></div>
+    <div class="stat"><div class="n" style="color:#a855f7">3</div><div class="l">funis</div></div>
+    
+  </div>
+  <div class="platform-toggle">
+    <button class="platform-btn active" data-platform="pago">🎯 Tráfego pago <span class="pcount">27</span></button>
+  </div>
+  <div class="controls">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="funil:scanner">Scanner</button>
+    <button class="filter-btn" data-filter="funil:diagnostico">Diagnóstico</button>
+    <button class="filter-btn" data-filter="funil:expansao">Expansão</button>
+    <button class="export-btn" id="exportBtn">⬇ Exportar minhas anotações (JSON)</button>
+  </div>
+</header>
+<main id="cards">
+
+        <section class="section" data-platform="pago" data-funil="scanner">
+          <header class="section-head" style="border-left-color: #0ea5e9">
+            <div>
+              <h2 style="color: #0ea5e9">Funil B — Scanner de Vendas <span style="color: var(--muted); font-size: 0.55em; font-weight: normal;">Meta-Ads</span></h2>
+              <p class="section-sub">Quiz problem-aware: devolve score com pilares zerados → cria a dor antes da oferta R$97.</p>
+            </div>
+            <div class="section-actions">
+              <button class="miro-link-btn section-miro-btn" type="button" data-section-id="pago-scanner" title="Copiar URL pra embedar essa seção inteira no Miro">📎 Seção Miro</button>
+            </div>
+            <div class="section-stats">
+              <span><strong>5</strong> ads únicos</span>
+            </div>
+          </header>
+          <div class="section-grid">
+            
+    <article class="card" data-platform="pago" data-funil="scanner" data-id="033dias_scannerdevendas.growthmachine.com.br">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/033dias_scannerdevendas.growthmachine.com.br.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/033dias_scannerdevendas.growthmachine.com.br.jpg" alt="Preview ad 033dias_scannerdevendas.growthmachine.com.br"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#0ea5e9;background:rgba(242,107,29,0.12);border-color:#0ea5e9">SCANNER</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 33 dias ativos</span>
+          </div>
+          <h3>033dias_scannerdevendas.growthmachine.com.br</h3>
+          <div class="meta">
+            <span>📅 33 dias no Meta Ads Library</span>
+            <span>📝 89 palavras na transcrição</span>
+            <span>📑 2 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/13-IkkDePt3avRv-tGdVXsZqhFj1g2k0D/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="033dias_scannerdevendas.growthmachine.com.br" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://scannerdevendas.growthmachine.com.br/v2" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → scannerdevendas.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-033dias_scannerdevendas.growthmachine.com.br" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-033dias_scannerdevendas.growthmachine.com.br" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-033dias_scannerdevendas.growthmachine.com.br">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(89 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-001.4] Eu queria te fazer um convite.
+[001.4-004.5] Eu queria uma ferramenta gratuito, que você pode clicar aqui embaixo e você vai responder
+[004.5-005.5] um quiz.
+[005.5-009.5] Com as principais perguntas para entender como está o teu setor comercial, no final você
+[009.5-012.9] vai receber uma resposta mostrando quais são os seus gargalos e como é que você resolve
+[012.9-013.9] isso.
+[013.9-017.4] Se fizer sentido a gente agenda um bate-papo, mas clica aqui embaixo e responde agora
+[017.4-019.4] para entender o que está travando o seu setor de vênice.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="scanner" data-id="027dias_scannerdevendas.growthmachine.com.br">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_scannerdevendas.growthmachine.com.br.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_scannerdevendas.growthmachine.com.br.jpg" alt="Preview ad 027dias_scannerdevendas.growthmachine.com.br"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#0ea5e9;background:rgba(242,107,29,0.12);border-color:#0ea5e9">SCANNER</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_scannerdevendas.growthmachine.com.br</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 258 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1W1DTtKvrykyaupDnp5kz_DQ3rJ7Cw-nj/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_scannerdevendas.growthmachine.com.br" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://scannerdevendas.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → scannerdevendas.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_scannerdevendas.growthmachine.com.br" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_scannerdevendas.growthmachine.com.br" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_scannerdevendas.growthmachine.com.br">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(258 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-002.3] Me fala uma coisa, quando você olha pra tua estrutura comercial,
+[002.3-005.3] principalmente você que é empresário e fatura mais de um milhão de reais por ano.
+[005.3-008.4] Você tem uma percepção de que o teu time não está executando da melhor forma?
+[008.4-011.0] Talvez você tenha uma dependência muito grande de indicação,
+[011.0-014.0] também existe uma chance de você ser o melhor veneno da tua empresa?
+[014.0-017.3] Muitas vezes você já investiu em ferramenta, contratou inteligência artificial,
+[017.3-021.4] contratou agência, fez uma série de ações, mas você viu o dinheiro saindo e o estado não mudando.
+[021.4-022.6] Quero te fazer um convite.
+[022.6-024.4] Independente do que está acontecendo na tua empresa agora,
+[024.4-026.6] a gente criou uma ferramenta chamada scanner comercial.
+[026.6-031.1] Nele, eu vou fazer um raio X no teu processo de vendas e na tua estrutura de vendas.
+[031.1-035.3] Eu vou te ajudar a identificar o que pode estar travando o seu comercial nesse momento.
+[035.3-036.4] E pra isso é muito simples.
+[036.4-040.2] Clique aqui embaixo, você vai cair numa página, responde as perguntas e eu vou te dar clareza.
+[040.2-043.3] Uma vez que faça sentido, você pode fazer uma seção estratégica com o meu time,
+[043.3-047.0] e a gente vai analisar o que está acontecendo na tua empresa e te mostrar como é que resolve os seus desafios.
+[047.0-049.2] Mas de qualquer maneira, dentro do scanner de vendas,
+[049.2-052.9] eu vou dar clareza do que pode estar consumindo o teu investimento
+[052.9-054.9] e não estar produzindo resultado nesse momento.
+[054.9-055.9] Clique aqui embaixo.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="scanner" data-id="027dias_scannerdevendas.growthmachine.com.br_2">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_scannerdevendas.growthmachine.com.br_2.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_scannerdevendas.growthmachine.com.br_2.jpg" alt="Preview ad 027dias_scannerdevendas.growthmachine.com.br_2"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#0ea5e9;background:rgba(242,107,29,0.12);border-color:#0ea5e9">SCANNER</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_scannerdevendas.growthmachine.com.br_2</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 257 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1HlaoztIn5vz7OiwTzSxEZtBibAU_1Dt2/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_scannerdevendas.growthmachine.com.br_2" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://scannerdevendas.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → scannerdevendas.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_scannerdevendas.growthmachine.com.br_2" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_scannerdevendas.growthmachine.com.br_2" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_scannerdevendas.growthmachine.com.br_2">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(257 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-002.3] Me fala uma coisa, quando você olha pra tua estrutura comercial,
+[002.3-005.3] principalmente você que é empresário e fatura mais de um milhão de reais por ano.
+[005.3-008.4] Você tem uma percepção de que o teu time não está executando da melhor forma?
+[008.4-011.0] Talvez você tenha uma dependência muito grande de indicação,
+[011.0-014.0] também existe uma chance de você ser o melhor veneno da tua empresa?
+[014.0-018.1] Muitas vezes você já investiu em ferramenta, contratou inteligência artificial, contratou agência,
+[018.1-021.4] fez uma série de ações, mas você viu o dinheiro saindo e o resultado não mudando.
+[021.4-022.7] Quero te fazer um convite.
+[022.7-024.4] Independente de que está acontecendo a tua empresa agora,
+[024.4-026.6] a gente criou uma ferramenta chamada scanner comercial.
+[026.6-031.1] Nele, eu vou fazer um raio X no teu processo de vendas e na tua estrutura de vendas.
+[031.1-035.3] Eu vou te ajudar a identificar o que pode estar travando o seu comercial nesse momento.
+[035.3-036.4] E pra isso é muito simples.
+[036.4-040.2] Clique aqui embaixo, você vai cair numa página, responde às perguntas e eu vou te dar clareza.
+[040.2-043.3] Uma vez que faça sentido, você pode fazer uma seção estratégica com o meu time,
+[043.3-047.0] a gente vai analisar o que está acontecendo na tua empresa e te mostrar como é que resolve os seus desafios.
+[047.0-049.2] Mas de qualquer maneira, dentro do scanner de vendas,
+[049.2-052.9] eu vou dar clareza do que pode estar consumindo o teu investimento
+[052.9-054.9] e não estar produzindo resultado nesse momento.
+[054.9-055.9] Clique aqui embaixo.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="scanner" data-id="027dias_scannerdevendas.growthmachine.com.br_3">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_scannerdevendas.growthmachine.com.br_3.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_scannerdevendas.growthmachine.com.br_3.jpg" alt="Preview ad 027dias_scannerdevendas.growthmachine.com.br_3"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#0ea5e9;background:rgba(242,107,29,0.12);border-color:#0ea5e9">SCANNER</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_scannerdevendas.growthmachine.com.br_3</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 194 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1eC6arRuxdpaOXZGfhfJSdxWVpBjXUtRy/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_scannerdevendas.growthmachine.com.br_3" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://scannerdevendas.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → scannerdevendas.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_scannerdevendas.growthmachine.com.br_3" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_scannerdevendas.growthmachine.com.br_3" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_scannerdevendas.growthmachine.com.br_3">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(194 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-004.8] Você que é dono de empresa, você já teve uma percepção de que por mais que você invista
+[004.8-007.5] muito o seu comercial, o resultado parece que não vem.
+[007.5-011.3] Pode ser que você tenha contratado consultoria, você tenha investido numa agência, tenha
+[011.3-015.2] contratado aquela ferramenta de inteligência artificial que prometia resolver todos os
+[015.2-019.2] seus problemas e no final você percebeu que o dinheiro saiu mas o faturamento não
+[019.2-020.2] aumentou.
+[020.2-022.8] A gente lançou uma ferramenta chamada Scanner de Vendas.
+[022.8-026.2] No Scanner de Vendas eu vou fazer algumas perguntas para entender quais são os
+[026.2-028.6] gargalos que existem dentro da sua operação.
+[028.6-032.4] Esse Scanner é muito útil para empresários como você, que faturam mais de um milhão de
+[032.4-033.4] reais por ano.
+[033.4-035.5] Para você ter acesso a ele, é só clicar aqui embaixo.
+[035.5-039.8] Depois do Scanner, se fizer sentido, nós podemos agendar uma sessão junto com um
+[039.8-043.2] especialista também, onde a gente vai analisar o seu comercial, te mostrar os gargalos e
+[043.2-046.9] uma vez que faça sentido, te damos uma condição excelente para a gente acelerar
+[046.9-047.9] o seu resultado.
+[047.9-048.4] Lita aqui embaixo.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="scanner" data-id="027dias_scannerdevendas.growthmachine.com.br_4">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_scannerdevendas.growthmachine.com.br_4.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_scannerdevendas.growthmachine.com.br_4.jpg" alt="Preview ad 027dias_scannerdevendas.growthmachine.com.br_4"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#0ea5e9;background:rgba(242,107,29,0.12);border-color:#0ea5e9">SCANNER</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_scannerdevendas.growthmachine.com.br_4</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 194 palavras na transcrição</span>
+            <span>📑 2 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1X5GN8gWoQjBvjjVIybCTcs8q8zONbBTD/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_scannerdevendas.growthmachine.com.br_4" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://scannerdevendas.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → scannerdevendas.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_scannerdevendas.growthmachine.com.br_4" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_scannerdevendas.growthmachine.com.br_4" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_scannerdevendas.growthmachine.com.br_4">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(194 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-004.8] Você que é dono de empresa, você já teve uma percepção de que por mais que você invista
+[004.8-007.5] muito o seu comercial, o resultado parece que não vem.
+[007.5-011.3] Pode ser que você tenha contratado consultoria, você tenha investido numa agência, tenha
+[011.3-015.2] contratado aquela ferramenta de inteligência artificial que prometia resolver todos os
+[015.2-019.2] seus problemas e no final você percebeu que o dinheiro saiu mas o faturamento não
+[019.2-020.2] aumentou.
+[020.2-022.8] A gente lançou uma ferramenta chamada Scanner de Vendas.
+[022.8-026.2] No Scanner de Vendas eu vou fazer algumas perguntas para entender quais são os
+[026.2-028.6] gargalos que existem dentro da sua operação.
+[028.6-032.4] Esse Scanner é muito útil para empresários como você, que faturam mais de um milhão de
+[032.4-033.4] reais por ano.
+[033.4-035.5] Para você ter acesso a ele, é só clicar aqui embaixo.
+[035.5-039.8] Depois do Scanner, se fizer sentido, nós podemos agendar uma sessão junto com um
+[039.8-043.2] especialista também, onde a gente vai analisar o seu comercial, te mostrar os gargalos e
+[043.2-046.9] uma vez que faça sentido, te damos uma condição excelente para a gente acelerar
+[046.9-047.9] o seu resultado.
+[047.9-048.4] Lita aqui embaixo.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+          </div>
+        </section>
+        
+
+        <section class="section" data-platform="pago" data-funil="diagnostico">
+          <header class="section-head" style="border-left-color: #a855f7">
+            <div>
+              <h2 style="color: #a855f7">Funil C — Diagnóstico Growth Machine <span style="color: var(--muted); font-size: 0.55em; font-weight: normal;">Meta-Ads</span></h2>
+              <p class="section-sub">Aplicação de CEO: &#x27;sua operação perde dinheiro em 3 lugares&#x27; → converge no Desafio ou no high-ticket.</p>
+            </div>
+            <div class="section-actions">
+              <button class="miro-link-btn section-miro-btn" type="button" data-section-id="pago-diagnostico" title="Copiar URL pra embedar essa seção inteira no Miro">📎 Seção Miro</button>
+            </div>
+            <div class="section-stats">
+              <span><strong>8</strong> ads únicos</span>
+            </div>
+          </header>
+          <div class="section-grid">
+            
+    <article class="card" data-platform="pago" data-funil="diagnostico" data-id="033dias_diagnostico.growthmachine.com.br">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/033dias_diagnostico.growthmachine.com.br.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/033dias_diagnostico.growthmachine.com.br.jpg" alt="Preview ad 033dias_diagnostico.growthmachine.com.br"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#a855f7;background:rgba(242,107,29,0.12);border-color:#a855f7">DIAGNÓSTICO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 33 dias ativos</span>
+          </div>
+          <h3>033dias_diagnostico.growthmachine.com.br</h3>
+          <div class="meta">
+            <span>📅 33 dias no Meta Ads Library</span>
+            <span>📝 266 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1AQzfD5m40l4Y42_BgD6sysfnV7q3jkm7/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="033dias_diagnostico.growthmachine.com.br" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://diagnostico.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → diagnostico.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-033dias_diagnostico.growthmachine.com.br" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-033dias_diagnostico.growthmachine.com.br" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-033dias_diagnostico.growthmachine.com.br">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(266 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-004.0] Você é dono de empresa, fatura mais de 1 milhão de reais, eu tenho duas perguntas importantes para você.
+[004.0-008.6] Quando você analisa o seu setor de vendas, toda vez que você não está presente, parece que a venda não sai,
+[008.6-015.5] dos negócios que você fechou nos últimos 12 meses, quantos desses negócios vieram de indicação, quantos foram o esforço do teu time?
+[015.5-020.2] Se você me deu ou não para qualquer uma dessas duas respostas, você não tem um problema de capacidade de crescimento,
+[020.2-024.0] você tem um problema de estrutura, e eu vou te ajudar a resolver isso dentro do programa de exposição comercial.
+[024.0-027.0] E nele, ao longo de 3 dias, a gente monta 100% da sua máquina de vendas.
+[027.0-034.0] Eu estou falando de sales engagement, CRM, de playbook, de processo, de abordagem de tudo que é necessário para você não ser mais fundamental na tua operação.
+[034.0-037.5] Significa que você vai ter mais tempo para aproveitar a tua família e vai ganhar mais dinheiro com mais luz.
+[037.5-041.0] Para você entender exatamente como nós podemos te ajudar, eu quero te fazer um convite.
+[041.0-044.5] Vamos fazer um diagnóstico completo na tua operação. Vou analisar o que você está fazendo, vou analisar as teus gargalos,
+[044.5-049.0] o quanto você pode crescer, o que é o tamanho da oportunidade que você está inserido, e provavelmente não está explorando.
+[049.0-055.0] Isso é muito simples. Clica no botão Saiba Mais e solicita agora que a gente vai te mostrar como é que a gente vai de 26, o melhor ano do teu negócio.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="diagnostico" data-id="033dias_diagnostico.growthmachine.com.br_2">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/033dias_diagnostico.growthmachine.com.br_2.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/033dias_diagnostico.growthmachine.com.br_2.jpg" alt="Preview ad 033dias_diagnostico.growthmachine.com.br_2"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#a855f7;background:rgba(242,107,29,0.12);border-color:#a855f7">DIAGNÓSTICO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 33 dias ativos</span>
+          </div>
+          <h3>033dias_diagnostico.growthmachine.com.br_2</h3>
+          <div class="meta">
+            <span>📅 33 dias no Meta Ads Library</span>
+            <span>📝 253 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1swVRnjjR8tU54VKiszYpnk1_r6u5vYC0/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="033dias_diagnostico.growthmachine.com.br_2" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://diagnostico.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → diagnostico.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-033dias_diagnostico.growthmachine.com.br_2" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-033dias_diagnostico.growthmachine.com.br_2" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-033dias_diagnostico.growthmachine.com.br_2">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(253 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-002.0] Eu sei que na tua cabeça tem algo do tipo
+[002.0-004.3] Estou vendendo menos do que eu poderia por causa do concorrente
+[004.3-006.3] Estou vendendo menos do que eu poderia por causa do meu time
+[006.3-008.3] Estou vendendo menos do que eu poderia por causa da economia
+[008.3-011.3] E sem dúvida nenhuma, esses são fatores que de alguma forma impactam
+[011.3-014.3] Principalmente empresários que faturam mais de um milhão de reais por ano
+[014.3-018.3] Mas existem alavancas que não estão sendo exploradas dentro da sua operação
+[018.3-020.3] Na verdade é um processo
+[020.3-021.8] É como se fosse um parafuso
+[021.8-023.3] Que se eu apertar você vai vender mais
+[023.3-026.8] Tudo isso acontece principalmente por falta de estrutura e de processo
+[026.8-028.3] Agora eu quero te fazer um convite
+[028.3-030.8] Eu quero te mostrar que é fácil aumentar o faturamento
+[030.8-033.3] Uma vez que você usa a metodologia e o processo certo
+[033.3-036.3] Aqui na GROPHYMACHINE te ajudou mais de 4 mil empresas
+[036.3-038.8] Nós montamos mais de 8 mil processos comerciais
+[038.8-042.3] Atualmente a gente acompanha 8 das 10 maiores empresas de tecnologia
+[042.3-043.3] Presentes no Brasil
+[043.3-048.3] Empresas como TOTUS, SAP, Movidas, Localiza e muitas outras
+[048.3-049.3] Agora é importante
+[049.3-051.8] Você quer entender o que você faz para escalar suas vendas?
+[051.8-052.8] Fique no botão que está aqui embaixo
+[052.8-053.8] Solicita agora um diagnóstico
+[053.8-054.8] Um específico do meu time
+[054.8-056.3] Vai analisar a tua operação e te mostrar
+[056.3-058.3] O que você pode fazer para alavancar o teu resultado</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="diagnostico" data-id="033dias_diagnostico.growthmachine.com.br_3">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/033dias_diagnostico.growthmachine.com.br_3.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/033dias_diagnostico.growthmachine.com.br_3.jpg" alt="Preview ad 033dias_diagnostico.growthmachine.com.br_3"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#a855f7;background:rgba(242,107,29,0.12);border-color:#a855f7">DIAGNÓSTICO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 33 dias ativos</span>
+          </div>
+          <h3>033dias_diagnostico.growthmachine.com.br_3</h3>
+          <div class="meta">
+            <span>📅 33 dias no Meta Ads Library</span>
+            <span>📝 243 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1WnzraziVSh_rDNSQG7sdwjpE4njJMauj/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="033dias_diagnostico.growthmachine.com.br_3" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://diagnostico.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → diagnostico.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-033dias_diagnostico.growthmachine.com.br_3" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-033dias_diagnostico.growthmachine.com.br_3" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-033dias_diagnostico.growthmachine.com.br_3">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(243 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-004.9] Se eu me cadastrar no teu site agora, quanto tempo leu para você fazer o primeiro contato com isso?
+[004.9-010.4] Estudos mostram que toda vez que você passa de 5 minutos, você pede exponencial a sua capacidade de vendas.
+[010.4-011.2] Por quê?
+[011.2-016.6] Porque simplesmente o lead está distraído, é muito anúncio, é muita mensagem, é muita coisa acontecendo
+[016.6-018.7] e ele se esquece de se cadastrar para falar com o tipo.
+[018.7-023.0] Na média, as empresas atualmente estão conseguindo falar com 20% das pessoas que a procuram.
+[023.0-025.6] E detalhe, os vendedores existem na segunda tentativa.
+[025.6-029.3] Significa que se eu me cadastrar hoje no teu site, o teu vendedor vai tentar falar comigo uma vez
+[029.3-030.8] e na segunda, ele não tenta mais.
+[030.8-034.8] Tudo isso não é um problema do time, é um problema de processo e de arquitetura.
+[034.8-038.1] Na verdade, está faltando duas coisas, filtro de qualificação e cadência.
+[038.1-042.1] Mas, independente do que é necessário fazer para reverter o teu resultado, quero te fazer um convite.
+[042.1-047.0] Aqui embaixo tem um botão onde você consegue se cadastrar agora para receber um diagnóstico completo na tua operação.
+[047.0-051.5] Um especialista do meu time vai analisar a tua empresa, vai entender os teus gargaros e uma vez que a gente identifique
+[051.5-056.2] o que está te travando agora, eu vou te mostrar um plano claro para fazer de 226 o melhor ano do seu negócio.
+[056.2-057.2] Vamos embora?</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="diagnostico" data-id="026dias_diagnostico.growthmachine.com.br">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br.jpg" alt="Preview ad 026dias_diagnostico.growthmachine.com.br"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#a855f7;background:rgba(242,107,29,0.12);border-color:#a855f7">DIAGNÓSTICO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 26 dias ativos</span>
+          </div>
+          <h3>026dias_diagnostico.growthmachine.com.br</h3>
+          <div class="meta">
+            <span>📅 26 dias no Meta Ads Library</span>
+            <span>📝 189 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1MKPdN1LUaX5d8aicjBktmHp4GIp6xUx6/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="026dias_diagnostico.growthmachine.com.br" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://diagnostico.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → diagnostico.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-026dias_diagnostico.growthmachine.com.br" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-026dias_diagnostico.growthmachine.com.br" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-026dias_diagnostico.growthmachine.com.br">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(189 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-003.9] 80% da sua receita vem apenas de 20% do seu time.
+[003.9-006.1] E presta atenção porque eu vou te explicar o porquê.
+[006.1-009.0] A maior parte das empresas que eu analiso, eu vejo esse mesmo padrão sem repetir.
+[009.0-012.7] A maior parte da sua receita depende de uma parcela pequena do teu time.
+[012.7-015.0] Basicamente você tem aqueles vendedores que entregam o resultado
+[015.0-017.6] e a maior parte do time que acaba não produzindo tanto.
+[017.6-020.4] É que a maior dos vendedores está ali ocupando espaço, batendo cartão,
+[020.4-022.8] mas de fato não performa da maneira correta.
+[022.8-025.4] E você como dono da empresa, acho que está faltando para trinta e treza.
+[025.4-027.3] Vender mais é aumentar o número de vendedores
+[027.3-029.4] ou então aumentar o investimento em marco, gerando mais lixo.
+[029.4-032.6] Dá uma parte das vezes não é isso que está tirando o resultado do teu negócio.
+[032.6-035.6] Sem floreio a gente vai analisar a tua operação,
+[035.6-037.8] identificar o que está sabotando o teu resultado
+[037.8-040.6] e te mostrar exatamente como você resolve isso.
+[040.6-043.5] Só clicar aqui embaixo e solicitar agora o teu diagnóstico.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="diagnostico" data-id="026dias_diagnostico.growthmachine.com.br_2">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br_2.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br_2.jpg" alt="Preview ad 026dias_diagnostico.growthmachine.com.br_2"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#a855f7;background:rgba(242,107,29,0.12);border-color:#a855f7">DIAGNÓSTICO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 26 dias ativos</span>
+          </div>
+          <h3>026dias_diagnostico.growthmachine.com.br_2</h3>
+          <div class="meta">
+            <span>📅 26 dias no Meta Ads Library</span>
+            <span>📝 231 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1VOF9M1yDuddRwDaduJMmWXBwRXD9e377/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="026dias_diagnostico.growthmachine.com.br_2" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://diagnostico.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → diagnostico.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-026dias_diagnostico.growthmachine.com.br_2" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-026dias_diagnostico.growthmachine.com.br_2" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-026dias_diagnostico.growthmachine.com.br_2">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(231 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-003.2] Não é nada que vem cá, nós estamos dentro do Programa de Explosão Comercial.
+[003.2-008.0] Esse empresário aqui acabou de definir exatamente qual é o posicionamento e perfil de cliente que ele vai atrás.
+[008.0-010.3] Um dos grandes gargalos na tua operação nesse momento não tem glareza,
+[010.3-014.5] pra quem você vende e qualquer estratégia que você faz pra gerar demanda parecida com o teu cliente que dá mais dinheiro.
+[014.5-017.8] Mas eu quero te fazer um convite, não é te trazer pra cá.
+[017.8-020.3] Isso aqui pode ser uma consequência do nosso próximo passo.
+[020.3-023.0] Primeiro, eu quero fazer uma análise completa no teu comercial.
+[023.0-027.0] Eu vou diagnosticar quais são os seus gargalos, o que tá te roubando o resultado
+[027.0-030.3] e quais são as alavangas que estão disponíveis nesse momento pra aumentar o teu faturamento.
+[030.3-033.7] O especialista que vai bater um papo contigo já analisou centenas de empresas igual a sua
+[033.7-036.5] e no mínimo ele vai te dar alguns insights muito importante
+[036.5-038.5] que uma vez que você aplica, aumenta seu faturamento.
+[038.5-041.5] Eu vou te fazer uma proposta pra te ajudar a fazer isso em pouco tempo
+[041.5-043.5] e te entregar uma máquina das montadas em 3 dias.
+[043.5-046.5] Mas você só precisa avançar se quiser sentido.
+[046.5-050.5] Pra você receber agora esse diagnóstico, fica aqui embaixo, não saiba mais, eu tô te esperando.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="diagnostico" data-id="026dias_diagnostico.growthmachine.com.br_3">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br_3.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br_3.jpg" alt="Preview ad 026dias_diagnostico.growthmachine.com.br_3"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#a855f7;background:rgba(242,107,29,0.12);border-color:#a855f7">DIAGNÓSTICO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 26 dias ativos</span>
+          </div>
+          <h3>026dias_diagnostico.growthmachine.com.br_3</h3>
+          <div class="meta">
+            <span>📅 26 dias no Meta Ads Library</span>
+            <span>📝 266 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1_po7wpKPsxuwwBPafJ92dBv_6vqIgDAE/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="026dias_diagnostico.growthmachine.com.br_3" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://diagnostico.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → diagnostico.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-026dias_diagnostico.growthmachine.com.br_3" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-026dias_diagnostico.growthmachine.com.br_3" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-026dias_diagnostico.growthmachine.com.br_3">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(266 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-000.9] Me responde duas coisas.
+[000.9-002.9] Hoje, quando você olha para a tua operação comercial,
+[002.9-004.0] que falta para você bater meta?
+[004.0-005.9] Você precisa de mais vendedores ou mais leads?
+[005.9-009.1] Eu não sei qual dos dois você pensou quando eu te perguntei.
+[009.1-011.0] Mas, uma parte das vezes, o que falta de uma operação
+[011.0-013.4] não é nem mais lead, nem mais vendedor.
+[013.4-014.5] E sim, um processo.
+[014.5-017.3] Não adianta você botar um caminhão de pessoas interessadas em te comprar
+[017.3-019.8] se o teu time não está treinado, se você não tem um roteiro,
+[019.8-022.6] se você não qualifica, se você não conduz esse cliente até um fechamento.
+[022.6-023.3] Vamos fazer o seguinte.
+[023.3-025.0] Eu não sei qual o teu problema nesse momento,
+[025.0-027.2] mas aqui na Growth Machinete em Especialistas tem a ajudar empresários
+[027.2-028.7] que faturam mais de um milhão de reais.
+[028.7-030.4] Se esse é o teu momento, eu quero te fazer um convite.
+[030.4-032.4] Aqui embaixo tem um botão, escrito o Saiba Mais.
+[032.4-035.6] Eu vou clicar nele e você vai solicitar um bate-papo com o meu time de venus.
+[035.6-037.9] O objetivo desse bate-papo é entender o seu cenário.
+[037.9-040.4] Obviamente, que no final, uma vez que a gente entenda
+[040.4-042.2] que a gente consegue te ajudar, eu vou te fazer um bofé.
+[042.2-044.3] Mas eu só vou fazer isso se eu entender primeiro,
+[044.3-046.2] que é o teu momento, que eu consigo te ajudar
+[046.2-049.3] e que a gente pode aumentar de maneira significativa o teu faturamento.
+[049.3-051.4] Fica aqui embaixo, eu estou te esperando no Diagnóstico.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="diagnostico" data-id="026dias_diagnostico.growthmachine.com.br_4">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br_4.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br_4.jpg" alt="Preview ad 026dias_diagnostico.growthmachine.com.br_4"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#a855f7;background:rgba(242,107,29,0.12);border-color:#a855f7">DIAGNÓSTICO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 26 dias ativos</span>
+          </div>
+          <h3>026dias_diagnostico.growthmachine.com.br_4</h3>
+          <div class="meta">
+            <span>📅 26 dias no Meta Ads Library</span>
+            <span>📝 281 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1BMzGcCyk9t0euIxwrAhj02lM5QbvR2SQ/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="026dias_diagnostico.growthmachine.com.br_4" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://diagnostico.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → diagnostico.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-026dias_diagnostico.growthmachine.com.br_4" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-026dias_diagnostico.growthmachine.com.br_4" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-026dias_diagnostico.growthmachine.com.br_4">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(281 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-005.5] Você que é empresário que fatura mais de 1 milhão de reais, 30 segundos comigo ou 2 anos perdendo dinheiro, vem cá.
+[005.5-009.0] Na maior parte das vezes, quando uma empresa não consegue bater meta,
+[009.0-013.0] o seu fundador acredita que o problema ou é do time, ou é da falta de líder.
+[013.0-017.4] E das duas uma, ou ele vai contratar mais pessoas, que normalmente aumenta a custo e não aumenta o faturamento,
+[017.4-021.8] ou ele bota mais dinheiro em propagandia e felicidade para tentar trazer mais volume,
+[021.8-025.0] o que acaba não gerando retorno diretamente proporcional.
+[025.0-028.3] O que você vê na maioria das vezes é o dinheiro saindo, mas você não deu dinheiro entrando,
+[028.3-029.6] mas eu quero que você faça um convite.
+[029.6-033.3] Eu tenho um especialista aqui na minha operação que analisou centenas de empresas iguais da sua
+[033.3-035.8] e ele identifica exatamente quais são os seus dargalos,
+[035.8-039.3] e te mostra um plano do que você pode fazer para aumentar o seu faturamento.
+[039.3-042.3] Obviamente que a gente tem um objetivo comercial dentro desse bate-papo,
+[042.3-044.5] uma vez que o identifica que eu consigo te ajudar
+[044.5-047.7] e que você está dentro do perfil de empresas que eu normalmente gera o sucesso,
+[047.7-050.2] eu vou te trazer uma condição diferenciada para a gente trabalhar junto.
+[050.2-052.7] Mas isso só vai acontecer se você estiver sentindo para nós dois.
+[052.7-056.2] Para você entender agora o que está te travando, clica no botão Sabe a Mais,
+[056.2-058.3] lá você vai solicitar um diagnóstico gratuito
+[058.3-061.9] e a gente vai entender exatamente o que a gente vai fazer para te levar para o próximo vídeo.
+[061.9-062.4] Bora.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="diagnostico" data-id="026dias_diagnostico.growthmachine.com.br_5">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br_5.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/026dias_diagnostico.growthmachine.com.br_5.jpg" alt="Preview ad 026dias_diagnostico.growthmachine.com.br_5"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#a855f7;background:rgba(242,107,29,0.12);border-color:#a855f7">DIAGNÓSTICO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 26 dias ativos</span>
+          </div>
+          <h3>026dias_diagnostico.growthmachine.com.br_5</h3>
+          <div class="meta">
+            <span>📅 26 dias no Meta Ads Library</span>
+            <span>📝 219 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1swWHvvGxNaJq90_FSJsVqfgUsr4KJGTV/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="026dias_diagnostico.growthmachine.com.br_5" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://diagnostico.growthmachine.com.br/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → diagnostico.growthmachine.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-026dias_diagnostico.growthmachine.com.br_5" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-026dias_diagnostico.growthmachine.com.br_5" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-026dias_diagnostico.growthmachine.com.br_5">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(219 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-004.8] Enversário, atenção. O seu comercial baque meta no mês e soa menor, por favor.
+[004.8-007.0] Vamos parar de fingir que isso é normal.
+[007.0-009.0] Eu analisei mais de 8 mil operações de vendas.
+[009.0-012.5] E vou te falar, muitas empresas parecem que estão tendo muito resultado,
+[012.5-014.8] mas quando você vai analisar internamente a estrutura comercial,
+[014.8-017.4] você vê que tem muito gap e que está deixando dinheiro na mesa.
+[017.4-021.1] No mês seguinte, não a parte das vezes, ninguém sabe exatamente o que aconteceu na empresa,
+[021.1-023.4] ou para ela não bater meta ou para ela chegar no resultado absurdo.
+[023.4-025.9] Você não pode depender de sorte, você tem que depender de estrutura.
+[025.9-027.4] Se você quer, recebendo o diagnóstico atuito,
+[027.4-029.9] onde a gente vai analisar exatamente o que está acontecendo na operação de vendas,
+[029.9-031.5] aqui embaixo tem um botão script saiba mais.
+[031.5-034.3] Ao clicar nele, um especialista do meu time vai entrar em contato contigo
+[034.3-035.5] e analisar a sua operação.
+[035.5-039.1] É óbvio que no final desse bate-papo a gente quer te ajudar de alguma maneira,
+[039.1-042.9] mas eu só vou te fazer uma oferta uma vez que faça sentido,
+[042.9-045.9] tanto para o teu momento e que eu percebe que eu consigo te ajudar.
+[045.9-047.3] Vamos embora, eu estou te esperando.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+          </div>
+        </section>
+        
+
+        <section class="section" data-platform="pago" data-funil="expansao">
+          <header class="section-head" style="border-left-color: #22c55e">
+            <div>
+              <h2 style="color: #22c55e">Funil D — Expansão Comercial (high-ticket) <span style="color: var(--muted); font-size: 0.55em; font-weight: normal;">Meta-Ads</span></h2>
+              <p class="section-sub">A porta do high-ticket por call humana — o diagnóstico/Typeform qualifica antes de gastar closer.</p>
+            </div>
+            <div class="section-actions">
+              <button class="miro-link-btn section-miro-btn" type="button" data-section-id="pago-expansao" title="Copiar URL pra embedar essa seção inteira no Miro">📎 Seção Miro</button>
+            </div>
+            <div class="section-stats">
+              <span><strong>14</strong> ads únicos</span>
+            </div>
+          </header>
+          <div class="section-grid">
+            
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="056dias_form.expansaocomercial.com">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/056dias_form.expansaocomercial.com.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/056dias_form.expansaocomercial.com.jpg" alt="Preview ad 056dias_form.expansaocomercial.com"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 56 dias ativos</span>
+          </div>
+          <h3>O teto invisível do seu faturamento.</h3>
+          <div class="meta">
+            <span>📅 56 dias no Meta Ads Library</span>
+            <span>📝 169 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/12FNakvq42ePzzpt2CGtW6S6gkOi3DHpD/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="056dias_form.expansaocomercial.com" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-056dias_form.expansaocomercial.com" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-056dias_form.expansaocomercial.com" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-056dias_form.expansaocomercial.com">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(169 palavras)</span></summary>
+            <pre class="transcript-text">[000.1-005.5] Sabe o que diferencia? Uma operação comercial que entrega R$ 58 milhões em vendas em 2025
+[005.5-009.4] de uma empresa que anda de lado? Sistema. Só que, se eu não precisa de mais dinheiro
+[009.4-012.3] mais esforço e mais trabalho, se eu precisa de processo, eu criei um programa chamado
+[012.3-016.3] Expansão Comercial. Nele, ao longo de 90 dias você vai sair com a sua máquina de vendas
+[016.3-019.8] montada, detalhe. Três dias presencial comigo, aqui no nosso escritório eu vou te ajudar
+[019.8-023.6] a montar cada um dos processos, geração de demanda, vendas e expansão. Se você
+[023.6-026.2] chegar no final do terceiro dia e não tiver sua máquina montada, eu te devolvo
+[026.2-029.0] o seu dinheiro. Quer entender como tudo isso vai funcionar? Clica no botão
+[029.0-032.1] diagnóstico, solicita agora seu diagnóstico gratuito, um especialista do meu time, um
+[032.1-034.7] descrito aqui atrás de mim. Vai conversar contigo, entender o seu negócio de
+[034.7-040.5] mostrar a melhor condição para você revolucionar sua empresa em 2026. Bora!</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="056dias_form.expansaocomercial.com_2">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/056dias_form.expansaocomercial.com_2.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/056dias_form.expansaocomercial.com_2.jpg" alt="Preview ad 056dias_form.expansaocomercial.com_2"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 56 dias ativos</span>
+          </div>
+          <h3>O teto invisível do seu faturamento.</h3>
+          <div class="meta">
+            <span>📅 56 dias no Meta Ads Library</span>
+            <span>📝 60 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1_zVkc97v5h_L6xTGMHvYTSDCUFyouUk8/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="056dias_form.expansaocomercial.com_2" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-056dias_form.expansaocomercial.com_2" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-056dias_form.expansaocomercial.com_2" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-056dias_form.expansaocomercial.com_2">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(60 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-002.9] Eu quero te fazer um convite que ninguém te fez ainda.
+[002.9-005.1] Eu quero fazer um diagnóstico completo na sua operação.
+[005.1-008.0] Analisar a sua estratégia comercial, o seu processo de vendas e seu time.
+[008.0-010.9] E uma vez que faça sentido, te mostrar uma condição exclusiva
+[010.9-013.3] para você participar do Programa de Expansão Comercial.
+[013.3-014.3] Vamos embora?</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="027dias_form.expansaocomercial.com">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_form.expansaocomercial.com.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_form.expansaocomercial.com.jpg" alt="Preview ad 027dias_form.expansaocomercial.com"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_form.expansaocomercial.com</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 145 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1k0OrlFOYvMo6CyeBBCrcE4NLtLCIvQAC/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_form.expansaocomercial.com" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_form.expansaocomercial.com" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_form.expansaocomercial.com" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_form.expansaocomercial.com">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(145 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-005.8] O canto de acesso ao mesmo processo que eu usei para se dar sala da minha casa para uma escritória de 1.500 mais quadrões que me fez em 2025,
+[005.8-009.2] vender mais de R$ 58 bilhões em nó dos contratos.
+[009.2-011.8] Para ser bem certo antigo, não tem grande complexidade para fazer isso não.
+[011.8-014.6] Você precisa apenas de método, de processo e de presta altura.
+[014.6-017.7] Eu vou te ajudar a fazer isso em apenas 3 dias, no programa expansão comercial.
+[017.7-021.6] Nele, ao longo desses 3 dias você vai entender o posicionamento, geração de demanda,
+[021.6-024.8] processo de vendas, processo de pós-venda e uso de inteligência artificial.
+[024.8-028.3] Agora, para você entender se ao teu momento e também se eu sou capaz de te ajudar ou não,
+[028.3-030.7] clique aqui embaixo em cima, eu mais solicito agora que o diagnóstico é aqui.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="027dias_form.expansaocomercial.com_2">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_2.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_2.jpg" alt="Preview ad 027dias_form.expansaocomercial.com_2"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_form.expansaocomercial.com_2</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 263 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1DTG1hqp9aNQHWh65aMNTSKu-yChw3dlx/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_form.expansaocomercial.com_2" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_form.expansaocomercial.com_2" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_form.expansaocomercial.com_2" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_form.expansaocomercial.com_2">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(263 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-004.8] Eu devolvo 100% do seu dinheiro, se no final do terceiro dia você não tiver sua máquina
+[004.8-009.0] de vendas estruturada, parametrizada dentro de um software preparado para você dar play
+[009.0-010.9] e começar a ver dinheiro caindo no teu caixa.
+[010.9-015.0] Dentro do programa de situação comercial, eu vou te ajudar em 90 dias a revolucionar
+[015.0-016.0] a sua empresa.
+[016.0-020.5] Mas desses 90, 3 dias você passa aqui, presencial junto comigo, onde você vai entender qual
+[020.5-024.4] é o teu cliente, como gerar demanda, como fazer vendas e como expandir receita
+[024.4-027.5] e como usar inteligência artificial para você ter mais resultado com menos esforço.
+[027.5-028.5] Tudo isso.
+[028.5-031.6] Eu estou falando que você vai vir um evento, onde você vai se divertir, onde você vai
+[031.6-033.6] ter autajuda ou vai receber tapinha na escosta.
+[033.6-034.6] Não, irmão.
+[034.6-035.9] Você vai trabalhar comigo durante 3 dias.
+[035.9-040.8] No final do terceiro dia eu te dou usuário e senha da sua máquina de vendas 100% montada.
+[040.8-044.8] Se ela não estiver pronta, eu devolvo 100% do dinheiro e ainda te dou mais mil reais
+[044.8-045.8] pelo tempo que eu te fiz perder.
+[045.8-046.8] Então é aquilo.
+[046.8-047.8] Tem dois tipos de empresário.
+[047.8-050.7] O que vai ficar aqui embaixo reclamando, de mimimi, contando historinha de que está
+[050.7-054.2] difícil a culpa do governo, do raio que o parta e tem um tipo de empresário
+[054.2-055.9] que age, que faz a diferença.
+[055.9-059.0] Agora, se você decidir, clica agora em Saiba Mais, que eu estou esperando para revolucionar
+[059.0-059.5] a tua empresa.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="027dias_form.expansaocomercial.com_3">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_3.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_3.jpg" alt="Preview ad 027dias_form.expansaocomercial.com_3"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_form.expansaocomercial.com_3</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 215 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1ZGUIZ_SNHzCs-vmdDSpbaRRnV3zvTPhD/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_form.expansaocomercial.com_3" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_form.expansaocomercial.com_3" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_form.expansaocomercial.com_3" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_form.expansaocomercial.com_3">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(215 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-003.4] Eu quero te dar acesso ao mesmo passo-a-passo que eu usei para sair da sala da minha casa
+[003.4-008.5] por uns tempos de 1500 metros quadrados e que me fez em 2025 vender mais de 58 milhões
+[008.5-010.1] de reais em contratos.
+[010.1-013.8] Muito importante, escala-vendas não é complexo, é muito simples.
+[013.8-018.5] Você precisa de sistema, você precisa de processo, você precisa de estratégia.
+[018.5-022.4] E eu vou te ajudar a fazer tudo isso, basicamente copiar e colar o que eu apliquei dentro da
+[022.4-026.1] GROPHO MACHINE, dentro do seu negócio, dentro do programa de expansão comercial.
+[026.1-030.2] Nele, ao longo de três dias, eu vou te ajudar a entender o seu posicionamento, geração
+[030.2-033.8] de demanda, processo de vendas e processo de coisver.
+[033.8-036.9] E eu vou mostrar como você usa inteligência artificial para acelerar isso tudo.
+[036.9-039.5] Detalhe, eu confio tanto no que eu faço que o coloco meu não é.
+[039.5-042.6] Se no final do terceiro dia você não tiver sua máquina de veras montada, eu devolvo
+[042.6-044.7] 100% do teu dinheiro.
+[044.7-048.0] Muito importante, para entender se é seu momento, se eu sou capaz de te ajudar ou não,
+[048.0-050.0] clique aqui embaixo e ensinei a minha mais solicita agora do diagnóstico que eu
+[050.0-050.5] acho que é muito.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="027dias_form.expansaocomercial.com_4">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_4.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_4.jpg" alt="Preview ad 027dias_form.expansaocomercial.com_4"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_form.expansaocomercial.com_4</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 155 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1H7IlZD_GUZsbJvZAgZaDJA4F3oyHlL5N/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_form.expansaocomercial.com_4" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_form.expansaocomercial.com_4" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_form.expansaocomercial.com_4" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_form.expansaocomercial.com_4">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(155 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-004.3] Por mais que eu não consiga controlar vendas, ela sempre vai ser um reflexo da minha execução.
+[004.3-008.2] Não é sobre investir mais em marketing, contratar as ferramentas, nem tão pouco gastar
+[008.2-012.0] os tubos de dinheiro com a consultoria, mas uma parte das vezes que você precisa de método
+[012.0-013.0] e clareza.
+[013.0-017.7] Vendas é repetição, sistema e estratégia, e eu vou te ajudar a ter tudo isso em apenas
+[017.7-021.0] três dias dentro do programa Explosão Comercial.
+[021.0-025.2] Mas antes de eu discutir como ele funciona, ou até mesmo se você deve ou não fazer,
+[025.2-026.4] eu quero te fazer um convite.
+[026.4-029.4] Aqui embaixo tem um botão escrito Saiba Mais, você pode se cadastrar nele agora
+[029.4-030.8] e solicitar onde é que eu não acho gratuito.
+[030.8-034.3] Um especialista do meu time vai analisar a sua operação e te mostrar o que nós podemos
+[034.3-035.6] fazer para te fazer vender mais.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="027dias_form.expansaocomercial.com_5">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_5.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_5.jpg" alt="Preview ad 027dias_form.expansaocomercial.com_5"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_form.expansaocomercial.com_5</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 228 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1l9ilwlNd-kBxhek0S-LbLkF1kcXiKg1s/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_form.expansaocomercial.com_5" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_form.expansaocomercial.com_5" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_form.expansaocomercial.com_5" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_form.expansaocomercial.com_5">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(228 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-003.0] Você que é dono de empresa, que fatura mais de um milhão de reais.
+[003.0-006.9] Eu já sei o que você fez. Você pagou o curso de vendas, fez treinamento para a equipe, contratou CRM,
+[006.9-008.3] caro e até chamou a consultoria.
+[008.3-011.2] Tudo isso para tentar escalar o fotoramento da sua empresa.
+[011.2-014.7] E mesmo assim, nada realmente mudou.
+[014.7-017.3] Só de curir conhecimento e não implementar processos,
+[017.3-021.0] faz com que a sua empresa só cresça quando alguém começa a executar.
+[021.0-024.0] O que acontece? No programa de expansão comercial não é apenas um curso.
+[024.0-026.0] E também não é uma consultoria tradicional.
+[026.0-027.5] É como se fosse um racatom de vendas.
+[027.5-029.8] Nele, a gente entra dentro da operação da sua empresa,
+[029.8-032.3] estrutura todo o processo junto com o seu time,
+[032.3-036.0] você vai passar a ter processo de venda claros, gestão comercial definida,
+[036.0-039.1] gestão de métricas e uma rotina comercial que funciona.
+[039.1-044.7] Em até 90 dias a sua empresa sai com uma máquina de vendas 100% montada de verdade funcionando.
+[044.7-049.0] E se você quer sair da teoria e finalmente organizar a sua operação comercial,
+[049.0-051.7] clique no botão agora e solicita sujeira do nosso gratuito.
+[051.7-055.4] E detalhe, se no final do terceiro dia você não tiver a sua máquina de vendas 100% implementada,
+[055.4-056.4] o devolve seu dinheiro.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="027dias_form.expansaocomercial.com_6">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_6.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_6.jpg" alt="Preview ad 027dias_form.expansaocomercial.com_6"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_form.expansaocomercial.com_6</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 178 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1TiHLm7q4aFIUxakIN0HDmsOpA2mNtkem/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_form.expansaocomercial.com_6" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_form.expansaocomercial.com_6" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_form.expansaocomercial.com_6" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_form.expansaocomercial.com_6">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(178 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-003.8] Sabe aquela oportunidade que você estava procurando para alavancar o seu fatoramento, as suas vendas?
+[003.8-007.0] E até mesmo pegar aquele teu vendedor que não está entregando resultado e levar ele para um outro lugar?
+[007.0-009.0] Pois é, essa é a sua melhor oportunidade.
+[009.0-013.0] Dentro do programa de expressão comercial você vai entender em três dias como usar tecnologia,
+[013.0-017.0] como gerar demanda, como vender por um valor mais alto e como expandir receita.
+[017.0-021.0] Tudo isso, onde você sai no final do terceiro dia com a sua máquina de vendas montada.
+[021.0-022.0] E eu coloco em contrato.
+[022.0-026.6] Se no final do terceiro dia o seu processo não estiver pronto, dentro do software parametrizado eu derrubo 100% do teu dinheiro.
+[026.6-027.6] Agora aquilo.
+[027.6-030.6] É um espaço físico e as vagas já estão em 80%.
+[030.6-035.6] Se você quer fazer desse ano o melhor do seu negócio, explorar uma importante alava que hoje você não está olhando,
+[035.6-039.6] inclusive com a inteligência artificial, clique em Sabe Amais sobre isso agora, se o diagnóstico é gratuito.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="027dias_form.expansaocomercial.com_7">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_7.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_7.jpg" alt="Preview ad 027dias_form.expansaocomercial.com_7"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_form.expansaocomercial.com_7</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 180 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1tclMRkQ3zfzTbfCMmcI3dj9YLcRRRPki/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_form.expansaocomercial.com_7" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_form.expansaocomercial.com_7" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_form.expansaocomercial.com_7" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_form.expansaocomercial.com_7">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(180 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-003.8] Sua empresa depende de você para vender e ainda não tem uma operação comercial.
+[003.8-007.8] Faça um teste prático agora, pegue o seu funil comercial e marque todas as etapas que
+[007.8-009.6] tragam quando você não está presente.
+[009.6-013.4] Se a proposta, negociação e fechamento dependem do dono, o problema não é esforço, o problema
+[013.4-015.3] é falta de um sistema comercial.
+[015.3-019.3] Para te ajudar a identificar esse gargalo com clareza, eu preparei programas para
+[019.3-020.3] são comercial.
+[020.3-025.2] Em três dias em São Paulo nós desenhamos os papéis do seu time de vendas, definimos
+[025.2-030.4] o método comercial e você sai com a sua máquina de vendas 100% montada.
+[030.4-033.8] Claro, qualificação, prospecção e fúria de venda.
+[033.8-036.6] E o detalhe importante, se essa máquina de vendas não tiver prótono final, o investimento
+[036.6-037.6] é devolvido.
+[037.6-041.9] Se você quer escalar as vendas da sua empresa, clica aqui embaixo e solicita agora um diagnóstico
+[041.9-045.2] para a gente entender exatamente o momento e te mostrar como o programa de expressão
+[045.2-046.6] comercial pode transformar a sua empresa.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="027dias_form.expansaocomercial.com_8">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_8.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_8.jpg" alt="Preview ad 027dias_form.expansaocomercial.com_8"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_form.expansaocomercial.com_8</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 123 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1qDEAYLAt8SaKeF-hud4MAT591PJYj8gu/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_form.expansaocomercial.com_8" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_form.expansaocomercial.com_8" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_form.expansaocomercial.com_8" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_form.expansaocomercial.com_8">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(123 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-003.2] de 3,5 milhões para quase 8 milhões de faturamento.
+[003.2-007.5] Essa foi a evolução do Clube da Fala, depois de tuturar a sua operação comercial.
+[007.5-012.9] Esse era o cenário antes passado pela Laila, antes de passar pelo programa de situação comercial.
+[012.9-014.6] Todas as vendas estavam na mão da fundadora.
+[014.6-017.2] Não existia processo de vendas e o crescimento estava atravado.
+[017.2-021.4] Em três dias ela saiu com um processo tuturado, time treinado, gestão comercial funcionando.
+[021.4-025.2] A empresa saiu de 3,5 milhões para quase 8 milhões de faturamento anual.
+[025.2-029.9] Se você quer uma estrutura que tem uma máquina de vendas que cresce com previsibilidade,
+[029.9-032.5] clica no botão abaixo e solicita agora só o dia que não acho gratuito.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="027dias_form.expansaocomercial.com_9">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_9.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/027dias_form.expansaocomercial.com_9.jpg" alt="Preview ad 027dias_form.expansaocomercial.com_9"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 27 dias ativos</span>
+          </div>
+          <h3>027dias_form.expansaocomercial.com_9</h3>
+          <div class="meta">
+            <span>📅 27 dias no Meta Ads Library</span>
+            <span>📝 237 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1XcehffjAeTMBrjp7p1yqfN8oDQAThF0j/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="027dias_form.expansaocomercial.com_9" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-027dias_form.expansaocomercial.com_9" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-027dias_form.expansaocomercial.com_9" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-027dias_form.expansaocomercial.com_9">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(237 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-003.2] Me conta uma coisa, e aquelas metas que você define no final do ano,
+[003.2-005.7] se ainda tá olhando pra elas ou você já disse que não dá,
+[005.7-007.9] ou se a gente tá mandando uma desculpa e vai empurrar esse ano com a barriga?
+[007.9-008.6] De quanto ao negócio?
+[008.6-012.6] O 2026 vai ser um ano que vai ter apenas 200 dias pra você trabalhar.
+[012.6-014.2] E o resultado que você vai produzir,
+[014.2-016.2] não tem uma correlação com o que você fez no 2025,
+[016.2-017.8] e sim do que você vai fazer agora.
+[017.8-021.2] Eu não sei se você tomou uma decisão de que o próximo aniversário,
+[021.2-022.6] mas eu quero te fazer um convite de verdade.
+[022.6-024.7] Eu quero te ajudar a montar a sua máquina de vendas,
+[024.7-026.1] analisar o que você tá fazendo nesse momento,
+[026.1-028.2] te mostrar o caminho mais curto pra você usar IA,
+[028.2-030.2] estratégia, tecnologia pra vender mais.
+[030.2-033.0] Você quer entender um pouquinho do que eu tô fazendo dentro do mercado de vendas,
+[033.0-035.6] transformando empresas normais em empresas de alto crescimento?
+[035.6-038.0] Clica agora em Cybermice, solicito o diagnóstico gratuito,
+[038.0-039.8] o especialista do meu time vai analisar o que você tá fazendo.
+[039.8-042.3] E uma vez que a gente perceba que é o teu momento de aumentar vendas,
+[042.3-045.4] eu vou te mostrar a melhor condição pra você passar 3 dias comigo aqui dentro.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="024dias_form.expansaocomercial.com">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/024dias_form.expansaocomercial.com.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/024dias_form.expansaocomercial.com.jpg" alt="Preview ad 024dias_form.expansaocomercial.com"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 24 dias ativos</span>
+          </div>
+          <h3>024dias_form.expansaocomercial.com</h3>
+          <div class="meta">
+            <span>📅 24 dias no Meta Ads Library</span>
+            <span>📝 155 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1vdiWOQRZxCnloHD4waPPHAXnYqh9tOlg/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="024dias_form.expansaocomercial.com" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-024dias_form.expansaocomercial.com" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-024dias_form.expansaocomercial.com" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-024dias_form.expansaocomercial.com">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(155 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-003.7] Você empresário, que fatura mais de um milhão de reais por ano, eu quero te fazer um convite.
+[003.7-004.9] Você está vendo essa galera aqui?
+[004.9-007.6] Eles estão nesse momento disputando 100 mil reais.
+[007.6-010.1] Exatamente isso. 100 mil reais.
+[010.1-013.2] No final do terceiro dia, a gente vai decidir qual foi a empresa que mais executou.
+[013.2-016.9] Mas, independente de quem vai ganhar, todos eles sairão com a máquina de menos montada,
+[016.9-020.8] processo configurado, escrita de ligação, roteiro e ser reino parametrizado.
+[020.8-022.8] Tudo isso em apenas três dias.
+[022.8-024.0] Eu quero te fazer um desafio.
+[024.0-026.5] Eu gostaria de agora fazer um diagnóstico na tua operação.
+[026.5-029.7] Se eu entender que eu sou capaz de te ajudar, eu vou te trazer uma condição exclusiva
+[029.7-033.8] para você passar três dias comigo e ainda competir a 100 mil reais.
+[033.8-034.8] É exatamente isso.
+[034.8-036.8] Fique aqui embaixo e solicita agora o diagnóstico.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="024dias_form.expansaocomercial.com_2">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/024dias_form.expansaocomercial.com_2.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/024dias_form.expansaocomercial.com_2.jpg" alt="Preview ad 024dias_form.expansaocomercial.com_2"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 24 dias ativos</span>
+          </div>
+          <h3>024dias_form.expansaocomercial.com_2</h3>
+          <div class="meta">
+            <span>📅 24 dias no Meta Ads Library</span>
+            <span>📝 149 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/1fHGU9gxflUF1qX1A_mQAssxHNZPIiK-z/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="024dias_form.expansaocomercial.com_2" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-024dias_form.expansaocomercial.com_2" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-024dias_form.expansaocomercial.com_2" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-024dias_form.expansaocomercial.com_2">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(149 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-002.7] Você que empresário que fatura mais de 1 milhão de reais eu quero te fazer um desafio
+[002.7-005.8] Detalhe, nesse desafio eu vou colocar 100 mil reais na sua conta
+[005.8-007.3] Exatamente isso, na sua conta
+[007.3-010.8] Também nessa galera atrás de mim, ao longo de 3 dias eles vão montar a máquina de vendas dele
+[010.8-014.8] Eles vão desenhar processo, cadência, roteiro, script, modelo
+[014.8-018.0] E eu vou entregar tudo isso pronto, parametrizado dentro de uma tecnologia
+[018.0-020.0] Onde já tá integrado com o CRM deles
+[020.0-023.0] Você quer ter um processo parecido? Nunca mais que é reclamando que o teu prêmio de vendas
+[023.0-025.7] É o mercado, ou é o teu vendedor, ou é a porta de lixo
+[025.7-029.0] E que não gostou de saber mais? 100 mil reais eu to colocando na mesa
+[029.0-031.0] Quer ficar de um desculpe, ou vamos acelerar o teu negócio?</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+    <article class="card" data-platform="pago" data-funil="expansao" data-id="024dias_form.expansaocomercial.com_3">
+      <div class="card-top">
+        <a class="thumb" href="_assets/meta_ads_previews/024dias_form.expansaocomercial.com_3.jpg" target="_blank" rel="noopener"><img loading="lazy" src="_assets/meta_ads_previews/024dias_form.expansaocomercial.com_3.jpg" alt="Preview ad 024dias_form.expansaocomercial.com_3"></a>
+        <div class="card-head">
+          <div class="badges">
+            <span class="badge stage" style="color:#22c55e;background:rgba(242,107,29,0.12);border-color:#22c55e">EXPANSÃO</span>
+            <span class="badge kind">AD</span>
+            <span class="badge formato">📅 24 dias ativos</span>
+          </div>
+          <h3>024dias_form.expansaocomercial.com_3</h3>
+          <div class="meta">
+            <span>📅 24 dias no Meta Ads Library</span>
+            <span>📝 117 palavras na transcrição</span>
+            <span>📑 1 cópia(s) na biblioteca</span>
+          </div>
+          <div class="card-links">
+            <a class="drive-link-btn" href="https://drive.google.com/file/d/12Dsnw_P0VS8R5zjWDCYSAxgtwxTRim-g/view?usp=sharing" target="_blank" rel="noopener" title="Abrir o criativo no Google Drive" style="display:inline-flex;align-items:center;gap:5px;font:700 12px system-ui,-apple-system,sans-serif;text-decoration:none;padding:5px 11px;border-radius:7px;background:#1a73e8;color:#fff;margin-left:6px">📁 Ver no Drive</a>
+            <button class="miro-link-btn" type="button" data-card-id="024dias_form.expansaocomercial.com_3" title="Copiar URL pra embedar esse card no Miro">📎 Link Miro</button>
+          </div>
+          <div class="landing-block">
+            <a class="landing-cta" href="https://form.expansaocomercial.com/" target="_blank" rel="noopener">🔗 Pra onde esse ad leva → form.expansaocomercial.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="analysis">
+        <section class="copy-section">
+          <div class="section-header">
+            <h4>📝 Análise de copy (10 blocos) <span class="edit-tag">editável</span></h4>
+            <button type="button" class="reset-btn" data-reset-key="copy::ad-024dias_form.expansaocomercial.com_3" title="Restaurar texto original">↺ original</button>
+          </div>
+          <textarea class="copy-textarea" data-storage-key="copy::ad-024dias_form.expansaocomercial.com_3" data-default="" rows="30"></textarea>
+          <div class="save-state" data-for="copy::ad-024dias_form.expansaocomercial.com_3">não editado</div>
+        </section>
+        <section class="transcript-section">
+          <details>
+            <summary>📄 Ver transcrição do ad <span class="t-len">(117 palavras)</span></summary>
+            <pre class="transcript-text">[000.0-004.6] Tá vendo essa bandeira aqui? Você que é empresário, que fatura mais de um milhão de reais, eu tenho um convite pra te fazer.
+[004.6-006.7] Existem duas formas de você montar o seu processo de venda.
+[006.7-010.6] Primeira maneira é levar dois anos, bater no cabeça, se esforçar muito e ver pouco resultado acontecer.
+[010.6-018.8] A segunda é você me dar três dias. Em três dias eu vou fazer o diagnóstico da tua operação, desenhar 100% dos seus processos e eu boto em contratos.
+[018.8-022.7] No final do terceiro dia, se você não tiver a máquina de veras montadas, eu te levou 100% do teu dinheiro.
+[022.7-025.7] Só por desafio, fica aqui o Solicioso Diagnóstico agora.</pre>
+          </details>
+        </section>
+      </div>
+    </article>
+    
+          </div>
+        </section>
+        
+</main>
+<div class="lightbox" id="swLightbox">
+  <button class="lightbox-close" type="button" aria-label="Fechar">✕</button>
+  <img src="" alt="zoom">
+  <div class="lightbox-hint">clique fora ou pressione ESC pra fechar</div>
+</div>
+<footer>
+  Anotações salvas automaticamente no <code>localStorage</code> do browser. Exporte sempre que mudar de computador. Thumbnails são frames locais — clique no card pra abrir a prévia.
+</footer>
+<script>
+
+const platformButtons = document.querySelectorAll('.platform-btn');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const sections = document.querySelectorAll('section[data-platform]');
+const cards = document.querySelectorAll('.card');
+let currentPlatform = 'pago';
+let currentFilter = 'all';
+
+function applyAll() {
+  sections.forEach(s => {
+    let hide = s.dataset.platform !== currentPlatform;
+    // Filtro extra: se filtro é funil:X, esconder seções com outro funil
+    if (!hide && currentFilter.startsWith('funil:')) {
+      const targetFunil = currentFilter.split(':')[1];
+      if (s.dataset.funil && s.dataset.funil !== targetFunil) hide = true;
+    }
+    s.classList.toggle('hidden-by-platform', hide);
+  });
+  filterButtons.forEach(b => {
+    const isIgOnly = b.classList.contains('ig-only');
+    const isPagoOnly = b.classList.contains('pago-only');
+    const isNotPago = b.classList.contains('not-pago');
+    const hideIgOnly = (currentPlatform === 'yt' || currentPlatform === 'pago' || currentPlatform === 'similarweb' || currentPlatform === 'conclusao') && isIgOnly;
+    const hidePagoOnly = currentPlatform !== 'pago' && isPagoOnly;
+    const hideNotPago = (currentPlatform === 'pago' || currentPlatform === 'conclusao') && isNotPago;
+    if (hideIgOnly || hidePagoOnly || hideNotPago) {
+      b.classList.add('hidden-by-platform');
+      if (b.classList.contains('active')) {
+        b.classList.remove('active');
+        document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+        currentFilter = 'all';
+      }
+    } else {
+      b.classList.remove('hidden-by-platform');
+    }
+  });
+  document.querySelectorAll('.stat.not-pago').forEach(s => {
+    s.classList.toggle('hidden-by-platform', currentPlatform === 'pago' || currentPlatform === 'conclusao');
+  });
+  cards.forEach(c => {
+    if (currentFilter === 'all') { c.classList.remove('hidden'); return; }
+    const [k, v] = currentFilter.split(':');
+    c.classList.toggle('hidden', c.dataset[k] !== v);
+  });
+}
+
+// Sync URL with currentPlatform + currentFilter (preserva ?card, ?focus, ?section).
+// Não polui URL com defaults (platform=ig, filter=all).
+function syncUrl() {
+  const url = new URL(window.location.href);
+  // Não mexer se estamos em modo card/section focado
+  if (url.searchParams.has('card') || url.searchParams.has('section')) return;
+  if (currentPlatform && currentPlatform !== 'ig') {
+    url.searchParams.set('platform', currentPlatform);
+  } else {
+    url.searchParams.delete('platform');
+  }
+  if (currentFilter && currentFilter !== 'all') {
+    url.searchParams.set('filter', currentFilter);
+  } else {
+    url.searchParams.delete('filter');
+  }
+  history.replaceState(null, '', url.pathname + (url.search || '') + url.hash);
+}
+
+platformButtons.forEach(b => b.addEventListener('click', () => {
+  platformButtons.forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  currentPlatform = b.dataset.platform;
+  applyAll();
+  syncUrl();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}));
+
+filterButtons.forEach(b => b.addEventListener('click', () => {
+  filterButtons.forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  currentFilter = b.dataset.filter;
+  applyAll();
+  syncUrl();
+}));
+
+// Read URL hash/query to auto-select platform & filter on load
+(function() {
+  const qs = new URLSearchParams(window.location.search);
+  const hash = (window.location.hash || '').replace(/^#/, '').toLowerCase();
+  const hashMap = {
+    'instagram': 'ig', 'ig': 'ig',
+    'youtube': 'yt', 'yt': 'yt',
+    'trafego': 'similarweb', 'tráfego': 'similarweb', 'similarweb': 'similarweb', 'similar': 'similarweb',
+    'pago': 'pago', 'trafegopago': 'pago', 'ads': 'pago', 'anuncios': 'pago'
+  };
+  // priority: ?platform= (explicit) > #hash (legacy stubs)
+  let target = qs.get('platform') || hashMap[hash] || null;
+  if (target) {
+    const btn = document.querySelector(`.platform-btn[data-platform="${target}"]`);
+    if (btn) {
+      platformButtons.forEach(x => x.classList.remove('active'));
+      btn.classList.add('active');
+      currentPlatform = target;
+    }
+  }
+  const wantedFilter = qs.get('filter');
+  if (wantedFilter) {
+    const fbtn = document.querySelector(`.filter-btn[data-filter="${CSS.escape(wantedFilter)}"]`);
+    if (fbtn && !fbtn.classList.contains('hidden-by-platform')) {
+      filterButtons.forEach(x => x.classList.remove('active'));
+      fbtn.classList.add('active');
+      currentFilter = wantedFilter;
+    }
+  }
+  applyAll();
+})();
+
+// Focused section view via ?section=<platform>-<stage|group> — used pelos stubs de seção
+(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const sectionId = urlParams.get('section');
+  if (!sectionId) return;
+  // Parse: ig-tofu, yt-mofu, trafego-grupo1, ...
+  const parts = sectionId.split('-');
+  const prefix = parts[0]; // ig|yt|trafego
+  const suffix = parts.slice(1).join('-');
+  const platformMap = { 'ig': 'ig', 'yt': 'yt', 'trafego': 'similarweb', 'pago': 'pago' };
+  const targetPlatform = platformMap[prefix];
+  if (!targetPlatform) return;
+
+  // Define platform on global state so applyAll() não esconda nada da plataforma alvo
+  currentPlatform = targetPlatform;
+  platformButtons.forEach(b => b.classList.toggle('active', b.dataset.platform === targetPlatform));
+  applyAll();  // applyAll respeita currentPlatform — seções/cards da plataforma alvo ficam visíveis
+
+  // Scroll-to-section sem isolar — embed mostra a aba inteira (IG/YT/Tráfego/Pago)
+  // já posicionada na seção alvo, com pulse highlight. Tradeoff vs isolar: usuária
+  // pode rolar pra cima/baixo pra contexto adjacente em vez de só ver o deck isolado.
+  let target = null;
+  document.querySelectorAll('section[data-platform]').forEach(s => {
+    if (target) return;
+    if (s.classList.contains('yt-divider') || s.classList.contains('sw-divider')) return;
+    if (s.dataset.platform !== targetPlatform) return;
+    if (targetPlatform === 'similarweb') {
+      if (s.dataset.group === suffix) target = s;
+    } else {
+      if ((s.dataset.stage || '').toLowerCase() === suffix) target = s;
+    }
+  });
+  if (!target) return;
+
+  const scrollToTarget = () => target.scrollIntoView({ block: 'start', behavior: 'instant' });
+  setTimeout(scrollToTarget, 80);
+  setTimeout(scrollToTarget, 400);
+  setTimeout(scrollToTarget, 1000);
+  setTimeout(() => {
+    scrollToTarget();
+    target.classList.add('pulse-highlight');
+    setTimeout(() => target.classList.remove('pulse-highlight'), 4200);
+  }, 1800);
+  window.addEventListener('load', () => setTimeout(scrollToTarget, 300));
+})();
+
+// Focused single-card view via ?card=ID — used pelos stubs per-card embedados no Miro
+(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const cardId = urlParams.get('card');
+  if (!cardId) return;
+  // Caso especial: card-id terminando em -analise-geral => abre o card pai
+  // e scrolla pra section específica dentro dele
+  let lookupId = cardId;
+  let scrollToSelector = null;
+  if (cardId.endsWith('-analise-geral')) {
+    lookupId = cardId.replace(/-analise-geral$/, '');
+    scrollToSelector = `#card-${cardId}`;
+  }
+  // First: find the card in the DOM so we know which platform it belongs to
+  const allCards = document.querySelectorAll('[data-id]');
+  let foundCard = null;
+  let foundSection = null;
+  allCards.forEach(el => {
+    if (el.dataset.id === lookupId) {
+      foundCard = el;
+      foundSection = el.closest('section');
+    }
+  });
+  if (!foundSection) {
+    // Card not found — let normal view render
+    return;
+  }
+  // Set platform context so applyAll() não esconda nada relacionado
+  const targetPlatform = foundSection.dataset.platform;
+  if (targetPlatform) {
+    currentPlatform = targetPlatform;
+    platformButtons.forEach(b => b.classList.toggle('active', b.dataset.platform === targetPlatform));
+    applyAll();
+  }
+  // Now hide everything except the matching card
+  document.body.classList.add('focused-card');
+  allCards.forEach(el => {
+    if (el.dataset.id !== lookupId) {
+      el.style.display = 'none';
+    } else {
+      el.classList.remove('hidden');
+      el.style.display = '';
+    }
+  });
+  // Hide sibling sections; show foundSection
+  document.querySelectorAll('section').forEach(s => {
+    if (s === foundSection) {
+      s.classList.remove('hidden-by-platform');
+      s.style.display = '';
+    } else {
+      s.style.display = 'none';
+    }
+  });
+  // Se for análise-geral isolada, esconde o restante do card mantendo só a section dela
+  if (scrollToSelector) {
+    const agSection = document.querySelector(scrollToSelector);
+    if (agSection && foundCard) {
+      foundCard.querySelectorAll('.copy-section, .card-top > *').forEach(s => {
+        if (s !== agSection && !s.contains(agSection)) {
+          s.style.display = 'none';
+        }
+      });
+    }
+  }
+  // Insert "back to full analysis" link
+  const back = document.createElement('div');
+  back.className = 'focused-back';
+  back.innerHTML = `
+    <span style="color: var(--muted)">📌 Visualização isolada de um card</span>
+    <span style="display:flex; gap:12px; align-items:center;">
+      <a href="${window.location.pathname}?focus=${encodeURIComponent(lookupId)}" target="_top" title="Abrir o card focado dentro da análise completa">🔍 Ver no contexto</a>
+      <a href="${window.location.pathname}" target="_top">← Ver análise completa</a>
+    </span>
+  `;
+  document.querySelector('main').prepend(back);
+  setTimeout(() => {
+    if (scrollToSelector) {
+      const t = document.querySelector(scrollToSelector);
+      if (t) { t.scrollIntoView({ block: 'start', behavior: 'instant' }); return; }
+    }
+    if (foundCard) foundCard.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }, 50);
+})();
+
+// Soft focus via ?focus=ID — abre análise completa, scrolla até o card e destaca com pulse
+(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const focusId = urlParams.get('focus');
+  if (!focusId) return;
+  const selector = `[data-id="${focusId.replace(/"/g, '\\"')}"]`;
+  // Set platform context se necessário (caso o card seja YT ou SW, currentPlatform default é 'ig')
+  let didPlatformSync = false;
+  function syncPlatform(target) {
+    if (didPlatformSync) return;
+    const section = target.closest('section');
+    if (section && section.dataset.platform && section.dataset.platform !== currentPlatform) {
+      currentPlatform = section.dataset.platform;
+      platformButtons.forEach(b => b.classList.toggle('active', b.dataset.platform === currentPlatform));
+      applyAll();
+    }
+    didPlatformSync = true;
+  }
+  function scrollTo() {
+    const target = document.querySelector(selector);
+    if (!target) return null;
+    syncPlatform(target);
+    target.scrollIntoView({ block: 'center', behavior: 'instant' });
+    return target;
+  }
+  // Múltiplos retries pra lidar com lazy-load: imagens carregam, layout expande,
+  // posição do card muda. Re-scrolla até as imagens acima estabilizarem.
+  setTimeout(scrollTo, 80);
+  setTimeout(scrollTo, 400);
+  setTimeout(scrollTo, 1000);
+  setTimeout(() => {
+    const target = scrollTo();
+    if (target) {
+      target.classList.add('pulse-highlight');
+      setTimeout(() => target.classList.remove('pulse-highlight'), 4200);
+    }
+  }, 1800);
+  // Fallback final: scrolla de novo depois que TODAS as imagens carregaram
+  window.addEventListener('load', () => {
+    setTimeout(scrollTo, 300);
+  });
+})();
+
+// Copy Miro link button — copia URL do stub (card OU seção) pra clipboard
+(function() {
+  const PROJECT_SLUG = "thiago-reis";
+  const BASE_URL = "https://s4.swipeoffers.com.br/thiago-reis/";
+  document.querySelectorAll('.miro-link-btn').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      let stubUrl;
+      if (btn.dataset.sectionId) {
+        stubUrl = `${BASE_URL}s/${PROJECT_SLUG}-${btn.dataset.sectionId}`;
+      } else if (btn.dataset.cardId) {
+        stubUrl = `${BASE_URL}c/${PROJECT_SLUG}-${btn.dataset.cardId}`;
+      } else {
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(stubUrl);
+        const original = btn.textContent;
+        btn.textContent = '✓ copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1800);
+      } catch (err) {
+        prompt('Copia essa URL pra colar no Miro:', stubUrl);
+      }
+    });
+  });
+})();
+
+// SimilarWeb lightbox
+(function() {
+  const lightbox = document.getElementById('swLightbox');
+  if (!lightbox) return;
+  const lightboxImg = lightbox.querySelector('img');
+  const closeBtn = lightbox.querySelector('.lightbox-close');
+  function open(src) {
+    lightboxImg.src = src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('img[data-zoom-src]').forEach(img => {
+    img.addEventListener('click', () => open(img.dataset.zoomSrc));
+  });
+  closeBtn.addEventListener('click', close);
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) close();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) close();
+  });
+})();
+
+// === Lazy-init das textareas (perf): só inicializa quando entra na viewport ===
+// Antes: querySelectorAll('textarea[data-storage-key]').forEach(...) rodava 400-600x no load,
+// bloqueando first paint. Agora cada textarea só lê localStorage + adiciona listeners
+// quando o cara realmente vai usá-la.
+const debounceMap = new Map();
+const initedTextareas = new WeakSet();
+
+function initTextarea(t) {
+  if (initedTextareas.has(t)) return;
+  initedTextareas.add(t);
+  const key = t.dataset.storageKey;
+  const state = document.querySelector(`.save-state[data-for="${key}"]`);
+  const isCopy = key.startsWith('copy::');
+  const defaultText = t.dataset.default || '';
+  const saved = localStorage.getItem(key);
+  if (saved !== null && saved !== defaultText) {
+    t.value = saved;
+    if (state) {
+      state.textContent = isCopy ? 'editado por você ✓' : 'salvo';
+      state.classList.add('saved');
+    }
+    if (isCopy) t.classList.add('edited');
+  } else if (isCopy) {
+    t.value = defaultText;
+    if (state) state.textContent = 'não editado';
+  }
+  t.addEventListener('input', () => {
+    if (state) {
+      state.textContent = 'digitando...';
+      state.classList.remove('saved');
+      state.classList.add('saving');
+    }
+    if (isCopy) t.classList.add('edited');
+    clearTimeout(debounceMap.get(key));
+    debounceMap.set(key, setTimeout(() => {
+      localStorage.setItem(key, t.value);
+      if (state) {
+        state.textContent = isCopy ? 'editado ✓' : 'salvo ✓';
+        state.classList.remove('saving');
+        state.classList.add('saved');
+      }
+    }, 400));
+  });
+}
+
+// IntersectionObserver: dispara init quando a textarea (ou seu pai card) entra na viewport
+// rootMargin generoso pra pre-warmar antes do usuário chegar visualmente
+const textareaObserver = new IntersectionObserver((entries) => {
+  for (const entry of entries) {
+    if (entry.isIntersecting) {
+      initTextarea(entry.target);
+      textareaObserver.unobserve(entry.target);
+    }
+  }
+}, { rootMargin: '400px 0px 400px 0px' });
+
+document.querySelectorAll('textarea[data-storage-key]').forEach(t => {
+  textareaObserver.observe(t);
+});
+
+// Fallback pra browsers sem IntersectionObserver: init imediato em idle
+if (!('IntersectionObserver' in window)) {
+  const todasTextareas = document.querySelectorAll('textarea[data-storage-key]');
+  const idleInit = window.requestIdleCallback || ((cb) => setTimeout(cb, 16));
+  let i = 0;
+  function initBatch() {
+    const limite = Math.min(i + 20, todasTextareas.length);
+    while (i < limite) initTextarea(todasTextareas[i++]);
+    if (i < todasTextareas.length) idleInit(initBatch);
+  }
+  idleInit(initBatch);
+}
+
+// Se o usuário focar/clicar numa textarea ainda não inicializada (improvável mas garante),
+// inicializa imediatamente
+document.addEventListener('focusin', (e) => {
+  if (e.target.matches && e.target.matches('textarea[data-storage-key]')) {
+    initTextarea(e.target);
+  }
+}, true);
+
+document.querySelectorAll('.reset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.resetKey;
+    const t = document.querySelector(`textarea[data-storage-key="${key}"]`);
+    const state = document.querySelector(`.save-state[data-for="${key}"]`);
+    if (!t) return;
+    if (!confirm('Restaurar o texto original? Sua edição será perdida.')) return;
+    t.value = t.dataset.default || '';
+    localStorage.removeItem(key);
+    t.classList.remove('edited');
+    if (state) {
+      state.textContent = 'não editado';
+      state.classList.remove('saved');
+    }
+  });
+});
+
+document.querySelectorAll('.download-transcripts-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const stage = btn.dataset.stage;
+    const platform = btn.dataset.platform;
+    const platformLabel = platform === 'yt' ? 'youtube' : 'instagram';
+    const section = document.querySelector(`section[data-platform="${platform}"][data-stage="${stage}"]`);
+    if (!section) return;
+    const cardEls = section.querySelectorAll('.card');
+    const parts = [];
+    const NL = String.fromCharCode(10);
+    const RULE = '═══════════════════════════════════════════════════════════════';
+    let count = 0;
+    cardEls.forEach(card => {
+      const pre = card.querySelector('pre.transcript-text');
+      if (!pre) return;
+      const id = card.dataset.id;
+      const title = (card.querySelector('h3')?.textContent || id).trim();
+      const link = card.querySelector('a.thumb')?.href || '';
+      const meta = Array.from(card.querySelectorAll('.meta span')).map(s => s.textContent.trim()).filter(Boolean).join(' · ');
+      count++;
+      const header = [
+        RULE,
+        '[' + id + '] ' + title,
+        link,
+        meta,
+        RULE
+      ].filter(Boolean).join(NL);
+      parts.push(header + NL + NL + pre.textContent.trim() + NL + NL);
+    });
+    if (count === 0) {
+      alert('Nenhuma transcrição disponível nesta seção.');
+      return;
+    }
+    const noun = platform === 'yt' ? 'vídeos' : 'posts';
+    const generated = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const fileHeader = [
+      '# Transcrições — ' + platformLabel.toUpperCase() + ' ' + stage,
+      '# Razzetti · ' + count + ' ' + noun,
+      '# Gerado em ' + generated,
+      '',
+      ''
+    ].join(NL);
+    const blob = new Blob([fileHeader + parts.join('')], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const ts = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `razzetti-transcricoes-${platformLabel}-${stage.toLowerCase()}-${ts}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+});
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const out = { hooks: {}, copy_edits: {} };
+  Object.keys(localStorage).forEach(k => {
+    const v = localStorage.getItem(k);
+    if (!v || !v.trim()) return;
+    if (k.startsWith('hook::')) out.hooks[k.replace('hook::', '')] = v;
+    else if (k.startsWith('copy::')) out.copy_edits[k.replace('copy::', '')] = v;
+  });
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const ts = new Date().toISOString().slice(0, 10);
+  a.href = url; a.download = `razzetti-anotacoes-${ts}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+</script>
+</body>
+</html>
