@@ -3,3 +3,6 @@
 /thiagoreis/*         /thiago-reis/:splat      301
 /jeremyminer          /jeremy-miner/           301
 /jeremyminer/*        /jeremy-miner/:splat     301
+# Comparativo de concorrentes (Meta-Ads, Persona, Email, Playbook) — identidade Swipe
+/spy                  /concorrentes/           301
+/spy/*                /concorrentes/:splat     301
