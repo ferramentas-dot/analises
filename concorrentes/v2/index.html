@@ -120,82 +120,82 @@ tbody tr:nth-child(even){background:#fbfafa}
 .hc-go{font-weight:800;font-size:13px;color:var(--orange)}
 @media(max-width:760px){.hgrid{grid-template-columns:1fr}}
 
-/* ── Task-style sidebar ── */
-:root{--sb:220px}
+/* ── Sidebar Swipe SPY ── */
+:root{--sb:220px;--orange:#F26B1D}
 body{padding-left:var(--sb)!important}
 
-/* Ocultar header original e tabs */
+/* Ocultar header original e tabs — navegação fica 100% no sidebar */
 header.top,.top,.tabs{display:none!important}
 
 .sb{
   position:fixed;top:0;left:0;bottom:0;width:var(--sb);
-  background:#13131a;
-  border-right:1px solid rgba(255,255,255,.06);
+  background:#111008;  /* escuro com leve tom quente, não azulado */
+  border-right:1px solid rgba(255,255,255,.05);
   z-index:99;display:flex;flex-direction:column;
   overflow-y:auto;overflow-x:hidden;
   font-family:'Inter',-apple-system,sans-serif;
   -webkit-font-smoothing:antialiased;
 }
 
-/* Logo / topo */
+/* Logo — cor original da Swipe (laranja) sobre fundo escuro */
 .sb-top{
-  padding:14px 12px 12px;
-  border-bottom:1px solid rgba(255,255,255,.06);
+  padding:16px 14px 14px;
+  border-bottom:1px solid rgba(255,255,255,.05);
   flex-shrink:0;
-  display:flex;align-items:center;gap:8px;
 }
-.sb-logo-img{height:20px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.85}
-.sb-logo-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.85);letter-spacing:-.01em}
+.sb-logo-img{
+  height:24px;width:auto;display:block;
+  /* SEM filter — preserva o laranja original do logo Swipe */
+}
 
-/* Nav principal */
-.sb-nav{padding:8px 6px 8px;flex:1}
-
-/* Label de seção */
+/* Nav */
+.sb-nav{padding:10px 6px;flex:1}
 .sb-label{
-  padding:8px 8px 4px;
+  padding:6px 8px 5px;
   font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.22);
+  color:rgba(255,255,255,.2);
 }
 
-/* Space = concorrente */
+/* Concorrente = Space */
 .sb-space{margin-bottom:1px}
 .sb-space-row{
-  display:flex;align-items:center;gap:7px;
-  padding:6px 8px;border-radius:6px;
-  cursor:pointer;transition:background .1s;
-  text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  padding:7px 8px;border-radius:6px;
+  text-decoration:none;cursor:pointer;
+  transition:background .12s;
 }
 .sb-space-row:hover{background:rgba(255,255,255,.05)}
-.sb-space-row.active{background:rgba(255,255,255,.07)}
+.sb-space-row.active{background:rgba(242,107,29,.12)}
 
-/* Ícone quadrado — igual ao Task */
+/* Ícone 20px quadrado com iniciais */
 .sb-icon{
   width:20px;height:20px;border-radius:5px;
   display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  font-size:9px;font-weight:800;color:#fff;letter-spacing:0;
+  flex-shrink:0;font-size:9px;font-weight:800;color:#fff;
 }
+
 .sb-space-name{
   font-size:12.5px;font-weight:500;
-  color:rgba(255,255,255,.5);
+  color:rgba(255,255,255,.45);
   flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  transition:color .1s;
+  transition:color .12s;
 }
-.sb-space-row:hover .sb-space-name,
-.sb-space-row.active .sb-space-name{color:rgba(255,255,255,.85)}
+.sb-space-row:hover .sb-space-name{color:rgba(255,255,255,.7)}
+/* Ativo: laranja da Swipe */
+.sb-space-row.active .sb-space-name{color:#F26B1D;font-weight:600}
 
 .sb-chevron{
-  font-size:11px;color:rgba(255,255,255,.2);
-  transition:transform .15s,color .1s;flex-shrink:0;
+  font-size:11px;color:rgba(255,255,255,.18);
+  transition:transform .15s,color .12s;flex-shrink:0;
 }
-.sb-space-row.active .sb-chevron{transform:rotate(90deg);color:rgba(255,255,255,.35)}
+.sb-space-row.active .sb-chevron{transform:rotate(90deg);color:rgba(242,107,29,.5)}
 
-/* Sub-items — igual às listas do Task */
+/* Sub-items = seções */
 .sb-lists{
   display:none;
-  margin:1px 0 2px 14px;
+  margin:2px 0 4px 14px;
   padding-left:10px;
-  border-left:1px solid rgba(255,255,255,.08);
+  border-left:1px solid rgba(242,107,29,.15); /* borda laranja suave */
 }
 .sb-space.open .sb-lists{display:block}
 
@@ -203,20 +203,20 @@ header.top,.top,.tabs{display:none!important}
   display:flex;align-items:center;gap:6px;
   padding:5px 8px;border-radius:5px;
   font-size:12px;font-weight:500;
-  color:rgba(255,255,255,.38);
+  color:rgba(255,255,255,.32);
   text-decoration:none;cursor:pointer;
   transition:background .1s,color .1s;
 }
-.sb-list:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.7)}
-.sb-list.active{color:rgba(255,255,255,.9);font-weight:600}
+.sb-list:hover{background:rgba(255,255,255,.04);color:rgba(255,255,255,.65)}
+.sb-list.active{color:#F26B1D;font-weight:600}
 
-/* Ponto 6px igual ao Task */
+/* Ponto 6px — laranja quando ativo */
 .sb-list-dot{
   width:6px;height:6px;border-radius:50%;
-  background:rgba(255,255,255,.15);flex-shrink:0;
+  background:rgba(255,255,255,.12);flex-shrink:0;
   transition:background .1s;
 }
-.sb-list.active .sb-list-dot{background:var(--dot-col,#f97316)}
+.sb-list.active .sb-list-dot{background:#F26B1D}
 
 /* Onboarding */
 .ob{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);
