@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPY · Ofertas Black · Dossiês por concorrente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#F26B1D;--ink:#111111;--muted:#5b5b5b;--line:#e7e7e7;--bg:#F5F5F5;--card:#FFFFFF;--soft:#faf7f4;--sidebar-w:228px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+
+/* ── Sidebar ── */
+.sb{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);background:#fff;border-right:1px solid var(--line);z-index:50;display:flex;flex-direction:column;overflow-y:auto}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.sb-logo img{height:26px;display:block}
+.sb-logo .sb-tag{font:700 11px Inter;color:var(--muted);background:#f3f1ef;border:1px solid var(--line);border-radius:5px;padding:2px 7px;letter-spacing:.03em}
+.sb-section{padding:10px 10px 4px;font:700 10px Inter;letter-spacing:.12em;text-transform:uppercase;color:#aaa}
+.sb-nav{padding:0 8px 8px;display:flex;flex-direction:column;gap:2px}
+.sb-link{display:flex;align-items:center;gap:9px;text-decoration:none;padding:8px 10px;border-radius:8px;font:500 13px Inter;color:var(--muted);transition:.12s}
+.sb-link:hover{color:var(--ink);background:#f5f4f2}
+.sb-link.active{color:var(--orange);background:#fff4ec;font-weight:700}
+.sb-link .sb-dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex-shrink:0}
+.sb-link.active .sb-dot{background:var(--orange)}
+.sb-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--line)}
+.sb-footer p{margin:0;font:500 11.5px Inter;color:#bbb}
+
+/* ── Layout shift for sidebar ── */
+.top,.hero,.stats,.tabs,.wrap,.hgrid,.foot{margin-left:var(--sidebar-w)}
+.top{left:var(--sidebar-w);width:calc(100% - var(--sidebar-w))}
+.top-in,.hero,.stats,.tabs-in,.wrap,.hgrid,.foot{max-width:1080px}
+
+/* ── Top bar ── */
+.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{margin:0 auto;padding:11px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.top .div{width:1px;height:22px;background:var(--line)}
+.top .ttl{font-weight:700;font-size:13.5px;letter-spacing:-.01em}.top .ttl span{color:var(--orange)}
+.cnavs{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+.cnav{font:600 12px Inter;text-decoration:none;color:var(--muted);padding:5px 11px;border-radius:7px;border:1px solid transparent}
+.cnav:hover{color:var(--ink);background:#f0eeec}
+.cnav.cur{color:var(--orange);border-color:#f6d6bb;background:var(--soft)}
+
+/* ── Hero ── */
+.hero{margin-left:var(--sidebar-w);margin-right:0;padding:30px 24px 4px}
+.hero .kick{font:700 10px Inter;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.hero h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:0 0 4px}
+.hero .brand{font-size:15px;font-weight:600}.hero .meta{color:var(--muted);font-size:13px;margin-top:2px}
+
+/* ── Stats ── */
+.stats{margin-top:16px;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.snum{font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--orange)}
+.stat .slab{color:var(--muted);font-size:11.5px;font-weight:600;margin-top:1px}
+
+/* ── Tabs ── */
+.tabs{position:sticky;top:48px;z-index:30;background:var(--bg);padding:14px 0 4px;border-bottom:1px solid var(--line);margin-top:18px}
+.tabs-in{margin:0 auto;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap}
+.stab{font:600 13px Inter;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--muted);padding:9px 15px;border-radius:8px;transition:.12s;display:flex;align-items:center;gap:7px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.stab .si{font-size:14px}.stab:hover{color:var(--ink);border-color:#ccc;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.stab.active{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 2px 8px rgba(242,107,29,.2)}
+
+/* ── Content ── */
+.wrap{padding:18px 24px 90px}
+.panel{}
+
+/* ── Doc / Persona / Playbook ── */
+.doc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:30px 36px;font-size:14.5px;color:#1f1f1f;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.doc>*:first-child{margin-top:0}
+.doc .doc-h1{font-size:23px;font-weight:800;letter-spacing:-.01em;margin:0 0 14px;padding-bottom:12px;border-bottom:2px solid var(--orange);display:inline-block}
+.doc h3{font-size:17px;font-weight:800;margin:26px 0 8px;padding-left:12px;border-left:3px solid var(--orange)}
+.doc h4{font-size:15px;font-weight:700;margin:18px 0 6px}
+.doc h5{font-size:13.5px;font-weight:700;margin:14px 0 4px;color:var(--muted)}
+.doc p{margin:0 0 12px}.doc strong{font-weight:700}.doc em{font-style:italic;color:#333}
+.doc code{background:#f0eeec;border:1px solid #e3e0dd;border-radius:4px;padding:.5px 5px;font:600 12px ui-monospace,Menlo,monospace;color:#9a4710}
+.doc hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+.doc ul,.doc ol{margin:0 0 12px;padding-left:20px}.doc li{margin:4px 0}
+.doc blockquote{margin:0 0 16px;padding:12px 16px;background:var(--soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;color:#3a3a3a;font-size:14px}
+.doc blockquote p:last-child{margin-bottom:0}
+.pill{display:inline-block;background:#fff1e6;color:#b85710;border:1px solid #f6d6bb;border-radius:5px;padding:0 6px;font-size:11px;font-weight:700;vertical-align:1px}
+.doc .ascii{background:#1c1c1c;color:#e8e8e8;border-radius:8px;padding:14px 16px;overflow:auto;font:12px/1.5 ui-monospace,Menlo,monospace;margin:0 0 16px}
+.tbl-wrap{overflow-x:auto;margin:0 0 16px;border:1px solid var(--line);border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:520px}
+thead th{background:#f7f7f7;color:#333;text-align:left;padding:10px 13px;font-weight:700;font-size:12px;border-bottom:1px solid #e0e0e0}
+tbody td{padding:9px 13px;border-top:1px solid var(--line);vertical-align:top;color:#2a2a2a}
+tbody tr:nth-child(even){background:#fafafa}
+
+/* ── Meta-ads ── */
+.funil{margin:0 0 28px}
+.funil-h{display:flex;align-items:flex-start;gap:10px;margin:0 0 12px}
+.fdot{flex:0 0 10px;height:10px;border-radius:50%;background:var(--fc);margin-top:7px}
+.funil-h h3{margin:0;font-size:18px;font-weight:800;letter-spacing:-.01em}
+.fcount{font:700 11px Inter;color:#fff;background:var(--fc);padding:2px 9px;border-radius:20px;vertical-align:2px;margin-left:4px}
+.fsub{margin:3px 0 0;color:var(--muted);font-size:13px;max-width:760px}
+.adgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.adcard{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--fc);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.adtop{display:flex;gap:12px;margin-bottom:10px}
+.athumb{flex:0 0 80px}.athumb img{width:80px;height:80px;object-fit:cover;border-radius:8px;display:block;border:1px solid var(--line)}
+.adhead{min-width:0}
+.abadges{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:5px}
+.abadge{font:600 10px Inter;background:#f3f1ef;color:#555;border:1px solid #e6e3e0;border-radius:5px;padding:2px 7px}
+.adhead h4{margin:0;font-size:14.5px;font-weight:700;line-height:1.35}
+.adlinks{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.drive-link{display:inline-flex;align-items:center;gap:5px;font:600 12px Inter;text-decoration:none;padding:5px 10px;border-radius:7px;background:#1a73e8;color:#fff}
+.drive-link:hover{background:#1666d6}
+.miro-link{cursor:pointer;font:600 12px Inter;padding:5px 10px;border-radius:7px;border:1px solid var(--orange);background:#fff;color:var(--orange);transition:.12s}
+.miro-link:hover{background:var(--soft)}
+.miro-link.copied,.emailwrap .copy.copied{background:#22c55e;border-color:#22c55e;color:#fff}
+.simples{background:var(--soft);border:1px solid #f0e4d8;border-radius:9px;padding:10px 12px;margin:2px 0 10px}
+.simples .slab{display:block;font:700 10.5px Inter;letter-spacing:.04em;color:#b85710;margin-bottom:4px}
+.simples p{margin:0;font-size:13px;color:#3a3a3a}
+.acc{border:1px solid var(--line);border-radius:8px;margin-top:8px;background:#fcfbfa}
+.acc summary{cursor:pointer;padding:9px 13px;font:600 13px Inter;color:var(--ink);list-style:none}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:before{content:"▸ ";color:var(--orange)}
+.acc[open] summary:before{content:"▾ "}
+.frame{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:0 14px 13px;font:13px/1.6 Inter;color:#333}
+.frame.tr{color:#555;font-size:12.5px}
+
+/* ── Email grid ── */
+.emailwrap .sec{margin:0 0 24px}
+.emailwrap h2{font-size:17px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;gap:9px}
+.emailwrap h2 .n{font:700 12px Inter;color:#fff;background:var(--orange);padding:2px 9px;border-radius:20px}
+.emailwrap .hint{color:var(--muted);font-size:13px;margin:-6px 0 14px}
+.emailwrap .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.emailwrap .mail{margin:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.emailwrap .mail .shot{display:block;max-height:380px;overflow:hidden;background:#fff;border-bottom:1px solid var(--line)}
+.emailwrap .mail .shot img{width:100%;display:block;object-fit:cover;object-position:top}
+.emailwrap figcaption{padding:10px 13px 12px;display:flex;flex-direction:column;gap:7px}
+.emailwrap .meta{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.emailwrap .date{font:600 12px Inter;color:var(--ink)}
+.emailwrap .cat{font:700 11px Inter;color:var(--orange);border:1px solid #f6d6bb;border-radius:20px;padding:2px 9px}
+.emailwrap .subj{font-size:13px;color:var(--ink);font-weight:600}
+.emailwrap .copy{cursor:pointer;font:600 12px Inter;border:1px solid var(--orange);background:#fff;color:var(--orange);padding:5px 10px;border-radius:7px;transition:.12s}
+.emailwrap .copy:hover{background:var(--soft)}
+
+/* ── Empty ── */
+.empty{background:var(--card);border:1px solid var(--line);border-radius:12px;text-align:center;padding:48px 24px;color:var(--muted)}
+.empty h3{color:var(--ink);font-size:17px;margin:0 0 8px}
+.empty p{max-width:580px;margin:0 auto;font-size:14px}
+
+/* ── Index cards (hgrid) ── */
+.hgrid{padding:10px 24px 90px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.hcard{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;transition:.14s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.hcard:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);border-color:#e0ddda}
+.hc-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.hc-top h3{margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
+.hc-brand{color:var(--orange);font-weight:600;font-size:12.5px}
+.hc-meta{color:var(--muted);font-size:13px;margin:4px 0 12px}
+.hc-secs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.hc-secs span{font:600 11px Inter;background:var(--soft);border:1px solid #f0e4d8;color:#6a4a2e;padding:3px 9px;border-radius:6px}
+.hc-go{font-weight:700;font-size:12.5px;color:var(--orange)}
+
+/* ── Footer ── */
+.foot{padding:0 24px 60px;color:#bbb;font-size:12px;text-align:center}
+
+/* ── Misc ── */
+.vd{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:1px}.vd.g{background:#22c55e}.vd.y{background:#eab308}.vd.r{background:#ef4444}
+
+/* ── Onboarding modal ── */
+.ob-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.ob-card{background:#fff;border-radius:16px;width:100%;max-width:460px;padding:36px 36px 28px;box-shadow:0 24px 64px rgba(0,0,0,.18);position:relative}
+.ob-step{display:none}.ob-step.show{display:block}
+.ob-icon{width:48px;height:48px;border-radius:12px;background:var(--orange);margin-bottom:20px}
+.ob-kicker{font:700 10px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.ob-title{font-size:22px;font-weight:800;letter-spacing:-.01em;margin:0 0 10px;color:#111}
+.ob-body{font-size:14.5px;color:#555;line-height:1.65;margin:0 0 28px}
+.ob-body b{color:#111;font-weight:700}
+.ob-actions{display:flex;align-items:center;justify-content:space-between}
+.ob-next{background:var(--orange);color:#fff;border:none;border-radius:9px;font:700 14px Inter;padding:11px 22px;cursor:pointer;transition:.12s;box-shadow:0 4px 14px rgba(242,107,29,.25)}
+.ob-next:hover{background:#d95f18}
+.ob-skip{font:500 13px Inter;color:#aaa;background:none;border:none;cursor:pointer;padding:4px 8px}
+.ob-skip:hover{color:#666}
+.ob-dots{display:flex;gap:5px}
+.ob-dot{width:6px;height:6px;border-radius:50%;background:#e7e7e7;transition:.2s}
+.ob-dot.on{background:var(--orange);width:16px;border-radius:3px}
+
+@media(max-width:900px){
+  .sb{display:none}
+  .top,.hero,.stats,.tabs,.wrap,.hgrid,.foot{margin-left:0}
+  .top{left:0;width:100%}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .adgrid{grid-template-columns:1fr}
+  .hero h1{font-size:24px}
+  .doc{padding:22px 18px}
+  .tabs{top:48px}
+  .hgrid{grid-template-columns:1fr}
+}
+</style></head><body>
+<aside class="sb">
+  <div class="sb-logo">
+    <img src="assets/logo-swipe.png" alt="Swipe Offers">
+    <span class="sb-tag">SPY</span>
+  </div>
+  <div class="sb-section">Concorrentes</div>
+  <nav class="sb-nav">
+    <a class="sb-link " href="jeremy.html"><span class="sb-dot"></span>Jeremy Miner</a>
+    <a class="sb-link " href="thiago.html"><span class="sb-dot"></span>Thiago Reis</a>
+    <a class="sb-link " href="razzetti.html"><span class="sb-dot"></span>Marcos Razzetti</a>
+    <a class="sb-link " href="full-sales.html"><span class="sb-dot"></span>Full Sales</a>
+  </nav>
+  <div class="sb-footer"><p>Swipe Offers · SPY Ofertas Black</p></div>
+</aside>
+<header class="top"><div class="top-in">
+ <img src="assets/logo-swipe.png" alt="Swipe Offers">
+ <div class="div"></div><div class="ttl">SPY <span>·</span> Ofertas Black</div>
+</div></header>
+<section class="hero">
+ <div class="kick">Dossiês por concorrente · 4 seções cada</div>
+ <h1>Concorrentes analisados</h1>
+ <div class="meta">Cada página reúne quatro seções: investimento em tráfego (Meta-Ads), mapa da persona, email marketing e playbook de tráfego.</div>
+</section>
+<div class="hgrid"><a class="hcard" href="jeremy.html"><div class="hc-top"><h3>Jeremy Miner</h3><span class="hc-brand">7th Level / NEPQ</span></div><p class="hc-meta">EUA · treinamento de vendas B2B</p><div class="hc-secs"><span>Tráfego</span><span>Persona</span><span>Email</span><span>Playbook</span></div><span class="hc-go">Abrir página →</span></a><a class="hcard" href="thiago.html"><div class="hc-top"><h3>Thiago Reis</h3><span class="hc-brand">Growth Machine</span></div><p class="hc-meta">Brasil · estrutura comercial B2B</p><div class="hc-secs"><span>Tráfego</span><span>Persona</span><span>Email</span><span>Playbook</span></div><span class="hc-go">Abrir página →</span></a><a class="hcard" href="razzetti.html"><div class="hc-top"><h3>Marcos Razzetti</h3><span class="hc-brand">BlueHackers</span></div><p class="hc-meta">LATAM · coaching / high-ticket</p><div class="hc-secs"><span>Tráfego</span><span>Persona</span><span>Email</span><span>Playbook</span></div><span class="hc-go">Abrir página →</span></a><a class="hcard" href="full-sales.html"><div class="hc-top"><h3>Full Sales</h3><span class="hc-brand">Full Sales System</span></div><p class="hc-meta">Brasil · processo comercial</p><div class="hc-secs"><span>Tráfego</span><span>Persona</span><span>Email</span><span>Playbook</span></div><span class="hc-go">Abrir página →</span></a></div>
+<footer class="foot">SPY · Ofertas Black</footer>
+<div class="ob-backdrop" id="ob" style="display:none">
+  <div class="ob-card">
+    <!-- Step 1 -->
+    <div class="ob-step show" id="ob-s1">
+      <div class="ob-icon"></div>
+      <div class="ob-kicker">Bem-vindo</div>
+      <h2 class="ob-title">Inteligência de mercado dos seus concorrentes</h2>
+      <p class="ob-body">Aqui você acessa o dossiê completo de cada concorrente: tráfego pago, persona, emails e playbook — tudo com dados reais.</p>
+      <div class="ob-actions">
+        <div class="ob-dots"><span class="ob-dot on"></span><span class="ob-dot"></span><span class="ob-dot"></span></div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="ob-skip" onclick="obSkip()">Pular</button>
+          <button class="ob-next" onclick="obNext(2)">Próximo →</button>
+        </div>
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div class="ob-step" id="ob-s2">
+      <div class="ob-icon"></div>
+      <div class="ob-kicker">Como usar</div>
+      <h2 class="ob-title">Navegue pelas seções de cada concorrente</h2>
+      <p class="ob-body">Cada página tem <b>4 seções</b>: <b>Tráfego</b> (Meta-Ads com links e análise), <b>Persona</b> (mapa do avatar), <b>Email</b> (sequências capturadas) e <b>Playbook</b> (estratégia completa).</p>
+      <div class="ob-actions">
+        <div class="ob-dots"><span class="ob-dot"></span><span class="ob-dot on"></span><span class="ob-dot"></span></div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="ob-skip" onclick="obSkip()">Pular</button>
+          <button class="ob-next" onclick="obNext(3)">Próximo →</button>
+        </div>
+      </div>
+    </div>
+    <!-- Step 3 -->
+    <div class="ob-step" id="ob-s3">
+      <div class="ob-icon"></div>
+      <div class="ob-kicker">Pronto</div>
+      <h2 class="ob-title">Tudo pronto para explorar</h2>
+      <p class="ob-body">Use o menu lateral para alternar entre os concorrentes. Os links de criativos e análises abrem direto — sem login necessário.</p>
+      <div class="ob-actions">
+        <div class="ob-dots"><span class="ob-dot"></span><span class="ob-dot"></span><span class="ob-dot on"></span></div>
+        <button class="ob-next" onclick="obSkip()">Entendido →</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  if(!localStorage.getItem('swipe-spy-ob')){document.getElementById('ob').style.display='flex'}
+})();
+function obNext(n){
+  document.querySelectorAll('.ob-step').forEach(function(s){s.classList.remove('show')});
+  document.getElementById('ob-s'+n).classList.add('show');
+}
+function obSkip(){
+  localStorage.setItem('swipe-spy-ob','1');
+  document.getElementById('ob').style.display='none';
+}
+</script>
+</body></html>
