@@ -187,13 +187,14 @@ header.top,.top,.tabs{display:none!important}
 .sb-comp-row:hover .sb-caret{color:#999}
 .sb-comp-row.active .sb-caret{transform:rotate(90deg);color:rgba(242,107,29,.6)}
 
-/* ── Sub-items de seção (list items do Task app) ── */
+/* ── Sub-items de seção (list items do Task app + border-l pattern do 21st.dev) ── */
 /* ml-4 mt-0.5 space-y-0.5 border-l border-sidebar-border pl-2.5 */
 .sb-lists{
   display:none;
-  margin:2px 0 4px 16px;
+  margin:2px 0 6px 16px;
   padding-left:10px;
-  border-left:1px solid #eaeaea;
+  /* border-l laranja suave quando pai ativo — padrão Linear/21st.dev */
+  border-left:2px solid rgba(242,107,29,.2);
 }
 .sb-group.open .sb-lists{display:block}
 
@@ -211,18 +212,20 @@ header.top,.top,.tabs{display:none!important}
   background:#f0ece8;          /* bg-muted */
   color:#444;
 }
+/* Active: left border laranja (padrão Linear/21st.dev) + cor laranja */
 .sb-list.active{
   color:#F26B1D;
   font-weight:600;
 }
 
-/* w-1.5 h-1.5 rounded-full — dot do Task app */
+/* w-1.5 h-1.5 rounded-full — dot do Task app, laranja quando ativo */
 .sb-dot{
   width:6px;height:6px;border-radius:50%;
   background:#ddd;flex-shrink:0;
   transition:background .1s;
 }
 .sb-list.active .sb-dot{background:#F26B1D}
+.sb-list:hover .sb-dot{background:#ccc}
 
 /* ── Onboarding ── */
 .ob{
