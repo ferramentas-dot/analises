@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O melhor dos 4 mundos · versão enxuta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --laranja:#F26B1D;
+    --neve:#E6E6E6;
+    --urbano:#9F9F9F;
+    --chumbo:#646464;
+    --preto:#000000;
+    --texto:#1A1A1A;
+    --bg:#FFFFFF;
+    --linha:#E2E2E2;
+    --maxw:700px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--texto);
+    font-family:"Inter",system-ui,sans-serif;
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--laranja);color:#fff;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px;}
+
+  /* edit hint */
+  .topnote{border-bottom:1px solid var(--linha);}
+  .topnote .wrap{padding:13px 26px;}
+  .topnote p{
+    margin:0;font-family:"JetBrains Mono",monospace;
+    font-size:11.5px;letter-spacing:.04em;color:var(--chumbo);
+  }
+
+  /* editing affordance */
+  [contenteditable]{outline:none;border-radius:4px;transition:background .12s,box-shadow .12s;}
+  [contenteditable]:hover{background:#FAFAF8;}
+  [contenteditable]:focus{background:#FBFBF9;box-shadow:0 0 0 2px var(--laranja);}
+
+  /* hero */
+  header.hero{padding:72px 0 8px;}
+  .kicker{
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--chumbo);margin:0 0 20px;
+  }
+  .bar{width:42px;height:4px;background:var(--laranja);border:none;margin:0 0 22px;}
+  h1{
+    font-family:"Archivo",sans-serif;font-weight:800;
+    font-size:clamp(42px,8vw,72px);line-height:.98;letter-spacing:-.025em;
+    color:var(--preto);margin:0 0 30px;
+  }
+  .thesis p{font-size:20px;line-height:1.55;margin:0 0 18px;max-width:62ch;}
+  .thesis p:last-child{margin-bottom:0;}
+
+  /* sections */
+  main{padding:24px 0 0;}
+  section.sec{padding:46px 0;border-top:1px solid var(--linha);}
+  .stage{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--chumbo);margin:0 0 12px;
+  }
+  h2{
+    font-family:"Archivo",sans-serif;font-weight:700;
+    font-size:clamp(25px,4.4vw,34px);line-height:1.06;letter-spacing:-.018em;
+    color:var(--preto);margin:0 0 18px;max-width:20ch;
+  }
+  .body p{margin:0 0 14px;}
+  .body p:last-child{margin-bottom:0;}
+  .body .lead{font-size:18.5px;line-height:1.5;color:var(--texto);}
+
+  /* execution order */
+  section.order{padding:46px 0;border-top:1px solid var(--linha);}
+  .intro{font-size:18.5px;line-height:1.5;margin:0 0 22px;}
+
+  /* major part starts */
+  .partstart{border-top:3px solid var(--preto);padding-top:50px;}
+
+  /* playbook */
+  .play .entry{margin-top:26px;padding-top:22px;border-top:1px solid var(--linha);}
+  .play .entry:first-of-type{margin-top:20px;}
+  .play .entry h3{font-family:"Archivo",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.012em;color:var(--preto);margin:0 0 10px;}
+  .play .entry p{margin:0;font-size:16.5px;line-height:1.5;}
+  ol.steps{counter-reset:s;list-style:none;margin:0;padding:0;}
+  ol.steps li{
+    counter-increment:s;position:relative;
+    padding:15px 0 15px 46px;border-top:1px solid var(--neve);
+    font-size:17px;line-height:1.5;
+  }
+  ol.steps li:first-child{border-top:none;}
+  ol.steps li::before{
+    content:counter(s);position:absolute;left:0;top:15px;
+    font-family:"JetBrains Mono",monospace;font-weight:700;font-size:14px;
+    color:var(--laranja);
+  }
+
+  /* footer */
+  footer{border-top:1px solid var(--linha);padding:30px 0 64px;}
+  footer p{
+    font-family:"JetBrains Mono",monospace;font-size:12px;
+    letter-spacing:.02em;line-height:1.85;color:var(--chumbo);margin:0;
+  }
+  .phase2{margin-top:20px;padding-top:20px;border-top:1px solid var(--neve);}
+  .phase2 p{color:var(--texto);}
+  .phase2 .lbl{color:var(--laranja);}
+
+  /* responsive */
+  @media (max-width:640px){
+    body{font-size:17px;}
+    .wrap{padding:0 20px;}
+    header.hero{padding:48px 0 4px;}
+    .thesis p{font-size:18.5px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  }
+  @media print{
+    .topnote{display:none;}
+    body{font-size:11pt;}
+    section.sec,section.order,footer{break-inside:avoid;}
+    [contenteditable]:hover,[contenteditable]:focus{background:none;box-shadow:none;}
+  }
+
+  /* indice / navegacao */
+  .toc{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:32px 0;}
+  .toc h2{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--chumbo);margin:0 0 22px;}
+  .toc .grp{margin:0 0 18px;}
+  .toc .grp:last-child{margin-bottom:0;}
+  .toc .grp h3{font-family:"Archivo",sans-serif;font-weight:700;font-size:14px;color:var(--preto);margin:0 0 9px;}
+  .toc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px 20px;}
+  .toc a{font-size:14.5px;color:var(--texto);text-decoration:none;border-bottom:1px solid transparent;transition:color .12s,border-color .12s;}
+  .toc a:hover{color:var(--laranja);border-bottom-color:var(--laranja);}
+  .toc .toc-lead{font-size:16px;line-height:1.5;color:var(--texto);margin:0 0 28px;max-width:60ch;}
+  .toc .grp{margin:0 0 22px;}
+  .toc .grp h3{font-size:18px;margin:0 0 5px;}
+  .toc .grp h3 a{color:var(--preto);font-size:inherit;text-decoration:none;border-bottom:2px solid var(--laranja);padding-bottom:1px;transition:color .12s;}
+  .toc .grp h3 a:hover{color:var(--laranja);}
+  .toc .grp .desc{font-size:14.5px;line-height:1.45;color:var(--chumbo);margin:0 0 11px;}
+  section[id]{scroll-margin-top:64px;}
+
+  /* bloco de acoes (sem rotulo) */
+  .howto{margin-top:20px;border-left:3px solid var(--laranja);padding:2px 0 2px 20px;}
+  ol.howto-steps{counter-reset:h;list-style:none;margin:0;padding:0;}
+  ol.howto-steps li{counter-increment:h;position:relative;padding:0 0 14px 34px;font-size:16.5px;line-height:1.5;}
+  ol.howto-steps li:last-child{padding-bottom:0;}
+  ol.howto-steps li::before{content:counter(h);position:absolute;left:0;top:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;color:var(--laranja);}
+  .signal{margin:18px 0 0;font-size:15.5px;line-height:1.5;color:var(--chumbo);}
+  .signal-tag{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--laranja);font-weight:700;margin-right:9px;}
+
+  /* checklist */
+  .check-grp{margin:22px 0 0;}
+  .check-grp h3{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--laranja);font-weight:700;margin:0 0 2px;}
+  .check-item{display:flex;align-items:flex-start;gap:13px;padding:13px 0;border-top:1px solid var(--neve);font-size:16px;line-height:1.45;cursor:pointer;}
+  .check-grp h3 + .check-item{border-top:none;}
+  .check-item input{margin:2px 0 0;width:17px;height:17px;flex:0 0 auto;accent-color:var(--laranja);cursor:pointer;}
+  .check-item input:checked + span{color:var(--urbano);text-decoration:line-through;}
+
+  /* tabela escada */
+  .ladder{width:100%;border-collapse:collapse;margin:18px 0 2px;font-size:15px;}
+  .ladder th{text-align:left;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--chumbo);font-weight:700;padding:0 14px 10px 0;border-bottom:1px solid var(--linha);}
+  .ladder td{padding:13px 14px 13px 0;border-bottom:1px solid var(--neve);vertical-align:top;line-height:1.45;}
+  .ladder td:first-child{font-weight:700;color:var(--preto);}
+  .ladder .price{font-family:"JetBrains Mono",monospace;color:var(--laranja);font-weight:700;white-space:nowrap;}
+
+  /* sub-cabecalho (anuncios) */
+  .subhead{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--laranja);font-weight:700;margin:34px 0 4px;}
+
+  /* jornada */
+  .touch-grp{margin:18px 0 0;}
+  .touch-grp h3{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--laranja);font-weight:700;margin:0 0 6px;}
+  .touch{display:flex;gap:14px;padding:11px 0;border-top:1px solid var(--neve);font-size:15.5px;line-height:1.45;}
+  .touch-grp h3 + .touch{border-top:none;}
+  .touch .canal{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--chumbo);font-weight:700;flex:0 0 132px;padding-top:2px;}
+
+  /* ===== navegacao por partes ===== */
+  .tabs{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.93);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--linha);}
+  .tabs .wrap{display:flex;gap:4px;flex-wrap:wrap;}
+  .tab{appearance:none;background:none;border:none;cursor:pointer;font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--chumbo);padding:16px 11px 14px;border-bottom:2px solid transparent;transition:color .12s,border-color .12s;}
+  .tab:hover{color:var(--preto);}
+  .tab.active{color:var(--laranja);border-bottom-color:var(--laranja);}
+  .part[hidden]{display:none;}
+
+  /* welcome / chooser */
+  .welcome{padding:74px 0 48px;}
+  .welcome-kicker{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja);margin:0 0 18px;}
+  .welcome-bar{width:48px;height:5px;background:var(--laranja);border:none;margin:0 0 24px;}
+  .welcome-q{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(34px,6.2vw,56px);line-height:1.0;letter-spacing:-.025em;color:var(--preto);margin:0;max-width:15ch;}
+  .welcome-thesis{margin:30px 0 4px;}
+  .welcome-thesis p{font-size:18px;line-height:1.55;margin:0 0 14px;max-width:60ch;color:var(--texto);}
+  .welcome-thesis p:last-child{margin-bottom:0;}
+  .choices-label{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--chumbo);margin:46px 0 16px;}
+  .choices{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .choice{position:relative;display:block;text-align:left;background:#fff;border:1px solid var(--linha);border-radius:14px;padding:26px 24px 24px;cursor:pointer;font-family:inherit;transition:border-color .15s,box-shadow .15s,transform .15s;}
+  .choice:hover{border-color:var(--laranja);box-shadow:0 8px 26px rgba(242,107,29,.12);transform:translateY(-3px);}
+  .choice-n{display:block;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;color:var(--laranja);margin:0 0 12px;}
+  .choice-main{display:block;}
+  .choice-t{display:block;font-family:"Archivo",sans-serif;font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--preto);margin:0 0 7px;}
+  .choice-d{display:block;font-size:14.5px;line-height:1.45;color:var(--chumbo);}
+  .choice-go{position:absolute;top:24px;right:22px;font-family:"Archivo",sans-serif;font-size:22px;line-height:1;color:var(--urbano);transition:color .15s,transform .15s;}
+  .choice:hover .choice-go{color:var(--laranja);transform:translateX(3px);}
+
+  /* sub-navegacao dentro da parte */
+  .subnav{padding:22px 0 2px;}
+  .subnav .wrap{display:flex;flex-wrap:wrap;gap:8px;}
+  .subnav-link{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.02em;color:var(--chumbo);text-decoration:none;border:1px solid var(--linha);border-radius:999px;padding:7px 13px;cursor:pointer;transition:color .12s,border-color .12s,background .12s;}
+  .subnav-link:hover{color:var(--laranja);border-color:var(--laranja);}
+
+  @media (max-width:640px){ .choices{grid-template-columns:1fr;} }
+  @media print{.tabs,.subnav{display:none;}.part[hidden]{display:block!important;}}
+  /* toolbar salvar */
+  .topnote .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .topnote-txt{margin:0;}
+  .save-status{margin-left:8px;color:var(--laranja);opacity:.45;transition:opacity .2s;}
+  .topnote-actions{display:flex;gap:8px;flex-shrink:0;}
+  .tn-btn{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--chumbo);background:none;border:1px solid var(--linha);border-radius:7px;padding:7px 11px;cursor:pointer;transition:color .12s,border-color .12s,background .12s;}
+  .tn-btn:hover{color:var(--laranja);border-color:var(--laranja);}
+  .tn-btn-primary{color:#fff;background:var(--laranja);border-color:var(--laranja);}
+  .tn-btn-primary:hover{color:#fff;background:#d95c14;border-color:#d95c14;}
+  @media print{.topnote-actions{display:none;}}
+  /* trocar versao (completa / enxuta) */
+  .tabs .wrap{align-items:center;}
+  .vswitch{margin-left:auto;display:flex;border:1px solid var(--linha);border-radius:999px;overflow:hidden;flex:0 0 auto;}
+  .vswitch-opt{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--chumbo);text-decoration:none;padding:7px 13px;white-space:nowrap;transition:color .12s,background .12s;}
+  .vswitch-opt:hover{color:var(--laranja);}
+  .vswitch-opt.active{background:var(--laranja);color:#fff;}
+  @media print{.vswitch{display:none;}}
+</style>
+</head>
+<body>
+
+<div class="topnote">
+  <div class="wrap">
+    <p class="topnote-txt">documento editável · clique em qualquer texto pra reescrever<span id="save-status" class="save-status"></span></p>
+    <div class="topnote-actions">
+      <button id="btn-download" class="tn-btn tn-btn-primary">Baixar HTML editado</button>
+      <button id="btn-reset" class="tn-btn">Desfazer tudo</button>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Esquema de trabalho · slim</p>
+    <hr class="bar">
+    <h1 contenteditable="true" spellcheck="false">O melhor dos 4 mundos</h1>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button class="tab active" data-part="intro">Introdução</button><button class="tab" data-part="funil">Funil</button><button class="tab" data-part="email">Email</button><button class="tab" data-part="anuncios">Anúncios</button><button class="tab" data-part="operacao">Operação</button>
+    <div class="vswitch" title="trocar de versao"><a class="vswitch-opt" href="funil-master.html">Completa</a><a class="vswitch-opt active" href="funil-master-slim.html">Enxuta</a></div>
+  </div>
+</nav>
+
+
+
+<main>
+  <div class="part" id="p-intro">
+    <div class="wrap">
+      <div class="welcome">
+        <p class="welcome-kicker">Bem-vindo</p>
+        <hr class="welcome-bar">
+        <h2 class="welcome-q">Qual parte você quer navegar primeiro?</h2>
+        <div class="welcome-thesis" contenteditable="true" spellcheck="false"><p>Os quatro concorrentes rodam a mesma máquina: um funil barato na frente que alimenta uma consultoria cara atrás.</p>
+      <p>Dá pra pegar a peça que cada um faz melhor e tapar o buraco que cada um deixa.</p>
+      <p>Esta é a versão de ação: as ações na ordem de executar. A versão longa explica o porquê de cada uma.</p></div>
+        <p class="choices-label">Escolha por onde começar</p>
+        <div class="choices">
+      <button class="choice" data-part="funil"><span class="choice-n">01</span><span class="choice-main"><span class="choice-t">O funil</span><span class="choice-d">A máquina de aquisição, do anúncio frio até a venda da consultoria.</span></span><span class="choice-go">&rarr;</span></button>
+      <button class="choice" data-part="email"><span class="choice-n">02</span><span class="choice-main"><span class="choice-t">Email</span><span class="choice-d">A camada de retenção: captura, doutrina, vende e poda quem esfria.</span></span><span class="choice-go">&rarr;</span></button>
+      <button class="choice" data-part="anuncios"><span class="choice-n">03</span><span class="choice-main"><span class="choice-t">Anúncios</span><span class="choice-d">O criativo que não parece criativo: anatomia, gancho, corpo e escala.</span></span><span class="choice-go">&rarr;</span></button>
+      <button class="choice" data-part="operacao"><span class="choice-n">04</span><span class="choice-main"><span class="choice-t">Operação</span><span class="choice-d">Como rodar no dia a dia: a jornada do lead, a call de fechamento e o playbook.</span></span><span class="choice-go">&rarr;</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="part" id="p-funil" hidden>
+    <div class="subnav"><div class="wrap">
+      <a class="subnav-link" href="#logica">A lógica</a>
+      <a class="subnav-link" href="#fundacao">A fundação</a>
+      <a class="subnav-link" href="#topo">O topo</a>
+      <a class="subnav-link" href="#pedagio">O pedágio</a>
+      <a class="subnav-link" href="#tripware">O tripware</a>
+      <a class="subnav-link" href="#consultoria">A consultoria</a>
+      <a class="subnav-link" href="#downsell">O downsell</a>
+      <a class="subnav-link" href="#continuidade">A continuidade</a>
+      <a class="subnav-link" href="#midia">Mídia</a>
+      <a class="subnav-link" href="#ordem">A ordem de montar</a>
+      <a class="subnav-link" href="#escada">A escada de valor</a>
+    </div></div>
+  <section id="logica" class="sec">
+    <div class="wrap">
+      <p class="stage">A forma</p>
+      <h2>A lógica da máquina</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">A máquina é uma sequência de ofertas, e cada degrau tem um trabalho de dinheiro: a atração traz e separa, o upsell sobe o ticket quente, o downsell recupera o não, a continuidade transforma a venda única em cliente mensal.</p>
+        <p>Uma pergunta de qualificação, o pedágio, costura os quatro degraus e decide pra onde cada lead vai. É por ela que se começa a montar.</p>
+      </div>
+    </div>
+  </section>
+  <section id="fundacao" class="sec">
+    <div class="wrap">
+      <p class="stage">Antes de qualquer página</p>
+      <h2>A fundação</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">Antes de subir o primeiro anúncio, fixe uma frase que não muda: o inimigo nº1 do cliente e o nome do seu jeito de derrotá-lo.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Liste as três ou quatro saídas que o cliente já tentou e nas quais se culpa: treinar mais o pitch, comprar mais leads, baixar o preço, decorar um script novo.</li>
+          <li>Ache a causa externa comum por trás de todas. Esse é o vilão: externo, com nome, e o que o seu método derrota.</li>
+          <li>Batize o método com uma fórmula curta de mecanismo, e trate como sistema cujas partes não funcionam separadas, pra impedir o cliente de pegar um pedaço de graça e sustentar o preço.</li>
+          <li>Escreva num parágrafo que não muda mais: a coisa que ele culpa errado, a causa verdadeira, e o nome do método que resolve.</li>
+          <li>Plante esse parágrafo já no primeiro criativo de aquecimento, antes de qualquer página de venda.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="topo" class="sec">
+    <div class="wrap">
+      <p class="stage">Atração</p>
+      <h2>O topo: aquece barato, captura com generosidade</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">O topo tem duas funções que não brigam: memória (ser lembrado) e captura (pegar o contato).</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Pra memória, transforme os posts de maior alcance no orgânico em anúncios de engajamento que pedem um seguir e nada mais, e meça frequência sobre a mesma pessoa ao longo de semanas.</li>
+          <li>Pra captura, monte a isca. Em ticket alto ela qualifica e cria o incômodo que leva à conversa, não fecha venda ali.</li>
+          <li>Escolha o sintoma mais caro que o cliente consegue medir sozinho, devolva o número dele, e mostre o buraco entre onde ele está e onde deveria estar.</li>
+          <li>Dê à isca o nome do teu método, e termine ela entregando a pessoa no pedágio, com um convite pra conversa.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="pedagio" class="sec">
+    <div class="wrap">
+      <p class="stage">O coração da máquina</p>
+      <h2>O pedágio</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">Toda porta de entrada despeja no mesmo formulário, e uma única pergunta decide o destino do lead sem ele perceber que está sendo filtrado.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Escolha a pergunta única que separa quem vai pra call cara de quem vai pro produto barato: costuma ser tamanho do time comercial ou faturamento mensal.</li>
+          <li>Monte um único formulário onde todas as portas despejam, e esconda essa pergunta no meio de perguntas de diagnóstico, pra parecer raio-x e não filtro.</li>
+          <li>Defina a linha de corte em número e escreva as duas rotas: qualificado cai na agenda da call, desqualificado vai pro produto barato.</li>
+          <li>Amenize a pergunta sensível com uma frase de cuidado: sem julgamento, é pra te entregar o diagnóstico certo.</li>
+          <li>No começo, leia cada resposta e roteie na mão. E garanta que quem não passa nunca caia no vácuo, porque o downsell pega essa pessoa.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="tripware" class="sec">
+    <div class="wrap">
+      <p class="stage">Atração · produto de entrada</p>
+      <h2>O tripware filtra, não fatura</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">O produto de ~R$97 não está ali pra faturar. Ele separa quem aplica de quem junta material de graça e dá ao tráfego um destino que se paga.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Crie um produto barato cujo trabalho é separar quem implementa de quem junta material de graça. A margem é pequena de propósito.</li>
+          <li>Coloque uma garantia mais forte que o reembolso comum, que deixa o lead ficar com tudo mesmo se pedir o dinheiro de volta, pra jogar o risco pro teu lado.</li>
+          <li>Empilhe order bumps no checkout que sobem o ticket sem custo novo de tráfego, e considere um cashback que apaga o preço na cabeça do comprador.</li>
+          <li>Liste a call de diagnóstico como bônus do produto barato, porque é ela que reabre o topo da escada pra quem comprou.</li>
+          <li>Se a porta for um quiz, faça ele devolver dor: nota mediana, pilares zerados e o raio-x do próprio comercial, pra pessoa chegar na oferta já incomodada.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="consultoria" class="sec">
+    <div class="wrap">
+      <p class="stage">Upsell · high-ticket</p>
+      <h2>A consultoria: as quatro mentiras na frente</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">Aqui está o dinheiro de verdade. O tráfego pago não fecha o caro sozinho: ele captura barato e qualifica, e a venda fecha numa call, com um humano do outro lado, que no começo é você.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Aceite que o pago não fecha o caro sozinho. Ele captura e qualifica; a venda fecha na call.</li>
+          <li>Monte a página que prepara a call em volta das quatro mentiras: liste, uma por uma, as saídas que o cliente tentaria sozinho, e derrube cada uma.</li>
+          <li>Pra achar as mentiras, liste o que ele faz antes de te contratar e, pra cada uma, escreva por que falha. Vira o texto: você acha que isso resolve, e aqui está por que não resolve.</li>
+          <li>Prove pela média honesta que você declara, em vez do caso extremo, porque média soa conta e topo soa exceção, e cite sempre nome e número.</li>
+          <li>Conduza a call por perguntas, num modelo de baixa pressão (detalhado na seção da reunião).</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="downsell" class="sec">
+    <div class="wrap">
+      <p class="stage">Downsell · o vão que sangra os quatro</p>
+      <h2>Recupera quem disse não</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">O lead que levantou a mão e não passou no pedágio já gastou energia pra chegar ali. Deixar ele cair no chão é o erro que os quatro cometem.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Trate o lead que não qualificou como alguém que já gastou energia, não como descarte.</li>
+          <li>Tampe o vão por duas frentes: um produto de impulso pra quem ficou abaixo da linha, e um ou dois produtos de meio de escada entre R$97 e R$497.</li>
+          <li>Crie um diagnóstico individual barato como ponte pro lead quente que travou na hora de pagar o caro.</li>
+          <li>Enquanto o checkout estiver de pé, rode o retargeting de carrinho abandonado que reconhece o estado exato da pessoa: você quase comprou, esteve quase lá.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="continuidade" class="sec">
+    <div class="wrap">
+      <p class="stage">Continuidade · o buraco mais caro</p>
+      <h2>Receita recorrente desde a primeira compra</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">É a diferença entre cada venda valer uma vez e cada cliente valer anos. Os três escondem ou desperdiçam a recorrência; você faz o oposto.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Trate a recorrência como o buraco mais caro de deixar aberto.</li>
+          <li>Oferte cedo, no pico de intenção: como bump depois da compra, upsell no checkout ou chamada dentro do conteúdo, em vez de esconder na call.</li>
+          <li>Escolha um formato de implementação contínua: comunidade paga, clube de implementação ou mentoria mensal.</li>
+          <li>Use a página de obrigado, enquanto o lead espera a call, pra vender a recorrência anual, em vez de uma tela morta.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="midia" class="sec">
+    <div class="wrap">
+      <p class="stage">Em volta da máquina</p>
+      <h2>As camadas de mídia que amarram tudo</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">Com a escada montada, as camadas de mídia multiplicam o resultado sem refazer a oferta.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Faça retargeting por tempo de tela: compre mídia pra quem assistiu mais da metade de um vídeo longo, e pule o aquecimento que já aconteceu de graça.</li>
+          <li>Não dependa só do pixel: monte uma ponte de fundo de funil que não dependa dele, uma chamada clara dentro do conteúdo e a captura de e-mail.</li>
+          <li>No remarketing, abra o anúncio reconhecendo que a pessoa já te viu (como você vê meus anúncios...), pra reduzir a fadiga e levantar a resposta.</li>
+          <li>Mantenha dois funis de entrada vivos desde o começo, pra um segurar a barra quando o outro fadigar.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="ordem" class="order">
+    <div class="wrap">
+      <p class="stage">Partindo do zero</p>
+      <h2>A ordem de montar</h2>
+      <p class="intro" contenteditable="true" spellcheck="false">Cada movimento se apoia no anterior. Montando do zero, é nesta sequência:</p>
+      <ol class="steps" contenteditable="true" spellcheck="false">
+        <li>Fixe o vilão e o nome do método antes de gastar o primeiro real.</li>
+        <li>Monte o aquecimento barato a partir do que já viralizou no seu orgânico, pedindo só um seguir e medindo frequência.</li>
+        <li>Capture com uma isca que leva o nome do produto e cria incômodo, devolvendo o número da pessoa e apontando pro pedágio.</li>
+        <li>Construa o pedágio único: todas as portas num formulário, a pergunta que filtra escondida no diagnóstico, linha de corte definida, roteio na mão.</li>
+        <li>Crie o tripware como filtro: garantia que deixa ficar com tudo, order bumps no checkout, e a call de diagnóstico listada como bônus.</li>
+        <li>Escreva a página da consultoria com as quatro mentiras, prove pela média honesta, e feche numa call por perguntas. As primeiras calls são suas.</li>
+        <li>Preencha o downsell e o meio da escada: produto de impulso pra quem ficou abaixo, e diagnóstico individual como ponte pro lead quente.</li>
+        <li>Ligue as camadas de mídia: retargeting por tempo de tela e por carrinho, com dois funis de entrada no ar.</li>
+        <li>Construa a recorrência desde a primeira compra, ofertada cedo e também na página de obrigado.</li>
+      </ol>
+    </div>
+  </section>
+  <section id="escada" class="sec partstart">
+    <div class="wrap">
+      <p class="stage">A economia da máquina</p>
+      <h2>A escada de valor</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">Cada degrau com um preço e um trabalho, existindo pra desbloquear o de cima. Os baratos pagam o tráfego e filtram; o caro e a recorrência fazem o lucro. Preços de partida pra um consultor de vendas, pra ajustar ao seu mercado.</p>
+      </div>
+      <table class="ladder" contenteditable="true" spellcheck="false">
+        <thead><tr><th>Degrau</th><th>Preço</th><th>O trabalho dele</th></tr></thead>
+        <tbody>
+          <tr><td>Isca, o diagnóstico</td><td class="price">grátis</td><td>Captura e qualifica. Devolve o número e entrega a pessoa no pedágio.</td></tr>
+          <tr><td>Tripware</td><td class="price">R$97</td><td>Filtra quem implementa. Carrega a call de diagnóstico como bônus.</td></tr>
+          <tr><td>Order bumps</td><td class="price">+R$50 a +R$70</td><td>Sobem o ticket no checkout sem custo novo de tráfego.</td></tr>
+          <tr><td>Diagnóstico individual</td><td class="price">R$197</td><td>Ponte pro lead quente que travou no preço do caro.</td></tr>
+          <tr><td>Imersão de 1 dia</td><td class="price">R$497</td><td>Meio de escada, ascensão antes do high-ticket.</td></tr>
+          <tr><td>Consultoria</td><td class="price">R$5.000 a R$15.000</td><td>O dinheiro de verdade. Fecha na call, conduzida por perguntas.</td></tr>
+          <tr><td>Recorrência</td><td class="price">R$197/mês</td><td>O valor de longo prazo. Clube de implementação, vendido cedo e na página de obrigado.</td></tr>
+        </tbody>
+      </table>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Checkout, tripware e order bumps: Kiwify, Hotmart ou Cartpanda.</li>
+          <li>E-mail e automação: ActiveCampaign ou Lead Lovers.</li>
+          <li>Isca, scorecard e quiz: Typeform, Respondi ou Involve.me.</li>
+          <li>Agenda da call: Calendly ou Cal.com.</li>
+          <li>Recorrência e comunidade: Circle, Discord ou a área de membros do próprio checkout.</li>
+          <li>Tráfego: Meta como base, YouTube de apoio.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  </div>
+  <div class="part" id="p-email" hidden>
+    <div class="subnav"><div class="wrap">
+      <a class="subnav-link" href="#email-maquina">A máquina</a>
+      <a class="subnav-link" href="#email-boasvindas">Boas-vindas</a>
+      <a class="subnav-link" href="#email-venda">Newsletter e venda</a>
+      <a class="subnav-link" href="#email-ascender">Segunda venda e poda</a>
+      <a class="subnav-link" href="#email-ia">Porteiro de IA</a>
+      <a class="subnav-link" href="#email-tempo">Linha do tempo</a>
+      <a class="subnav-link" href="#email-checklist">Checklist</a>
+    </div></div>
+  <section id="email-maquina" class="sec partstart">
+    <div class="wrap">
+      <p class="stage">A camada de e-mail · a forma</p>
+      <h2>O e-mail é uma máquina de cinco estágios</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">Captura com a isca, doutrina nos primeiros dias, engaja e vende numa sequência que leva à call, ascende quem comprou e ressuscita ou corta quem esfriou. Pra ticket alto, a lista vale pela densidade e o motor é uma newsletter semanal.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Escreva o documento da persona com as palavras do cliente: cole as frases cruas de entrevista, comentário e review, e separe em dores, desejos, objeções e jargão.</li>
+          <li>Registre um domínio próprio e crie um subdomínio dedicado de envio (algo como news.teudominio.com), separado do e-mail da operação.</li>
+          <li>Autentique SPF, DKIM e DMARC, e confirme os três PASS mandando um teste pro teu próprio Gmail (menu, mostrar original).</li>
+          <li>Marque quatro semanas de aquecimento, começando com 50 a 100 envios por dia pros mais engajados e dobrando por semana, antes de qualquer disparo grande.</li>
+          <li>Monte a isca diagnóstica: uma calculadora, auditoria ou autoavaliação que devolve um número e deixa a pessoa incomodada com ele.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="email-boasvindas" class="sec">
+    <div class="wrap">
+      <p class="stage">Capturar · doutrinar</p>
+      <h2>Os primeiros sete dias decidem o resto</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">No instante em que alguém entra, a atenção está no ponto mais alto que vai estar sem esforço. A janela dura poucos dias e fecha sozinha.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Escreva o e-mail de entrega cumprindo os cinco trabalhos: quem é você, o que vem e quando, por que ela entrou, um pedido de resposta (responde com um oi), e um gancho pro dia seguinte.</li>
+          <li>Monte a esteira de seis e-mails com as esperas (dia 0, 1, 2, 3, 5 e 7), com a história de origem no dia 1 e a pergunta curta no dia 7.</li>
+          <li>Logo no começo da automação, aplique uma tag de proteção (tipo em-boas-vindas) e configure todo broadcast pra excluir quem tem essa tag.</li>
+          <li>Coloque uma saída de comprador depois de cada espera: se a pessoa comprou, remove da esteira e manda pro fluxo de cliente.</li>
+          <li>Teste a jornada inteira no teu próprio celular, com as esperas encurtadas pra minutos, e leia cada e-mail como quem recebe.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="email-venda" class="sec">
+    <div class="wrap">
+      <p class="stage">Engajar e vender · o coração</p>
+      <h2>A newsletter semanal e a sequência de diagnóstico</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">A venda anda em duas correias: a newsletter narrativa semanal que aquece o ano inteiro, e a sequência de diagnóstico que dispara no interesse e fecha numa aplicação.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Escolha um dia e uma hora fixos pra newsletter e trave: o mesmo horário toda semana ensina a lista a abrir e o provedor a confiar.</li>
+          <li>Monte um calendário de uma página por mês, com três linhas por semana: tema (uma dor da persona), história (puxada do teu banco de casos) e função.</li>
+          <li>Em cada newsletter, marque o link do tema pra aplicar uma tag de interesse no clique, porque é o clique que dispara a sequência de venda.</li>
+          <li>Escreva a sequência de diagnóstico em três atos, ganho, lógica e medo, com a página de lógica derrubando as três ou quatro mentiras do teu mercado, e estique pra 7 a 21 dias por ser ticket alto.</li>
+          <li>Troque o link do calendário por uma aplicação: a pessoa preenche o cenário dela em cinco linhas antes de agendar, e o teu primeiro e-mail depois abre com uma frase sobre o caso específico dela.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="email-ascender" class="sec">
+    <div class="wrap">
+      <p class="stage">Ascender · podar</p>
+      <h2>A segunda venda e a lista podada</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">O pico de confiança é logo depois da compra. A esteira de pós-compra entrega antes de pedir, e a poda mantém a lista densa pra não derrubar a entrega de todo mundo.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Ligue a integração do checkout pra marcar quem comprou com uma tag de cliente: sem ela nada do pós-compra dispara.</li>
+          <li>Monte a esteira de oito semanas: confirmação no dia da compra, onboarding na primeira semana, pedido de depoimento no pico, e a oferta do degrau seguinte por último.</li>
+          <li>Desenhe a escada de valor em meia página, com o preço de cada degrau e qual automação liga um degrau ao próximo.</li>
+          <li>Coloque a oferta de recorrência cedo, como bump no checkout ou chamada no conteúdo, em vez de escondida na call.</li>
+          <li>Crie o segmento frio (sem abrir, clicar ou comprar há 90 dias) e a sequência de ressurreição de quatro e-mails, terminando na despedida digna, e corte quem não reagir a nada.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="email-ia" class="sec">
+    <div class="wrap">
+      <p class="stage">A camada nova</p>
+      <h2>Agora a caixa de entrada tem um porteiro com IA</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">O primeiro leitor virou uma IA que resume e prioriza. O que passa é o que sempre passou no plano humano: especificidade, história, voz.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Monte o prompt-mestre num documento de cinco blocos: quem escreve (com dois e-mails teus de referência de voz), pra quem (a persona com as frases cruas), as regras da casa, o pedido e o formato.</li>
+          <li>Em cada e-mail, mude o bloco do pedido, gere três variações e reescreva à mão as cinco linhas que importam: abertura, ponte e CTA.</li>
+          <li>Rode o teste do porteiro antes de mandar: cole o e-mail numa IA e peça um resumo em duas frases mais a ação e o prazo. Se sumiu, reescreva a abertura até aparecer.</li>
+          <li>Confira todo número que a IA colocou e tire qualquer promessa que tua oferta não cumpre.</li>
+          <li>Uma vez por mês, pergunte pra IA qual dos teus últimos e-mails parece escrito por IA: se ela acertar os teus, o estagiário está escrevendo demais e você de menos.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="email-tempo" class="sec">
+    <div class="wrap">
+      <p class="stage">A linha do tempo</p>
+      <h2>O que montar, e em que ordem</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">A máquina nasce por partes, na ordem em que uma depende da outra. Um trimestre de execução honesta, em quatro blocos.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Semanas 1-2, a fundação: documento de dores e jargão do cliente, e o chão técnico inteiro (domínio, subdomínio de envio, os três PASS, aquecimento agendado).</li>
+          <li>Semanas 3-4, a porta de entrada: isca diagnóstica no ar, página de captura com um único trabalho, e a esteira de boas-vindas de seis e-mails escrita e testada no celular.</li>
+          <li>Mês 1-2, o motor: newsletter semanal inaugurada no mesmo dia e hora, primeira sequência de diagnóstico terminando na aplicação, integração do checkout marcando quem comprou.</li>
+          <li>Mês 2-3, lucro e longevidade: esteira de pós-compra de oito semanas, escada de valor desenhada, recorrência aparecendo cedo, primeira poda executada por inteiro.</li>
+          <li>Depois disso, vira rotina: toda semana a newsletter, todo mês o painel de números com uma decisão, todo trimestre a poda.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="email-checklist" class="sec">
+    <div class="wrap">
+      <p class="stage">Antes de subir</p>
+      <h2>Checklist do e-mail · antes de cada envio</h2>
+      <div class="check-grp">
+        <h3>Fundação · uma vez</h3>
+        <label class="check-item"><input type="checkbox"><span>Três PASS no domínio, com subdomínio de envio separado da operação.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Persona escrita com as frases cruas do cliente, não com as minhas.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Isca diagnóstica que devolve um número e aponta pra consultoria.</span></label>
+      </div>
+      <div class="check-grp">
+        <h3>Cada e-mail</h3>
+        <label class="check-item"><input type="checkbox"><span>Um trabalho por peça: assunto vende abertura, corpo vende clique, página vende ação.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Uma única ideia e um único CTA, com P.S. trabalhando.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Remetente de gente, fixo, que aceita resposta.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Passou no teste do porteiro: oferta e prazo sobrevivem ao resumo de duas frases.</span></label>
+      </div>
+      <div class="check-grp">
+        <h3>A máquina</h3>
+        <label class="check-item"><input type="checkbox"><span>Quem está em boas-vindas ou em oferta não recebe broadcast.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Quem compra sai na hora de qualquer sequência de venda do que comprou.</span></label>
+        <label class="check-item"><input type="checkbox"><span>A recorrência aparece cedo, no pico de intenção.</span></label>
+        <label class="check-item"><input type="checkbox"><span>A poda roda em ciclo e a lista vale pela densidade.</span></label>
+      </div>
+    </div>
+  </section>
+  </div>
+  <div class="part" id="p-anuncios" hidden>
+  <section id="anuncios" class="sec partstart">
+    <div class="wrap">
+      <p class="stage">Como criar os anúncios</p>
+      <h2>O criativo que não parece criativo</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">Regra antes de qualquer técnica: não pode parecer anúncio. Pra ticket alto, menos volume, mais autoridade e prova, foco em UGC.</p>
+      </div>
+
+      <p class="subhead">1 · Com quem você fala</p>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Escreva pra uma pessoa, o vendedor ou dono que perde venda boa por usar o modelo empurrado, e não pra todo mundo.</li>
+          <li>Separe o benefício primário (fechar mais sem parecer chato) do secundário (parar de sentir que precisa empurrar).</li>
+          <li>Escolha a alavanca que move ele: em vendas, costuma ser status (ser visto como o melhor) e ego (os concorrentes já estão fechando mais).</li>
+          <li>Pinte a situação de vida real, a call que travou no preço, em vez de falar você vai vender mais.</li>
+        </ol>
+      </div>
+
+      <p class="subhead">2 · A anatomia</p>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Monte todo criativo em três partes: formato (a embalagem que prende em meio segundo), gancho (os primeiros segundos que definem quem para) e corpo (que leva a querer saber mais).</li>
+          <li>Nunca escreva como bloco único: faça de 3 a 5 ganchos diferentes pro mesmo corpo, cada um falando com uma pessoa diferente.</li>
+        </ol>
+      </div>
+
+      <p class="subhead">3 · O formato, a embalagem</p>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Roube o orgânico que a tua persona já consome. Em vendas, funciona UGC (alguém comum falando pra câmera do celular) e podcast (autoridade sem cara de venda).</li>
+          <li>Use founder-led, o próprio consultor na câmera, encenando um trecho de call.</li>
+          <li>Lembre que os primeiros 0,5 segundo são visuais: o que faz ver o gancho é o formato, não a frase.</li>
+          <li>Pra inovar sem arriscar tudo, pegue uma copy que já validou e troque o formato.</li>
+        </ol>
+      </div>
+
+      <p class="subhead">4 · O gancho, o 80/20</p>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Coloque a palavra mais forte nos três primeiros segundos.</li>
+          <li>Use um dos quatro tipos: curioso (mecanismo único dito de forma sexy), contraintuitivo (derruba uma crença), de segmentação (chama a pessoa certa na primeira frase), polêmico (a frase que ele não ignora).</li>
+          <li>Empilhe dois tipos pra virar um terceiro, tipo segmentação mais contraintuitivo.</li>
+          <li>Teste de verdade jogando ganchos diferentes pra públicos diferentes, não duas versões da mesma frase.</li>
+        </ol>
+      </div>
+
+      <p class="subhead">5 · O corpo</p>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Comece com uma frase de transição que junta os ganchos no mesmo corpo e ameniza o impacto do gancho.</li>
+          <li>Apresente o teu mecanismo de forma simples e curiosa, e use future pacing, pintando a vida com o problema resolvido.</li>
+          <li>Feche com o CTA no modelo curiosidade, valor e indireto, sem o saiba mais que entrega que é anúncio.</li>
+          <li>Lateralize: 5 criativos com 4 ganchos cada atingem 20 pessoas diferentes, em vez de 20 criativos falando com a mesma.</li>
+        </ol>
+      </div>
+
+      <p class="subhead">6 · O destino, congruência com a VSL</p>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Leve o anúncio pra uma VSL curta ou pro diagnóstico que termina na aplicação. O anúncio traz o clique barato; a venda fecha na call.</li>
+          <li>Garanta a congruência: a VSL começa pelo que o anúncio prometeu. Se o anúncio falou da pergunta que faz o cliente pedir o preço, a VSL abre por ela.</li>
+        </ol>
+      </div>
+
+      <p class="subhead">7 · Escala, adaptada pro ticket alto</p>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Construa primeiro uma base de baixo risco. Pra prolongar o que validou, faça edições mínimas no arquivo (cortar um segundo, mudar a música, um zoom) que fazem a plataforma testar de novo.</li>
+          <li>Em ticket alto, rode menos criativos e pese mais autoridade e prova, porque o teu lead compra confiança.</li>
+          <li>Suba criativos em lotes, mate o que não foi, mantenha o que dá bom, e rode o mesmo criativo em mais de uma conta.</li>
+          <li>Deixe o volume alto no estilo TikTok como apêndice, pra quando quiser ir pra escala bruta, com casting de ator e dublagem por IA.</li>
+        </ol>
+      </div>
+
+      <p class="subhead">Antes de subir o criativo</p>
+      <div class="check-grp">
+        <h3>Os quatro princípios</h3>
+        <label class="check-item"><input type="checkbox"><span>Está chamando atenção, na edição e na copy.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Não está parecendo anúncio.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Tem curiosidade de sobra.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Estimula um desejo forte.</span></label>
+      </div>
+      <div class="check-grp">
+        <h3>Anatomia e gancho</h3>
+        <label class="check-item"><input type="checkbox"><span>Formato coerente com a persona e a plataforma.</span></label>
+        <label class="check-item"><input type="checkbox"><span>3 a 5 ganchos pro mesmo corpo, cada um pra uma pessoa.</span></label>
+        <label class="check-item"><input type="checkbox"><span>A palavra mais forte está nos três primeiros segundos.</span></label>
+      </div>
+      <div class="check-grp">
+        <h3>Corpo e destino</h3>
+        <label class="check-item"><input type="checkbox"><span>Mecanismo apresentado de forma simples e curiosa.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Future pacing com situação de vida real.</span></label>
+        <label class="check-item"><input type="checkbox"><span>CTA no modelo curiosidade, valor e indireto.</span></label>
+        <label class="check-item"><input type="checkbox"><span>A VSL ou a página começa pelo que o anúncio prometeu.</span></label>
+      </div>
+    </div>
+  </section>
+  </div>
+  <div class="part" id="p-operacao" hidden>
+    <div class="subnav"><div class="wrap">
+      <a class="subnav-link" href="#jornada">A jornada do lead</a>
+      <a class="subnav-link" href="#conducao">A reunião</a>
+      <a class="subnav-link" href="#playbook">O playbook</a>
+    </div></div>
+  <section id="jornada" class="sec partstart">
+    <div class="wrap">
+      <p class="stage">A orquestração</p>
+      <h2>A jornada do lead, contato por contato</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">Onde cai e-mail, onde entra WhatsApp ou telefone, e onde acontece a call. A regra que segura tudo: nunca sumir entre uma venda e a próxima.</p>
+      </div>
+      <div class="touch-grp">
+        <h3>Entrou pela isca, de graça</h3>
+        <div class="touch"><span class="canal">Na hora · e-mail</span><span>Entrega o diagnóstico e cumpre os cinco trabalhos do e-mail de boas-vindas.</span></div>
+        <div class="touch"><span class="canal">Dias 1 a 7 · e-mail</span><span>A sequência de boas-vindas, seis e-mails, com a origem no dia 1 e a pergunta no dia 7.</span></div>
+        <div class="touch"><span class="canal">No clique · sistema</span><span>Clicou no diagnóstico, cai no pedágio e é roteado.</span></div>
+      </div>
+      <div class="touch-grp">
+        <h3>Passou no pedágio, qualificado</h3>
+        <div class="touch"><span class="canal">Na hora · página</span><span>Agenda a call de diagnóstico.</span></div>
+        <div class="touch"><span class="canal">24h antes · WhatsApp + e-mail</span><span>Confirmação da call, com o que levar.</span></div>
+        <div class="touch"><span class="canal">1h antes · WhatsApp</span><span>Lembrete curto.</span></div>
+        <div class="touch"><span class="canal">Faltou · WhatsApp + e-mail</span><span>Resgate no mesmo dia e link pra reagendar.</span></div>
+        <div class="touch"><span class="canal">Pós-call sem fechar · e-mail</span><span>Sequência de objeção, 3 a 7 dias, uma objeção por e-mail.</span></div>
+      </div>
+      <div class="touch-grp">
+        <h3>Não passou, desqualificado</h3>
+        <div class="touch"><span class="canal">Na hora · página + e-mail</span><span>Oferta do tripware de R$97, com a call embutida como bônus.</span></div>
+        <div class="touch"><span class="canal">Abandonou · anúncio + e-mail</span><span>Retargeting de carrinho que reconhece o estado exato da pessoa.</span></div>
+      </div>
+      <div class="touch-grp">
+        <h3>Comprou o tripware</h3>
+        <div class="touch"><span class="canal">Na hora · e-mail</span><span>Confirmação e acesso.</span></div>
+        <div class="touch"><span class="canal">Dia 1 · e-mail</span><span>Onboarding, como tirar a primeira vitória do material.</span></div>
+        <div class="touch"><span class="canal">Não pegou o bump · e-mail</span><span>Oferta única do bump que ele deixou passar.</span></div>
+        <div class="touch"><span class="canal">Dia 3 · e-mail</span><span>Convite pra agendar a call de diagnóstico, o bônus.</span></div>
+      </div>
+      <div class="touch-grp">
+        <h3>Fechou a consultoria</h3>
+        <div class="touch"><span class="canal">Na hora · e-mail + WhatsApp</span><span>Boas-vindas de cliente e primeiros passos.</span></div>
+        <div class="touch"><span class="canal">8 semanas · e-mail</span><span>Onboarding, três entregas de valor antes de qualquer novo pedido.</span></div>
+        <div class="touch"><span class="canal">No pico · e-mail</span><span>Pedido de depoimento quando ele tem a primeira vitória.</span></div>
+        <div class="touch"><span class="canal">Depois · e-mail</span><span>Oferta da recorrência, se ainda não pegou.</span></div>
+      </div>
+      <div class="touch-grp">
+        <h3>Esfriou, 90 dias sem abrir, clicar ou comprar</h3>
+        <div class="touch"><span class="canal">Ressurreição · e-mail</span><span>Quatro e-mails até uma despedida digna.</span></div>
+        <div class="touch"><span class="canal">Sem reação · sistema</span><span>Sai da lista ativa, pra densidade não cair.</span></div>
+      </div>
+    </div>
+  </section>
+  <section id="conducao" class="sec partstart">
+    <div class="wrap">
+      <p class="stage">A call de fechamento</p>
+      <h2>A condução da reunião, por perguntas</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">A pessoa se convence sozinha. Você não empurra, não julga, não mostra a solução cedo: pergunta, fica em silêncio, e deixa o cliente ouvir as próprias respostas.</p>
+      </div>
+      <div class="howto">
+        <ol class="howto-steps" contenteditable="true" spellcheck="false">
+          <li>Abertura que gera interesse, não um oi. Desarme: o que a gente faz não serve pra todo mundo, então deixa eu te fazer umas perguntas pra ver se faz sentido.</li>
+          <li>Perguntas de conexão, que tiram o foco de você e botam na pessoa, pra dissolver a tensão dos dois lados.</li>
+          <li>Perguntas de situação, no máximo três ou quatro: o que ele faz hoje, há quanto tempo, o que o levou até ali.</li>
+          <li>Perguntas de consciência do problema, transformando afirmação em pergunta, pra ele dizer o que incomoda e como afeta o negócio. Fique neutro e não revele a solução.</li>
+          <li>Perguntas de consciência da solução, que fazem ele imaginar o cenário resolvido e dizer por que mudar é importante agora.</li>
+          <li>Perguntas de consequência, a parte mais forte: o que acontece se nada mudar nos próximos dois ou três anos, e se ele topa continuar assim.</li>
+          <li>Perguntas de qualificação, pequenos compromissos: supondo que isso resolva, o que acontece depois, e quem decide junto.</li>
+          <li>A transição: depois de uma pergunta de consequência forte, ele praticamente pede pra você apresentar. Aí mostre a solução usando as palavras que ele te deu.</li>
+          <li>O compromisso: deixe ele fechar sozinho. Peça o próximo passo como pergunta, e trate o vou pensar perguntando o que exatamente ele quer pensar.</li>
+        </ol>
+      </div>
+      <div class="check-grp">
+        <h3>Antes e durante a call</h3>
+        <label class="check-item"><input type="checkbox"><span>Abri com interesse e desarme, não com um oi solto.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Fiquei em silêncio depois de cada pergunta.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Não revelei a solução antes da hora.</span></label>
+        <label class="check-item"><input type="checkbox"><span>O cliente verbalizou o problema e a consequência com as próprias palavras.</span></label>
+        <label class="check-item"><input type="checkbox"><span>Apresentei depois que ele pediu, usando o que ele me disse.</span></label>
+      </div>
+    </div>
+  </section>
+  <section id="playbook" class="sec partstart play">
+    <div class="wrap">
+      <p class="stage">Resumo de cada etapa</p>
+      <h2>O playbook</h2>
+      <div class="body" contenteditable="true" spellcheck="false">
+        <p class="lead">Cada etapa em uma linha: o movimento que a carrega e o erro que mais custa.</p>
+      </div>
+
+      <div class="entry" contenteditable="true" spellcheck="false">
+        <h3>Funil</h3>
+        <p>Sequência de ofertas costurada pelo pedágio. Aquece barato, captura com a isca, filtra no tripware, prepara o caro com as quatro mentiras, fecha na call. O diferencial é tapar o downsell e a recorrência. Erro que mais custa: concentrar tudo num único produto de entrada.</p>
+      </div>
+
+      <div class="entry" contenteditable="true" spellcheck="false">
+        <h3>Criação de anúncios</h3>
+        <p>Gancho que varia, corpo que se repete: segura um anúncio rodando por anos. Encena a cena do cliente, antecipa a objeção, prova pela média honesta com nome e número. Mantenha dois funis de entrada vivos.</p>
+      </div>
+
+      <div class="entry" contenteditable="true" spellcheck="false">
+        <h3>E-mail marketing</h3>
+        <p>Máquina de cinco estágios em loop: captura, doutrina, vende com newsletter + diagnóstico que fecha numa aplicação, ascende e poda. Lista vale pela densidade; voz com cicatriz passa pelo porteiro de IA. Erro que mais custa: sumir entre uma venda e outra.</p>
+      </div>
+
+      <div class="entry" contenteditable="true" spellcheck="false">
+        <h3>Escada de valor</h3>
+        <p>Desenhe a escada antes de precisar: isca grátis, entrada barata, diagnóstico-ponte, consultoria, topo recorrente. Cada compra é o convite pro degrau seguinte. Quem tem a melhor segunda venda paga mais pelo clique, e vence.</p>
+      </div>
+
+      <div class="entry" contenteditable="true" spellcheck="false">
+        <h3>Teste de oferta</h3>
+        <p>Antes da copy: o resultado é desejado com intensidade, ela acredita que funciona pra ela, em quanto tempo vem o primeiro resultado, quanto esforço custa. Desejo e probabilidade pra cima, tempo e esforço pra baixo. Nenhuma copy salva oferta fraca.</p>
+      </div>
+
+      <div class="entry" contenteditable="true" spellcheck="false">
+        <h3>Métricas</h3>
+        <p>Seis números, nenhum de vaidade: clique, conversão pós-clique, receita por destinatário, descadastro, denúncia de spam, crescimento líquido da lista. A rainha é a receita por destinatário. Uma decisão por mês vence qualquer painel olhado todo dia.</p>
+      </div>
+
+    </div>
+  </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Documento de trabalho · versão enxuta. Clique em qualquer texto pra reescrever antes do deploy.<br>
+    As ações na ordem. A versão completa explica o porquê de cada uma.</p>
+    <div class="phase2">
+      <p><span class="lbl">Como usar.</span> Cobre o funil, a camada de e-mail calibrada pra consultoria de ticket alto, e o playbook que resume cada etapa numa tela. Cada bloco é o que fazer, na ordem de executar.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  (function(){
+    var parts=[].slice.call(document.querySelectorAll('.part'));
+    var tabs=[].slice.call(document.querySelectorAll('.tab'));
+    var PART_KEYS=parts.map(function(p){return p.id.replace('p-','');});
+    var secToPart={};
+    parts.forEach(function(p){
+      var key=p.id.replace('p-','');
+      [].slice.call(p.querySelectorAll('section[id]')).forEach(function(s){ secToPart[s.id]=key; });
+    });
+    function activate(part, scrollId){
+      parts.forEach(function(p){ p.hidden=(p.id!=='p-'+part); });
+      tabs.forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-part')===part); });
+      if(scrollId){
+        var el=document.getElementById(scrollId);
+        if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); return; }
+      }
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function resolve(){
+      var h=(location.hash||'').replace(/^#/,'');
+      if(PART_KEYS.indexOf(h)>=0) return activate(h);
+      if(secToPart[h]) return activate(secToPart[h], h);
+      activate('intro');
+    }
+    document.addEventListener('click',function(e){
+      var nav=e.target.closest('[data-part]');
+      if(nav){ e.preventDefault(); var p=nav.getAttribute('data-part');
+        if(location.hash==='#'+p) resolve(); else location.hash=p; return; }
+      var sub=e.target.closest('.subnav-link');
+      if(sub){ e.preventDefault(); var id=sub.getAttribute('href').slice(1);
+        if(location.hash==='#'+id) resolve(); else location.hash=id; return; }
+    });
+    window.addEventListener('hashchange', resolve);
+    resolve();
+  })();
+</script>
+<script>
+(function(){
+  var KEY='fm-edits:'+(location.pathname.split('/').pop()||'doc');
+  var editables=[].slice.call(document.querySelectorAll('[contenteditable]'));
+  var checks=[].slice.call(document.querySelectorAll('.check-item input[type=checkbox]'));
+  var status=document.getElementById('save-status');
+  function flash(msg){ if(!status) return; status.textContent='· '+msg; status.style.opacity='1';
+    clearTimeout(status._t); status._t=setTimeout(function(){status.style.opacity='.45';},1600); }
+  // restaura edicoes salvas
+  try{
+    var saved=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(saved){
+      if(saved.html) saved.html.forEach(function(h,i){ if(editables[i]!=null && h!=null) editables[i].innerHTML=h; });
+      if(saved.checks) saved.checks.forEach(function(c,i){ if(checks[i]) checks[i].checked=c; });
+      flash('edições restauradas');
+    }
+  }catch(e){}
+  // autosave
+  var t;
+  function save(){
+    try{
+      localStorage.setItem(KEY, JSON.stringify({
+        html:editables.map(function(el){return el.innerHTML;}),
+        checks:checks.map(function(c){return c.checked;})
+      }));
+      flash('salvo');
+    }catch(e){ flash('use Baixar HTML'); }
+  }
+  editables.forEach(function(el){ el.addEventListener('input', function(){ clearTimeout(t); t=setTimeout(save,600); }); });
+  checks.forEach(function(c){ c.addEventListener('change', save); });
+  // baixar copia standalone com as edicoes gravadas
+  var dl=document.getElementById('btn-download');
+  if(dl) dl.addEventListener('click', function(){
+    document.querySelectorAll('.check-item input[type=checkbox]').forEach(function(c){
+      if(c.checked) c.setAttribute('checked',''); else c.removeAttribute('checked');
+    });
+    var html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+    var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download=(location.pathname.split('/').pop()||'documento.html').replace(/\.html?$/,'')+'-editado.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); },2000);
+    flash('baixado');
+  });
+  // desfazer
+  var rs=document.getElementById('btn-reset');
+  if(rs) rs.addEventListener('click', function(){
+    if(confirm('Apagar as edições salvas neste navegador e voltar ao original?')){ localStorage.removeItem(KEY); location.reload(); }
+  });
+})();
+</script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var o=e.target.closest('.vswitch-opt');
+    if(!o) return;
+    e.preventDefault();
+    if(o.classList.contains('active')) return;
+    var base=o.getAttribute('href').split('#')[0];
+    location.href = base + (location.hash || '');
+  });
+})();
+</script>
+</body>
+</html>
