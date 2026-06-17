@@ -238,6 +238,21 @@
   .vswitch-opt:hover{color:var(--laranja);}
   .vswitch-opt.active{background:var(--laranja);color:#fff;}
   @media print{.vswitch{display:none;}}
+  /* link pra analise detalhada dos concorrentes */
+  .tab-analise{margin-left:8px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--laranja);border:1px solid var(--laranja);border-radius:999px;padding:7px 14px;text-decoration:none;white-space:nowrap;transition:background .12s;}
+  .tab-analise:hover{background:#d95c14;}
+  .intro-analise{display:flex;align-items:center;gap:16px;justify-content:space-between;background:#fff;border:1px solid var(--linha);border-left:3px solid var(--laranja);border-radius:14px;padding:20px 22px;margin:30px 0 0;text-decoration:none;transition:border-color .15s,box-shadow .15s,transform .15s;}
+  .intro-analise:hover{border-color:var(--laranja);box-shadow:0 8px 26px rgba(242,107,29,.12);transform:translateY(-2px);}
+  .intro-analise-t{display:block;font-family:"Archivo",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em;color:var(--preto);margin:0 0 5px;}
+  .intro-analise-d{display:block;font-size:14px;line-height:1.45;color:var(--chumbo);max-width:62ch;}
+  .intro-analise-go{font-family:"Archivo",sans-serif;font-size:24px;line-height:1;color:var(--laranja);flex-shrink:0;}
+  @media print{.tab-analise{display:none;}}
+
+  /* ilustracoes (spots + banners) */
+  .fig-banner{display:block;width:100%;height:auto;border:1px solid var(--linha);border-radius:12px;margin:18px 0 6px;}
+  .figs{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:24px 0 6px;}
+  .fig-spot{flex:0 1 300px;max-width:320px;width:100%;height:auto;border:1px solid var(--linha);border-radius:12px;background:#fff;}
+  @media print{.fig-banner,.fig-spot{break-inside:avoid;}}
 </style>
 </head>
 <body>
@@ -264,6 +279,7 @@
   <div class="wrap">
     <button class="tab active" data-part="intro">Introdução</button><button class="tab" data-part="funil">Funil</button><button class="tab" data-part="email">Email</button><button class="tab" data-part="anuncios">Anúncios</button><button class="tab" data-part="operacao">Operação</button>
     <div class="vswitch" title="trocar de versao"><a class="vswitch-opt" href="o-melhor-dos-4-mundos.html">Completa</a><a class="vswitch-opt active" href="o-melhor-dos-4-mundos-enxuta.html">Enxuta</a></div>
+    <a class="tab-analise" href="analise-paginas-vendas-4-concorrentes.html" target="_blank" rel="noopener" title="A análise detalhada de cada etapa: as money pages dos 4 concorrentes, página a página">Análise detalhada &#8599;</a>
   </div>
 </nav>
 
@@ -271,6 +287,7 @@
 
 <main>
   <div class="part" id="p-intro">
+    
     <div class="wrap">
       <div class="welcome">
         <p class="welcome-kicker">Bem-vindo</p>
@@ -279,6 +296,13 @@
         <div class="welcome-thesis" contenteditable="true" spellcheck="false"><p>Os quatro concorrentes rodam a mesma máquina: um funil barato na frente que alimenta uma consultoria cara atrás.</p>
       <p>Dá pra pegar a peça que cada um faz melhor e tapar o buraco que cada um deixa.</p>
       <p>Esta é a versão de ação: as ações na ordem de executar. A versão longa explica o porquê de cada uma.</p></div>
+        <a class="intro-analise" href="analise-paginas-vendas-4-concorrentes.html" target="_blank" rel="noopener">
+          <span class="intro-analise-main">
+            <span class="intro-analise-t">A análise detalhada de cada etapa</span>
+            <span class="intro-analise-d">As money pages dos quatro concorrentes, página a página: o teardown e os insights que deram origem a esta máquina. Abre numa nova aba.</span>
+          </span>
+          <span class="intro-analise-go">&#8599;</span>
+        </a>
         <p class="choices-label">Escolha por onde começar</p>
         <div class="choices">
       <button class="choice" data-part="funil"><span class="choice-n">01</span><span class="choice-main"><span class="choice-t">O funil</span><span class="choice-d">A máquina de aquisição, do anúncio frio até a venda da consultoria.</span></span><span class="choice-go">&rarr;</span></button>
@@ -286,10 +310,15 @@
       <button class="choice" data-part="anuncios"><span class="choice-n">03</span><span class="choice-main"><span class="choice-t">Anúncios</span><span class="choice-d">O criativo que não parece criativo: anatomia, gancho, corpo e escala.</span></span><span class="choice-go">&rarr;</span></button>
       <button class="choice" data-part="operacao"><span class="choice-n">04</span><span class="choice-main"><span class="choice-t">Operação</span><span class="choice-d">Como rodar no dia a dia: a jornada do lead, a call de fechamento e o playbook.</span></span><span class="choice-go">&rarr;</span></button>
         </div>
+      
+        
+
+        <!-- TODO spot #3 A recorrencia que o Jeremy esconde: regerar e inserir aqui -->
       </div>
     </div>
   </div>
   <div class="part" id="p-funil" hidden>
+    
     <div class="subnav"><div class="wrap">
       <a class="subnav-link" href="#logica">A lógica</a>
       <a class="subnav-link" href="#fundacao">A fundação</a>
@@ -312,7 +341,9 @@
         <p>Uma pergunta de qualificação, o pedágio, costura os quatro degraus e decide pra onde cada lead vai. É por ela que se começa a montar.</p>
       </div>
     </div>
-  </section>
+  
+      
+</section>
   <section id="fundacao" class="sec">
     <div class="wrap">
       <p class="stage">Antes de qualquer página</p>
@@ -330,7 +361,13 @@
         </ol>
       </div>
     </div>
-  </section>
+  
+      <div class="wrap">
+      
+
+      <!-- TODO spot #9 As saidas em que o cliente se culpa: regerar e inserir aqui -->
+      </div>
+</section>
   <section id="topo" class="sec">
     <div class="wrap">
       <p class="stage">Atração</p>
@@ -347,7 +384,14 @@
         </ol>
       </div>
     </div>
-  </section>
+  
+      <div class="wrap">
+      
+
+      <!-- TODO spot #13 A isca devolve o numero dele: regerar e inserir aqui -->
+      <!-- TODO spot #14 O buraco entre onde esta e onde deveria: regerar e inserir aqui -->
+      </div>
+</section>
   <section id="pedagio" class="sec">
     <div class="wrap">
       <p class="stage">O coração da máquina</p>
@@ -365,7 +409,9 @@
         </ol>
       </div>
     </div>
-  </section>
+  
+      
+</section>
   <section id="tripware" class="sec">
     <div class="wrap">
       <p class="stage">Atração · produto de entrada</p>
@@ -383,7 +429,9 @@
         </ol>
       </div>
     </div>
-  </section>
+  
+      
+</section>
   <section id="consultoria" class="sec">
     <div class="wrap">
       <p class="stage">Upsell · high-ticket</p>
@@ -401,7 +449,9 @@
         </ol>
       </div>
     </div>
-  </section>
+  
+      
+</section>
   <section id="downsell" class="sec">
     <div class="wrap">
       <p class="stage">Downsell · o vão que sangra os quatro</p>
@@ -418,7 +468,9 @@
         </ol>
       </div>
     </div>
-  </section>
+  
+      
+</section>
   <section id="continuidade" class="sec">
     <div class="wrap">
       <p class="stage">Continuidade · o buraco mais caro</p>
@@ -435,7 +487,9 @@
         </ol>
       </div>
     </div>
-  </section>
+  
+      
+</section>
   <section id="midia" class="sec">
     <div class="wrap">
       <p class="stage">Em volta da máquina</p>
@@ -452,7 +506,9 @@
         </ol>
       </div>
     </div>
-  </section>
+  
+      
+</section>
   <section id="ordem" class="order">
     <div class="wrap">
       <p class="stage">Partindo do zero</p>
@@ -501,9 +557,12 @@
         </ol>
       </div>
     </div>
-  </section>
+  
+      
+</section>
   </div>
   <div class="part" id="p-email" hidden>
+    
     <div class="subnav"><div class="wrap">
       <a class="subnav-link" href="#email-maquina">A máquina</a>
       <a class="subnav-link" href="#email-boasvindas">Boas-vindas</a>
@@ -649,6 +708,7 @@
   </section>
   </div>
   <div class="part" id="p-anuncios" hidden>
+    
   <section id="anuncios" class="sec partstart">
     <div class="wrap">
       <p class="stage">Como criar os anúncios</p>
@@ -748,6 +808,7 @@
   </section>
   </div>
   <div class="part" id="p-operacao" hidden>
+    
     <div class="subnav"><div class="wrap">
       <a class="subnav-link" href="#jornada">A jornada do lead</a>
       <a class="subnav-link" href="#conducao">A reunião</a>
